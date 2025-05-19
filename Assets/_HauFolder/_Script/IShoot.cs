@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IShoot
+public interface IShoot
 {
-    
+    public void Shooting(ParticleSystem particle);    
 }

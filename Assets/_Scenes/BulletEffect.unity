@@ -215,7 +215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &262289442
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -301,7 +301,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262289441}
   serializedVersion: 8
-  lengthInSec: 0.1
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5048,7 +5048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!199 &350055919
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5963,7 +5963,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 24
+      scalar: 1
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9869,14 +9869,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 350055918}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.466, z: 6.755}
+  m_LocalRotation: {x: -0.033508785, y: -0.025063677, z: 0.001503704, w: 0.999123}
+  m_LocalPosition: {x: 4.6, y: -4.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1140568281}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -3.835, y: -2.883, z: 0.269}
 --- !u!1 &377627023
 GameObject:
   m_ObjectHideFlags: 0
@@ -9921,7 +9921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12aa56c80861d8643b0d7efd8656eead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MuzzleFlash: {fileID: 262289443}
+  MuzzleFlash: {fileID: 350055920}
   fireRate: 0.2
 --- !u!1 &827005475
 GameObject:
