@@ -11,6 +11,7 @@ public class GunData : ScriptableObject
     public float RateofFire;
     public float Range;
     public float PhysicalDamage;
+    public float MaximumTotalBullet;
     public MagicDamageEffect MagicEffect;
     public Guntype Type;
     public ShootingMethod Method
