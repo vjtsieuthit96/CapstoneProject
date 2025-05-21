@@ -1,0 +1,30 @@
+
+//Root
+//├── Selector (Kiểm tra trạng thái)
+//│   ├── Sequence (Nếu bị thương nặng)
+//│   │   ├── Điều Kiện: Máu < 30 %
+//│   │   ├── Hành Động: Kích hoạt chế độ "Cuồng Nộ" (Tăng tốc độ, sức mạnh)
+//│   │   ├── Hành Động: Nếu vẫn yếu → Rút lui hoặc tìm vật phẩm hồi máu
+//│   │
+//│   ├── Sequence (Nếu có kẻ địch)
+//│   │   ├── Điều Kiện: Có kẻ địch trong tầm nhìn
+//│   │   ├── Selector (Chọn kiểu tấn công)
+//│   │   │   ├── Sequence (Cận chiến)
+//│   │   │   │   ├── Điều Kiện: Khoảng cách gần
+//│   │   │   │   ├── Hành Động: Tấn công mạnh (Chém, đâm, quét ngang)
+//│   │   │   │   ├── Hành Động: Né tránh nếu đối thủ phản đòn
+//│   │   │   │
+//│   │   │   ├── Sequence (Tấn công từ xa)
+//│   │   │   │   ├── Điều Kiện: Khoảng cách xa
+//│   │   │   │   ├── Hành Động: Phóng vũ khí (Phi tiêu, lao, kỹ năng phép)
+//│   │   │   │   ├── Hành Động: Di chuyển chiến thuật để ép đối thủ vào góc chết
+//│   │   │   │
+//│   │   │   ├── Sequence (Tấn công đặc biệt)
+//│   │   │   │   ├── Điều Kiện: Đối thủ bị dồn vào thế yếu
+//│   │   │   │   ├── Hành Động: Kích hoạt kỹ năng đặc biệt (Lao vào, đánh lan)
+//│   │   │   │   ├── Hành Động: Kiểm tra trạng thái → Nếu có lợi thế → Đánh dứt điểm
+//│   │
+//│   ├── Sequence (Nếu không có kẻ địch)
+//│   │   ├── Hành Động: Tuần tra khu vực
+//│   │   ├── Hành Động: Quan sát môi trường
+//│   │   ├── Hành Động: Nếu phát hiện mục tiêu → Chuyển sang chế độ tấn công
