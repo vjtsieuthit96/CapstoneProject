@@ -1,3 +1,4 @@
+using System.Security;
 using UnityEngine;
 
 public class GunfireTest : MonoBehaviour
@@ -38,11 +39,11 @@ public class GunfireTest : MonoBehaviour
     void FireParticle()
     {
         Debug.Log("FIRE");
-        if (!MuzzleFlash.isPlaying)
+        ParticleSystem[] allparticle = MuzzleFlash.GetComponentsInChildren<ParticleSystem>();
+        foreach(var Muzzle in allparticle)
         {
-            MuzzleFlash.Play();
+            var emitParams = new ParticleSystem.EmitParams();
+            Muzzle.Emit(emitParams, 1);
         }
-        var emitParams = new ParticleSystem.EmitParams();
-        MuzzleFlash.Emit(emitParams, 1);
     }
 }
