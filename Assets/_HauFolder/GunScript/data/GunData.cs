@@ -12,26 +12,10 @@ public class GunData : ScriptableObject
     public float Range;
     public float PhysicalDamage;
     public float MaximumTotalBullet;
+    public int MaxAmmoPerMagazine;
     public MagicDamageEffect MagicEffect;
     public Guntype Type;
-    public ShootingMethod Method
-    {
-        get
-        {
-            switch (Type)
-            {
-                case Guntype.Piston:
-                    return ShootingMethod.Single;
-                case Guntype.Rifle:
-                    return ShootingMethod.Both;
-                case Guntype.Submachine:
-                    return ShootingMethod.Automatic;
-                case Guntype.Sniper:
-                    return ShootingMethod.Single;
-                default: return ShootingMethod.Single;
-            }
-        }
-    }
+    public ShootingMethod ShootingMethod;
 }
 
 
