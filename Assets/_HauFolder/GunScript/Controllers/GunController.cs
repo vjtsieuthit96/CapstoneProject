@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class GunController : MonoBehaviour, IReloadable
 {
     // các file data kéo thả 
     public GunData Data { get; private set; }
@@ -18,7 +18,7 @@ public class GunController : MonoBehaviour
 
     // biến bool kích hoạt bắn
     public bool WantsToShoot {  get; private set; }
-
+    // hàm khởi tạo của súng 
     public void Initialize(GunData data, IShootingBehavior behavior, IShooter shooter )
     {
         this.Data = data;
