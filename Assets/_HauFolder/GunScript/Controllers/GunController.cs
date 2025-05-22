@@ -14,6 +14,7 @@ public class GunController : MonoBehaviour, IReloadable
 
     // các chỉ số của súng
     public int CurrentAmmo {  get; private set; }
+    public float currentAmmo;
     public float TotalAmmoReserve { get; private set; }
 
     // biến bool kích hoạt bắn
@@ -28,7 +29,11 @@ public class GunController : MonoBehaviour, IReloadable
         CurrentAmmo = data.MaxAmmoPerMagazine;
         TotalAmmoReserve = data.MaximumTotalBullet;
     }
-
+    // debug test
+    private void Start()
+    {
+        currentAmmo = Data.MaximumTotalBullet;
+    }
     public void ManualUpdate()
     {
         ShootingBehavior?.Tick(this);
@@ -37,7 +42,7 @@ public class GunController : MonoBehaviour, IReloadable
     public bool TryShoot()
     {
         if (CurrentAmmo <= 0) return false;
-
+        //Debug.Log("Bắn");
         CurrentAmmo--;
         Shooter?.Shoot(this);
         return true;    
@@ -54,4 +59,15 @@ public class GunController : MonoBehaviour, IReloadable
         CurrentAmmo += ammoToLoad;
         TotalAmmoReserve -= ammoToLoad;
     }
+
+    public void OnShoot()
+    {
+        WantsToShoot = true;
+    }    
+
+    public void OffShoot()
+    {
+        WantsToShoot = false;
+    }    
 }
+

@@ -12,7 +12,7 @@ public class GunData : ScriptableObject
     public float Gunrecoil;
     // Tốc độ đạn, dùng để tính tốc độ chỉnh của đạn, tính thời gian chính xác đạn đến đích để gọi takedamage chính xác
     public float BulletSpeed;
-    // Tốc độ bắn của súng (m/s)
+    // Tốc độ bắn của súng (viên/s)
     public float RateofFire;
     // Tầm bắn, tương tự với BulletSpeed, dùng để tính dự kiến thời điểm đạn chạm vào object để gọi takedamage hiệu quả
     public float Range;

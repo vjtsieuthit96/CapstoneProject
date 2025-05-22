@@ -208,6 +208,9 @@ GameObject:
   m_Component:
   - component: {fileID: 377627024}
   - component: {fileID: 377627025}
+  - component: {fileID: 377627027}
+  - component: {fileID: 377627026}
+  - component: {fileID: 377627028}
   m_Layer: 0
   m_Name: Guntest
   m_TagString: Untagged
@@ -227,7 +230,8 @@ Transform:
   m_LocalPosition: {x: -59.0997, y: -6.8681912, z: 9.778573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1995738736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &377627025
@@ -237,13 +241,53 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377627023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12aa56c80861d8643b0d7efd8656eead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MuzzleFlash: {fileID: 1995738734}
   fireRate: 0.2
+--- !u!114 &377627026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377627023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14b94fcb810188c41af503da1d60ba62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: d0c06217e8d7fc24c9820290449e19b2, type: 2}
+--- !u!114 &377627027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377627023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7404f0bd565d7af418c120d6b1b08231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirePoint: {fileID: 1449508810}
+  BulletPoint: {fileID: 1995738736}
+  MuzzleParticle: {fileID: 1995738734}
+--- !u!114 &377627028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377627023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2218e095778f6764ba53ec4d7b69d610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &455768476
 GameObject:
   m_ObjectHideFlags: 0
@@ -5083,7 +5127,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 377627024}
     m_Modifications:
     - target: {fileID: 3504393764406033361, guid: 34f14c7b7eb31df41bd1a6fae63dd921, type: 3}
       propertyPath: m_IsActive
@@ -5095,15 +5139,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3506148328399481893, guid: 34f14c7b7eb31df41bd1a6fae63dd921, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.18
+      value: 63.2797
       objectReference: {fileID: 0}
     - target: {fileID: 3506148328399481893, guid: 34f14c7b7eb31df41bd1a6fae63dd921, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.94
+      value: 2.9281912
       objectReference: {fileID: 0}
     - target: {fileID: 3506148328399481893, guid: 34f14c7b7eb31df41bd1a6fae63dd921, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.69
+      value: -11.468573
       objectReference: {fileID: 0}
     - target: {fileID: 3506148328399481893, guid: 34f14c7b7eb31df41bd1a6fae63dd921, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5616,13 +5660,17 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3631675573615640289, guid: 34f14c7b7eb31df41bd1a6fae63dd921, type: 3}
   m_PrefabInstance: {fileID: 631418613}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1995738736 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3506148328399481893, guid: 34f14c7b7eb31df41bd1a6fae63dd921, type: 3}
+  m_PrefabInstance: {fileID: 631418613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1449508810}
   - {fileID: 827005477}
-  - {fileID: 631418613}
   - {fileID: 377627024}
   - {fileID: 1327906528}
   - {fileID: 153734036}
