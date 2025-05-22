@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class GunController : MonoBehaviour, IReloadable
 {
     // các file data kéo thả 
     public GunData Data { get; private set; }
     public Transform FirePoint;
     public Transform BulletPoint;
     public ParticleSystem MuzzleParticle;
+    public ParticleSystem MuzzleFlash;
 
     // các interface cấu hình nên cách bắn
     public IShootingBehavior ShootingBehavior { get; private set; }
     public IShooter Shooter { get; private set; }
 
     // các chỉ số của súng
-    public int CurrentAmmo {  get; private set; }
-    public float TotalAmmoReserve { get; private set; }
+    public int CurrentAmmo; /*{  get; private set; }*/
+    public float TotalAmmoReserve; /*{ get; private set; }*/
 
     // biến bool kích hoạt bắn
     public bool WantsToShoot {  get; private set; }
-
+    // hàm khởi tạo của súng 
     public void Initialize(GunData data, IShootingBehavior behavior, IShooter shooter )
     {
         this.Data = data;
@@ -28,16 +29,19 @@ public class GunController : MonoBehaviour
         CurrentAmmo = data.MaxAmmoPerMagazine;
         TotalAmmoReserve = data.MaximumTotalBullet;
     }
-
     public void ManualUpdate()
     {
         ShootingBehavior?.Tick(this);
-    }    
+    }
 
     public bool TryShoot()
     {
-        if (CurrentAmmo <= 0) return false;
-
+        if (CurrentAmmo <= 0)
+        {
+            Debug.Log("Hết đạn");
+            return false;
+        }
+        //Debug.Log("Bắn");
         CurrentAmmo--;
         Shooter?.Shoot(this);
         return true;    
@@ -54,4 +58,15 @@ public class GunController : MonoBehaviour
         CurrentAmmo += ammoToLoad;
         TotalAmmoReserve -= ammoToLoad;
     }
+
+    public void OnShoot()
+    {
+        WantsToShoot = true;
+    }    
+
+    public void OffShoot()
+    {
+        WantsToShoot = false;
+    }    
 }
+

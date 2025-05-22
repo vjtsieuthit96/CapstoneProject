@@ -1,4 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public static class ShooterFactory
 {
@@ -12,7 +13,7 @@ public class DefaultShooter : IShooter
 {
     public void Shoot(GunController controller)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if(Physics.Raycast(ray, out var hit, controller.Data.Range))
         {
             if(hit.collider.TryGetComponent<IDamageable>(out var damageable))
@@ -21,7 +22,7 @@ public class DefaultShooter : IShooter
             }
         }
 
-
+        controller.MuzzleFlash?.Emit(1);
         var muzzle = controller.MuzzleParticle;
         var main = muzzle.main;
         main.startSpeed = controller.Data.BulletSpeed;

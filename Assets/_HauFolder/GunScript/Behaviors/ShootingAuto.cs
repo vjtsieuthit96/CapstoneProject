@@ -6,14 +6,11 @@ public class ShootingAuto : IShootingBehavior
 
     public void Tick(GunController controller)
     {
-        if(controller.WantsToShoot && Time.time > nextFireTime)
+        if(controller.WantsToShoot && Time.time >= nextFireTime)
         {
-            if(controller.WantsToShoot && Time.time >= nextFireTime)
+            if(controller.TryShoot())
             {
-                if(controller.TryShoot())
-                {
-                    nextFireTime = Time.time + 1f/controller.Data.RateofFire;
-                }
+                nextFireTime = Time.time + 1f/controller.Data.RateofFire;
             }
         }
     }
