@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29cd29a1726b31a48b28bda33398dc3d, type: 3}
-  m_Name: GunData
+  m_Name: Piston
   m_EditorClassIdentifier: 
   GunName: Basic Piston
-  Weight: 3.4
+  Weight: 1.2
   Gunrecoil: 1
-  BulletSpeed: 0
-  RateofFire: 0
-  Range: 0
-  PhysicalDamage: 0
+  BulletSpeed: 100
+  RateofFire: 3
+  Range: 100
+  PhysicalDamage: 100
+  MaximumTotalBullet: 42
+  MaxAmmoPerMagazine: 6
   MagicEffect: 0
   Type: 0
+  ShootingMethod: 0

@@ -7,15 +7,15 @@ public class GunController : MonoBehaviour, IReloadable
     public Transform FirePoint;
     public Transform BulletPoint;
     public ParticleSystem MuzzleParticle;
+    public ParticleSystem MuzzleFlash;
 
     // các interface cấu hình nên cách bắn
     public IShootingBehavior ShootingBehavior { get; private set; }
     public IShooter Shooter { get; private set; }
 
     // các chỉ số của súng
-    public int CurrentAmmo {  get; private set; }
-    public float currentAmmo;
-    public float TotalAmmoReserve { get; private set; }
+    public int CurrentAmmo; /*{  get; private set; }*/
+    public float TotalAmmoReserve; /*{ get; private set; }*/
 
     // biến bool kích hoạt bắn
     public bool WantsToShoot {  get; private set; }
@@ -29,19 +29,18 @@ public class GunController : MonoBehaviour, IReloadable
         CurrentAmmo = data.MaxAmmoPerMagazine;
         TotalAmmoReserve = data.MaximumTotalBullet;
     }
-    // debug test
-    private void Start()
-    {
-        currentAmmo = Data.MaximumTotalBullet;
-    }
     public void ManualUpdate()
     {
         ShootingBehavior?.Tick(this);
-    }    
+    }
 
     public bool TryShoot()
     {
-        if (CurrentAmmo <= 0) return false;
+        if (CurrentAmmo <= 0)
+        {
+            Debug.Log("Hết đạn");
+            return false;
+        }
         //Debug.Log("Bắn");
         CurrentAmmo--;
         Shooter?.Shoot(this);
