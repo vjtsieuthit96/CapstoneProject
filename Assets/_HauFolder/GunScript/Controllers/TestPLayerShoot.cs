@@ -25,6 +25,10 @@ public class TestPLayerShoot : MonoBehaviour
         RemainBullet.text = Gun.TotalAmmoReserve.ToString();
 
     }
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     private void HandleShoot()
     {
         if(Input.IsPress())
