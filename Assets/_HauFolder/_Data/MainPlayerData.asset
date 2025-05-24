@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554aacf98774c134387f214d9da9d278, type: 3}
+  m_Name: MainPlayerData
+  m_EditorClassIdentifier: 
+  PlayerName: "Phan Trung H\u1EADu"
+  PlayerDefaultSpeed: 5
+  RatioRun: 2.2
+  PlayerWeight: 88
+  PlayerMaxHealth: 100
+  PlayerStrength: 60
+  PlayerSensity: 5
+  PlayerGender: 0
