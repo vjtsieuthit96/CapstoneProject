@@ -5390,6 +5390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: ec945f5c930cdb24180f916790386460, type: 2}
   CameraTransform: {fileID: 1804168310}
+  cameraTransform: {fileID: 1804168310}
 --- !u!114 &604089411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6241,6 +6242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1804168310}
   - component: {fileID: 1804168311}
+  - component: {fileID: 1804168312}
   m_Layer: 0
   m_Name: Camera Follow Player
   m_TagString: Untagged
@@ -6304,6 +6306,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1668380835}
+--- !u!114 &1804168312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804168309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e33a57e57aa1124bb1ccf6d0f55d05c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1817233569
 GameObject:
   m_ObjectHideFlags: 0

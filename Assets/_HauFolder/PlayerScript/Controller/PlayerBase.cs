@@ -20,6 +20,7 @@ public class PlayerBase : MonoBehaviour
     private Transform PlayerTransform;
     public Transform CameraTransform;
     private GroundCheck groundCheck;
+    public Transform cameraTransform;
 
     // Coordinates
     private float RotatonX;
@@ -32,7 +33,8 @@ public class PlayerBase : MonoBehaviour
         PlayerLook = new PlayerLook();
         groundCheck = GetComponent<GroundCheck>();
         Input = new TestInputController();
-        StateManager = new PlayerStateManager(groundCheck, Input, rb, Data);
+        CameraBobbing camBobbing = cameraTransform.GetComponent<CameraBobbing>();
+        StateManager = new PlayerStateManager(groundCheck, Input, rb, Data, camBobbing);
         Core = new PlayerCore(Input, StateManager, PlayerLook, rb, Data);
     }
 
