@@ -22,6 +22,8 @@ public class GunData : ScriptableObject
     public float MaximumTotalBullet;
     // Số lượng băn đạn
     public int MaxAmmoPerMagazine;
+    // Khối lượng của từng viên đạn
+    public float BulletMass;
     // các enum tùy chọn cấu hình súng
     public MagicDamageEffect MagicEffect;
     public Guntype Type;

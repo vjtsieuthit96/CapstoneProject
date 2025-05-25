@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GunController : MonoBehaviour, IReloadable
+public class GunController : MonoBehaviour, IReloadable, IWeapon
 {
     // các file data kéo thả 
     public GunData Data { get; private set; }
@@ -19,6 +19,7 @@ public class GunController : MonoBehaviour, IReloadable
 
     // biến bool kích hoạt bắn
     public bool WantsToShoot {  get; private set; }
+    public bool Canshoot => CurrentAmmo > 0;
     // hàm khởi tạo của súng 
     public void Initialize(GunData data, IShootingBehavior behavior, IShooter shooter )
     {

@@ -14,6 +14,7 @@ public class PlayerData : ScriptableObject
     [Tooltip("Máu tối đa của người chơi")]
     public float PlayerMaxHealth;
     [Tooltip("Sức khỏe của người chơi")]
+    [Range(2f,10f)]
     public float PlayerStrength; // áp dụng cho sức bật và tấn công vật lí 
     [Tooltip("Độ mượt của chuột")]
     public float PlayerSensity;

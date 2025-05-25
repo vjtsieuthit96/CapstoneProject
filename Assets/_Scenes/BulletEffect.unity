@@ -394,7 +394,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377627023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2218e095778f6764ba53ec4d7b69d610, type: 3}
   m_Name: 
@@ -5389,7 +5389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: ec945f5c930cdb24180f916790386460, type: 2}
-  CameraTransform: {fileID: 1804168310}
+  Gun: {fileID: 377627027}
   cameraTransform: {fileID: 1804168310}
 --- !u!114 &604089411
 MonoBehaviour:
@@ -6103,7 +6103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449508807}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.008726382, y: 0.004363108, z: 0.000038075952, w: 0.99995244}
   m_LocalPosition: {x: 0.51431274, y: 0.17000002, z: 2.1254578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6243,6 +6243,7 @@ GameObject:
   - component: {fileID: 1804168310}
   - component: {fileID: 1804168311}
   - component: {fileID: 1804168312}
+  - component: {fileID: 1804168313}
   m_Layer: 0
   m_Name: Camera Follow Player
   m_TagString: Untagged
@@ -6258,7 +6259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804168309}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.008726382, y: 0.004363108, z: 0.000038075952, w: 0.99995244}
   m_LocalPosition: {x: 0, y: 0.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6266,7 +6267,7 @@ Transform:
   - {fileID: 1668380835}
   - {fileID: 2071747619}
   m_Father: {fileID: 604089408}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1, y: 0.5, z: 0}
 --- !u!114 &1804168311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6318,6 +6319,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e33a57e57aa1124bb1ccf6d0f55d05c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1804168313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804168309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9777ec0e561f747ba13e1f28cc93f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RecoilStrength: 0
+  PlayerStrength: 0
 --- !u!1 &1817233569
 GameObject:
   m_ObjectHideFlags: 0

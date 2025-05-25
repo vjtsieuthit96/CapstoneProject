@@ -15,12 +15,13 @@ MonoBehaviour:
   GunName: Basic Piston
   Weight: 1.2
   Gunrecoil: 1
-  BulletSpeed: 100
+  BulletSpeed: 300
   RateofFire: 3
   Range: 100
-  PhysicalDamage: 100
+  PhysicalDamage: 5
   MaximumTotalBullet: 42
   MaxAmmoPerMagazine: 6
+  BulletMass: 0.004
   MagicEffect: 0
   Type: 0
   ShootingMethod: 0
