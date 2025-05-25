@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29cd29a1726b31a48b28bda33398dc3d, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
-  GunName: 
+  GunName: AK47
   Weight: 3.2
-  Gunrecoil: 1.2
+  Gunrecoil: 1
   BulletSpeed: 450
   RateofFire: 17
   Range: 200
   PhysicalDamage: 10
   MaximumTotalBullet: 200
   MaxAmmoPerMagazine: 100
+  BulletMass: 0.008
   MagicEffect: 0
   Type: 2
   ShootingMethod: 1

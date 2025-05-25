@@ -40,14 +40,16 @@ public class PlayerStateManager
     private PlayerData data;
     private Rigidbody rb;
     private IInputSystem input;
+    private CameraBobbing cameraBobbing;
 
-    public PlayerStateManager (GroundCheck checker, IInputSystem input, Rigidbody rb, PlayerData data)
+    public PlayerStateManager (GroundCheck checker, IInputSystem input, Rigidbody rb, PlayerData data, CameraBobbing cameraBobbing)
     {
         this.checker = checker;
         this.rb = rb;
         state = checker.IsGrounded ? new PlayerNormalMove() : new PlayerSprintMove();
         this.input = input;
         this.data = data;
+        this.cameraBobbing = cameraBobbing;
     }
 
     public void UpdateState()
@@ -65,5 +67,25 @@ public class PlayerStateManager
     public void PlayerHandleMovement(Vector3 Direction)
     {
         state.HandleMovement(rb, Direction, data);
+        ApplyBobbing(Direction);
+    }
+    private void ApplyBobbing(Vector3 direction)
+    {
+        if (direction.sqrMagnitude < 0.01f)
+        {
+            cameraBobbing.SetBobbing(0f, 0f);
+            return;
+        }
+
+        float speed = input.IsSpringting()
+            ? data.PlayerDefaultSpeed * data.RatioRun
+            : data.PlayerDefaultSpeed;
+
+        float weightFactor = Mathf.Clamp(data.PlayerWeight, 0.5f, 2f);
+        float amplitude = 0.03f * speed * weightFactor;
+        float frequency = 3.5f * speed * (1f / weightFactor);
+        amplitude = Mathf.Clamp(amplitude, 0.01f, 0.1f);
+        frequency = Mathf.Clamp(frequency, 1f, 10f);
+        cameraBobbing.SetBobbing(amplitude, frequency);
     }
 }
