@@ -29,7 +29,6 @@ public class RaycastOutlineDetector : MonoBehaviour
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
-        Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.green);
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
         {
             if (hit.collider.TryGetComponent(out IOutlineTarget target))
