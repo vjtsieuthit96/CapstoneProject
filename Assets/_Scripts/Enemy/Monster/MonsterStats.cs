@@ -30,12 +30,12 @@ public class MonsterStats : MonoBehaviour
             yield return new WaitForSecondsRealtime(1);
         }
     }
+    
+    public float GetDamage() => _damage;
     public void TakeDamage(float damage)
     {
-        _currentHealth = _currentHealth - (damage - damage*_defense/100);
+        _currentHealth = _currentHealth - (damage - damage * _defense / 100);
     }
-
-    public float GetDamage() => _damage;
 
     public float GetSpeed() => _speed;
 
