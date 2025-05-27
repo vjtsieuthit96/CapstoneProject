@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using Unity.VisualScripting.InputSystem;
 using UnityEngine;
 
@@ -22,6 +22,7 @@ public class PlayerBase : MonoBehaviour
     private GroundCheck groundCheck;
     public Transform cameraTransform;
     private CameraRecoil CamRecoil;
+    private IJumpable Jump;
     // Coordinates
     private float RotatonX;
     private float RotatonY;
@@ -34,9 +35,10 @@ public class PlayerBase : MonoBehaviour
         PlayerLook = new PlayerLook();
         groundCheck = GetComponent<GroundCheck>();
         Input = new TestInputController();
+        Jump = new PlayerJump();
         CameraBobbing camBobbing = cameraTransform.GetComponent<CameraBobbing>();
         StateManager = new PlayerStateManager(groundCheck, Input, rb, Data, camBobbing);
-        Core = new PlayerCore(Input, StateManager, PlayerLook, rb, Data);
+        Core = new PlayerCore(Input, StateManager, PlayerLook, rb, Data,Jump);
         Core.Equip(Gun);
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -48,6 +50,7 @@ public class PlayerBase : MonoBehaviour
         PlayerLookable();
         PlayerShoot();
         PlayerReload();
+        PlayerOnJump();
     }
 
     private void PlayerMovement()
@@ -61,6 +64,23 @@ public class PlayerBase : MonoBehaviour
     {
         Vector2 lookvec = Input.LookInput();
         Core.PlayerLook(lookvec, ref RotatonX, ref RotatonY, PlayerTransform, cameraTransform);
+    }
+
+    private void PlayerOnJump()
+    {
+        if(Input.IsJump() && groundCheck.IsGrounded)
+        {
+            Core.PlayerOnJump(Gun.Data);
+            float height = 10f; // ví dụ: rơi từ độ cao 10 mét
+            float fallTime = CalculateFallingTime(height);
+            Debug.Log($"Thời gian rơi từ độ cao {height}m: {fallTime:F2} giây");
+        }
+    }
+
+    // test
+    float CalculateFallingTime(float height, float gravity = 9.81f)
+    {
+        return Mathf.Sqrt((2f * height) / gravity);
     }
     private void PlayerShoot()
     {

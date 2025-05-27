@@ -8,4 +8,5 @@ public interface IInputSystem
     bool IsSpringting();
     Vector2 MoveInput();
     Vector2 LookInput();
+    bool IsJump();
 }

@@ -5,10 +5,11 @@ public class PlayerCore
     private IInputSystem Input;
     private PlayerStateManager State;
     private ILookBehavior Look;
+    private IJumpable Jump;
     private WeaponManager weaponManager;
     private Rigidbody Rb;
     private PlayerData Data;
-    public PlayerCore (IInputSystem input, PlayerStateManager state, ILookBehavior look, Rigidbody rb, PlayerData data)
+    public PlayerCore (IInputSystem input, PlayerStateManager state, ILookBehavior look, Rigidbody rb, PlayerData data, IJumpable jump)
     {
         this.Input = input;
         //this.Move = move;
@@ -17,6 +18,7 @@ public class PlayerCore
         this.Data = data;
         this.State = state;
         this.weaponManager = new WeaponManager();
+        this.Jump = jump;
     }
 
     public void PlayerMove(Vector3 Direction)
@@ -58,6 +60,11 @@ public class PlayerCore
     public void ManualUpdate()
     {
         weaponManager.ManualUpdate();
+    }
+
+    public void PlayerOnJump(GunData gundata)
+    {
+        Jump.Jump(Rb, JumpForceCalculator.CalculateJumpFore(Data, gundata));
     }
 
 }

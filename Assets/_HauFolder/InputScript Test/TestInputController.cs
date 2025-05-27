@@ -16,4 +16,5 @@ public class TestInputController : IInputSystem
     public bool IsSpringting() {return Input.Player.Sprint.ReadValue<float>() > 0f;} //nhấn shift trái
     public Vector2 MoveInput() { return Input.Player.Move.ReadValue<Vector2>(); } // các phím điều hướng
     public Vector2 LookInput() { return Input.Player.Look.ReadValue<Vector2>(); } // chuột
+    public bool IsJump() { return Input.Player.Jump.triggered; } // Bấm cách
 }
