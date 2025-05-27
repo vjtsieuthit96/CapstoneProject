@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonsterStats : MonoBehaviour
@@ -18,6 +17,7 @@ public class MonsterStats : MonoBehaviour
     }
 
     public float GetCurrentHealth() => _currentHealth;
+    public float GetMaxHealth() => _maxHealth;
 
     public void SetHealingRate(float rate) => _healingRate = rate;    
 

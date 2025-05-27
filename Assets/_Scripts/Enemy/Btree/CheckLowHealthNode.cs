@@ -2,16 +2,16 @@ using UnityEngine;
 
 
 public class CheckLowHealthNode : Node
-{
-    private MonsterAI monsterAI;
-    public CheckLowHealthNode(MonsterAI monsterAI)
+{ 
+    private MonsterStats monsterStats;
+    public CheckLowHealthNode(MonsterStats monsterStats)
     {
-        this.monsterAI = monsterAI;
+        this.monsterStats = monsterStats;
     }
 
     public override NodeState Evaluate()
     {
-        if (monsterAI.health < 0.3* monsterAI.maxHealth)
+        if (monsterStats.GetMaxHealth()<0.3*monsterStats.GetMaxHealth())
         {
             return NodeState.SUCCESS;
         }
