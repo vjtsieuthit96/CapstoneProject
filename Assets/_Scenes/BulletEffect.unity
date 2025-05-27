@@ -5355,7 +5355,7 @@ Transform:
   m_GameObject: {fileID: 604089404}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51431274, y: -0.44, z: 2.1254578}
+  m_LocalPosition: {x: 0.51431274, y: 10, z: 2.1254578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5371,7 +5371,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604089404}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -5421,7 +5421,7 @@ MonoBehaviour:
   GroundCheckRadius: 0.5
   layerCheck:
     serializedVersion: 2
-    m_Bits: 40
+    m_Bits: 8
 --- !u!114 &604089412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5690,7 +5690,7 @@ GameObject:
   - component: {fileID: 988492404}
   - component: {fileID: 988492403}
   - component: {fileID: 988492402}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6135,7 +6135,7 @@ Transform:
   m_GameObject: {fileID: 1449508807}
   serializedVersion: 2
   m_LocalRotation: {x: -0.008726382, y: 0.004363108, z: 0.000038075952, w: 0.99995244}
-  m_LocalPosition: {x: 0.51431274, y: 0.17000002, z: 2.1254578}
+  m_LocalPosition: {x: 0.51431274, y: 10.61, z: 2.1254578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
