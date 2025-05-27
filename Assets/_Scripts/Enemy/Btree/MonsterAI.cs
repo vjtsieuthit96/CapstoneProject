@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 
 public abstract class MonsterAI : MonoBehaviour
-{   
-    [SerializeField] protected Transform target;
+{
     protected Node behaviorTree;
-
+    [Header("-----Target-----")]
+    [SerializeField] protected Transform target;
+    [Header("-----Rage-----")]
     [SerializeField] protected float rageDuration = 30f; // Thời gian Cuồng Nộ
     [SerializeField] protected float rageCooldown = 600f; // Hồi chiêu Cuồng Nộ
     [SerializeField] protected float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
     [SerializeField] protected bool isEnraged = false; // Trạng thái Cuồng Nộ
-   
+    [Header("-----FOV-----")]   
     [SerializeField] protected float viewRadius = 15f; // Tầm nhìn tối đa
     [SerializeField] protected float viewAngle = 90f; // Góc nhìn của quái vật
 
