@@ -4,6 +4,19 @@ public class SoundMixerManager : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
 
+    public static SoundMixerManager Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void SetMasterVolume(float level)
     {
         audioMixer.SetFloat("masterVolume", Mathf.Log10(level) * 20f);
