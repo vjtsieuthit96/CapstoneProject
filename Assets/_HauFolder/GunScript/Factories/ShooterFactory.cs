@@ -21,6 +21,15 @@ public class DefaultShooter : IShooter
             {
                 damageable.TakeDamage(controller.Data.PhysicalDamage);
             }
+            #region Test AddForceAtPosition
+            Rigidbody rb = hit.rigidbody;
+            if (rb != null && hit.collider.CompareTag("Enemy"))
+            {
+                Vector3 Direction = ray.direction;
+                float Force = 45f;
+                rb.AddForceAtPosition(Direction * Force, hit.point, ForceMode.Impulse);
+            }
+            #endregion
             Debug.Log(hit.collider.name);
             Vector3 DirectionToTarget = hit.point - controller.BulletPoint.position;
             controller.BulletPoint.forward = DirectionToTarget;
