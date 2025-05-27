@@ -1,51 +1,21 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using NUnit.Framework.Constraints;
 
 public abstract class MonsterAI : MonoBehaviour
-{
-    public float health;
-    public float maxHealth = 100f;
-    [SerializeField] private Transform target;
-
+{   
+    [SerializeField] protected Transform target;
     protected Node behaviorTree;
 
-    protected float rageDuration = 30f; // Thời gian Cuồng Nộ kéo dài
-    public float GetRageDuration()
-    {
-        return rageDuration;
-    }
-
-    protected float rageCooldown = 600f; // Thời gian hồi chiêu Cuồng Nộ (10 phút)
-    public float GetRageCooldown()
-    {
-        return rageCooldown;
-    }
-
-    protected float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
-    public float GetLastRageTime()
-    {
-        return lastRageTime;
-    }
-    public void SetLastRageTime(float time)
-    {
-        lastRageTime = time;
-    }
-
-    protected bool isEnraged = false; // Trạng thái Cuồng Nộ
-    public bool GetisEnraged()
-    {
-        return isEnraged;
-    }
-    public void SetEnraged(bool state)
-    {
-        isEnraged = state;       
-    }
+    [SerializeField] protected float rageDuration = 30f; // Thời gian Cuồng Nộ
+    [SerializeField] protected float rageCooldown = 600f; // Hồi chiêu Cuồng Nộ
+    [SerializeField] protected float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
+    [SerializeField] protected bool isEnraged = false; // Trạng thái Cuồng Nộ
+   
+    [SerializeField] protected float viewRadius = 15f; // Tầm nhìn tối đa
+    [SerializeField] protected float viewAngle = 90f; // Góc nhìn của quái vật
 
     void Start()
-    {
-        health = maxHealth;
-        behaviorTree = CreateBehaviorTree(); // Gọi phương thức abstract
+    {  
+        behaviorTree = CreateBehaviorTree();
         InvokeRepeating("EvaluateBehaviorTree", 2f, 2f);
     }
 
@@ -55,4 +25,14 @@ public abstract class MonsterAI : MonoBehaviour
     }
 
     protected abstract Node CreateBehaviorTree();
+   
+    public float GetRageDuration() => rageDuration;
+    public float GetRageCooldown() => rageCooldown;
+    public float GetLastRageTime() => lastRageTime;
+    public bool GetIsEnraged() => isEnraged;
+    public float GetViewRadius() => viewRadius;
+    public float GetViewAngle() => viewAngle;
+    public Transform GetTarget() { return target; }
+    public void SetLastRageTime(float time) => lastRageTime = time;
+    public void SetEnraged(bool state) => isEnraged = state;
 }

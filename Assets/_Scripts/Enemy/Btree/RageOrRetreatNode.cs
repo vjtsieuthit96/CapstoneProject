@@ -3,24 +3,26 @@
 public class RageOrRetreatNode : Node
 {
     private MonsterAI monsterAI;
+    private MonsterStats monsterStats;
 
-    public RageOrRetreatNode(MonsterAI monsterAI)
+    public RageOrRetreatNode(MonsterAI monsterAI, MonsterStats monsterStats)
     {
         this.monsterAI = monsterAI;
+        this.monsterStats = monsterStats;
     }
 
     public override NodeState Evaluate()
     {
         float timeSinceLastRage = Time.time - monsterAI.GetLastRageTime();
         // Nếu Rage kết thúc, quái trở lại trạng thái bình thường
-        if (monsterAI.GetisEnraged() && timeSinceLastRage >= monsterAI.GetRageDuration())
+        if (monsterAI.GetIsEnraged() && timeSinceLastRage >= monsterAI.GetRageDuration())
         {
             monsterAI.SetEnraged(false);
             Debug.Log("Enraged End");
             return NodeState.FAILURE;
         }
         // Nếu Rage cd xong, kích hoạt lại
-        if (!monsterAI.GetisEnraged() && timeSinceLastRage >= monsterAI.GetRageCooldown())
+        if (!monsterAI.GetIsEnraged() && timeSinceLastRage >= monsterAI.GetRageCooldown())
         {
             monsterAI.SetEnraged(true);
             monsterAI.SetLastRageTime(Time.time);
