@@ -5,14 +5,10 @@ public abstract class MonsterAI : MonoBehaviour
     protected Node behaviorTree;
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
-    [Header("-----Rage-----")]
-    [SerializeField] protected float rageDuration = 30f; // Thời gian Cuồng Nộ
-    [SerializeField] protected float rageCooldown = 600f; // Hồi chiêu Cuồng Nộ
-    [SerializeField] protected float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
-    [SerializeField] protected bool isEnraged = false; // Trạng thái Cuồng Nộ
+
     [Header("-----FOV-----")]   
     [SerializeField] protected float viewRadius = 15f; // Tầm nhìn tối đa
-    [SerializeField] protected float viewAngle = 90f; // Góc nhìn của quái vật
+    [SerializeField] protected float viewAngle = 105f; // Góc nhìn của quái vật
 
     void Start()
     {  
@@ -25,15 +21,9 @@ public abstract class MonsterAI : MonoBehaviour
         behaviorTree.Evaluate();
     }
 
-    protected abstract Node CreateBehaviorTree();
-   
-    public float GetRageDuration() => rageDuration;
-    public float GetRageCooldown() => rageCooldown;
-    public float GetLastRageTime() => lastRageTime;
-    public bool GetIsEnraged() => isEnraged;
+    protected abstract Node CreateBehaviorTree();   
+
     public float GetViewRadius() => viewRadius;
     public float GetViewAngle() => viewAngle;
     public Transform GetTarget() { return target; }
-    public void SetLastRageTime(float time) => lastRageTime = time;
-    public void SetEnraged(bool state) => isEnraged = state;
 }

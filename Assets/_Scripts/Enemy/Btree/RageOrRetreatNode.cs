@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 
 public class RageOrRetreatNode : Node
-{
-    private MonsterAI monsterAI;
+{    
     private MonsterStats monsterStats;
+    [Header("-----Rage-----")]
+    [SerializeField] private float rageDuration = 30f; // Thời gian Cuồng Nộ
+    [SerializeField] private float rageCooldown = 600f; // Hồi chiêu Cuồng Nộ
+    [SerializeField] private float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
+    [SerializeField] private bool isEnraged = false; // Trạng thái Cuồng Nộ
 
-    public RageOrRetreatNode(MonsterAI monsterAI, MonsterStats monsterStats)
-    {
-        this.monsterAI = monsterAI;
+    public RageOrRetreatNode(MonsterStats monsterStats)
+    { 
         this.monsterStats = monsterStats;
     }
 
     public override NodeState Evaluate()
     {
-        float timeSinceLastRage = Time.time - monsterAI.GetLastRageTime();
+        float timeSinceLastRage = Time.time - lastRageTime;
         // Nếu Rage kết thúc, quái trở lại trạng thái bình thường
-        if (monsterAI.GetIsEnraged() && timeSinceLastRage >= monsterAI.GetRageDuration())
+        if (isEnraged && timeSinceLastRage >= rageDuration)
         {
-            monsterAI.SetEnraged(false);
+            isEnraged = false;
             Debug.Log("Enraged End");
             return NodeState.FAILURE;
         }
         // Nếu Rage cd xong, kích hoạt lại
-        if (!monsterAI.GetIsEnraged() && timeSinceLastRage >= monsterAI.GetRageCooldown())
+        if (!isEnraged && timeSinceLastRage >= rageCooldown)
         {
-            monsterAI.SetEnraged(true);
-            monsterAI.SetLastRageTime(Time.time);
+            isEnraged = true;
+            lastRageTime = Time.time;
             Debug.Log("Rage State");
             //Logic của cuồng nộ
             return NodeState.SUCCESS;
