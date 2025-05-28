@@ -2,8 +2,11 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundMixerManager : MonoBehaviour
 {
-    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] public AudioMixer audioMixer;
 
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource voiceSource;
     public static SoundMixerManager Instance { get; private set; }
     private void Awake()
     {
@@ -34,5 +37,22 @@ public class SoundMixerManager : MonoBehaviour
     public void SetVoiceVolume(float level)
     {
         audioMixer.SetFloat("voiceVolume", Mathf.Log10(level) * 20f);
+    }
+
+    public void PlaytMusicAudio(AudioClip audio)
+    {
+        musicSource.clip = audio;
+        musicSource.Play();
+    }
+
+    public void PlaySFXAudio(AudioClip audio)
+    {
+        sfxSource.PlayOneShot(audio);
+    }
+
+    public void PlayVoiceAudio(AudioClip audio)
+    {
+        voiceSource.clip = audio;
+        voiceSource.Play();
     }
 }
