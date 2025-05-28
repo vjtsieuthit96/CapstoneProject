@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class OptionManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip clickSound;
+
     [Header("Audio Settings")]
     [SerializeField] private Button AudioBtn;
     [SerializeField] private GameObject AudioPanel;
@@ -46,6 +48,7 @@ public class OptionManager : MonoBehaviour
             }
         }
         KeyBindingsPanel.SetActive(true);
+        SoundMixerManager.Instance.PlaySFXAudio(clickSound);
     }
 
     private void ToggleAudioPanel()
@@ -63,6 +66,6 @@ public class OptionManager : MonoBehaviour
             }
         }
         AudioPanel.SetActive(true);
-        Debug.Log("active");
+        SoundMixerManager.Instance.PlaySFXAudio(clickSound);
     }
 }

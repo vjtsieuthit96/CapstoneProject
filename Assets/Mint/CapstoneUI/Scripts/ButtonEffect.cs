@@ -5,10 +5,12 @@ using UnityEngine.EventSystems;
 
 public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler
 {
+    [SerializeField] private AudioClip hoverSound;
     // Make Zoom efect on button hover
     public void OnPointerEnter(PointerEventData eventData)
     {
         gameObject.transform.localScale += Vector3.one * 0.3f;
+        SoundMixerManager.Instance.PlaySFXAudio(hoverSound);
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
