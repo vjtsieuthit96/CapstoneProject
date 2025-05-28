@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class RageOrRetreatNode : Node
+public class RageNode : Node
 {    
     private MonsterStats monsterStats;
     [Header("-----Rage-----")]
@@ -9,7 +9,7 @@ public class RageOrRetreatNode : Node
     [SerializeField] private float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
     [SerializeField] private bool isEnraged = false; // Trạng thái Cuồng Nộ
 
-    public RageOrRetreatNode(MonsterStats monsterStats)
+    public RageNode(MonsterStats monsterStats)
     { 
         this.monsterStats = monsterStats;
     }
@@ -34,7 +34,6 @@ public class RageOrRetreatNode : Node
             return NodeState.SUCCESS;
         }
         // Rage chưa hồi skill thì chạy thôi
-        // Logic rút lui
         return NodeState.FAILURE;
     }
 }
