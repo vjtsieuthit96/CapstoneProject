@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class MonsterAI : MonoBehaviour
 {
     protected Node behaviorTree;
+    [SerializeField] protected Animator monsterAnimator;
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
 
@@ -26,4 +28,24 @@ public abstract class MonsterAI : MonoBehaviour
     public float GetViewRadius() => viewRadius;
     public float GetViewAngle() => viewAngle;
     public Transform GetTarget() { return target; }
+    public void SetAnimatorParameter(int hash, object value)
+    {
+        if (monsterAnimator == null)
+        {
+            Debug.Log("Missing Monster Animator");
+            return;
+        }
+        switch (value)
+        {
+            case bool boolValue:
+                monsterAnimator.SetBool(hash, boolValue); 
+                break;
+            case float floatValue:
+                monsterAnimator.SetFloat(hash, floatValue);
+                break;
+            default:
+                monsterAnimator.SetTrigger(hash);
+                break;
+        }
+    }
 }
