@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8feaef3de0da814298cfec36a846cb8, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: 
-  _maxHealth: 0
-  _damage: 0
-  _speed: 0
-  _defense: 0
+  _maxHealth: 100
+  _damage: 50
+  _defense: 5
