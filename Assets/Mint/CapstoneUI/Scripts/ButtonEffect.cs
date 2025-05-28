@@ -6,6 +6,16 @@ using UnityEngine.EventSystems;
 public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler
 {
     [SerializeField] private AudioClip hoverSound;
+    private Vector3 currentScale;
+    private void Awake()
+    {
+        currentScale = transform.localScale;
+    }
+    private void OnEnable()
+    {
+        // Reset the scale when the button is enabled
+        transform.localScale = currentScale;
+    }
     // Make Zoom efect on button hover
     public void OnPointerEnter(PointerEventData eventData)
     {
