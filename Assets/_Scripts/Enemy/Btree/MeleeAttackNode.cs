@@ -16,9 +16,8 @@ public class MeleeAttackNode : Node
         {
             return NodeState.FAILURE;
         }
-
-        monster.SetAnimatorParameter(MonsterAnimatorHash.nAttackHash, null); // Kích hoạt animation tấn công
         Debug.Log("Normal Attack!");
+        monster.SetAnimatorParameter(MonsterAnimatorHash.nAttackHash, null); // Kích hoạt animation tấn công       
 
         return NodeState.RUNNING; // Giữ trạng thái RUNNING để tiếp tục hành vi
     }

@@ -24,6 +24,7 @@ public class ChaseNode : Node
 
         if (Vector3.Distance(monster.transform.position, player.position) <= agent.stoppingDistance)
         {
+            Debug.Log("Đã đến vị trí ng chơi");
             return NodeState.SUCCESS; // Nếu đến gần người chơi, kết thúc đuổi
         }
 

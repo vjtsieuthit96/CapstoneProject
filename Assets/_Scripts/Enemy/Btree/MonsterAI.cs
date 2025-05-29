@@ -67,8 +67,10 @@ public abstract class MonsterAI : MonoBehaviour
             case float floatValue:
                 monsterAnimator.SetFloat(hash, floatValue);
                 break;
-            default:
+            case null:
                 monsterAnimator.SetTrigger(hash);
+                break;
+            default:
                 break;
         }
     }

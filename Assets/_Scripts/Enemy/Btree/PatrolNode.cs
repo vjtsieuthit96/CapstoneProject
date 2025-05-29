@@ -22,7 +22,7 @@ public class PatrolNode : Node
             return NodeState.FAILURE; // Thoát khỏi tuần tra để vào chế độ đuổi theo
         }
 
-        if (Vector3.Distance(monster.transform.position, patrolTarget) < 1f)
+        if (Vector3.Distance(monster.transform.position, patrolTarget) < 2f)
         {
             SetNewPatrolTarget(); // Nếu đến vị trí tuần tra, chọn vị trí mới
         }
