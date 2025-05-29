@@ -4,7 +4,7 @@ public class MonsterStats : MonoBehaviour
 {
     [SerializeField] private MonsterStatsSO statsSO;
 
-    private float _currentHealth;
+    [SerializeField]private float _currentHealth;
     private float _currentDefense;
     private float _currentDamage;
 

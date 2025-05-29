@@ -1,20 +1,24 @@
-using UnityEngine;
-
+﻿using UnityEngine;
 
 public class CheckLowHealthNode : Node
-{ 
-    private MonsterStats monsterStats; 
-    public CheckLowHealthNode(MonsterStats monsterStats)
+{
+    private MonsterAI monsterAI;
+    private MonsterStats monsterStats;
+
+    public CheckLowHealthNode(MonsterAI monsterAI, MonsterStats monsterStats)
     {
+        this.monsterAI = monsterAI;
         this.monsterStats = monsterStats;
     }
 
     public override NodeState Evaluate()
     {
-        if (monsterStats.GetCurrentHealth()<0.3*monsterStats.GetMaxHealth())
+        if (monsterStats.GetCurrentHealth() < 0.3f * monsterStats.GetMaxHealth())
         {
+            Debug.Log("Low HP");
             return NodeState.SUCCESS;
         }
+
         return NodeState.FAILURE;
     }
 }
