@@ -2,26 +2,26 @@
 
 public class CheckPlayerInFOVNode : Node
 {
-    private MonsterAI monster;
+    private MonsterAI monsterAI;
 
-    public CheckPlayerInFOVNode(MonsterAI monster) { this.monster = monster; }
+    public CheckPlayerInFOVNode(MonsterAI monster) { this.monsterAI = monster; }
 
     public override NodeState Evaluate()
     {
-        Vector3 directionToPlayer = (monster.GetTarget().position - monster.transform.position).normalized;
-        float distanceToPlayer = Vector3.Distance(monster.transform.position, monster.GetTarget().position);
+        Vector3 directionToPlayer = (monsterAI.GetTarget().position - monsterAI.transform.position).normalized;
+        float distanceToPlayer = Vector3.Distance(monsterAI.transform.position, monsterAI.GetTarget().position);
 
         // Kiểm tra nếu người chơi nằm trong tầm nhìn
-        if (distanceToPlayer > monster.GetViewRadius()) return NodeState.FAILURE;
-        if (Vector3.Angle(monster.transform.forward, directionToPlayer) > monster.GetViewAngle() / 2) return NodeState.FAILURE;
 
-        // Kiểm tra nếu có vật chắn giữa quái vật và người chơi (Raycast)
-        if (Physics.Raycast(monster.transform.position, directionToPlayer, distanceToPlayer))
+        if (distanceToPlayer > monsterAI.GetViewRadius())
         {
+            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, false);
             return NodeState.FAILURE;
         }
+        if (Vector3.Angle(monsterAI.transform.forward, directionToPlayer) > monsterAI.GetViewAngle() / 2) return NodeState.FAILURE;       
 
         Debug.Log("Monster nhìn thấy người chơi!");
+        monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
         return NodeState.SUCCESS;
     }
 }
