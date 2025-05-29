@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Item
+  - A
   layers:
   - Default
   - TransparentFX
@@ -14,9 +16,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Outline_Enemy
+  - Outline_Teammate
+  - Outline_Item
   - 
   - 
   - 
