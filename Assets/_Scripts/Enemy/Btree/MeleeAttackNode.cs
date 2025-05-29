@@ -1,16 +1,25 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MeleeAttackNode : MonoBehaviour
+public class MeleeAttackNode : Node
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private MonsterAI monster;
+
+    public MeleeAttackNode(MonsterAI monster)
     {
-        
+        this.monster = monster;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override NodeState Evaluate()
     {
-        
+        Transform player = monster.GetTarget();
+        if (player == null || Vector3.Distance(monster.transform.position, player.position) > monster.GetAttackRange())
+        {
+            return NodeState.FAILURE;
+        }
+
+        monster.SetAnimatorParameter(MonsterAnimatorHash.nAttackHash, null); // Kích hoạt animation tấn công
+        Debug.Log("Normal Attack!");
+
+        return NodeState.RUNNING; // Giữ trạng thái RUNNING để tiếp tục hành vi
     }
 }
