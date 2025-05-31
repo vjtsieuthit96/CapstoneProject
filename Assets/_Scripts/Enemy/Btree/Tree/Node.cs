@@ -10,7 +10,7 @@ public enum NodeState
 }
 
 
-public abstract class Node : MonoBehaviour
+public abstract class Node 
 {
     protected NodeState state;
     public Node parent;
