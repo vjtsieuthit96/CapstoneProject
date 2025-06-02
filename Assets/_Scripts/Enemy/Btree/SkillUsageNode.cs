@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+
 public class SkillUsageNode : Node
 {
     private MonsterAI monster;
@@ -12,8 +13,13 @@ public class SkillUsageNode : Node
 
     public override NodeState Evaluate()
     {
-        Debug.Log("Kiểm tra skill có thể sử dụng...");
+        Transform player = monster.GetTarget();
+        if (player == null) return NodeState.FAILURE;
 
+        // Xoay mặt về hướng người chơi trước khi dùng skill
+        monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
+
+        Debug.Log("Kiểm tra skill có thể sử dụng...");
         if (skillManager.CanUseSkill(MonsterAnimatorHash.skill_1Hash))
         {
             skillManager.UseSkill(MonsterAnimatorHash.skill_1Hash);
@@ -31,6 +37,6 @@ public class SkillUsageNode : Node
         }
 
         Debug.Log("Không có skill sẵn sàng! Chuyển sang MeleeAttackNode.");
-        return NodeState.FAILURE; // Đảm bảo AI chuyển sang MeleeAttackNode
+        return NodeState.FAILURE;
     }
 }

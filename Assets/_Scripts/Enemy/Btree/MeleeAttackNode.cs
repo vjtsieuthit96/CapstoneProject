@@ -16,9 +16,13 @@ public class MeleeAttackNode : Node
         {
             return NodeState.FAILURE;
         }
+
+        // Xoay mặt về hướng người chơi trước khi tấn công
+        monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
+
         Debug.Log("Normal Attack!");
         monster.SetAnimatorParameter(MonsterAnimatorHash.nAttackHash, null); // Kích hoạt animation tấn công       
 
-        return NodeState.RUNNING; // Giữ trạng thái RUNNING để tiếp tục hành vi
+        return NodeState.RUNNING;
     }
 }
