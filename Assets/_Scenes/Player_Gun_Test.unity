@@ -23781,7 +23781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodySnap: {fileID: 1042299127}
-  boneToSnap: {fileID: 0}
+  boneToSnap: {fileID: 1284605880}
   boneName: LeftHand
 --- !u!1 &818696063
 GameObject:
@@ -65215,7 +65215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 0
-  openCloseWindow: 0
+  openCloseWindow: 1
   selectedToolbar: 0
   unlockCursorOnStart: 0
   showCursorOnStart: 0
