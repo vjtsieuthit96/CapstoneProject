@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class MonsterAI : MonoBehaviour
@@ -17,8 +18,13 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Attack & Patrol-----")]
     [SerializeField] protected float attackRange;
     [SerializeField] protected float patrolRadius;
+    [SerializeField] protected float baseSpeed;
+    private Vector3 _patrolCenter;
     void Start()
-    {      
+    {
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        baseSpeed = _monsterAgent.speed;
+        _patrolCenter = this.transform.position;
         behaviorTree = CreateBehaviorTree();
         InvokeRepeating("EvaluateBehaviorTree", 2f, 2f);
     }
@@ -41,17 +47,19 @@ public abstract class MonsterAI : MonoBehaviour
     public float GetAttackRange() => attackRange;
     public Vector3 GetRandomPatrolPoint()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
-        randomDirection += transform.position;
+        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
+        randomDirection += _patrolCenter; // Giữ AI di chuyển quanh khu vực trung tâm
 
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomDirection, out hit, patrolRadius, NavMesh.AllAreas))
         {
-            return hit.position; // Nếu tìm thấy vị trí hợp lệ trên NavMesh
+            return hit.position; // Nếu vị trí hợp lệ, sử dụng nó
         }
 
-        return transform.position; // Nếu không tìm thấy, quay lại vị trí hiện tại
+        return _patrolCenter; // Nếu không tìm thấy vị trí hợp lệ, quay lại trung tâm tuần tra
     }
+    public float GetPatrolRadius() => patrolRadius;
+    public float GetBaseSpeed() => baseSpeed;
     public void SetAnimatorParameter(int hash, object value)
     {
         if (monsterAnimator == null)
@@ -78,4 +86,29 @@ public abstract class MonsterAI : MonoBehaviour
     {
         return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
     }
+
+    #region Show FOV
+    private void OnDrawGizmos()
+    {
+        Handles.color = Color.red;
+
+        // Vẽ cung tròn thể hiện góc nhìn từ hai điểm cuối
+        Handles.DrawWireArc(transform.position, Vector3.up,
+                            DirectionFromAngle(transform.eulerAngles.y, -viewAngle / 2),
+                            viewAngle, viewRadius);
+
+        // Vẽ hai đường chỉ hướng góc nhìn
+        Vector3 viewAngleA = DirectionFromAngle(transform.eulerAngles.y, -viewAngle / 2);
+        Vector3 viewAngleB = DirectionFromAngle(transform.eulerAngles.y, viewAngle / 2);
+
+        Handles.DrawLine(transform.position, transform.position + viewAngleA * viewRadius);
+        Handles.DrawLine(transform.position, transform.position + viewAngleB * viewRadius);
+    }
+
+    private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)
+    {
+        float rad = (eulerY + angleInDegrees) * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Sin(rad), 0, Mathf.Cos(rad));
+    }
+    #endregion
 }
