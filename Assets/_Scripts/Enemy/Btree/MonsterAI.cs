@@ -8,7 +8,8 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Scripts Component-----")]
     [SerializeField] protected MonsterStats monsterStats;  
     [SerializeField] protected Animator monsterAnimator;
-    [SerializeField] protected NavMeshAgent _monsterAgent;    
+    [SerializeField] protected NavMeshAgent _monsterAgent;
+    [SerializeField] protected SkillManager skillManager;
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
     [Header("-----FOV-----")]   
@@ -24,7 +25,7 @@ public abstract class MonsterAI : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = _monsterAgent.speed;
-        _patrolCenter = this.transform.position;
+        _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
         InvokeRepeating("EvaluateBehaviorTree", 2f, 2f);
     }
@@ -59,6 +60,7 @@ public abstract class MonsterAI : MonoBehaviour
         return _patrolCenter; // Nếu không tìm thấy vị trí hợp lệ, quay lại trung tâm tuần tra
     }
     public float GetPatrolRadius() => patrolRadius;
+    public Vector3 GetPatrolCenter() => _patrolCenter;
     public float GetBaseSpeed() => baseSpeed;
     public void SetAnimatorParameter(int hash, object value)
     {

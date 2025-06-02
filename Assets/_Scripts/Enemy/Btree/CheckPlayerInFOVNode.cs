@@ -3,43 +3,37 @@
 public class CheckPlayerInFOVNode : Node
 {
     private MonsterAI monsterAI;
-    private float memoryDuration = 5f; // AI sẽ nhớ vị trí người chơi trong 3 giây
-    private float lastSeenTime = 0f; // Thời điểm cuối cùng thấy người chơi
+    private float memoryDuration = 3f; // Giữ mục tiêu trong 3 giây nếu mất tầm nhìn
+    private float lastSeenTime = float.MinValue; // Thời điểm cuối cùng thấy người chơi
 
     public CheckPlayerInFOVNode(MonsterAI monster) { this.monsterAI = monster; }
 
     public override NodeState Evaluate()
     {
         Transform player = monsterAI.GetTarget();
-        if (player == null)
-        {
-            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, false);
-            Debug.Log("Không tìm thấy người chơi! Trở lại tuần tra.");
-            return NodeState.FAILURE;
-        }
+        if (player == null) return NodeState.FAILURE;
 
         Vector3 directionToPlayer = (player.position - monsterAI.transform.position).normalized;
         float distanceToPlayer = Vector3.Distance(monsterAI.transform.position, player.position);
+        float angleToPlayer = Vector3.Angle(monsterAI.transform.forward, directionToPlayer);
 
-        // Nếu AI thấy người chơi, cập nhật thời điểm cuối cùng thấy người chơi
-        if (distanceToPlayer <= monsterAI.GetViewRadius() &&
-            Vector3.Angle(monsterAI.transform.forward, directionToPlayer) <= monsterAI.GetViewAngle() / 2)
+        //  Nếu AI thấy Player, cập nhật lastSeenTime
+        if (distanceToPlayer <= monsterAI.GetViewRadius() && angleToPlayer <= monsterAI.GetViewAngle() / 2)
         {
-            lastSeenTime = Time.time; // Cập nhật thời điểm nhìn thấy người chơi
+            lastSeenTime = Time.time; // Cập nhật thời điểm thấy Player lần cuối
             monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
-            Debug.Log("Monster nhìn thấy người chơi! Đuổi theo.");
+            Debug.Log("AI nhìn thấy người chơi! Đuổi theo.");
             return NodeState.SUCCESS;
         }
 
-        // Nếu AI mất dấu nhưng còn trong khoảng thời gian nhớ, tiếp tục đuổi theo
+        //  Nếu mất dấu nhưng còn trong thời gian nhớ, tiếp tục đuổi
         if (Time.time - lastSeenTime < memoryDuration)
         {
             Debug.Log("Mất tầm nhìn nhưng vẫn theo dấu người chơi!");
             return NodeState.SUCCESS;
         }
 
-        // Nếu đã quá thời gian nhớ, quay lại tuần tra
-        monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, false);
+        //  Nếu đã quá memoryDuration, quay về tuần tra
         Debug.Log("Hoàn toàn mất dấu! Quay về tuần tra.");
         return NodeState.FAILURE;
     }
