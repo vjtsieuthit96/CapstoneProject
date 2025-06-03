@@ -30,7 +30,8 @@ public class CheckPlayerInFOVNode : Node
         if (Time.time - lastSeenTime < memoryDuration)
         {
             Debug.Log("Mất tầm nhìn nhưng vẫn theo dấu người chơi!");
-            return NodeState.SUCCESS;
+            // cho nay bi bug ko theo dau dc van ko quay lai patrol
+            return NodeState.RUNNING;
         }
 
         //  Nếu đã quá memoryDuration, quay về tuần tra
