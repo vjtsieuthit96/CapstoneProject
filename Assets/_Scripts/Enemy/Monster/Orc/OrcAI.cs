@@ -1,21 +1,40 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class OrcAI : MonsterAI
 {
-    protected override Node CreateBehaviorTree()
+    protected override void Start()
     {
-
-        return new Selector(new List<Node>
-        {
-            new CheckLowHealthNode(this,monsterStats),
-            new Sequence(new List<Node> // Nếu thấy Player thì Chase + Attack
-            {
-                new CheckPlayerInFOVNode(this),
-                new ChaseNode(this,_monsterAgent),
-                new MeleeAttackNode(this)
-            }),
-            new PatrolNode(this,_monsterAgent) // Nếu không có gì, tuần tra
-        });
+        base.Start();
+        
+    }
+    protected override void Update()
+    {
+        base.Update();       
     }
 
+    protected override Node CreateBehaviorTree()
+    {
+        return new Selector(new List<Node>
+        {
+            new Sequence(new List<Node> // Nếu máu thấp, AI retreat một lần rồi tiếp tục hành vi khác
+            {
+                new CheckRetreatNode(this, monsterStats), // Kiểm tra máu đầu tiên
+                new RetreatNode(this, _monsterAgent)
+            }),
+            new Sequence(new List<Node> // Nếu thấy Player AI chiến đấu
+            {
+                new CheckPlayerInFOVNode(this),
+                new ChaseNode(this, _monsterAgent),
+                new RoarNode(this,monsterAudio),
+                new Selector(new List<Node>
+                {
+                    new SkillUsageNode(this, skillManager),
+                    new MeleeAttackNode(this)
+                })
+            }),
+            new PatrolNode(this, _monsterAgent) // Nếu không thấy Player, AI tuần tra
+        });
+    }
+    
 }

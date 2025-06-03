@@ -1,40 +1,61 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine.AI;
+using UnityEngine;
 
 public class PatrolNode : Node
 {
     private MonsterAI monster;
     private NavMeshAgent agent;
+    private Vector3 patrolCenter;
     private Vector3 patrolTarget;
+    private float patrolRadius = 10f;
 
-    public PatrolNode(MonsterAI monster,NavMeshAgent agent)
+    public PatrolNode(MonsterAI monster, NavMeshAgent agent)
     {
         this.monster = monster;
-        this.agent = agent; 
+        this.agent = agent;
+        UpdatePatrolCenter();  
         SetNewPatrolTarget();
     }
 
     public override NodeState Evaluate()
     {
+        UpdatePatrolCenter(); 
+
         if (monster.GetAnimatorParameter(MonsterAnimatorHash.isBattleHash))
         {
             Debug.Log("Dừng tuần tra! Chuyển sang trạng thái chiến đấu.");
-            return NodeState.FAILURE; // Thoát khỏi tuần tra để vào chế độ đuổi theo
+            return NodeState.FAILURE;
         }
+
+        agent.speed = monster.GetBaseSpeed();
 
         if (Vector3.Distance(monster.transform.position, patrolTarget) < 2f)
         {
-            SetNewPatrolTarget(); // Nếu đến vị trí tuần tra, chọn vị trí mới
+            SetNewPatrolTarget();
         }
 
-        agent.SetDestination(patrolTarget);        
-
-        Debug.Log("Orc đang tuần tra...");
+        agent.SetDestination(patrolTarget);
         return NodeState.RUNNING;
+    }
+
+    private void UpdatePatrolCenter()
+    {
+        patrolCenter = monster.GetPatrolCenter(); 
     }
 
     private void SetNewPatrolTarget()
     {
-        patrolTarget = monster.GetRandomPatrolPoint(); // Lấy điểm tuần tra ngẫu nhiên
+        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
+        randomDirection += patrolCenter; 
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, patrolRadius, NavMesh.AllAreas))
+        {
+            patrolTarget = hit.position;
+        }
+        else
+        {
+            patrolTarget = patrolCenter;
+        }
     }
 }
