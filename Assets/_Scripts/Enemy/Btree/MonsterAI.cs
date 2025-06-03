@@ -1,5 +1,4 @@
 ﻿using UnityEditor;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -25,6 +24,7 @@ public abstract class MonsterAI : MonoBehaviour
     private Vector3 _patrolCenter;
   
     private bool hasRetreat = false;
+    private bool isDead = false;
     protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -36,12 +36,19 @@ public abstract class MonsterAI : MonoBehaviour
     protected virtual void Update()
     {
         float Speed = _monsterAgent.velocity.magnitude;
-        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);      
+        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);    
+        if (!isDead && monsterStats.GetCurrentHealth()<=0)
+        {
+            isDead = true;
+            SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
+            _monsterAgent.isStopped = true;
+        }
     }
 
     public void EvaluateBehaviorTree()
-    {        
-        behaviorTree.Evaluate();
+    {
+        if (!isDead)
+            behaviorTree.Evaluate();        
     }    
     
     public void SetHasRetreat(bool value)

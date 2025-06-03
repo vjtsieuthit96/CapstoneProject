@@ -22,6 +22,7 @@ namespace Invector
         {
            if(other.CompareTag("Enemy"))
             {
+                Debug.Log("Va cham " + other.gameObject.name);
                 MonsterStats EnemyHealth = other.GetComponent<MonsterStats>();
                 MonsterAI EnemyAni = other.GetComponent<MonsterAI>();
                 EnemyHealth.TakeDamage(Damage);
