@@ -14,7 +14,7 @@ public class SkillUsageNode : Node
     public override NodeState Evaluate()
     {
         Transform player = monster.GetTarget();
-        if (player == null) return NodeState.FAILURE;
+        if (player == null) return NodeState.FAILURE;   
 
         // Xoay mặt về hướng người chơi trước khi dùng skill
         monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
@@ -34,8 +34,7 @@ public class SkillUsageNode : Node
         {
             skillManager.UseSkill(MonsterAnimatorHash.skill_3Hash);
             return NodeState.SUCCESS;
-        }
-
+        }        
         Debug.Log("Không có skill sẵn sàng! Chuyển sang MeleeAttackNode.");
         return NodeState.FAILURE;
     }

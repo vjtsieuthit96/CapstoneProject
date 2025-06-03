@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,23 +22,30 @@ public abstract class MonsterAI : MonoBehaviour
     [SerializeField] protected float patrolRadius;
     [SerializeField] protected float baseSpeed;
     private Vector3 _patrolCenter;
-    void Start()
+  
+    private bool hasRetreat = false;
+    protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = _monsterAgent.speed;
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
-        InvokeRepeating("EvaluateBehaviorTree", 2f, 2f);
+        InvokeRepeating("EvaluateBehaviorTree", 0f, 2f);
     }
-    private void Update()
+    protected virtual void Update()
     {
         float Speed = _monsterAgent.velocity.magnitude;
-        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed); // Cập nhật tốc độ mượt hơn
+        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);      
     }
 
-    void EvaluateBehaviorTree()
-    {
+    protected void EvaluateBehaviorTree()
+    {        
         behaviorTree.Evaluate();
+    }    
+    
+    public void SetHasRetreat(bool value)
+    {
+        hasRetreat = value;
     }
 
     protected abstract Node CreateBehaviorTree();    
@@ -61,7 +69,12 @@ public abstract class MonsterAI : MonoBehaviour
     }
     public float GetPatrolRadius() => patrolRadius;
     public Vector3 GetPatrolCenter() => _patrolCenter;
+    public void SetNewPatrolCenter(Vector3 position)
+    {
+        _patrolCenter = position;
+    }
     public float GetBaseSpeed() => baseSpeed;
+    public bool GetHasRetreat() => hasRetreat;
     public void SetAnimatorParameter(int hash, object value)
     {
         if (monsterAnimator == null)
