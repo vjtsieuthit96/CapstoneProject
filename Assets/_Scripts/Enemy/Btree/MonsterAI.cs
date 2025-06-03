@@ -11,6 +11,7 @@ public abstract class MonsterAI : MonoBehaviour
     [SerializeField] protected Animator monsterAnimator;
     [SerializeField] protected NavMeshAgent _monsterAgent;
     [SerializeField] protected SkillManager skillManager;
+    [SerializeField] protected MonsterAudio monsterAudio;
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
     [Header("-----FOV-----")]   
@@ -38,7 +39,7 @@ public abstract class MonsterAI : MonoBehaviour
         SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);      
     }
 
-    protected void EvaluateBehaviorTree()
+    public void EvaluateBehaviorTree()
     {        
         behaviorTree.Evaluate();
     }    
@@ -48,8 +49,8 @@ public abstract class MonsterAI : MonoBehaviour
         hasRetreat = value;
     }
 
-    protected abstract Node CreateBehaviorTree();    
-
+    protected abstract Node CreateBehaviorTree();
+    #region GET & SET
     public float GetViewRadius() => viewRadius;
     public float GetViewAngle() => viewAngle;
     public Transform GetTarget() { return target; }
@@ -101,7 +102,8 @@ public abstract class MonsterAI : MonoBehaviour
     {
         return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
     }
-
+    #endregion
+    
     #region Show FOV
     private void OnDrawGizmos()
     {

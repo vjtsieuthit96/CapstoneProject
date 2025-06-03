@@ -21,7 +21,7 @@ public class CheckPlayerInFOVNode : Node
         if (distanceToPlayer <= monsterAI.GetViewRadius() && angleToPlayer <= monsterAI.GetViewAngle() / 2)
         {
             lastSeenTime = Time.time; // Cập nhật thời điểm thấy Player lần cuối
-            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
+            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);            
             Debug.Log("AI nhìn thấy người chơi! Đuổi theo.");
             return NodeState.SUCCESS;
         }

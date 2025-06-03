@@ -26,6 +26,7 @@ public class OrcAI : MonsterAI
             {
                 new CheckPlayerInFOVNode(this),
                 new ChaseNode(this, _monsterAgent),
+                new RoarNode(this,monsterAudio),
                 new Selector(new List<Node>
                 {
                     new SkillUsageNode(this, skillManager),

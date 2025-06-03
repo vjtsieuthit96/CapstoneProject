@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 5622012270302772746}
   - component: {fileID: 7296942623870602421}
   - component: {fileID: 673581269097418959}
+  - component: {fileID: 680867627703430608}
   - component: {fileID: 1568520819312927798}
   - component: {fileID: 3476635263314886010}
   - component: {fileID: 3027906811202869841}
@@ -679,6 +680,7 @@ MonoBehaviour:
   monsterAnimator: {fileID: 5932104796652673785}
   _monsterAgent: {fileID: 1568520819312927798}
   skillManager: {fileID: 7296942623870602421}
+  monsterAudio: {fileID: 680867627703430608}
   target: {fileID: 0}
   viewRadius: 15
   viewAngle: 120
@@ -728,8 +730,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponCollider: {fileID: 983467460142843794}
+  monsterAudio: {fileID: 680867627703430608}
+--- !u!114 &680867627703430608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2277023041870629272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6955deacfb800134280cca0c2d670c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   monsterAudio: {fileID: 3027906811202869841}
-  footstepSounds: []
+  footstepSounds:
+  - {fileID: 8300000, guid: df844921a7b03aa43a58330cf7152cb8, type: 3}
+  - {fileID: 8300000, guid: 30286abde0efcac4a8f10f06c88b572c, type: 3}
+  - {fileID: 8300000, guid: 34484c344bfe26f45a7fefa2f519fcba, type: 3}
+  roarSounds:
+  - {fileID: 8300000, guid: a077bed9bb33e3042b23b0f8eee8ed42, type: 3}
+  - {fileID: 8300000, guid: 5db6873195c917147a91bba1495d88f6, type: 3}
+  - {fileID: 8300000, guid: 626c131534176c44cb8303512f0f47a7, type: 3}
+  - {fileID: 8300000, guid: e19930cc67c63854b93ccf272ea4e54d, type: 3}
+  - {fileID: 8300000, guid: b183fd40d55e4184b8d940fbec01d0cb, type: 3}
+  atkSound_1: {fileID: 8300000, guid: 2529447dedb2a4346ac81d4293e14cde, type: 3}
+  atkSound_2: {fileID: 8300000, guid: 813a56194150f924ba66d31dcdd47305, type: 3}
 --- !u!195 &1568520819312927798
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1340,7 +1366,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

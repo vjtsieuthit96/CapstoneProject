@@ -622,6 +622,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1932029194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+  m_PrefabInstance: {fileID: 6591456234645946812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1932029195 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3027906811202869841, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+  m_PrefabInstance: {fileID: 6591456234645946812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1932029204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932029194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6955deacfb800134280cca0c2d670c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterAudio: {fileID: 1932029195}
+  footstepSounds:
+  - {fileID: 8300000, guid: df844921a7b03aa43a58330cf7152cb8, type: 3}
+  - {fileID: 8300000, guid: 30286abde0efcac4a8f10f06c88b572c, type: 3}
+  - {fileID: 8300000, guid: 34484c344bfe26f45a7fefa2f519fcba, type: 3}
+  roarSounds:
+  - {fileID: 8300000, guid: a077bed9bb33e3042b23b0f8eee8ed42, type: 3}
+  - {fileID: 8300000, guid: 5db6873195c917147a91bba1495d88f6, type: 3}
+  - {fileID: 8300000, guid: 626c131534176c44cb8303512f0f47a7, type: 3}
+  - {fileID: 8300000, guid: e19930cc67c63854b93ccf272ea4e54d, type: 3}
+  - {fileID: 8300000, guid: b183fd40d55e4184b8d940fbec01d0cb, type: 3}
+  atkSound_1: {fileID: 0}
+  atkSound_2: {fileID: 0}
 --- !u!1001 &6591456234645946812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -630,10 +665,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 673581269097418959, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: monsterAudio
+      value: 
+      objectReference: {fileID: 1932029204}
+    - target: {fileID: 673581269097418959, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: footstepSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 673581269097418959, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: 'footstepSounds.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: df844921a7b03aa43a58330cf7152cb8, type: 3}
+    - target: {fileID: 673581269097418959, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: 'footstepSounds.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 30286abde0efcac4a8f10f06c88b572c, type: 3}
+    - target: {fileID: 673581269097418959, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: 'footstepSounds.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 34484c344bfe26f45a7fefa2f519fcba, type: 3}
     - target: {fileID: 983467460142843794, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1370349457503210661, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: monsterAudio
+      value: 
+      objectReference: {fileID: 1932029204}
     - target: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_Name
       value: Orc
@@ -681,7 +740,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 1932029204}
   m_SourcePrefab: {fileID: 100100000, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
