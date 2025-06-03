@@ -16,27 +16,35 @@ public class SkillUsageNode : Node
         Transform player = monster.GetTarget();
         if (player == null) return NodeState.FAILURE;
 
-        // Xoay mặt về hướng người chơi trước khi dùng skill
         monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
 
-        Debug.Log("Kiểm tra skill có thể sử dụng...");
+        if (!skillManager.CanUseSkill(MonsterAnimatorHash.skill_1Hash) &&
+            !skillManager.CanUseSkill(MonsterAnimatorHash.skill_2Hash) &&
+            !skillManager.CanUseSkill(MonsterAnimatorHash.skill_3Hash))
+        {
+            Debug.Log("Tất cả Skill đang CD");
+            return NodeState.FAILURE;
+        }
+
         if (skillManager.CanUseSkill(MonsterAnimatorHash.skill_1Hash))
         {
             skillManager.UseSkill(MonsterAnimatorHash.skill_1Hash);
-            return NodeState.SUCCESS;
+            Debug.Log("Dùng Skill 1");
+            return NodeState.RUNNING; //  Trả về RUNNING để tránh gọi lại liên tục
         }
         else if (skillManager.CanUseSkill(MonsterAnimatorHash.skill_2Hash))
         {
             skillManager.UseSkill(MonsterAnimatorHash.skill_2Hash);
-            return NodeState.SUCCESS;
+            Debug.Log("Dùng Skill 2");
+            return NodeState.RUNNING;
         }
         else if (skillManager.CanUseSkill(MonsterAnimatorHash.skill_3Hash))
         {
             skillManager.UseSkill(MonsterAnimatorHash.skill_3Hash);
-            return NodeState.SUCCESS;
+            Debug.Log("Dùng Skill 3");
+            return NodeState.RUNNING;
         }
 
-        Debug.Log("Không có skill sẵn sàng! Chuyển sang MeleeAttackNode.");
         return NodeState.FAILURE;
     }
 }
