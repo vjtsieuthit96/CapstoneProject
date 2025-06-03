@@ -22,8 +22,9 @@ namespace Invector
         {
            if(other.CompareTag("Enemy"))
             {
-                var EnemyHealth = other.GetComponent<MonsterStats>();
-                var EnemyAni = other.GetComponent<MonsterAI>();
+                Debug.Log("Va cham " + other.gameObject.name);
+                MonsterStats EnemyHealth = other.GetComponent<MonsterStats>();
+                MonsterAI EnemyAni = other.GetComponent<MonsterAI>();
                 EnemyHealth.TakeDamage(Damage);
                 int Rate = Random.Range(0,100);
                 if(Rate <= 25)
