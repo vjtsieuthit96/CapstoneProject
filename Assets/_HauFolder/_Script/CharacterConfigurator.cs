@@ -1,11 +1,13 @@
 using UnityEngine;
 using Invector.vCharacterController;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class CharacterConfigurator : MonoBehaviour
 {
     public CharacterStats stats;
     private vThirdPersonController controller;
     private Animator animator;
+    private int CurrentHealth;
 
     private void Awake()
     {
@@ -15,7 +17,20 @@ public class CharacterConfigurator : MonoBehaviour
         {
             ApplyStats(stats);
         }
+        //CurrentHealth = stats.CurrentHealth;
+        CurrentHealth = controller.maxHealth;
     }
+    #region Test
+    private void Update()
+    {
+        controller.ChangeHealth(CurrentHealth);
+    }
+
+    public void PlayerTakeDamage(int damage)
+    {
+        CurrentHealth -= damage;
+    }
+    #endregion
 
     public void ApplyStats(CharacterStats s)
     {
