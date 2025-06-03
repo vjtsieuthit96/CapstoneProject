@@ -41,4 +41,8 @@ public class CharacterStats : ScriptableObject
     [Header("Animator Free Speed")]
     public float freeMovementAnimatorSpeed = 1f;
     public float ReloadSpeed = 1f;
+
+    [Header("Player Health")]
+    public float PlayerMaxHealth;
+    public float CurrentHealth;
 }
