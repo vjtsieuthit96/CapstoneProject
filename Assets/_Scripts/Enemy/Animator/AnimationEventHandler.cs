@@ -2,9 +2,8 @@
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    [SerializeField] private Collider weaponCollider; // Collider của vũ khí để bật/tắt khi tấn công
-    [SerializeField] private AudioSource monsterAudio; // Âm thanh bước chân
-    [SerializeField] private AudioClip[] footstepSounds; // Chứa các âm thanh bước chân theo địa hình
+    [SerializeField] private Collider weaponCollider;
+    [SerializeField] private MonsterAudio monsterAudio;    
 
     private void Start()
     {    
@@ -16,8 +15,7 @@ public class AnimationEventHandler : MonoBehaviour
     {
         if (weaponCollider)
         {
-            weaponCollider.enabled = true;
-            Debug.Log("Kích hoạt collider vũ khí!");
+            weaponCollider.enabled = true;            
         }
     }
 
@@ -26,18 +24,23 @@ public class AnimationEventHandler : MonoBehaviour
         if (weaponCollider)
         {
             weaponCollider.enabled = false;
-            Debug.Log("Tắt collider vũ khí!");
+            
         }
     }
 
+    #region SOUND 
     public void PlayFootstep()
     {
-        if (monsterAudio && footstepSounds.Length > 0)
-        {
-            int randomIndex = Random.Range(0, footstepSounds.Length);
-            monsterAudio.PlayOneShot(footstepSounds[randomIndex]);
-            Debug.Log("Chạy âm thanh bước chân!");
-        }
+        monsterAudio.PlayFootStep();
     }
-    
+    public void PlayATK1()
+    {
+        monsterAudio.PlaySFX(monsterAudio.atkSound_1);
+    }
+    public void PlayATK2()
+    {
+        monsterAudio.PlaySFX(monsterAudio.atkSound_2);
+    }
+  
+    #endregion
 }
