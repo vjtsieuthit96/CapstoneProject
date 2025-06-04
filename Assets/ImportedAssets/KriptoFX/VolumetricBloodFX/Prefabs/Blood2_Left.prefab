@@ -324,6 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 764304066602274967}
   - component: {fileID: 764304066602274964}
+  - component: {fileID: -6432024487966140809}
   m_Layer: 0
   m_Name: Blood2_Left
   m_TagString: Untagged
@@ -367,3 +368,15 @@ MonoBehaviour:
   DecalLifeTimeSeconds: 30
   DecalRenderingMode: 1
   DebugAnimationTime: 0.25
+--- !u!114 &-6432024487966140809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764304066602274965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a073afc87c0e6149b6a5ede44dc84ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
