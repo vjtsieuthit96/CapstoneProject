@@ -35,4 +35,15 @@ public abstract class Node
     }
 
     public abstract NodeState Evaluate();  
+
+    public T FindNode<T>() where T : Node
+    {
+        if (this is T foundNode) return foundNode;
+        foreach (Node child in children)
+        {
+            T result = child.FindNode<T>();
+            if (result != null) return result;
+        }
+        return null;
+    }
 }
