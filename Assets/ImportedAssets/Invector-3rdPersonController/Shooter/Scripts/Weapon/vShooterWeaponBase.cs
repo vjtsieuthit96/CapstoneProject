@@ -54,6 +54,7 @@ namespace Invector.vShooter
 
         [Tooltip("Check this to calculate damage automatically based on distance using min and max damage, higher distance less damage, less distance more damage")]
         public bool damageByDistance = true;
+        public float PlayerDamageMultiplier;
         [Tooltip("Min distance to apply damage, used to evaluate the damage between minDamage and maxDamage")]
         [SerializeField, vHideInInspector("damageByDistance"), FormerlySerializedAs("minDamageDistance")]
         protected float _minDamageDistance = 8f;
@@ -69,10 +70,6 @@ namespace Invector.vShooter
         [SerializeField, Tooltip("Maximum damage caused by the close shot"), FormerlySerializedAs("maxDamage")]
         protected int _maxDamage;
         public virtual int maxDamage { get { return _maxDamage; } set { _maxDamage = value; } }
-
-        // tự thêm vô
-        private CharacterConfigurator config;
-        public float PlayerDamageMultiplier = 1f;
 
         [vEditorToolbar("Audio & VFX")]
         [Header("Audio")]
@@ -301,10 +298,31 @@ namespace Invector.vShooter
         {
             Debug.Log(damageMultiplier);
             var dir = endPoint - startPoint;
-            //StartCoroutine(DebugDispersion(startPoint, endPoint));
+
+            Ray ray = new Ray(startPoint, dir.normalized);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 300f, hitLayer))
+            {
+                Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
+                Debug.Log("Raycast Hit: " + hit.collider.name);
+
+                // Ví dụ xử lý damage tức thời nếu có interface phù hợp
+               // var damageable = hit.collider.GetComponent<IDamageable>();
+                //if (damageable != null)
+                //{
+                //    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                //    damageable.TakeDamage(raycastDamage);
+                //}
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 300f, Color.black, 2f);
+            }
+
             var rotation = Quaternion.LookRotation(dir);
             GameObject bulletObject = null;
             var velocityChanged = 0f;
+
             if (dispersion > 0 && projectile)
             {
                 for (int i = 0; i < projectilesPerShot; i++)
