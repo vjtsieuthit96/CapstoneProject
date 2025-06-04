@@ -18,33 +18,24 @@ public class SkillUsageNode : Node
 
         monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
 
-        if (!skillManager.CanUseSkill(MonsterAnimatorHash.skill_1Hash) &&
-            !skillManager.CanUseSkill(MonsterAnimatorHash.skill_2Hash) &&
-            !skillManager.CanUseSkill(MonsterAnimatorHash.skill_3Hash))
+        //  Danh sách skill ưu tiên (có thể sắp xếp để chọn skill mạnh nhất trước)
+        int[] skillPriority = {
+        MonsterAnimatorHash.skill_3Hash, // Skill mạnh nhất
+        MonsterAnimatorHash.skill_2Hash,
+        MonsterAnimatorHash.skill_1Hash  // Skill yếu nhất
+    };
+
+        foreach (int skill in skillPriority)
         {
-            Debug.Log("Tất cả Skill đang CD");
-            return NodeState.FAILURE;
+            if (skillManager.CanUseSkill(skill))
+            {
+                skillManager.UseSkill(skill);
+                Debug.Log($"Dùng Skill {skill}");
+                return NodeState.RUNNING; // Ngừng tìm kiếm ngay sau khi dùng skill
+            }
         }
 
-        if (skillManager.CanUseSkill(MonsterAnimatorHash.skill_1Hash))
-        {
-            skillManager.UseSkill(MonsterAnimatorHash.skill_1Hash);
-            Debug.Log("Dùng Skill 1");
-            return NodeState.RUNNING; //  Trả về RUNNING để tránh gọi lại liên tục
-        }
-        else if (skillManager.CanUseSkill(MonsterAnimatorHash.skill_2Hash))
-        {
-            skillManager.UseSkill(MonsterAnimatorHash.skill_2Hash);
-            Debug.Log("Dùng Skill 2");
-            return NodeState.RUNNING;
-        }
-        else if (skillManager.CanUseSkill(MonsterAnimatorHash.skill_3Hash))
-        {
-            skillManager.UseSkill(MonsterAnimatorHash.skill_3Hash);
-            Debug.Log("Dùng Skill 3");
-            return NodeState.RUNNING;
-        }
-
+        Debug.Log("Tất cả Skill đang CD, chọn hành vi khác.");
         return NodeState.FAILURE;
     }
 }
