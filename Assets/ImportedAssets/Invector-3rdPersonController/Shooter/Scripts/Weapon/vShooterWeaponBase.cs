@@ -70,6 +70,10 @@ namespace Invector.vShooter
         protected int _maxDamage;
         public virtual int maxDamage { get { return _maxDamage; } set { _maxDamage = value; } }
 
+        // tự thêm vô
+        private CharacterConfigurator config;
+        public float PlayerDamageMultiplier = 1f;
+
         [vEditorToolbar("Audio & VFX")]
         [Header("Audio")]
         public AudioSource source;
@@ -151,8 +155,6 @@ namespace Invector.vShooter
         {
             Shoot(muzzle.position, aimPosition, _sender, successfulShot);
         }
-
-
         public virtual void Shoot(Vector3 startPoint, Vector3 endPoint, Transform _sender = null, UnityAction<bool> successfulShot = null)
         {
             if (HasAmmo())
@@ -297,6 +299,7 @@ namespace Invector.vShooter
 
         protected virtual void ShootBullet(Vector3 startPoint, Vector3 endPoint)
         {
+            Debug.Log(damageMultiplier);
             var dir = endPoint - startPoint;
             //StartCoroutine(DebugDispersion(startPoint, endPoint));
             var rotation = Quaternion.LookRotation(dir);
@@ -323,8 +326,8 @@ namespace Invector.vShooter
                     pCtrl.damage.sender = sender;
                     pCtrl.startPosition = bulletObject.transform.position;
                     pCtrl.damageByDistance = damageByDistance;
-                    pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier);
-                    pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier);
+                    pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier * PlayerDamageMultiplier);
+                    pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier * PlayerDamageMultiplier);
                     pCtrl.minDamageDistance = minDamageDistance;
                     pCtrl.maxDamageDistance = maxDamageDistance;
                     onInstantiateProjectile.Invoke(pCtrl);

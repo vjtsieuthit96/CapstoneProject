@@ -1219,8 +1219,16 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2477579451627427702, guid: e07db29eaa4660c43add2564a9a2310d, type: 3}
+      propertyPath: _healthRecovery
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477579451627427702, guid: e07db29eaa4660c43add2564a9a2310d, type: 3}
       propertyPath: selectedToolbar
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2477579451627427702, guid: e07db29eaa4660c43add2564a9a2310d, type: 3}
+      propertyPath: _healthRecoveryDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3021308039002664978, guid: e07db29eaa4660c43add2564a9a2310d, type: 3}
       propertyPath: m_Value
