@@ -1,17 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Invector.vCharacterController;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Invector;
 using Invector.vShooter;
+using System.Collections.Generic;
 
 public class CharacterConfigurator : MonoBehaviour
 {
     public CharacterStats stats;
     private vThirdPersonController controller;
     private Animator animator;
-    public float PlayerDamage = 1.0f;
+    public float PlayerDamageMultiplier;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -20,13 +20,36 @@ public class CharacterConfigurator : MonoBehaviour
         {
             ApplyStats(stats);
         }
-        //CurrentHealth = stats.CurrentHealth;
+        UpdateWeaponDamage();
     }
-
     public void TakeDamage(float damageValue)
     {
         vDamage damage = new vDamage(damageValue);
         controller.TakeDamage(damage);
+    }
+    private List<vShooterWeapon> FindAllWeaponsDeep(Transform parent)
+    {
+        List<vShooterWeapon> weapons = new List<vShooterWeapon>();
+        foreach (Transform child in parent)
+        {
+            var weapon = child.GetComponent<vShooterWeapon>();
+            if (weapon != null)
+            {
+                weapons.Add(weapon);
+            }
+
+            // Đệ quy
+            weapons.AddRange(FindAllWeaponsDeep(child));
+        }
+        return weapons;
+    }
+    private void UpdateWeaponDamage()
+    {
+        var weapons = FindAllWeaponsDeep(this.transform);
+        foreach (var weapon in weapons)
+        {
+            weapon.PlayerDamageMultiplier = PlayerDamageMultiplier;
+        }
     }    
     public void ApplyStats(CharacterStats s)
     {
@@ -75,7 +98,7 @@ public class CharacterConfigurator : MonoBehaviour
         controller.maxHealth = s.PlayerMaxHealth;
 
         //Player Damage
-        PlayerDamage = s.PlayerDamageMultiplier;
+        PlayerDamageMultiplier = s.PlayerDamageMultiplier;
 
         // Animator
         if (animator != null)
