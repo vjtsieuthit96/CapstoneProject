@@ -5,8 +5,8 @@ public class MonsterStats : MonoBehaviour
     [SerializeField] private MonsterStatsSO statsSO;
 
     [SerializeField]private float _currentHealth;
-    private float _currentDefense;
-    private float _currentDamage;
+    [SerializeField]private float _currentDefense;
+    [SerializeField]private float _currentDamage;
 
     private void Start()
     {

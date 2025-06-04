@@ -15,26 +15,6 @@ namespace Invector
             onDestroy.Invoke();
 
             Destroy(gameObject);
-        }
-
-        #region Hàm TakeDamage enemy
-        private void OnTriggerEnter(Collider other)
-        {
-           if(other.CompareTag("Enemy"))
-            {
-                Debug.Log("Va cham " + other.gameObject.name);
-                MonsterStats EnemyHealth = other.GetComponent<MonsterStats>();
-                MonsterAI EnemyAni = other.GetComponent<MonsterAI>();
-                EnemyHealth.TakeDamage(Damage);
-                int Rate = Random.Range(0,100);
-                if(Rate <= 25)
-                {
-                    EnemyAni.SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
-                }
-
-            }
-        }
-
-        #endregion
+        }        
     }
 }

@@ -25,12 +25,14 @@ public abstract class MonsterAI : MonoBehaviour
   
     private bool hasRetreat = false;
     private bool isDead = false;
+    protected CheckPlayerInFOVNode _checkPlayerInFOVNode;
     protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = _monsterAgent.speed;
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
+        _checkPlayerInFOVNode = behaviorTree.FindNode<CheckPlayerInFOVNode>();
         InvokeRepeating("EvaluateBehaviorTree", 0f, 2f);
     }
     protected virtual void Update()
@@ -48,7 +50,7 @@ public abstract class MonsterAI : MonoBehaviour
     public void EvaluateBehaviorTree()
     {
         if (!isDead)
-            behaviorTree.Evaluate();        
+            behaviorTree.Evaluate();       
     }    
     
     public void SetHasRetreat(bool value)
@@ -110,7 +112,15 @@ public abstract class MonsterAI : MonoBehaviour
         return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
     }
     #endregion
-    
+    public void ApplyDamage(float amount)
+    {
+        monsterStats.TakeDamage(amount);
+        {
+            if (_checkPlayerInFOVNode != null) _checkPlayerInFOVNode.OnAttacked();
+            else Debug.Log("No CheckPlayerInFOVNode found");
+        }
+    }
+
     #region Show FOV
     private void OnDrawGizmos()
     {

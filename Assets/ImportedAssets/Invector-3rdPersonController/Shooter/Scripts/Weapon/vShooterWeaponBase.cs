@@ -54,6 +54,7 @@ namespace Invector.vShooter
 
         [Tooltip("Check this to calculate damage automatically based on distance using min and max damage, higher distance less damage, less distance more damage")]
         public bool damageByDistance = true;
+        public float PlayerDamageMultiplier;
         [Tooltip("Min distance to apply damage, used to evaluate the damage between minDamage and maxDamage")]
         [SerializeField, vHideInInspector("damageByDistance"), FormerlySerializedAs("minDamageDistance")]
         protected float _minDamageDistance = 8f;
@@ -151,8 +152,6 @@ namespace Invector.vShooter
         {
             Shoot(muzzle.position, aimPosition, _sender, successfulShot);
         }
-
-
         public virtual void Shoot(Vector3 startPoint, Vector3 endPoint, Transform _sender = null, UnityAction<bool> successfulShot = null)
         {
             if (HasAmmo())
@@ -297,68 +296,90 @@ namespace Invector.vShooter
 
         protected virtual void ShootBullet(Vector3 startPoint, Vector3 endPoint)
         {
+            Debug.Log(damageMultiplier);
             var dir = endPoint - startPoint;
-            //StartCoroutine(DebugDispersion(startPoint, endPoint));
-            var rotation = Quaternion.LookRotation(dir);
-            GameObject bulletObject = null;
-            var velocityChanged = 0f;
-            if (dispersion > 0 && projectile)
+
+            Ray ray = new Ray(startPoint, dir.normalized);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 300f, hitLayer))
             {
-                for (int i = 0; i < projectilesPerShot; i++)
-                {
-                    var dispersionDir = Dispersion(dir.normalized, dispersion);
-                    var spreadRotation = Quaternion.LookRotation(dispersionDir);
-                    bulletObject = Instantiate(projectile, startPoint, spreadRotation);
+                Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
+                Debug.Log("Raycast Hit: " + hit.collider.name);
 
-                    var pCtrl = bulletObject.GetComponent<vProjectileControl>();
-                    if (pCtrl.debugTrajetory && i == 0)
-                    {
-                        startPoint.DebugPoint(Color.red, 10, 0.1f);
-                        Debug.DrawLine(startPoint, endPoint, Color.red, 10);
-                        endPoint.DebugPoint(Color.red, 10, 0.1f);
-                    }
-                    pCtrl.shooterTransform = sender;
-                    pCtrl.ignoreTags = ignoreTags;
-                    pCtrl.hitLayer = hitLayer;
-                    pCtrl.damage.sender = sender;
-                    pCtrl.startPosition = bulletObject.transform.position;
-                    pCtrl.damageByDistance = damageByDistance;
-                    pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier);
-                    pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier);
-                    pCtrl.minDamageDistance = minDamageDistance;
-                    pCtrl.maxDamageDistance = maxDamageDistance;
-                    onInstantiateProjectile.Invoke(pCtrl);
-                    velocityChanged = velocity * velocityMultiplier;
-                    ApplyForceToBullet(bulletObject, dispersionDir, velocityChanged);
-
-                    pCtrl = CreateProjectileData(endPoint, velocityChanged, dispersionDir, pCtrl);
-                }
+                // Ví dụ xử lý damage tức thời nếu có interface phù hợp
+               // var damageable = hit.collider.GetComponent<IDamageable>();
+                //if (damageable != null)
+                //{
+                //    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                //    damageable.TakeDamage(raycastDamage);
+                //}
             }
-            else if (projectilesPerShot > 0 && projectile)
+            else
             {
-                bulletObject = Instantiate(projectile, startPoint, rotation);
-                var pCtrl = bulletObject.GetComponent<vProjectileControl>();
-                if (pCtrl.debugTrajetory)
-                {
-                    startPoint.DebugPoint(Color.red, 10, 0.1f);
-                    Debug.DrawLine(startPoint, endPoint, Color.red, 10);
-                    endPoint.DebugPoint(Color.red, 10, 0.1f);
-                }
-                pCtrl.shooterTransform = sender;
-                pCtrl.ignoreTags = ignoreTags;
-                pCtrl.hitLayer = hitLayer;
-                pCtrl.damage.sender = sender;
-                pCtrl.startPosition = bulletObject.transform.position;
-                pCtrl.damageByDistance = damageByDistance;
-                pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier);
-                pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier);
-                pCtrl.minDamageDistance = minDamageDistance;
-                pCtrl.maxDamageDistance = maxDamageDistance;
-                onInstantiateProjectile.Invoke(pCtrl);
-                velocityChanged = velocity * velocityMultiplier;
-
-                ApplyForceToBullet(bulletObject, dir, velocityChanged);
+                Debug.DrawRay(ray.origin, ray.direction * 300f, Color.black, 2f);
             }
+
+            //var rotation = Quaternion.LookRotation(dir);
+            //GameObject bulletObject = null;
+            //var velocityChanged = 0f;
+
+            //if (dispersion > 0 && projectile)
+            //{
+            //    for (int i = 0; i < projectilesPerShot; i++)
+            //    {
+            //        var dispersionDir = Dispersion(dir.normalized, dispersion);
+            //        var spreadRotation = Quaternion.LookRotation(dispersionDir);
+            //        bulletObject = Instantiate(projectile, startPoint, spreadRotation);
+
+            //        var pCtrl = bulletObject.GetComponent<vProjectileControl>();
+            //        if (pCtrl.debugTrajetory && i == 0)
+            //        {
+            //            startPoint.DebugPoint(Color.red, 10, 0.1f);
+            //            Debug.DrawLine(startPoint, endPoint, Color.red, 10);
+            //            endPoint.DebugPoint(Color.red, 10, 0.1f);
+            //        }
+            //        pCtrl.shooterTransform = sender;
+            //        pCtrl.ignoreTags = ignoreTags;
+            //        pCtrl.hitLayer = hitLayer;
+            //        pCtrl.damage.sender = sender;
+            //        pCtrl.startPosition = bulletObject.transform.position;
+            //        pCtrl.damageByDistance = damageByDistance;
+            //        pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier * PlayerDamageMultiplier);
+            //        pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier * PlayerDamageMultiplier);
+            //        pCtrl.minDamageDistance = minDamageDistance;
+            //        pCtrl.maxDamageDistance = maxDamageDistance;
+            //        onInstantiateProjectile.Invoke(pCtrl);
+            //        velocityChanged = velocity * velocityMultiplier;
+            //        ApplyForceToBullet(bulletObject, dispersionDir, velocityChanged);
+
+            //        pCtrl = CreateProjectileData(endPoint, velocityChanged, dispersionDir, pCtrl);
+            //    }
+            //}
+            //else if (projectilesPerShot > 0 && projectile)
+            //{
+            //    bulletObject = Instantiate(projectile, startPoint, rotation);
+            //    var pCtrl = bulletObject.GetComponent<vProjectileControl>();
+            //    if (pCtrl.debugTrajetory)
+            //    {
+            //        startPoint.DebugPoint(Color.red, 10, 0.1f);
+            //        Debug.DrawLine(startPoint, endPoint, Color.red, 10);
+            //        endPoint.DebugPoint(Color.red, 10, 0.1f);
+            //    }
+            //    pCtrl.shooterTransform = sender;
+            //    pCtrl.ignoreTags = ignoreTags;
+            //    pCtrl.hitLayer = hitLayer;
+            //    pCtrl.damage.sender = sender;
+            //    pCtrl.startPosition = bulletObject.transform.position;
+            //    pCtrl.damageByDistance = damageByDistance;
+            //    pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier);
+            //    pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier);
+            //    pCtrl.minDamageDistance = minDamageDistance;
+            //    pCtrl.maxDamageDistance = maxDamageDistance;
+            //    onInstantiateProjectile.Invoke(pCtrl);
+            //    velocityChanged = velocity * velocityMultiplier;
+
+            //    ApplyForceToBullet(bulletObject, dir, velocityChanged);
+            //}
         }
 
         protected virtual vProjectileControl CreateProjectileData(Vector3 aimPosition, float velocityChanged, Vector3 dispersionDir, vProjectileControl pCtrl)

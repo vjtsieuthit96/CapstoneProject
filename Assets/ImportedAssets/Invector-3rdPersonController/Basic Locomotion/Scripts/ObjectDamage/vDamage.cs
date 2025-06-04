@@ -38,7 +38,7 @@ namespace Invector
             this.hitReaction = true;
         }
 
-        public vDamage(int value)
+        public vDamage(float value)
         {
             this.damageValue = value;
             this.hitReaction = true;

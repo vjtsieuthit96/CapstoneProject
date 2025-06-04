@@ -1,14 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Invector.vCharacterController;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Invector;
+using Invector.vShooter;
+using System.Collections.Generic;
 
 public class CharacterConfigurator : MonoBehaviour
 {
     public CharacterStats stats;
     private vThirdPersonController controller;
     private Animator animator;
-    private int CurrentHealth;
-
+    public float PlayerDamageMultiplier;
+    private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -17,21 +20,37 @@ public class CharacterConfigurator : MonoBehaviour
         {
             ApplyStats(stats);
         }
-        //CurrentHealth = stats.CurrentHealth;
-        CurrentHealth = controller.maxHealth;
+        UpdateWeaponDamage();
     }
-    #region Test
-    private void Update()
+    public void TakeDamage(float damageValue)
     {
-        controller.ChangeHealth(CurrentHealth);
+        vDamage damage = new vDamage(damageValue);
+        controller.TakeDamage(damage);
     }
-
-    public void PlayerTakeDamage(int damage)
+    private List<vShooterWeapon> FindAllWeaponsDeep(Transform parent)
     {
-        CurrentHealth -= damage;
-    }
-    #endregion
+        List<vShooterWeapon> weapons = new List<vShooterWeapon>();
+        foreach (Transform child in parent)
+        {
+            var weapon = child.GetComponent<vShooterWeapon>();
+            if (weapon != null)
+            {
+                weapons.Add(weapon);
+            }
 
+            // Đệ quy
+            weapons.AddRange(FindAllWeaponsDeep(child));
+        }
+        return weapons;
+    }
+    private void UpdateWeaponDamage()
+    {
+        var weapons = FindAllWeaponsDeep(this.transform);
+        foreach (var weapon in weapons)
+        {
+            weapon.PlayerDamageMultiplier = PlayerDamageMultiplier;
+        }
+    }    
     public void ApplyStats(CharacterStats s)
     {
         // Movement Speed
@@ -73,6 +92,13 @@ public class CharacterConfigurator : MonoBehaviour
         controller.timeToRollAgain = s.timeToRollAgain;
         controller.noDamageWhileRolling = s.noDamageWhileRolling;
         controller.noActiveRagdollWhileRolling = s.noActiveRagdollWhileRolling;
+
+
+        //Player Max Health
+        controller.maxHealth = s.PlayerMaxHealth;
+
+        //Player Damage
+        PlayerDamageMultiplier = s.PlayerDamageMultiplier;
 
         // Animator
         if (animator != null)

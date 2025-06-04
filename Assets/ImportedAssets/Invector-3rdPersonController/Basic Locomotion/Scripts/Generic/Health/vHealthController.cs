@@ -16,14 +16,14 @@ namespace Invector
         public bool isImmortal = false;
         [vHelpBox("If you want to start with different value, uncheck this and make sure that the current health has a value greater zero")]
         public bool fillHealthOnStart = true;
-        [SerializeField] protected int _maxHealth = 100;
-        public virtual int maxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
+        [SerializeField] protected float _maxHealth = 100;
+        public virtual float maxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
 
         protected virtual void OnValidate()
         {
             if (currentHealth <= 0 && !isDead) isDead = true;
         }
-        public virtual int MaxHealth
+        public virtual float MaxHealth
         {
             get
             {
@@ -110,7 +110,7 @@ namespace Invector
                 return (currentHealth >= 0 && healthRecovery > 0 && currentHealth < maxHealth);
             }
         }
-
+        // Hàm Hồi máu -> chạy tự động
         protected virtual IEnumerator RecoverHealth()
         {
             inHealthRecovery = true;
@@ -140,7 +140,7 @@ namespace Invector
         /// Increase or decrease  currentHealth (Positive or Negative Values)
         /// </summary>
         /// <param name="value">Value to change</param>
-        public virtual void AddHealth(int value)
+        public virtual void AddHealth(float value)
         {
             currentHealth += value;
         }
@@ -149,7 +149,7 @@ namespace Invector
         /// Change the currentHealth of Character
         /// </summary>
         /// <param name="value"></param>
-        public virtual void ChangeHealth(int value)
+        public virtual void ChangeHealth(float value)
         {
             currentHealth = value;
         }
@@ -177,7 +177,7 @@ namespace Invector
         /// Change the MaxHealth of Character
         /// </summary>
         /// <param name="value"></param>
-        public virtual void ChangeMaxHealth(int value)
+        public virtual void ChangeMaxHealth(float value)
         {
             maxHealth += value;
             if (maxHealth < 0)

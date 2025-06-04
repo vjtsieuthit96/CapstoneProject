@@ -611,9 +611,9 @@ GameObject:
   - component: {fileID: 5622012270302772746}
   - component: {fileID: 7296942623870602421}
   - component: {fileID: 673581269097418959}
+  - component: {fileID: 8959749289575215032}
   - component: {fileID: 680867627703430608}
   - component: {fileID: 1568520819312927798}
-  - component: {fileID: 3476635263314886010}
   - component: {fileID: 3027906811202869841}
   m_Layer: 0
   m_Name: Orc
@@ -682,7 +682,7 @@ MonoBehaviour:
   skillManager: {fileID: 7296942623870602421}
   monsterAudio: {fileID: 680867627703430608}
   target: {fileID: 0}
-  viewRadius: 15
+  viewRadius: 20
   viewAngle: 120
   attackRange: 3
   patrolRadius: 7
@@ -701,6 +701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsSO: {fileID: 11400000, guid: e1970c4982b569a468883cff98f11274, type: 2}
   _currentHealth: 0
+  _currentDefense: 0
+  _currentDamage: 0
 --- !u!114 &7296942623870602421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +733,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponCollider: {fileID: 983467460142843794}
   monsterAudio: {fileID: 680867627703430608}
+--- !u!114 &8959749289575215032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2277023041870629272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a901093ce2b414d857c6d6a85b36cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterAi: {fileID: 1370349457503210661}
+  headCollider: {fileID: 469336655504903635}
+  headshotMultiplier: 2
+  colliders:
+  - {fileID: 6190144844118622515}
+  - {fileID: 1881455091811300388}
+  - {fileID: 8364164696455933501}
+  - {fileID: 8300347231288188819}
+  - {fileID: 7147461733899863647}
 --- !u!114 &680867627703430608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -778,29 +801,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &3476635263314886010
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2277023041870629272}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.75
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!82 &3027906811202869841
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1276,6 +1276,7 @@ GameObject:
   - component: {fileID: 2680168415344876421}
   - component: {fileID: 3880964044700048440}
   - component: {fileID: 983467460142843794}
+  - component: {fileID: 3550728037528570256}
   m_Layer: 0
   m_Name: SM_Axe
   m_TagString: Untagged
@@ -1370,8 +1371,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6349096, y: 0.0949094, z: 1.5114733}
-  m_Center: {x: 0.25567952, y: 0.016421132, z: 0.41446212}
+  m_Size: {x: 0.6349096, y: 0.0949094, z: 0.65}
+  m_Center: {x: 0.25567952, y: 0.016421132, z: 0.84}
+--- !u!114 &3550728037528570256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491552856576436651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5181a68162f954cb5dec5de48f1ba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodPrefabs: {fileID: -8382805234901429214, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &3671567522808774707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,9 +1523,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3085060370114944639}
+  - component: {fileID: 6190144844118622515}
   m_Layer: 0
   m_Name: ORC_ L Calf
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1532,6 +1547,29 @@ Transform:
   - {fileID: 4390065717284106630}
   m_Father: {fileID: 3852251364230201076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6190144844118622515
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136740495473698428}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4317468770240116815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,9 +1811,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1709171377016273915}
   - component: {fileID: 3347752806495494790}
+  - component: {fileID: 8364164696455933501}
   m_Layer: 0
   m_Name: SK_ShoulderPads
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1855,6 +1894,27 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.62235296, y: -0.00038930774, z: -0.00041776896}
     m_Extent: {x: 0.4344115, y: 0.31036425, z: 0.71767527}
   m_DirtyAABB: 0
+--- !u!65 &8364164696455933501
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4955986824446756366}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7, y: 0.5, z: 0.7}
+  m_Center: {x: 0.0013341038, y: 0.013927154, z: -0.32}
 --- !u!1 &5166248784589346682
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,9 +2274,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7887222043904743838}
+  - component: {fileID: 469336655504903635}
   m_Layer: 0
   m_Name: ORC_ Head
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2238,6 +2299,27 @@ Transform:
   - {fileID: 5167656242883049480}
   m_Father: {fileID: 2202033489116498690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &469336655504903635
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6207996434043861824}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.22
+  m_Center: {x: -0.03, y: 0.028, z: 0}
 --- !u!1 &6433176825628652949
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,9 +2329,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4715215797672968605}
+  - component: {fileID: 8300347231288188819}
   m_Layer: 0
   m_Name: ORC_ R Forearm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2271,6 +2354,29 @@ Transform:
   - {fileID: 3170281634053659138}
   m_Father: {fileID: 5710642944169969721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8300347231288188819
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433176825628652949}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.25
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6711014853915844659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 307578202850836202}
+  - component: {fileID: 1881455091811300388}
   m_Layer: 0
   m_Name: ORC_ R Calf
   m_TagString: Untagged
@@ -2303,6 +2410,29 @@ Transform:
   - {fileID: 3227292318402951902}
   m_Father: {fileID: 2721423314011930876}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1881455091811300388
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6711014853915844659}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6764136007704940904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2312,9 +2442,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6263406240885436824}
+  - component: {fileID: 7147461733899863647}
   m_Layer: 0
   m_Name: ORC_ L Forearm
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2336,6 +2467,29 @@ Transform:
   - {fileID: 5802862507297143566}
   m_Father: {fileID: 3166665120315885631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7147461733899863647
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6764136007704940904}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.25
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7773852183989398072
 GameObject:
   m_ObjectHideFlags: 0
