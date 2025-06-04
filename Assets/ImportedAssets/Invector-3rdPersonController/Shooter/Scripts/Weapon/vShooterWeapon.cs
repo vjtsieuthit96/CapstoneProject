@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
@@ -239,7 +240,6 @@ namespace Invector.vShooter
             {
                 reloadSource = source;
             }
-
             SetScopeZoom(scopeZoom);
         }
 

@@ -1,13 +1,16 @@
 using UnityEngine;
 using Invector.vCharacterController;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Invector;
+using Invector.vShooter;
 
 public class CharacterConfigurator : MonoBehaviour
 {
     public CharacterStats stats;
     private vThirdPersonController controller;
     private Animator animator;
-    private int CurrentHealth;
+    public float PlayerDamage = 1.0f;
+    private float CurrentHealth => controller != null ? controller.currentHealth : 0;
 
     private void Awake()
     {
@@ -18,20 +21,13 @@ public class CharacterConfigurator : MonoBehaviour
             ApplyStats(stats);
         }
         //CurrentHealth = stats.CurrentHealth;
-        CurrentHealth = controller.maxHealth;
-    }
-    #region Test
-    private void Update()
-    {
-        controller.ChangeHealth(CurrentHealth);
     }
 
-    public void PlayerTakeDamage(int damage)
+    public void TakeDamage(float damageValue)
     {
-        CurrentHealth -= damage;
-    }
-    #endregion
-
+        vDamage damage = new vDamage(damageValue);
+        controller.TakeDamage(damage);
+    }    
     public void ApplyStats(CharacterStats s)
     {
         // Movement Speed
@@ -73,6 +69,13 @@ public class CharacterConfigurator : MonoBehaviour
         controller.timeToRollAgain = s.timeToRollAgain;
         controller.noDamageWhileRolling = s.noDamageWhileRolling;
         controller.noActiveRagdollWhileRolling = s.noActiveRagdollWhileRolling;
+
+
+        //Player Max Health
+        controller.maxHealth = s.PlayerMaxHealth;
+
+        //Player Damage
+        PlayerDamage = s.PlayerDamageMultiplier;
 
         // Animator
         if (animator != null)

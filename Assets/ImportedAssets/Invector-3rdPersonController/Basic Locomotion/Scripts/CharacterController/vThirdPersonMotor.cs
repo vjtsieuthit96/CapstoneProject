@@ -1693,7 +1693,7 @@ namespace Invector.vCharacterController
             else if (transform.position.y > heightReached)
             {
                 heightReached = transform.position.y;
-            }
+            } 
         }
 
         /// <summary>
