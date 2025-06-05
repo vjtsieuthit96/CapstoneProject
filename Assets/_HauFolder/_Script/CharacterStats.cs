@@ -44,6 +44,7 @@ public class CharacterStats : ScriptableObject
 
     [Header("Player Health")]
     public float PlayerMaxHealth;
+    public float PlayerMaxAmour;
 
     [Header("Player Damage")]
     public float PlayerDamageMultiplier = 1f;

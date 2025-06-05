@@ -1,7 +1,7 @@
 ﻿using Invector.vShooter;
 using UnityEngine;
 using UnityEngine.Events;
-using Invector.vItemManager;  // namespace chứa vInventory
+using Invector.vItemManager;
 
 public class WeaponInjector : MonoBehaviour
 {
