@@ -682,8 +682,10 @@ MonoBehaviour:
   skillManager: {fileID: 7296942623870602421}
   monsterAudio: {fileID: 680867627703430608}
   target: {fileID: 0}
+  speedMultiplier: 1.75
   viewRadius: 20
   viewAngle: 120
+  alertRadius: 20
   attackRange: 3
   patrolRadius: 7
   baseSpeed: 0
@@ -733,6 +735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponCollider: {fileID: 983467460142843794}
   monsterAudio: {fileID: 680867627703430608}
+  monsterAI: {fileID: 1370349457503210661}
 --- !u!114 &8959749289575215032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,7 +792,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
@@ -822,7 +825,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -858,7 +861,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1277,6 +1280,7 @@ GameObject:
   - component: {fileID: 3880964044700048440}
   - component: {fileID: 983467460142843794}
   - component: {fileID: 7161149948380272327}
+  - component: {fileID: 2144861514977159636}
   m_Layer: 0
   m_Name: SM_Axe
   m_TagString: Untagged
@@ -1365,7 +1369,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1048576
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -1386,6 +1390,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
+--- !u!114 &2144861514977159636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491552856576436651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 5622012270302772746}
 --- !u!1 &3671567522808774707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,7 +1543,7 @@ GameObject:
   - component: {fileID: 6190144844118622515}
   m_Layer: 0
   m_Name: ORC_ L Calf
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1814,7 +1831,7 @@ GameObject:
   - component: {fileID: 8364164696455933501}
   m_Layer: 0
   m_Name: SK_ShoulderPads
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2277,7 +2294,7 @@ GameObject:
   - component: {fileID: 469336655504903635}
   m_Layer: 0
   m_Name: ORC_ Head
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2332,7 +2349,7 @@ GameObject:
   - component: {fileID: 8300347231288188819}
   m_Layer: 0
   m_Name: ORC_ R Forearm
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2445,7 +2462,7 @@ GameObject:
   - component: {fileID: 7147461733899863647}
   m_Layer: 0
   m_Name: ORC_ L Forearm
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

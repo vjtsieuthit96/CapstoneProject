@@ -24,8 +24,8 @@ public class OrcAI : MonsterAI
         new Sequence(new List<Node> //  Nếu thấy Player, AI chiến đấu
         {
             new CheckPlayerInFOVNode(this),
-            new ChaseNode(this, _monsterAgent),
             new RoarNode(this, monsterAudio),
+            new ChaseNode(this, _monsterAgent),            
             new Selector(new List<Node> 
             {
                 new SkillUsageNode(this, skillManager),

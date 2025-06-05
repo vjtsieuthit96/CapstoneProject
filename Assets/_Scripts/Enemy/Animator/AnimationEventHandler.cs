@@ -3,7 +3,8 @@
 public class AnimationEventHandler : MonoBehaviour
 {
     [SerializeField] private Collider weaponCollider;
-    [SerializeField] private MonsterAudio monsterAudio;    
+    [SerializeField] private MonsterAudio monsterAudio;
+    [SerializeField] private MonsterAI monsterAI;
 
     private void Start()
     {    
@@ -26,6 +27,18 @@ public class AnimationEventHandler : MonoBehaviour
             weaponCollider.enabled = false;
             
         }
+    }
+
+    public void StartGetHit()
+    {
+        monsterAI.SetIsHit(true);
+        monsterAI.SetNavMeshStop(true);
+    }
+
+    public void EndGetHit()
+    {
+        monsterAI.SetIsHit(true);
+        monsterAI.SetNavMeshStop(false);
     }
 
     #region SOUND 

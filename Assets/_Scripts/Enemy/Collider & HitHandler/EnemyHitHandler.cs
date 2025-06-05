@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyHitHandler : MonoBehaviour
 {
     private MonsterAI monsterAi;
-    private float damageMultiplier;//  Nhân sát thương nếu trúng vị trí đặc biệt
+    private float damageMultiplier; // Nhân sát thương nếu trúng vị trí đặc biệt
 
     public void Initialize(MonsterAI monsterAi, float multiplier)
     {
@@ -12,23 +12,16 @@ public class EnemyHitHandler : MonoBehaviour
         this.damageMultiplier = multiplier;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ApplyHit(float bulletDamage)
     {
-        if (other.CompareTag("Bullet")) //  Kiểm tra nếu va chạm với đạn
+        float finalDamage = bulletDamage * damageMultiplier;
+        monsterAi.ApplyDamage(finalDamage);
+        Debug.Log($"Hit: {gameObject.name}, Damage: {finalDamage}");
+        int rate = Random.Range(0, 100);
+        if (rate <= 30 && !monsterAi.GetIsHit())
         {
-            vDestroyGameObject bullet = other.GetComponent<vDestroyGameObject>();
-            if (bullet != null)
-            {
-                float finalDamage = bullet.Damage * damageMultiplier;
-                monsterAi.ApplyDamage(finalDamage);
-                Debug.Log($"Hit: {gameObject.name}, Damage: {finalDamage}");
-            }
-            int Rate = Random.Range(0, 100);
-            if (Rate <= 30)
-            {
-                monsterAi.SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
-                Debug.Log("Enemy get hit animation");
-            }
+            monsterAi.SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
+            Debug.Log("Enemy get hit animation");
         }
     }
 }

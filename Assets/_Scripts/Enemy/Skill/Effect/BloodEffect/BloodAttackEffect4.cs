@@ -15,5 +15,7 @@ public class BloodAttackEffect4 : MonoBehaviour
         {
             PoolManager.Instance.GetObject<BloodEffect4>("BloodEF4", transform.position, Quaternion.identity);
         }
-    }    
+    }   
+
+
 }

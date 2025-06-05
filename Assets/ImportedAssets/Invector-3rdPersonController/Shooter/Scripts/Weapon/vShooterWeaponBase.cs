@@ -306,8 +306,19 @@ namespace Invector.vShooter
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
                 Debug.Log("Raycast Hit: " + hit.collider.name);
 
+                //Cái này của tao tự test còn m dùng interface thì sửa lại sau
+                #region XỬ LÝ SÁT THƯƠNG CHO MONSTER
+                EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                if (eHithandler != null)
+                {
+                    eHithandler.ApplyHit(15);
+                }
+                else Debug.Log("Collider ko có component HitHandler hoặc sai Layer");
+                #endregion
+                //
+
                 // Ví dụ xử lý damage tức thời nếu có interface phù hợp
-               // var damageable = hit.collider.GetComponent<IDamageable>();
+                // var damageable = hit.collider.GetComponent<IDamageable>();
                 //if (damageable != null)
                 //{
                 //    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);

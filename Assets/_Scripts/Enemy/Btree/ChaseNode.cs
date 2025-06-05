@@ -4,9 +4,7 @@ using UnityEngine.AI;
 public class ChaseNode : Node
 {
     private MonsterAI monster;
-    private NavMeshAgent agent;   
-    private float chaseMultiplier = 1.5f; // Khi đuổi, tăng 50% tốc độ   
-
+    private NavMeshAgent agent; 
     public ChaseNode(MonsterAI monster, NavMeshAgent agent)
     {
         this.monster = monster;
@@ -23,12 +21,13 @@ public class ChaseNode : Node
             agent.speed = monster.GetBaseSpeed(); // Nếu không có mục tiêu, khôi phục tốc độ ban đầu
             return NodeState.FAILURE;
         }
+        float distanceToPlayer = Vector3.Distance(monster.transform.position, player.position);
 
         agent.SetDestination(player.position); // Đặt mục tiêu cho NavMeshAgent       
        
-        agent.speed = monster.GetBaseSpeed() * chaseMultiplier; // Khi đuổi, tăng 50% tốc độ
+        agent.speed = monster.GetBaseSpeed() * monster.GetSpeedMultiplier(); // Khi đuổi, tăng tốc độ
 
-        if (Vector3.Distance(monster.transform.position, player.position) <= agent.stoppingDistance)
+        if (distanceToPlayer <= agent.stoppingDistance)
         {
             Debug.Log("Đã đến vị trí người chơi, khôi phục tốc độ.");
             agent.speed = monster.GetBaseSpeed(); // Đến gần, quay về tốc độ bình thường      
