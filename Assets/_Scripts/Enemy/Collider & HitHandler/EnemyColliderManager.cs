@@ -3,9 +3,10 @@
 public class EnemyColliderManager : MonoBehaviour
 {
     [SerializeField] private MonsterAI monsterAi;
-    [Header("-----Body Colldier-----")]
+    [Header("-----Head Colldier-----")]
     [SerializeField] private Collider headCollider;
     [SerializeField] private float headshotMultiplier = 2.0f; // x damage trúng đầu
+    [Header("-----Body Colldier-----")]
     [SerializeField] private Collider[] colliders;
 
     private void Awake()

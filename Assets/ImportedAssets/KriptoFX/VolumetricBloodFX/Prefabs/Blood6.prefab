@@ -315,7 +315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6122868367958573710}
   - component: {fileID: 8975717317865013593}
-  - component: {fileID: -8291958698431057767}
   m_Layer: 0
   m_Name: Blood6
   m_TagString: Untagged
@@ -359,15 +358,3 @@ MonoBehaviour:
   DecalLifeTimeSeconds: 30
   DecalRenderingMode: 0
   DebugAnimationTime: 0.25
---- !u!114 &-8291958698431057767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463355840203370170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a073afc87c0e6149b6a5ede44dc84ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

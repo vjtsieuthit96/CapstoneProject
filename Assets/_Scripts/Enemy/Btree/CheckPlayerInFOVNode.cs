@@ -14,6 +14,7 @@ public class CheckPlayerInFOVNode : Node
     {
         lastAttackedTime = Time.time; //  Cập nhật thời gian bị tấn công
         Debug.Log("AI bị tấn công! Ghi nhớ kẻ địch.");
+        AlertNearbyAllies();
     }
 
     public override NodeState Evaluate()
@@ -51,5 +52,39 @@ public class CheckPlayerInFOVNode : Node
         }
 
         return NodeState.RUNNING;
+    }
+    private void AlertNearbyAllies()
+    {
+        string allyTag = "Enemy";
+        float alertRadius = monsterAI.GetAlertRadius();
+
+        GameObject[] allies = GameObject.FindGameObjectsWithTag(allyTag);
+
+        foreach (GameObject ally in allies)
+        {
+            if (ally.transform != monsterAI.transform) // 🔥 Tránh cảnh báo chính nó
+            {
+                float distanceToAlly = Vector3.Distance(monsterAI.transform.position, ally.transform.position);
+
+                if (distanceToAlly <= alertRadius)
+                {
+                    //Lấy MonsterAI từ đồng minh
+                    MonsterAI allyMonsterAI = ally.GetComponent<MonsterAI>();
+
+                    if (allyMonsterAI != null)
+                    {
+                        // 🔥 Tìm `CheckPlayerInFOVNode` trong cây hành vi của đồng minh
+                        CheckPlayerInFOVNode allyFOVNode = allyMonsterAI.GetBehaviorNode<CheckPlayerInFOVNode>();
+
+                        if (allyFOVNode != null)
+                        {
+                            allyFOVNode.lastSeenTime = Time.time; // 🔥 Ghi nhớ vị trí Player
+                            allyMonsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true); // 🔥 Chuyển sang trạng thái chiến đấu
+                            Debug.Log($"Đồng minh {ally.name} nhận cảnh báo! Bắt đầu truy đuổi Player.");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

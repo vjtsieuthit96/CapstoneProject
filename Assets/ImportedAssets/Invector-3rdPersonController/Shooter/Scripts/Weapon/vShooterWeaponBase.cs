@@ -307,6 +307,17 @@ namespace Invector.vShooter
                 Debug.Log("Raycast Hit: " + hit.collider.name);
                 TryCreateDecal(hit);
 
+                //Cái này của tao tự test còn m dùng interface thì sửa lại sau
+                #region XỬ LÝ SÁT THƯƠNG CHO MONSTER
+                EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                if (eHithandler != null)
+                {
+                    eHithandler.ApplyHit(15);
+                }
+                else Debug.Log("Collider ko có component HitHandler hoặc sai Layer");
+                #endregion
+                //
+
                 // Ví dụ xử lý damage tức thời nếu có interface phù hợp
                 // var damageable = hit.collider.GetComponent<IDamageable>();
                 //if (damageable != null)
