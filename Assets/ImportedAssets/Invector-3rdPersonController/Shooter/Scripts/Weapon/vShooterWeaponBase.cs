@@ -314,7 +314,6 @@ namespace Invector.vShooter
                 {
                     int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                     eHithandler.ApplyHit(raycastDamage);
-                    Debug.Log("Trúng enemy " + raycastDamage );
                 }
                 else Debug.LogWarning("Collider ko có component HitHandler hoặc sai Layer");
                 #endregion
