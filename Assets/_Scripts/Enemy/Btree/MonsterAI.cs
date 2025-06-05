@@ -57,8 +57,7 @@ public abstract class MonsterAI : MonoBehaviour
     protected abstract Node CreateBehaviorTree();
     public void ApplyDamage(float amount)
     {
-        monsterStats.TakeDamage(amount);
-        
+        monsterStats.TakeDamage(amount);        
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
 
