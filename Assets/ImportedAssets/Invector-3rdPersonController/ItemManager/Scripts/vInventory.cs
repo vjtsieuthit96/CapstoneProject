@@ -335,21 +335,23 @@ namespace Invector.vItemManager
         /// </summary>
         protected virtual void ChangeEquipmentInput()
         {
-            // display equiped itens
             if (changeEquipmentControllers.Count > 0 && canEquip)
             {
+                float scroll = Input.GetAxis("Mouse ScrollWheel");
+
                 foreach (ChangeEquipmentControl changeEquip in changeEquipmentControllers)
                 {
                     UseItemInput(changeEquip);
+
                     if (changeEquip.equipArea != null)
                     {
-                        if (changeEquip.previousItemInput.GetButtonDown())
-                        {
-                            changeEquip.equipArea.PreviousEquipSlot();
-                        }
-                        else if (changeEquip.nextItemInput.GetButtonDown())
+                        if (scroll > 0f)
                         {
                             changeEquip.equipArea.NextEquipSlot();
+                        }
+                        else if (scroll < 0f)
+                        {
+                            changeEquip.equipArea.PreviousEquipSlot();
                         }
                     }
                 }
