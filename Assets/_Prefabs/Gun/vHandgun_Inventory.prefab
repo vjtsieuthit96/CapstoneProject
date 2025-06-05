@@ -5444,7 +5444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 9
+  selectedToolbar: 2
   weaponCategory: Pistol
   _shootFrequency: 0.25
   isInfinityAmmo: 1
@@ -5452,7 +5452,7 @@ MonoBehaviour:
   ignoreTags: []
   hitLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   projectile: {fileID: 1000010710861650, guid: 22773fb6a3ebd59429b49fd6e288058e, type: 3}
   muzzle: {fileID: 445870}
   projectilesPerShot: 1
