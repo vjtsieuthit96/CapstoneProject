@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2118898371229433452}
   - component: {fileID: 3823342610295537083}
-  - component: {fileID: -8382805234901429214}
+  - component: {fileID: 4599699046344080498}
   m_Layer: 0
   m_Name: Blood4
   m_TagString: Untagged
@@ -54,7 +54,7 @@ MonoBehaviour:
   DecalLifeTimeSeconds: 15
   DecalRenderingMode: 0
   DebugAnimationTime: 0.25
---- !u!114 &-8382805234901429214
+--- !u!114 &4599699046344080498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a073afc87c0e6149b6a5ede44dc84ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deactiveTime: 5
 --- !u!1 &2110413278928731068
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110413278928731068}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

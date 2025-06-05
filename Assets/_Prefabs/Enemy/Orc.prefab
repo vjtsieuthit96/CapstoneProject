@@ -1276,7 +1276,7 @@ GameObject:
   - component: {fileID: 2680168415344876421}
   - component: {fileID: 3880964044700048440}
   - component: {fileID: 983467460142843794}
-  - component: {fileID: 3550728037528570256}
+  - component: {fileID: 7161149948380272327}
   m_Layer: 0
   m_Name: SM_Axe
   m_TagString: Untagged
@@ -1373,7 +1373,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6349096, y: 0.0949094, z: 0.65}
   m_Center: {x: 0.25567952, y: 0.016421132, z: 0.84}
---- !u!114 &3550728037528570256
+--- !u!114 &7161149948380272327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5181a68162f954cb5dec5de48f1ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodPrefabs: {fileID: -8382805234901429214, guid: bb596cd440832554089a7125852e836f, type: 3}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &3671567522808774707
 GameObject:
   m_ObjectHideFlags: 0
