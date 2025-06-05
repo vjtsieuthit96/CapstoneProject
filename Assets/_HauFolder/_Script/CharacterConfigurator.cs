@@ -10,8 +10,15 @@ public class CharacterConfigurator : MonoBehaviour
     public CharacterStats stats;
     private vThirdPersonController controller;
     private Animator animator;
+    public vHUDController hudController;
     public float PlayerDamageMultiplier;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
+    public float _currentAmour;
+    public float CurrentAmour
+    {
+        get => _currentAmour;
+        set => _currentAmour = Mathf.Clamp(value, 0, stats != null ? stats.PlayerMaxAmour : float.MaxValue);
+    }
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -20,38 +27,41 @@ public class CharacterConfigurator : MonoBehaviour
         {
             ApplyStats(stats);
         }
-        UpdateWeaponDamage();
     }
-
+    #region Test Amour
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            TakeDamage(15f);
+        }
+    }
+    #endregion
     public void TakeDamage(float damageValue)
     {
-        vDamage damage = new vDamage(damageValue);
-        controller.TakeDamage(damage);
-    }
-    private List<vShooterWeapon> FindAllWeaponsDeep(Transform parent)
-    {
-        List<vShooterWeapon> weapons = new List<vShooterWeapon>();
-        foreach (Transform child in parent)
-        {
-            var weapon = child.GetComponent<vShooterWeapon>();
-            if (weapon != null)
-            {
-                weapons.Add(weapon);
-            }
+        if (damageValue <= 0 || controller == null) return;
 
-            // Đệ quy
-            weapons.AddRange(FindAllWeaponsDeep(child));
-        }
-        return weapons;
-    }
-    private void UpdateWeaponDamage()
-    {
-        var weapons = FindAllWeaponsDeep(this.transform);
-        foreach (var weapon in weapons)
+        if (CurrentAmour > 0)
         {
-            weapon.PlayerDamageMultiplier = PlayerDamageMultiplier;
+            if (CurrentAmour >= damageValue)
+            {
+                CurrentAmour -= damageValue;
+                hudController.EnableDamageSprite(new vDamage(damageValue));
+                Debug.Log("Amour hiện tại là: " + CurrentAmour);
+            }
+            else
+            {
+                float remainingDamage = damageValue - CurrentAmour;
+                CurrentAmour = 0;
+                controller.TakeDamage(new vDamage(remainingDamage));
+            }
         }
-    }    
+        else
+        {
+            controller.TakeDamage(new vDamage(damageValue));
+        }
+    }
+
     public void ApplyStats(CharacterStats s)
     {
         // Movement Speed
@@ -97,6 +107,7 @@ public class CharacterConfigurator : MonoBehaviour
 
         //Player Max Health
         controller.maxHealth = s.PlayerMaxHealth;
+        CurrentAmour = s.PlayerMaxAmour;
 
         //Player Damage
         PlayerDamageMultiplier = s.PlayerDamageMultiplier;
