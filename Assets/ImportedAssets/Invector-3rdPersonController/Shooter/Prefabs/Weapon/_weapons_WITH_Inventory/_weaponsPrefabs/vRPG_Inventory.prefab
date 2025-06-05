@@ -5272,7 +5272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 9
+  selectedToolbar: 2
   weaponCategory: RPG
   _shootFrequency: 1
   isInfinityAmmo: 0
@@ -5280,7 +5280,7 @@ MonoBehaviour:
   ignoreTags: []
   hitLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   projectile: {fileID: 1273478506532076, guid: 51167016d084309499498271caa6d1c7, type: 3}
   muzzle: {fileID: 467730}
   projectilesPerShot: 1
