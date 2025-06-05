@@ -65,7 +65,7 @@ namespace Invector.vItemManager
         public List<ChangeEquipmentControl> changeEquipmentControllers;
 
         [vEditorToolbar("Input Mapping")]
-        public GenericInput openInventory = new GenericInput("I", "Start", "Start");
+        public GenericInput openInventory = new GenericInput("F", "Start", "Start");
         public GenericInput removeEquipment = new GenericInput("Mouse1", "X", "X");
 
         [Header("This fields will override the EventSystem Input")]
