@@ -5443,7 +5443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 3
+  selectedToolbar: 9
   weaponCategory: Pistol
   _shootFrequency: 0.25
   isInfinityAmmo: 1
@@ -5627,6 +5627,7 @@ MonoBehaviour:
   onPowerChargerChanged:
     m_PersistentCalls:
       m_Calls: []
+  hitDecal: {fileID: 0}
   root: {fileID: 0}
   isSecundaryWeapon: 0
 --- !u!114 &114790386807353386

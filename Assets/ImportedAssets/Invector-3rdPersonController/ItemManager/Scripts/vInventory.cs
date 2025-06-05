@@ -58,7 +58,8 @@ namespace Invector.vItemManager
 
         [Range(0, 1)]
         public float timeScaleWhileIsOpen = 0;
-
+        [SerializeField]
+        private List<GameObject> equippedObjects = new List<GameObject>();
         [Tooltip("Check true to not destroy this object when changing scenes")]
         public bool dontDestroyOnLoad = true;
         public List<ChangeEquipmentControl> changeEquipmentControllers;
@@ -83,7 +84,6 @@ namespace Invector.vItemManager
         public bool isOpen, canEquip, lockInventoryInput;
         //[HideInInspector]
         public vEquipArea[] equipAreas;
-
         public List<vItem> items
         {
             get
@@ -454,6 +454,10 @@ namespace Invector.vItemManager
         /// <param name="item"></param>
         public virtual void OnEquipItem(vEquipArea equipArea, vItem item)
         {
+            if (item != null && item.originalObject != null && !equippedObjects.Contains(item.originalObject))
+            {
+                equippedObjects.Add(item.originalObject);
+            }
             onEquipItem.Invoke(equipArea, item);
             ChangeEquipmentDisplay(equipArea, equipArea.currentEquippedItem);
         }
@@ -465,6 +469,10 @@ namespace Invector.vItemManager
         /// <param name="item"></param>
         public virtual void OnUnequipItem(vEquipArea equipArea, vItem item)
         {
+            if (item != null && item.originalObject != null && equippedObjects.Contains(item.originalObject))
+            {
+                equippedObjects.Remove(item.originalObject);
+            }
             onUnequipItem.Invoke(equipArea, item);
             ChangeEquipmentDisplay(equipArea, equipArea.currentEquippedItem);
         }

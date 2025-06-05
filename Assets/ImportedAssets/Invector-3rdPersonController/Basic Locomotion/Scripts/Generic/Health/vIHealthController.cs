@@ -17,7 +17,7 @@ namespace Invector
         /// <summary>
         /// Max Health value
         /// </summary>
-        int MaxHealth { get; }
+        float MaxHealth { get; }
         /// <summary>
         /// Check if  <seealso cref="currentHealth"/>  is zero or less
         /// </summary>
@@ -26,17 +26,17 @@ namespace Invector
         /// Encrease or Decrease <seealso cref="currentHealth"/>  respecting the <seealso cref="MaxHealth"/>
         /// </summary>
         /// <param name="value">value</param>
-        void AddHealth(int value);
+        void AddHealth(float value);
         /// <summary>
         /// Change <seealso cref="currentHealth"/> respecting the <seealso cref="MaxHealth"/>
         /// </summary>
         /// <param name="value">value</param>
-        void ChangeHealth(int value);
+        void ChangeHealth(float value);
         /// <summary>
         /// Change the Max Health value
         /// </summary>
         /// <param name="value">value</param>
-        void ChangeMaxHealth(int value);
+        void ChangeMaxHealth(float value);
         /// <summary>
         /// Reset's current health to specific health value
         /// </summary>
