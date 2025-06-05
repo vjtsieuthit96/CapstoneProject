@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Invector.vCharacterController.AI
 {
     using UnityEngine.AI;
+    using UnityEngine.Rendering.Universal;
     using vMelee;
 
     public class vSimpleMeleeAI_Motor : vCharacter
