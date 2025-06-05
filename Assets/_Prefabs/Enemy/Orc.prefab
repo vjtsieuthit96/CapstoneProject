@@ -676,19 +676,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e871c11b9d9040947b6b35b83e90914d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterStats: {fileID: 5622012270302772746}
-  monsterAnimator: {fileID: 5932104796652673785}
-  _monsterAgent: {fileID: 1568520819312927798}
-  skillManager: {fileID: 7296942623870602421}
-  monsterAudio: {fileID: 680867627703430608}
   target: {fileID: 0}
   speedMultiplier: 1.75
   viewRadius: 20
   viewAngle: 120
   alertRadius: 20
   attackRange: 3
-  patrolRadius: 7
+  patrolRadius: 5
   baseSpeed: 0
+  monsterStats: {fileID: 5622012270302772746}
+  monsterAnimator: {fileID: 5932104796652673785}
+  _monsterAgent: {fileID: 1568520819312927798}
+  skillManager: {fileID: 7296942623870602421}
+  monsterAudio: {fileID: 680867627703430608}
 --- !u!114 &5622012270302772746
 MonoBehaviour:
   m_ObjectHideFlags: 0
