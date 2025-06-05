@@ -8,7 +8,8 @@ public class WeaponColliderManager : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player Take Hit");            
-            //monsterStats.GetCurrentDamage();
+            CharacterConfigurator player = other.GetComponent<CharacterConfigurator>();
+            player.TakeDamage(monsterStats.GetCurrentDamage());
         }
     }
 }

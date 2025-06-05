@@ -11,10 +11,22 @@ public class EnemyColliderManager : MonoBehaviour
 
     private void Awake()
     {
+        // Xử lý các collider trên thân quái
         foreach (Collider col in colliders)
         {
-            var colliderHandler = col.gameObject.AddComponent<EnemyHitHandler>();
-            colliderHandler.Initialize(monsterAi, col == headCollider ? headshotMultiplier : 1.0f);
+            var bodyColliderHandler = col.gameObject.AddComponent<EnemyHitHandler>();
+            bodyColliderHandler.Initialize(monsterAi, 1f);
+        }
+
+        // Xử lý riêng HeadCollider nếu tồn tại
+        if (headCollider != null)
+        {
+            var headColliderHandler = headCollider.gameObject.AddComponent<EnemyHitHandler>();
+            headColliderHandler.Initialize(monsterAi, headshotMultiplier);            
+        }
+        else
+        {
+            Debug.LogWarning("HeadCollider chưa được gán hoặc bị thiếu trong Inspector!");
         }
     }
 }

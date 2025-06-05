@@ -3,14 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class MonsterAI : MonoBehaviour
-{
-    protected Node behaviorTree;
-    [Header("-----Scripts Component-----")]
-    [SerializeField] protected MonsterStats monsterStats;  
-    [SerializeField] protected Animator monsterAnimator;
-    [SerializeField] protected NavMeshAgent _monsterAgent;
-    [SerializeField] protected SkillManager skillManager;
-    [SerializeField] protected MonsterAudio monsterAudio;
+{    
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
     [Header("-----Speed Multiplier-----")]
@@ -22,7 +15,14 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Attack & Patrol-----")]
     [SerializeField] protected float attackRange;
     [SerializeField] protected float patrolRadius;
-    [SerializeField] protected float baseSpeed;
+    [SerializeField] protected float baseSpeed;   
+    [Header("-----Components-----")]    
+    [SerializeField] protected MonsterStats monsterStats;
+    [SerializeField] protected Animator monsterAnimator;
+    [SerializeField] protected NavMeshAgent _monsterAgent;
+    [SerializeField] protected SkillManager skillManager;
+    [SerializeField] protected MonsterAudio monsterAudio;
+    protected Node behaviorTree;
 
     private Vector3 _patrolCenter;  
     private bool hasRetreat = false;
@@ -57,8 +57,7 @@ public abstract class MonsterAI : MonoBehaviour
     protected abstract Node CreateBehaviorTree();
     public void ApplyDamage(float amount)
     {
-        monsterStats.TakeDamage(amount);
-        
+        monsterStats.TakeDamage(amount);        
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
 
