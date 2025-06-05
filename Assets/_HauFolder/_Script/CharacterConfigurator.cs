@@ -22,6 +22,7 @@ public class CharacterConfigurator : MonoBehaviour
         }
         UpdateWeaponDamage();
     }
+
     public void TakeDamage(float damageValue)
     {
         vDamage damage = new vDamage(damageValue);

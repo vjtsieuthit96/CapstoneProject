@@ -16,15 +16,21 @@ public class SkillUsageNode : Node
         Transform player = monster.GetTarget();
         if (player == null) return NodeState.FAILURE;
 
+        float distancetoPlayer = Vector3.Distance(monster.transform.position, player.transform.position);
+        if (distancetoPlayer > monster.GetStoppingDistance()*1.25f)
+        {
+            Debug.Log("Chưa đủ khoảng cách dùng skill");
+            return NodeState.FAILURE;
+        }
         monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
-
         //  Danh sách skill ưu tiên (có thể sắp xếp để chọn skill mạnh nhất trước)
-        int[] skillPriority = {
-        MonsterAnimatorHash.skill_3Hash, // Skill mạnh nhất
-        MonsterAnimatorHash.skill_2Hash,
-        MonsterAnimatorHash.skill_1Hash  // Skill yếu nhất
-    };
-
+        int[] skillPriority = 
+        {
+            MonsterAnimatorHash.skill_3Hash, // Skill mạnh nhất
+            MonsterAnimatorHash.skill_2Hash,
+            MonsterAnimatorHash.skill_1Hash  // Skill yếu nhất
+        };
+    
         foreach (int skill in skillPriority)
         {
             if (skillManager.CanUseSkill(skill))

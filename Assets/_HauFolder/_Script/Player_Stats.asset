@@ -31,7 +31,7 @@ MonoBehaviour:
   fallMinHeight: 6
   fallMinVerticalVelocity: -10
   fallDamage: 10
-  rollSpeed: 3
+  rollSpeed: 1
   rollRotationSpeed: 20
   rollExtraGravity: -10
   timeToRollAgain: 0.75
@@ -40,4 +40,4 @@ MonoBehaviour:
   freeMovementAnimatorSpeed: 2
   ReloadSpeed: 1
   PlayerMaxHealth: 100
-  PlayerDamageMultiplier: 1
+  PlayerDamageMultiplier: 2

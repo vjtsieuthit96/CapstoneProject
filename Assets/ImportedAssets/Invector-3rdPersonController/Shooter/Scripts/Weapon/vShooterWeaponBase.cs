@@ -293,7 +293,7 @@ namespace Invector.vShooter
         //        time -= Time.deltaTime;
         //    }
         //}
-
+        protected virtual void TryCreateDecal(RaycastHit hit) { }
         protected virtual void ShootBullet(Vector3 startPoint, Vector3 endPoint)
         {
             Debug.Log(damageMultiplier);
@@ -305,9 +305,22 @@ namespace Invector.vShooter
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
                 Debug.Log("Raycast Hit: " + hit.collider.name);
+                TryCreateDecal(hit);
+
+                //Cái này của tao tự test còn m dùng interface thì sửa lại sau
+                #region XỬ LÝ SÁT THƯƠNG CHO MONSTER
+                EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                if (eHithandler != null)
+                {
+                    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                    eHithandler.ApplyHit(raycastDamage);
+                }
+                else Debug.LogWarning("Collider ko có component HitHandler: "+hit.collider.name);
+                #endregion
+                //
 
                 // Ví dụ xử lý damage tức thời nếu có interface phù hợp
-               // var damageable = hit.collider.GetComponent<IDamageable>();
+                // var damageable = hit.collider.GetComponent<IDamageable>();
                 //if (damageable != null)
                 //{
                 //    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);

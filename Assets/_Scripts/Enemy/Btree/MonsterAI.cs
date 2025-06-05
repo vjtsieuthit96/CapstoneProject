@@ -3,37 +3,38 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class MonsterAI : MonoBehaviour
-{
-    protected Node behaviorTree;
-    [Header("-----Scripts Component-----")]
-    [SerializeField] protected MonsterStats monsterStats;  
+{    
+    [Header("-----Target-----")]
+    [SerializeField] protected Transform target;
+    [Header("-----Speed Multiplier-----")]
+    [SerializeField] float speedMultiplier = 1.75f;
+    [Header("-----FOV-----")]   
+    [SerializeField] protected float viewRadius = 15f; // Tầm nhìn tối đa
+    [SerializeField] protected float viewAngle = 105f; // Góc nhìn của quái vật
+    [SerializeField] protected float alertRadius = 10f;
+    [Header("-----Attack & Patrol-----")]
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float patrolRadius;
+    [SerializeField] protected float baseSpeed;   
+    [Header("-----Components-----")]    
+    [SerializeField] protected MonsterStats monsterStats;
     [SerializeField] protected Animator monsterAnimator;
     [SerializeField] protected NavMeshAgent _monsterAgent;
     [SerializeField] protected SkillManager skillManager;
     [SerializeField] protected MonsterAudio monsterAudio;
-    [Header("-----Target-----")]
-    [SerializeField] protected Transform target;
-    [Header("-----FOV-----")]   
-    [SerializeField] protected float viewRadius = 15f; // Tầm nhìn tối đa
-    [SerializeField] protected float viewAngle = 105f; // Góc nhìn của quái vật
+    protected Node behaviorTree;
 
-    [Header("-----Attack & Patrol-----")]
-    [SerializeField] protected float attackRange;
-    [SerializeField] protected float patrolRadius;
-    [SerializeField] protected float baseSpeed;
-    private Vector3 _patrolCenter;
-  
+    private Vector3 _patrolCenter;  
     private bool hasRetreat = false;
     private bool isDead = false;
-    protected CheckPlayerInFOVNode _checkPlayerInFOVNode;
-    protected virtual void Start()
+    private bool isHit = false;
+      protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = _monsterAgent.speed;
         _patrolCenter = transform.position;
-        behaviorTree = CreateBehaviorTree();
-        _checkPlayerInFOVNode = behaviorTree.FindNode<CheckPlayerInFOVNode>();
-        InvokeRepeating("EvaluateBehaviorTree", 0f, 2f);
+        behaviorTree = CreateBehaviorTree();      
+        InvokeRepeating("EvaluateBehaviorTree", 0f, 1.5f);
     }
     protected virtual void Update()
     {
@@ -51,19 +52,27 @@ public abstract class MonsterAI : MonoBehaviour
     {
         if (!isDead)
             behaviorTree.Evaluate();       
-    }    
-    
-    public void SetHasRetreat(bool value)
+    }       
+   
+    protected abstract Node CreateBehaviorTree();
+    public void ApplyDamage(float amount)
     {
-        hasRetreat = value;
+        monsterStats.TakeDamage(amount);        
+        GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
 
-    protected abstract Node CreateBehaviorTree();
     #region GET & SET
     public float GetViewRadius() => viewRadius;
     public float GetViewAngle() => viewAngle;
+    public float GetAlertRadius()=> alertRadius;    
+    public T GetBehaviorNode<T>() where T : Node
+    {
+        return behaviorTree.FindNode<T>(); //Hàm lấy node từ cây hành vi
+    }
+
     public Transform GetTarget() { return target; }
     public float GetAttackRange() => attackRange;
+    public float GetStoppingDistance() => _monsterAgent.stoppingDistance;
     public Vector3 GetRandomPatrolPoint()
     {
         Vector3 randomDirection = Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
@@ -83,8 +92,22 @@ public abstract class MonsterAI : MonoBehaviour
     {
         _patrolCenter = position;
     }
+    public void SetNavMeshStop(bool value)
+    {
+        _monsterAgent.isStopped = value;
+    }
+    public bool GetIsHit() => isHit;
+    public void SetIsHit (bool value)
+    {
+        isHit = value;
+    }
     public float GetBaseSpeed() => baseSpeed;
+    public float GetSpeedMultiplier()=>speedMultiplier;
     public bool GetHasRetreat() => hasRetreat;
+    public void SetHasRetreat(bool value)
+    {
+        hasRetreat = value;
+    }
     public void SetAnimatorParameter(int hash, object value)
     {
         if (monsterAnimator == null)
@@ -111,17 +134,9 @@ public abstract class MonsterAI : MonoBehaviour
     {
         return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
     }
-    #endregion
-    public void ApplyDamage(float amount)
-    {
-        monsterStats.TakeDamage(amount);
-        {
-            if (_checkPlayerInFOVNode != null) _checkPlayerInFOVNode.OnAttacked();
-            else Debug.Log("No CheckPlayerInFOVNode found");
-        }
-    }
+    #endregion    
 
-    #region Show FOV
+    #region DRAW FOV
     private void OnDrawGizmos()
     {
         Handles.color = Color.red;
