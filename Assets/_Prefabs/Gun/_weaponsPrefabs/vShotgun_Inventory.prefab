@@ -339,7 +339,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -392,7 +392,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -4851,7 +4851,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8603b41eb2844649b9e02a41d1e1ad2, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5403,7 +5402,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -5456,7 +5455,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -9915,7 +9914,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8603b41eb2844649b9e02a41d1e1ad2, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13073,7 +13071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 2
+  selectedToolbar: 4
   weaponCategory: Shotgun
   _shootFrequency: 0.8
   isInfinityAmmo: 0
@@ -13108,6 +13106,7 @@ MonoBehaviour:
   - {fileID: 198218352438712284}
   - {fileID: 198626129383516928}
   - {fileID: 198508985394246116}
+  - {fileID: 8426727865436748263}
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
@@ -13473,6 +13472,7 @@ Transform:
   - {fileID: 491716}
   - {fileID: 460892}
   - {fileID: 429690}
+  - {fileID: 8511950621716938489}
   m_Father: {fileID: 474122}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &138418
@@ -13917,7 +13917,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -13970,7 +13970,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -18429,7 +18429,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8603b41eb2844649b9e02a41d1e1ad2, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18579,6 +18578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 471330}
   - component: {fileID: 10830196}
+  - component: {fileID: 8597457056258511292}
   m_Layer: 2
   m_Name: Point light
   m_TagString: Weapon
@@ -18666,6 +18666,29 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &8597457056258511292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &168144
 GameObject:
   m_ObjectHideFlags: 0
@@ -19005,7 +19028,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -19058,7 +19081,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -23517,7 +23540,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8603b41eb2844649b9e02a41d1e1ad2, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33325,7 +33347,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6db293de3dfbd2b44b78b174b89c48f7, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33748,7 +33769,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -33801,7 +33822,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -38260,7 +38281,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: d8603b41eb2844649b9e02a41d1e1ad2, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -38313,3 +38333,90 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1001 &5388183434934916841
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 497970}
+    m_Modifications:
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.108
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.626
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4391625280073980458, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: m_Name
+      value: Traser_ParticleSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483170776652885774, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483170776652885774, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: lengthInSec
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483170776652885774, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483170776652885774, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: ShapeModule.angle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483170776652885774, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+--- !u!198 &8426727865436748263 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4483170776652885774, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+  m_PrefabInstance: {fileID: 5388183434934916841}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8511950621716938489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4388240754064680976, guid: 397d7cfa55c9db14ca244368defc3ae5, type: 3}
+  m_PrefabInstance: {fileID: 5388183434934916841}
+  m_PrefabAsset: {fileID: 0}
