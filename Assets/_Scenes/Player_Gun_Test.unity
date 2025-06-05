@@ -918,6 +918,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0cb2f469c49480408882ec64a03786d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1378513587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5747890712328549891, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+  m_PrefabInstance: {fileID: 7718922200942778155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f66a52c3c67ac0438fa54788c311abf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1510320888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1592,12 +1603,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkVersionPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2869166705453112092, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: selectedToolbar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404855805508288429, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: hudController
+      value: 
+      objectReference: {fileID: 1378513587}
     - target: {fileID: 7641079615111900529, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7641079615111900529, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305026052352428771, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: openCloseWindow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305026052352428771, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: selectedToolbar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9008989271138822606, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
