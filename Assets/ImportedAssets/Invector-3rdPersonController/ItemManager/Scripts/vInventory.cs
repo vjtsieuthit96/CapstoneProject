@@ -65,7 +65,7 @@ namespace Invector.vItemManager
         public List<ChangeEquipmentControl> changeEquipmentControllers;
 
         [vEditorToolbar("Input Mapping")]
-        public GenericInput openInventory = new GenericInput("I", "Start", "Start");
+        public GenericInput openInventory = new GenericInput("F", "Start", "Start");
         public GenericInput removeEquipment = new GenericInput("Mouse1", "X", "X");
 
         [Header("This fields will override the EventSystem Input")]
@@ -335,21 +335,23 @@ namespace Invector.vItemManager
         /// </summary>
         protected virtual void ChangeEquipmentInput()
         {
-            // display equiped itens
             if (changeEquipmentControllers.Count > 0 && canEquip)
             {
+                float scroll = Input.GetAxis("Mouse ScrollWheel");
+
                 foreach (ChangeEquipmentControl changeEquip in changeEquipmentControllers)
                 {
                     UseItemInput(changeEquip);
+
                     if (changeEquip.equipArea != null)
                     {
-                        if (changeEquip.previousItemInput.GetButtonDown())
-                        {
-                            changeEquip.equipArea.PreviousEquipSlot();
-                        }
-                        else if (changeEquip.nextItemInput.GetButtonDown())
+                        if (scroll > 0f)
                         {
                             changeEquip.equipArea.NextEquipSlot();
+                        }
+                        else if (scroll < 0f)
+                        {
+                            changeEquip.equipArea.PreviousEquipSlot();
                         }
                     }
                 }
