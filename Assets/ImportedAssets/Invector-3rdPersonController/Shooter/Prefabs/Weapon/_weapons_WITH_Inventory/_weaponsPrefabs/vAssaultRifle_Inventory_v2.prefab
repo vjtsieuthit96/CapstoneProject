@@ -27726,6 +27726,7 @@ GameObject:
   - component: {fileID: 11429992}
   - component: {fileID: 114382262437889658}
   - component: {fileID: 3978637271864031997}
+  - component: {fileID: 4231514452671374085}
   m_Layer: 2
   m_Name: vAssaultRifle_Inventory_v2
   m_TagString: Weapon
@@ -27780,6 +27781,7 @@ MonoBehaviour:
   quadDispersion: 0
   velocity: 380
   damageByDistance: 1
+  PlayerDamageMultiplier: 1
   _minDamageDistance: 8
   _maxDamageDistance: 50
   _minDamage: 15
@@ -27985,6 +27987,7 @@ MonoBehaviour:
   onPowerChargerChanged:
     m_PersistentCalls:
       m_Calls: []
+  decalManager: {fileID: 0}
   root: {fileID: 0}
   isSecundaryWeapon: 0
 --- !u!114 &114382262437889658
@@ -28102,6 +28105,46 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &4231514452671374085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cf5e148161f24ca871f4b201bccd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openCloseEvents: 0
+  openCloseWindow: 1
+  selectedToolbar: 0
+  layermask:
+    serializedVersion: 2
+    m_Bits: 1
+  decalObjects:
+  - tag: Metal
+    impactEffect: {fileID: 11400000, guid: bafe0df184460ad48959c8cfbaa6df5d, type: 2}
+    additionalEffects: []
+  - tag: Wood
+    impactEffect: {fileID: 11400000, guid: ec647edb005ce054292afe6b66e8edfa, type: 2}
+    additionalEffects: []
+  - tag: Glass
+    impactEffect: {fileID: 11400000, guid: 8527e9d390af89a4daabd35d3516123b, type: 2}
+    additionalEffects: []
+  - tag: Concrete
+    impactEffect: {fileID: 11400000, guid: c0ff2d16bbab9f44ba42c0191a303694, type: 2}
+    additionalEffects: []
+  - tag: Dirt
+    impactEffect: {fileID: 11400000, guid: e1a8fa6bf2308344993f0b8168b5a00c, type: 2}
+    additionalEffects: []
+  - tag: Untagged
+    impactEffect: {fileID: 11400000, guid: e1a8fa6bf2308344993f0b8168b5a00c, type: 2}
+    additionalEffects: []
+  - tag: Barrel
+    impactEffect: {fileID: 11400000, guid: fcc7248b6f746954384a23fff2e8676e, type: 2}
+    additionalEffects: []
 --- !u!1 &130018
 GameObject:
   m_ObjectHideFlags: 0

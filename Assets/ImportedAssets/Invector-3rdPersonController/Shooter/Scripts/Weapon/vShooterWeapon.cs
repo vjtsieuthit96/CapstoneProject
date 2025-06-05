@@ -178,7 +178,7 @@ namespace Invector.vShooter
 
         // Test thêm tab mới.
         [vEditorToolbar("Decal Item")]
-        public GameObject hitDecal;
+        public vDecalManager decalManager;
 
 
         [HideInInspector]
@@ -234,7 +234,10 @@ namespace Invector.vShooter
                 }
             }
         }
-
+        protected virtual void Awake()
+        {
+            decalManager = GetComponent<vDecalManager>();
+        }    
         protected virtual void OnDisable()
         {
             onDisable.Invoke();
@@ -281,6 +284,14 @@ namespace Invector.vShooter
                         onFullPower.Invoke();
                     }
                 }
+            }
+        }
+
+        protected override void TryCreateDecal(RaycastHit hit)
+        {
+            if (decalManager != null)
+            {
+                decalManager.CreateDecal(hit);
             }
         }
 
