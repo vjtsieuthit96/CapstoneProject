@@ -312,9 +312,11 @@ namespace Invector.vShooter
                 EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
                 if (eHithandler != null)
                 {
-                    eHithandler.ApplyHit(15);
+                    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                    eHithandler.ApplyHit(raycastDamage);
+                    Debug.Log("Trúng enemy " + raycastDamage );
                 }
-                else Debug.Log("Collider ko có component HitHandler hoặc sai Layer");
+                else Debug.LogWarning("Collider ko có component HitHandler hoặc sai Layer");
                 #endregion
                 //
 
