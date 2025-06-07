@@ -5460,7 +5460,7 @@ MonoBehaviour:
   quadDispersion: 0
   velocity: 310
   damageByDistance: 1
-  PlayerDamageMultiplier: 1
+  PlayerDamageMultiplier: 2
   _minDamageDistance: 8
   _maxDamageDistance: 50
   _minDamage: 15
@@ -8871,7 +8871,7 @@ AudioSource:
   m_GameObject: {fileID: 170834}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6496145734116381860, guid: 6e1b6ad2bd0cf5742acb5809d4116487, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
