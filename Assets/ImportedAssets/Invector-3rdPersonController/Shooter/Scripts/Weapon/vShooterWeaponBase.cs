@@ -315,7 +315,6 @@ namespace Invector.vShooter
                     int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                     eHithandler.ApplyHit(raycastDamage);
                 }
-                else Debug.LogWarning("Collider ko có component HitHandler: "+hit.collider.name);
                 #endregion
                 //
 
