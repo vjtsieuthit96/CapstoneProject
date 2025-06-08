@@ -5272,10 +5272,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 1
   weaponCategory: RPG
   _shootFrequency: 1
   isInfinityAmmo: 0
+  ExplosionPrefab: {fileID: 170736, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
   _ammo: 1
   ignoreTags: []
   hitLayer:
@@ -5288,7 +5289,7 @@ MonoBehaviour:
   quadDispersion: 0
   velocity: 30
   damageByDistance: 0
-  PlayerDamageMultiplier: 0
+  PlayerDamageMultiplier: 2
   _minDamageDistance: 8
   _maxDamageDistance: 50
   _minDamage: 50

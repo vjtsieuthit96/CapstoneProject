@@ -108,6 +108,9 @@ public class CharacterConfigurator : MonoBehaviour
         //Player Max Health
         controller.maxHealth = s.PlayerMaxHealth;
         CurrentAmour = s.PlayerMaxAmour;
+        controller.healthRecovery = s.HealthRecovery;
+        controller.healthRecoveryDelay = s.HealthRecoveryPerTime;
+        controller.isImmortal = s.isImortal;
 
         //Player Damage
         PlayerDamageMultiplier = s.PlayerDamageMultiplier;
