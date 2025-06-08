@@ -14,7 +14,7 @@ namespace Invector.vShooter
         [vEditorToolbar("Weapon Settings")]
         [Tooltip("The category of the weapon\n Used to the IK offset system. \nExample: HandGun, Pistol, Machine-Gun")]
         public string weaponCategory = "MyCategory";
-
+        public bool isExplosive;
         [SerializeField, Tooltip("Frequency of shots"), FormerlySerializedAs("shootFrequency")]
         protected float _shootFrequency;
         public virtual float shootFrequency { get { return _shootFrequency; } set { _shootFrequency = value; } }
@@ -305,25 +305,32 @@ namespace Invector.vShooter
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
                 Debug.Log("Raycast Hit: " + hit.collider.name);
-                GameObject explosionInstance = Instantiate(ExplosionPrefab, hit.point, Quaternion.identity);
-                vExplosive explosive = explosionInstance.GetComponent<vExplosive>();
-                if (explosive != null)
-                {
-                    explosive.SetOverrideDamageSender(transform);
-                    explosive.Explode();
-                }
-                TryCreateDecal(hit);
 
-                //Cái này của tao tự test còn m dùng interface thì sửa lại sau
-                #region XỬ LÝ SÁT THƯƠNG CHO MONSTER
-                EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
-                if (eHithandler != null)
+                #region XỬ LÍ SÁT THƯƠNG NỔ
+                if(isExplosive)
                 {
-                    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                    eHithandler.ApplyHit(raycastDamage);
+                    GameObject explosionInstance = Instantiate(ExplosionPrefab, hit.point, Quaternion.identity);
+                    vExplosive explosive = explosionInstance.GetComponent<vExplosive>();
+                    if (explosive != null)
+                    {
+                        explosive.SetOverrideDamageSender(transform);
+                        explosive.Explode();
+                    }
+
                 }
                 #endregion
-                //
+                #region XỬ LÝ SÁT THƯƠNG CHO MONSTER -> Không nổ
+                else
+                {
+                    EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                    if (eHithandler != null)
+                    {
+                        int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                        eHithandler.ApplyHit(raycastDamage);
+                    }
+                }
+                #endregion
+                TryCreateDecal(hit);
 
                 // Ví dụ xử lý damage tức thời nếu có interface phù hợp
                 // var damageable = hit.collider.GetComponent<IDamageable>();
