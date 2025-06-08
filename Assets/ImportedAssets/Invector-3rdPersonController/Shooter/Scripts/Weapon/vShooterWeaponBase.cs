@@ -305,13 +305,17 @@ namespace Invector.vShooter
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
                 Debug.Log("Raycast Hit: " + hit.collider.name);
-                GameObject explosionInstance = Instantiate(ExplosionPrefab, hit.point, Quaternion.identity);
-                vExplosive explosive = explosionInstance.GetComponent<vExplosive>();
-                if (explosive != null)
-                {
-                    explosive.SetOverrideDamageSender(transform);
-                    explosive.Explode();
-                }
+
+                #region Test đạn nổ
+                //GameObject explosionInstance = Instantiate(ExplosionPrefab, hit.point, Quaternion.identity);
+                //vExplosive explosive = explosionInstance.GetComponent<vExplosive>();
+                //if (explosive != null)
+                //{
+                //    explosive.SetOverrideDamageSender(transform);
+                //    explosive.Explode();
+                //}
+
+                #endregion
                 TryCreateDecal(hit);
 
                 //Cái này của tao tự test còn m dùng interface thì sửa lại sau
