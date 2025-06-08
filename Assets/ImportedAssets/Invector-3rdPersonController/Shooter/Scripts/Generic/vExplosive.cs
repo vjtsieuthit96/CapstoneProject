@@ -141,7 +141,7 @@ namespace Invector
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
-                        eHithandler.ApplyHit((int)damageValue);
+                       eHithandler.ApplyHit((int)damageValue);
                     }
                 }
             }
