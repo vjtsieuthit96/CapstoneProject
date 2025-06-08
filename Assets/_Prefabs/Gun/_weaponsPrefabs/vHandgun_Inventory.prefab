@@ -5444,10 +5444,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 1
   weaponCategory: Pistol
   _shootFrequency: 0.25
   isInfinityAmmo: 1
+  ExplosionPrefab: {fileID: 170736, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
   _ammo: 8
   ignoreTags: []
   hitLayer:
