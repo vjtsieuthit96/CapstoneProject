@@ -47,6 +47,7 @@ public abstract class MonsterAI : MonoBehaviour
             _monsterAgent.isStopped = true;
         }
     }
+    #region Behavior
 
     public void EvaluateBehaviorTree()
     {
@@ -60,6 +61,19 @@ public abstract class MonsterAI : MonoBehaviour
         monsterStats.TakeDamage(amount);        
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
+
+    public void FreezyEnemy(float duration)
+    {
+        monsterAnimator.enabled = false;
+        _monsterAgent.isStopped = true;
+        Invoke(nameof(UnFreezeEnemy), duration);
+    }
+    public void UnFreezeEnemy()
+    {
+        monsterAnimator.enabled = true;
+        _monsterAgent.isStopped = false;
+    }
+    #endregion
 
     #region GET & SET
     public float GetViewRadius() => viewRadius;
