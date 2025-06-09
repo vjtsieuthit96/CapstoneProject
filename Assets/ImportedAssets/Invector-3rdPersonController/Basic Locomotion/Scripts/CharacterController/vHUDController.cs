@@ -7,14 +7,17 @@ namespace Invector.vCharacterController
     {
         #region General Variables
 
-        #region Health/Stamina Variables
-        [Header("Health/Stamina")]
+        #region Health/Stamina/Shield Variables
+        [Header("Health/Stamina/Shield")]
         public Slider healthSlider;
         public float healthSliderMaxValueSmooth = 10f;
         public float healthSliderValueSmooth = 10;
         public Slider staminaSlider;
         public float staminaSliderMaxValueSmooth = 10f;
         public float staminaSliderValueSmooth = 100;
+        public Slider shieldSlider;
+        public float shieldSliderMaxValueSmooth = 10f;
+        public float shieldSliderValueSmooth = 20f;
         [Header("DamageHUD")]
         public Image damageImage;
         public float flashSpeed = 5f;
@@ -93,6 +96,15 @@ namespace Invector.vCharacterController
                 }
                 staminaSlider.value = cc.currentStamina;
             }
+            if (shieldSlider)
+            {
+                if (cc.maxShield != shieldSlider.maxValue)
+                {
+                    shieldSlider.maxValue = cc.maxShield;
+                    shieldSlider.onValueChanged.Invoke(shieldSlider.value);
+                }
+                shieldSlider.value = cc.currentShield;
+            }
         }
 
         private void OnDead(GameObject arg0)
@@ -170,6 +182,15 @@ namespace Invector.vCharacterController
                     staminaSlider.onValueChanged.Invoke(staminaSlider.value);
                 }
                 staminaSlider.value = Mathf.Lerp(staminaSlider.value, cc.currentStamina, staminaSliderValueSmooth * Time.fixedDeltaTime);
+            }
+            if(shieldSlider)
+            {
+                if (cc.maxShield != shieldSlider.maxValue)
+                {
+                    shieldSlider.maxValue = Mathf.Lerp(shieldSlider.maxValue, cc.maxShield, shieldSliderMaxValueSmooth * Time.fixedDeltaTime);
+                    shieldSlider.onValueChanged.Invoke(shieldSlider.value);
+                }
+                shieldSlider.value = Mathf.Lerp(shieldSlider.value, cc.currentShield, shieldSliderValueSmooth * Time.fixedDeltaTime);
             }
         }
 

@@ -17,7 +17,7 @@ public class CharacterConfigurator : MonoBehaviour
     public float CurrentAmour
     {
         get => _currentAmour;
-        set => _currentAmour = Mathf.Clamp(value, 0, stats != null ? stats.PlayerMaxAmour : float.MaxValue);
+        set => _currentAmour = Mathf.Clamp(value, 0, controller != null ? controller.currentShield : 0);
     }
     private void Awake()
     {
@@ -41,18 +41,18 @@ public class CharacterConfigurator : MonoBehaviour
     {
         if (damageValue <= 0 || controller == null) return;
 
-        if (CurrentAmour > 0)
+        if (controller.currentShield > 0)
         {
-            if (CurrentAmour >= damageValue)
+            if (controller.currentShield >= damageValue)
             {
-                CurrentAmour -= damageValue;
+                controller.currentShield -= damageValue;
                 hudController.EnableDamageSprite(new vDamage(damageValue));
-                Debug.Log("Amour hiện tại là: " + CurrentAmour);
+                Debug.Log("Amour hiện tại là: " + controller.currentShield);
             }
             else
             {
-                float remainingDamage = damageValue - CurrentAmour;
-                CurrentAmour = 0;
+                float remainingDamage = damageValue - controller.currentShield;
+                controller.currentShield = 0;
                 controller.TakeDamage(new vDamage(remainingDamage));
             }
         }
@@ -107,7 +107,8 @@ public class CharacterConfigurator : MonoBehaviour
 
         //Player Max Health
         controller.maxHealth = s.PlayerMaxHealth;
-        CurrentAmour = s.PlayerMaxAmour;
+        controller.maxShield = s.PlayerMaxAmour;
+        controller.currentShield = controller.maxShield;
 
         //Player Damage
         PlayerDamageMultiplier = s.PlayerDamageMultiplier;
