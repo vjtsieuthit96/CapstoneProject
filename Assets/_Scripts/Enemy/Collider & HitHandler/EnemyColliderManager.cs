@@ -21,7 +21,7 @@ public class EnemyColliderManager : MonoBehaviour
         // Xử lý riêng HeadCollider nếu tồn tại
         if (headCollider != null)
         {
-            var headColliderHandler = headCollider.gameObject.AddComponent<EnemyHitHandler>();
+            EnemyHitHandler headColliderHandler = headCollider.gameObject.AddComponent<EnemyHitHandler>();
             headColliderHandler.Initialize(monsterAi, headshotMultiplier);            
         }
         else
