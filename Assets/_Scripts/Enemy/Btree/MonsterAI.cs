@@ -18,7 +18,7 @@ public abstract class MonsterAI : MonoBehaviour
     [SerializeField] protected float baseSpeed;
     [Header("-----Negative Effects-----")]
     [SerializeField] protected GameObject frozenEffect;
-    [SerializeField] protected BloodEffect4 bloodEffect;
+    [SerializeField] protected BloodEffect5 bloodEffect;
     [Header("-----Components-----")]    
     [SerializeField] protected MonsterStats monsterStats;
     [SerializeField] protected Animator monsterAnimator;
@@ -34,6 +34,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isFreeze = false;
       protected virtual void Start()
     {
+        PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
@@ -89,7 +90,7 @@ public abstract class MonsterAI : MonoBehaviour
 
     public void BleedEffect(Vector3 position)
     {
-        PoolManager.Instance.GetObject<BloodEffect4>("BloodEF4",position,Quaternion.identity);
+        PoolManager.Instance.GetObject<BloodEffect5>("BloodEF5",position,Quaternion.identity);
     }
     #endregion
 

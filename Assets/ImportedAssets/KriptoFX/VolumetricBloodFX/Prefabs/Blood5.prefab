@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3806956387675487220}
   - component: {fileID: 2071072698125137955}
+  - component: {fileID: 3392999217821159849}
   m_Layer: 0
   m_Name: Blood5
   m_TagString: Untagged
@@ -172,10 +173,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b8a788ff17aab40b283e664f0304da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationSpeed: 1
+  AnimationSpeed: 2
   AutomaticGroundHeightDetection: 1
   GroundHeight: 0
   LightIntensityMultiplier: 1
   DecalLifeTimeSeconds: 30
   DecalRenderingMode: 0
   DebugAnimationTime: 0.25
+--- !u!114 &3392999217821159849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4152240900433254336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d24f44d25863d489217caae0478ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deactiveTime: 3
