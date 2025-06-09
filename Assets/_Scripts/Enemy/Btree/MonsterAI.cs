@@ -1,14 +1,16 @@
-﻿using UnityEditor;
+﻿using System.Collections;
+using UnityEditor;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class MonsterAI : MonoBehaviour
-{    
+{
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
     [Header("-----Speed Multiplier-----")]
     [SerializeField] float speedMultiplier = 1.75f;
-    [Header("-----FOV-----")]   
+    [Header("-----FOV-----")]
     [SerializeField] protected float viewRadius = 15f; // Tầm nhìn tối đa
     [SerializeField] protected float viewAngle = 105f; // Góc nhìn của quái vật
     [SerializeField] protected float alertRadius = 10f;
@@ -19,57 +21,57 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Negative Effects-----")]
     [SerializeField] protected GameObject frozenEffect;
     [SerializeField] protected BloodEffect5 bloodEffect;
-    [Header("-----Components-----")]    
+    [Header("-----Components-----")]
     [SerializeField] protected MonsterStats monsterStats;
     [SerializeField] protected Animator monsterAnimator;
     [SerializeField] protected NavMeshAgent monsterAgent;
     [SerializeField] protected SkillManager skillManager;
     [SerializeField] protected MonsterAudio monsterAudio;
-    protected Node behaviorTree;
 
-    private Vector3 _patrolCenter;  
+    protected Node behaviorTree;
+    private Vector3 _patrolCenter;
+
     private bool hasRetreat = false;
     private bool isDead = false;
     private bool isHit = false;
     private bool isFreeze = false;
-      protected virtual void Start()
+    private bool isSlowDown = false;
+    private bool isShocked = false;
+    protected virtual void Start()
     {
         PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
-        behaviorTree = CreateBehaviorTree();      
+        behaviorTree = CreateBehaviorTree();
         InvokeRepeating("EvaluateBehaviorTree", 0f, 1.5f);
     }
     protected virtual void Update()
     {
         float Speed = monsterAgent.velocity.magnitude;
-        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);    
-        if (!isDead && monsterStats.GetCurrentHealth()<=0)
+        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);
+        if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
             isDead = true;
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             monsterAgent.isStopped = true;
         }
     }
-    #region Behavior
-
+    #region BEHAVIOR
     public void EvaluateBehaviorTree()
     {
         if (!isDead && !isFreeze)
-            behaviorTree.Evaluate();       
-    }       
-   
+            behaviorTree.Evaluate();
+    }
     protected abstract Node CreateBehaviorTree();
     public void ApplyDamage(float amount)
     {
-        monsterStats.TakeDamage(amount);        
+        monsterStats.TakeDamage(amount);
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
-
     public void FreezyEnemy(float duration)
     {
-        if (!isFreeze)
+        if (!isFreeze && !isDead)
         {
             isFreeze = true;
             monsterAnimator.speed = 0;
@@ -87,11 +89,45 @@ public abstract class MonsterAI : MonoBehaviour
         isFreeze = false;
         Debug.Log("enemy UnFreeze");
     }
-
+    public void SlowDown(float percent, float duration)
+    {
+        if(!isDead && !isSlowDown)
+        {
+            isSlowDown = true;
+            monsterAnimator.speed -= percent;
+            Invoke(nameof(DisableSlowDown), duration);
+        }
+    }
+    public void DisableSlowDown()
+    {
+        monsterAnimator.speed = 1;
+        isSlowDown = false;
+    }
     public void BleedEffect(Vector3 position)
     {
         PoolManager.Instance.GetObject<BloodEffect5>("BloodEF5",position,Quaternion.identity);
     }
+    public void ShockEffect(float duration)
+    {
+        if (!isShocked && !isDead)
+        {
+            isShocked = true;
+            StartCoroutine(ShockLoop(duration));            
+        }
+    }
+    private IEnumerator ShockLoop(float duration)
+    {
+        float timer = 0f;
+        while (timer < duration)
+        {
+            SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
+            Debug.Log("Enemy bị giật nè");
+            yield return new WaitForSeconds(0.75f);
+            timer += 0.75f;
+        }
+        isShocked = false;        
+        Debug.Log("Enemy bị giật xong rồi");
+    }       
     #endregion
 
     #region GET & SET
