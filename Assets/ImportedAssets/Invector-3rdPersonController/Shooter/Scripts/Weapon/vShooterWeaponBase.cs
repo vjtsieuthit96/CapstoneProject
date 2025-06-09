@@ -309,8 +309,7 @@ namespace Invector.vShooter
                 #region XỬ LÍ SÁT THƯƠNG NỔ
                 if(isExplosive)
                 {
-                    GameObject explosionInstance = Instantiate(ExplosionPrefab, hit.point, Quaternion.identity);
-                    vExplosive explosive = explosionInstance.GetComponent<vExplosive>();
+                    vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
                     if (explosive != null)
                     {
                         explosive.SetOverrideDamageSender(transform);
