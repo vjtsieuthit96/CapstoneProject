@@ -19424,7 +19424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &496114692885602519
 Transform:
   m_ObjectHideFlags: 0
@@ -19433,7 +19433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499677263301305801}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.5328196, y: 0.03730695, z: 0.09062712, w: 0.84053445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19444,7 +19444,7 @@ Transform:
   - {fileID: 496114690299047673}
   - {fileID: 496114689582182139}
   m_Father: {fileID: 432758}
-  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -64.484, y: -4.508, z: 15.152}
 --- !u!198 &311829906608268393
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -33901,7 +33901,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.66e-43, y: 1.2109748e-26, z: 6.64e-43, w: 60}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
