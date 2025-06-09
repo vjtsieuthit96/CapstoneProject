@@ -29,4 +29,9 @@ public class EnemyHitHandler : MonoBehaviour
     {
         monsterAi.FreezyEnemy(duration);
     }
+
+    public void ApplyBleed(Vector3 position)
+    {
+        monsterAi.BleedEffect(position);
+    }
 }

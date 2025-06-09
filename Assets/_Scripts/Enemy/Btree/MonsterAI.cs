@@ -15,7 +15,10 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Attack & Patrol-----")]
     [SerializeField] protected float attackRange;
     [SerializeField] protected float patrolRadius;
-    [SerializeField] protected float baseSpeed;   
+    [SerializeField] protected float baseSpeed;
+    [Header("-----Negative Effects-----")]
+    [SerializeField] protected GameObject frozenEffect;
+    [SerializeField] protected BloodEffect5 bloodEffect;
     [Header("-----Components-----")]    
     [SerializeField] protected MonsterStats monsterStats;
     [SerializeField] protected Animator monsterAnimator;
@@ -31,6 +34,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isFreeze = false;
       protected virtual void Start()
     {
+        PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
@@ -52,7 +56,7 @@ public abstract class MonsterAI : MonoBehaviour
 
     public void EvaluateBehaviorTree()
     {
-        if (!isDead)
+        if (!isDead && !isFreeze)
             behaviorTree.Evaluate();       
     }       
    
@@ -70,16 +74,23 @@ public abstract class MonsterAI : MonoBehaviour
             isFreeze = true;
             monsterAnimator.speed = 0;
             monsterAgent.isStopped = true;
+            frozenEffect.SetActive(true);
             Debug.Log("Enemy Freeze");
             Invoke(nameof(UnFreezeEnemy), duration);
         }
     }
     public void UnFreezeEnemy()
     {
+        frozenEffect.SetActive(false);
         monsterAnimator.speed = 1;
         monsterAgent.isStopped = false;
         isFreeze = false;
         Debug.Log("enemy UnFreeze");
+    }
+
+    public void BleedEffect(Vector3 position)
+    {
+        PoolManager.Instance.GetObject<BloodEffect5>("BloodEF5",position,Quaternion.identity);
     }
     #endregion
 

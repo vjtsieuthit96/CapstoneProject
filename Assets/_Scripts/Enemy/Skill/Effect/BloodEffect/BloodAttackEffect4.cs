@@ -6,7 +6,7 @@ public class BloodAttackEffect4 : MonoBehaviour
 
     private void Start()
     {            
-        PoolManager.Instance.CreatePool("BloodEF4", bloodPrefabs, 20);
+        PoolManager.Instance.CreatePool("BloodEF4", bloodPrefabs, 50);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
