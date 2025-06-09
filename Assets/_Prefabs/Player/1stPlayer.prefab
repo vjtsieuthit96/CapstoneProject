@@ -12502,7 +12502,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: a937d780589d0ae4dbcd5fe7d848662d, type: 2}
+  hudController: {fileID: 5747890712328549891}
   PlayerDamageMultiplier: 0
+  isExplosive: 0
+  _currentAmour: 0
 --- !u!114 &9036155935253771897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12517,14 +12520,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 1
   openCloseWindow: 1
-  selectedToolbar: 7
+  selectedToolbar: 6
   _isDead: 1
   _currentHealth: 100
   isImmortal: 0
   fillHealthOnStart: 1
   _maxHealth: 100
-  _healthRecovery: 5
-  _healthRecoveryDelay: 1
+  _healthRecovery: 2.5
+  _healthRecoveryDelay: 0.8
   checkHealthEvents: []
   _onStartReceiveDamage:
     m_PersistentCalls:
@@ -12734,7 +12737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 0
-  openCloseWindow: 0
+  openCloseWindow: 1
   selectedToolbar: 0
   unlockCursorOnStart: 0
   showCursorOnStart: 0
@@ -13356,8 +13359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 0
-  openCloseWindow: 0
-  selectedToolbar: 2
+  openCloseWindow: 1
+  selectedToolbar: 0
   actionTag: Action
   useRootMotion: 1
   debugMode: 0
@@ -37080,7 +37083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 2
+  selectedToolbar: 1
   playItemAnimation: 1
   timeScaleWhileIsOpen: 0
   equippedObjects: []
@@ -37240,7 +37243,7 @@ MonoBehaviour:
     useInput: 1
     isAxisInUse: 0
     isUnityInput: 0
-    keyboard: I
+    keyboard: F
     keyboardAxis: 0
     joystick: Back
     joystickAxis: 0
@@ -60154,6 +60157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1967515355481641855}
   - component: {fileID: 2226236224109197382}
+  - component: {fileID: 8581876940291946332}
   m_Layer: 8
   m_Name: ScopeAimBackgroundCamera
   m_TagString: Untagged
@@ -60227,6 +60231,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &8581876940291946332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421437271435153590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &8439655193701019134
 GameObject:
   m_ObjectHideFlags: 0
