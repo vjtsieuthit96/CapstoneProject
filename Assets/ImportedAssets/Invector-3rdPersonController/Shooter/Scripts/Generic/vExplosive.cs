@@ -34,6 +34,8 @@ namespace Invector
         [Tooltip("convert to progress 0 to 1")]
         public bool normalizeTime;
         public bool showGizmos;
+        public ParticleSystem explosionEffect;
+        private Transform originalParent;
         public UnityEngine.Events.UnityEvent onInitTimer;
         public OnUpdateTime onUpdateTimer;
         public UnityEngine.Events.UnityEvent onExplode;
@@ -98,8 +100,8 @@ namespace Invector
 
         protected virtual IEnumerator DestroyBomb()
         {
-            yield return new WaitForSeconds(0.1f);
-            Destroy(gameObject);
+            yield return new WaitForSeconds(4f);
+            PoolManager.Instance.ReturnObject("Explosion", this);
         }
 
         protected virtual void OnCollisionEnter(Collision collision)
@@ -138,10 +140,12 @@ namespace Invector
                     _damage.damageValue = (int)damageValue;
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
-                    EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    MonsterAI eHithandler = colliders[i].GetComponent<MonsterAI>();
                     if (eHithandler != null)
                     {
-                       eHithandler.ApplyHit((int)damageValue);
+                        //eHithandler.ApplyHit((int)damageValue);
+                        eHithandler.FreezyEnemy(10f);
                     }
                 }
             }
@@ -227,7 +231,21 @@ namespace Invector
 
         public void RemoveParentOfOther(Transform other)
         {
+            originalParent = other.parent;
             other.parent = null;
+
+            float explosionDuration = explosionEffect.main.duration + explosionEffect.main.startLifetime.constantMax;
+            StartCoroutine(RestoreParentAfterDelay(other, 4f));
+        }
+        private IEnumerator RestoreParentAfterDelay(Transform other, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            RestoreParentOfOther(other);
+        }
+
+        public void RestoreParentOfOther(Transform other)
+        {
+            other.parent = originalParent;
         }
     }
 }

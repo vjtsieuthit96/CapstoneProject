@@ -13,7 +13,7 @@ namespace Invector
         {
             yield return new WaitForSeconds(delay);
             onDestroy.Invoke();
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);
         }        
     }
 }
