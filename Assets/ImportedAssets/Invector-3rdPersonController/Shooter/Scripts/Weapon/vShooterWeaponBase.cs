@@ -321,11 +321,12 @@ namespace Invector.vShooter
                 #region XỬ LÝ SÁT THƯƠNG CHO MONSTER -> Không nổ
                 else
                 {
-                    EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                    //EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                    MonsterAI eHithandler = hit.collider.GetComponent<MonsterAI>();
                     if (eHithandler != null)
                     {
                         int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                        eHithandler.ApplyHit(raycastDamage);
+                        eHithandler.FreezyEnemy(10f);
                     }
                 }
                 #endregion
