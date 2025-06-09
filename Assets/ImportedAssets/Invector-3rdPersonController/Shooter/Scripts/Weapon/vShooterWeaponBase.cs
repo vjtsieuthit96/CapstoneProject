@@ -15,6 +15,7 @@ namespace Invector.vShooter
         [Tooltip("The category of the weapon\n Used to the IK offset system. \nExample: HandGun, Pistol, Machine-Gun")]
         public string weaponCategory = "MyCategory";
         public bool isExplosive;
+        public bool isPhysicsDamage;
         [SerializeField, Tooltip("Frequency of shots"), FormerlySerializedAs("shootFrequency")]
         protected float _shootFrequency;
         public virtual float shootFrequency { get { return _shootFrequency; } set { _shootFrequency = value; } }
@@ -307,26 +308,51 @@ namespace Invector.vShooter
                 Debug.Log("Raycast Hit: " + hit.collider.name);
 
                 #region XỬ LÍ SÁT THƯƠNG NỔ
-                if(isExplosive)
+                if(isPhysicsDamage)
                 {
-                    vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
-                    if (explosive != null)
+                    if (isExplosive)
                     {
-                        explosive.SetOverrideDamageSender(transform);
-                        explosive.Explode();
-                    }
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                        if (explosive != null)
+                        {
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.Explode();
+                        }
 
+                    }
+                    else
+                    {
+                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                        if (eHithandler != null)
+                        {
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            eHithandler.ApplyBleed(hit.point);
+                            eHithandler.ApplyHit(raycastDamage);
+                        }
+                    }
                 }
                 #endregion
-                #region XỬ LÝ SÁT THƯƠNG CHO MONSTER -> Không nổ
-                else
+                #region XỬ LÝ ĐÓNG BĂNG
+                else if(!isPhysicsDamage)
                 {
-                    EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
-                    if (eHithandler != null)
+                    if(isExplosive)
                     {
-                        int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                        eHithandler.ApplyBleed(hit.point);
-                        //eHithandler.ApplyFreeze(10f);
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("IceExplosion", hit.point, Quaternion.identity);
+                        if (explosive != null)
+                        {
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.ExplodeIce();
+                        }
+                    }
+                    else
+                    {
+                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                        if (eHithandler != null)
+                        {
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            eHithandler.ApplyHit(raycastDamage/5);
+                            eHithandler.ApplyFreeze(5f);
+                        }
                     }
                 }
                 #endregion
