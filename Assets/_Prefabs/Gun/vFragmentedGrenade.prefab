@@ -88,6 +88,7 @@ MonoBehaviour:
   destroyAfterExplode: 1
   normalizeTime: 0
   showGizmos: 0
+  explosionEffect: {fileID: 0}
   onInitTimer:
     m_PersistentCalls:
       m_Calls: []
@@ -19598,7 +19599,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+      maxColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

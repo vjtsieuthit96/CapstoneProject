@@ -15,6 +15,7 @@ namespace Invector.vShooter
         [Tooltip("The category of the weapon\n Used to the IK offset system. \nExample: HandGun, Pistol, Machine-Gun")]
         public string weaponCategory = "MyCategory";
         public bool isExplosive;
+        public bool isPhysicsDamage;
         [SerializeField, Tooltip("Frequency of shots"), FormerlySerializedAs("shootFrequency")]
         protected float _shootFrequency;
         public virtual float shootFrequency { get { return _shootFrequency; } set { _shootFrequency = value; } }
@@ -307,105 +308,70 @@ namespace Invector.vShooter
                 Debug.Log("Raycast Hit: " + hit.collider.name);
 
                 #region XỬ LÍ SÁT THƯƠNG NỔ
-                if(isExplosive)
+                if(isPhysicsDamage)
                 {
-                    vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
-                    if (explosive != null)
+                    if (isExplosive)
                     {
-                        explosive.SetOverrideDamageSender(transform);
-                        explosive.Explode();
-                    }
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                        if (explosive != null)
+                        {
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.Explode();
+                        }
 
+                    }
+                    else
+                    {
+                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                        if (eHithandler != null)
+                        {
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            eHithandler.ApplyBleed(hit.point);
+                            eHithandler.ApplyHit(raycastDamage);
+                        }
+                    }
                 }
                 #endregion
-                #region XỬ LÝ SÁT THƯƠNG CHO MONSTER -> Không nổ
-                else
+                #region XỬ LÝ ĐÓNG BĂNG
+                else if(!isPhysicsDamage)
                 {
-                    EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
-                    if (eHithandler != null)
+                    if(isExplosive)
                     {
-                        int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                        eHithandler.ApplyBleed(hit.point);
-                        //eHithandler.ApplyFreeze(10f);
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("IceExplosion", hit.point, Quaternion.identity);
+                        if (explosive != null)
+                        {
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.ExplodeIce();
+                        }
+                    }
+                    else
+                    {
+                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                        if (eHithandler != null)
+                        {
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            eHithandler.ApplyHit(raycastDamage/5);
+                            eHithandler.ApplyFreeze(5f);
+                            
+                        }
+                    }
+                    if (hit.collider.transform.root.CompareTag("Ground"))
+                    {
+                        GameObject Iceplane = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, Quaternion.identity);
+                    }
+                    else if(!hit.collider.transform.root.CompareTag("Ground") && !hit.collider.transform.root.CompareTag("Enemy"))
+                    {
+                        GameObject Iceplane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, Quaternion.identity);
+
                     }
                 }
                 #endregion
                 TryCreateDecal(hit);
-
-                // Ví dụ xử lý damage tức thời nếu có interface phù hợp
-                // var damageable = hit.collider.GetComponent<IDamageable>();
-                //if (damageable != null)
-                //{
-                //    int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                //    damageable.TakeDamage(raycastDamage);
-                //}
             }
             else
             {
                 Debug.DrawRay(ray.origin, ray.direction * 300f, Color.black, 2f);
             }
-
-            //var rotation = Quaternion.LookRotation(dir);
-            //GameObject bulletObject = null;
-            //var velocityChanged = 0f;
-
-            //if (dispersion > 0 && projectile)
-            //{
-            //    for (int i = 0; i < projectilesPerShot; i++)
-            //    {
-            //        var dispersionDir = Dispersion(dir.normalized, dispersion);
-            //        var spreadRotation = Quaternion.LookRotation(dispersionDir);
-            //        bulletObject = Instantiate(projectile, startPoint, spreadRotation);
-
-            //        var pCtrl = bulletObject.GetComponent<vProjectileControl>();
-            //        if (pCtrl.debugTrajetory && i == 0)
-            //        {
-            //            startPoint.DebugPoint(Color.red, 10, 0.1f);
-            //            Debug.DrawLine(startPoint, endPoint, Color.red, 10);
-            //            endPoint.DebugPoint(Color.red, 10, 0.1f);
-            //        }
-            //        pCtrl.shooterTransform = sender;
-            //        pCtrl.ignoreTags = ignoreTags;
-            //        pCtrl.hitLayer = hitLayer;
-            //        pCtrl.damage.sender = sender;
-            //        pCtrl.startPosition = bulletObject.transform.position;
-            //        pCtrl.damageByDistance = damageByDistance;
-            //        pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier * PlayerDamageMultiplier);
-            //        pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier * PlayerDamageMultiplier);
-            //        pCtrl.minDamageDistance = minDamageDistance;
-            //        pCtrl.maxDamageDistance = maxDamageDistance;
-            //        onInstantiateProjectile.Invoke(pCtrl);
-            //        velocityChanged = velocity * velocityMultiplier;
-            //        ApplyForceToBullet(bulletObject, dispersionDir, velocityChanged);
-
-            //        pCtrl = CreateProjectileData(endPoint, velocityChanged, dispersionDir, pCtrl);
-            //    }
-            //}
-            //else if (projectilesPerShot > 0 && projectile)
-            //{
-            //    bulletObject = Instantiate(projectile, startPoint, rotation);
-            //    var pCtrl = bulletObject.GetComponent<vProjectileControl>();
-            //    if (pCtrl.debugTrajetory)
-            //    {
-            //        startPoint.DebugPoint(Color.red, 10, 0.1f);
-            //        Debug.DrawLine(startPoint, endPoint, Color.red, 10);
-            //        endPoint.DebugPoint(Color.red, 10, 0.1f);
-            //    }
-            //    pCtrl.shooterTransform = sender;
-            //    pCtrl.ignoreTags = ignoreTags;
-            //    pCtrl.hitLayer = hitLayer;
-            //    pCtrl.damage.sender = sender;
-            //    pCtrl.startPosition = bulletObject.transform.position;
-            //    pCtrl.damageByDistance = damageByDistance;
-            //    pCtrl.maxDamage = (int)((maxDamage / projectilesPerShot) * damageMultiplier);
-            //    pCtrl.minDamage = (int)((minDamage / projectilesPerShot) * damageMultiplier);
-            //    pCtrl.minDamageDistance = minDamageDistance;
-            //    pCtrl.maxDamageDistance = maxDamageDistance;
-            //    onInstantiateProjectile.Invoke(pCtrl);
-            //    velocityChanged = velocity * velocityMultiplier;
-
-            //    ApplyForceToBullet(bulletObject, dir, velocityChanged);
-            //}
         }
 
         protected virtual vProjectileControl CreateProjectileData(Vector3 aimPosition, float velocityChanged, Vector3 dispersionDir, vProjectileControl pCtrl)
