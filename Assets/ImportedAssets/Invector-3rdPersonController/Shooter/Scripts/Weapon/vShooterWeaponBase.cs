@@ -325,7 +325,7 @@ namespace Invector.vShooter
                     if (eHithandler != null)
                     {
                         int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                        eHithandler.ApplyHit(raycastDamage);
+                        eHithandler.ApplyFreeze(10f);
                     }
                 }
                 #endregion
