@@ -24,4 +24,9 @@ public class EnemyHitHandler : MonoBehaviour
             Debug.Log("Enemy get hit animation");
         }
     }
+
+    public void ApplyFreeze(float duration)
+    {
+        monsterAi.FreezyEnemy(duration);
+    }
 }

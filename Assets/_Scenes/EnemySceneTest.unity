@@ -635,6 +635,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+--- !u!1001 &6239238421815612604
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4259175055369822327, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_Name
+      value: FatOgre
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259175055369822327, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.7875416
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.574806
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
 --- !u!1001 &6591456234645946812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,17 +708,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc
       objectReference: {fileID: 0}
+    - target: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7137831820275144453, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.97
+      value: -2.28
       objectReference: {fileID: 0}
     - target: {fileID: 7137831820275144453, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.039
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7137831820275144453, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -42
+      value: -40.16
       objectReference: {fileID: 0}
     - target: {fileID: 7137831820275144453, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -702,3 +767,4 @@ SceneRoots:
   - {fileID: 6591456234645946812}
   - {fileID: 634594148}
   - {fileID: 1468094884}
+  - {fileID: 6239238421815612604}

@@ -64,14 +64,17 @@ public abstract class MonsterAI : MonoBehaviour
 
     public void FreezyEnemy(float duration)
     {
+        
         monsterAnimator.speed = 0;
         _monsterAgent.isStopped = true;
+        Debug.Log("Enemy freeze");
         Invoke(nameof(UnFreezeEnemy), duration);
     }
     public void UnFreezeEnemy()
     {
         monsterAnimator.speed = 1;
         _monsterAgent.isStopped = false;
+        Debug.Log("enemy Unfreeze");
     }
     #endregion
 
