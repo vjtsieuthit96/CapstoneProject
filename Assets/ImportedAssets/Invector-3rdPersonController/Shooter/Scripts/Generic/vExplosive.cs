@@ -141,11 +141,12 @@ namespace Invector
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
                     //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
-                    MonsterAI eHithandler = colliders[i].GetComponent<MonsterAI>();
+                    EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
+                        Debug.Log("trung no");
                         //eHithandler.ApplyHit((int)damageValue);
-                        eHithandler.FreezyEnemy(10f);
+                        eHithandler.ApplyFreeze(10f);
                     }
                 }
             }
