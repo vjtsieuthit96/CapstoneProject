@@ -16,5 +16,10 @@ namespace Invector.Utils
                 LoadLevelHelper.LoadScene(levelToLoad, spawnPointName, thirdPerson);
             }
         }
+
+        private void Start()
+        {
+            Debug.Log(gameObject.name);
+        }
     }
 }

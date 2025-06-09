@@ -13,6 +13,7 @@ public class CharacterConfigurator : MonoBehaviour
     public vHUDController hudController;
     public float PlayerDamageMultiplier;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
+    public bool isExplosive = false;
     public float _currentAmour;
     public float CurrentAmour
     {
@@ -28,12 +29,12 @@ public class CharacterConfigurator : MonoBehaviour
             ApplyStats(stats);
         }
     }
-    #region Test Amour
+    #region Test
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            TakeDamage(15f);
+            isExplosive = !isExplosive;
         }
     }
     #endregion
@@ -108,9 +109,13 @@ public class CharacterConfigurator : MonoBehaviour
         //Player Max Health
         controller.maxHealth = s.PlayerMaxHealth;
         CurrentAmour = s.PlayerMaxAmour;
+        controller.healthRecovery = s.HealthRecovery;
+        controller.healthRecoveryDelay = s.HealthRecoveryPerTime;
+        controller.isImmortal = s.isImortal;
 
         //Player Damage
         PlayerDamageMultiplier = s.PlayerDamageMultiplier;
+        //controller.isin
 
         // Animator
         if (animator != null)

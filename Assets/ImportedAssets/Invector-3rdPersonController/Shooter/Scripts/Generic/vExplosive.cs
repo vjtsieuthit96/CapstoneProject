@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Invector
 {
     using System.Collections.Generic;
+    using Invector.vShooter;
     using vEventSystems;
 
     [vClassHeader("Explosive", openClose = false)]
@@ -109,8 +110,9 @@ namespace Invector
                 StartCoroutine(StartTimer());
         }
 
-        protected virtual void Explode()
+        public virtual void Explode()
         {
+            Debug.Log("Nổ");
             onExplode.Invoke();
             var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyDamageLayer);
 
@@ -136,7 +138,11 @@ namespace Invector
                     _damage.damageValue = (int)damageValue;
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
-
+                    EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    if (eHithandler != null)
+                    {
+                       eHithandler.ApplyHit((int)damageValue);
+                    }
                 }
             }
             StartCoroutine(ApplyExplosionForce());
@@ -145,7 +151,7 @@ namespace Invector
 
         protected virtual IEnumerator ApplyExplosionForce()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.0f);
 
             var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyForceLayer);
             for (int i = 0; i < colliders.Length; i++)
