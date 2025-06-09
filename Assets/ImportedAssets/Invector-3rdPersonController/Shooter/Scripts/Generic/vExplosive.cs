@@ -143,9 +143,7 @@ namespace Invector
                     //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
-                    {
-                        Debug.Log("trung no");
-                        //Test đạn freeze
+                    {                        
                         //eHithandler.ApplyHit((int)damageValue);
                         eHithandler.ApplyFreeze(10f);
                     }

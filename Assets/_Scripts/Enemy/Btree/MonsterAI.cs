@@ -28,6 +28,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool hasRetreat = false;
     private bool isDead = false;
     private bool isHit = false;
+    private bool isFreeze = false;
       protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -64,16 +65,20 @@ public abstract class MonsterAI : MonoBehaviour
 
     public void FreezyEnemy(float duration)
     {
-        
-        monsterAnimator.speed = 0;
-        _monsterAgent.isStopped = true;
-        Debug.Log("Enemy freeze");
-        Invoke(nameof(UnFreezeEnemy), duration);
+        if (!isFreeze)
+        {
+            isFreeze = true;
+            monsterAnimator.speed = 0;
+            _monsterAgent.isStopped = true;
+            Debug.Log("Enemy freeze");
+            Invoke(nameof(UnFreezeEnemy), duration);
+        }
     }
     public void UnFreezeEnemy()
     {
         monsterAnimator.speed = 1;
         _monsterAgent.isStopped = false;
+        isFreeze = false;
         Debug.Log("enemy Unfreeze");
     }
     #endregion
