@@ -19,20 +19,20 @@ public class OrcAI : MonsterAI
         new Sequence(new List<Node> //  Nếu máu thấp, AI retreat rồi tiếp tục hành vi khác
         {
             new CheckRetreatNode(this, monsterStats),
-            new RetreatNode(this, _monsterAgent)
+            new RetreatNode(this, monsterAgent)
         }),
         new Sequence(new List<Node> //  Nếu thấy Player, AI chiến đấu
         {
             new CheckPlayerInFOVNode(this),
             new RoarNode(this, monsterAudio),
-            new ChaseNode(this, _monsterAgent),            
+            new ChaseNode(this, monsterAgent),            
             new Selector(new List<Node> 
             {
                 new SkillUsageNode(this, skillManager),
                 new MeleeAttackNode(this)
             })
         }),
-        new PatrolNode(this, _monsterAgent) //  Nếu mất dấu Player hoàn toàn, AI tuần tra lại
+        new PatrolNode(this, monsterAgent) //  Nếu mất dấu Player hoàn toàn, AI tuần tra lại
     });
     }
 }
