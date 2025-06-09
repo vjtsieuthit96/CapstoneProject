@@ -11,7 +11,6 @@ public class EnemyHitHandler : MonoBehaviour
         this.monsterAi = monsterAi;
         this.damageMultiplier = multiplier;
     }
-
     public void ApplyHit(float bulletDamage)
     {
         float finalDamage = bulletDamage * damageMultiplier;
@@ -24,12 +23,18 @@ public class EnemyHitHandler : MonoBehaviour
             Debug.Log("Enemy get hit animation");
         }
     }
-
     public void ApplyFreeze(float duration)
     {
         monsterAi.FreezyEnemy(duration);
     }
-
+    public void ApplySlowDown(float percent, float duration)
+    {
+        monsterAi.SlowDown(percent, duration);
+    }
+    public void ApplyShock(float duration)
+    {
+        monsterAi.ShockEffect(duration);
+    }
     public void ApplyBleed(Vector3 position)
     {
         monsterAi.BleedEffect(position);
