@@ -40,6 +40,13 @@ namespace Invector.vCharacterController
 
         #endregion
 
+        #region Shield
+        [vEditorToolbar("Shield", order = 10)]
+        [SerializeField] protected float _maxShield = 150f;
+        public virtual float maxShield { get { return _maxShield; } set { _maxShield = value; } }
+        internal float currentShield;
+        #endregion
+
         #region Crouch
         [vEditorToolbar("Crouch", order = 3)]
         [Tooltip("Capsule radius reduction while in crouch state")]

@@ -13,12 +13,11 @@ public class CharacterConfigurator : MonoBehaviour
     public vHUDController hudController;
     public float PlayerDamageMultiplier;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
-    public bool isExplosive = false;
     public float _currentAmour;
     public float CurrentAmour
     {
         get => _currentAmour;
-        set => _currentAmour = Mathf.Clamp(value, 0, stats != null ? stats.PlayerMaxAmour : float.MaxValue);
+        set => _currentAmour = Mathf.Clamp(value, 0, controller != null ? controller.currentShield : 0);
     }
     private void Awake()
     {
@@ -29,12 +28,12 @@ public class CharacterConfigurator : MonoBehaviour
             ApplyStats(stats);
         }
     }
-    #region Test
+    #region Test Amour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            isExplosive = !isExplosive;
+            TakeDamage(15f);
         }
     }
     #endregion
@@ -42,18 +41,18 @@ public class CharacterConfigurator : MonoBehaviour
     {
         if (damageValue <= 0 || controller == null) return;
 
-        if (CurrentAmour > 0)
+        if (controller.currentShield > 0)
         {
-            if (CurrentAmour >= damageValue)
+            if (controller.currentShield >= damageValue)
             {
-                CurrentAmour -= damageValue;
+                controller.currentShield -= damageValue;
                 hudController.EnableDamageSprite(new vDamage(damageValue));
-                Debug.Log("Amour hiện tại là: " + CurrentAmour);
+                Debug.Log("Amour hiện tại là: " + controller.currentShield);
             }
             else
             {
-                float remainingDamage = damageValue - CurrentAmour;
-                CurrentAmour = 0;
+                float remainingDamage = damageValue - controller.currentShield;
+                controller.currentShield = 0;
                 controller.TakeDamage(new vDamage(remainingDamage));
             }
         }
@@ -108,14 +107,11 @@ public class CharacterConfigurator : MonoBehaviour
 
         //Player Max Health
         controller.maxHealth = s.PlayerMaxHealth;
-        CurrentAmour = s.PlayerMaxAmour;
-        controller.healthRecovery = s.HealthRecovery;
-        controller.healthRecoveryDelay = s.HealthRecoveryPerTime;
-        controller.isImmortal = s.isImortal;
+        controller.maxShield = s.PlayerMaxAmour;
+        controller.currentShield = controller.maxShield;
 
         //Player Damage
         PlayerDamageMultiplier = s.PlayerDamageMultiplier;
-        //controller.isin
 
         // Animator
         if (animator != null)
