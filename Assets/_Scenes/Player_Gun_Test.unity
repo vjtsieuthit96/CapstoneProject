@@ -2067,6 +2067,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -14.566217
       objectReference: {fileID: 0}
+    - target: {fileID: 2144861514977159636, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: bloodPrefabs
+      value: 
+      objectReference: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
+    - target: {fileID: 2144861514977159636, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+      propertyPath: playerLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 2202033489116498690, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.000003838472
@@ -2683,7 +2691,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.5943058
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7161149948380272327, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7137831820275144453, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
