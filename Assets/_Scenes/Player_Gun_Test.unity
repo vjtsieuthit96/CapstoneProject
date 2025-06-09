@@ -205,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2469267080579021218, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_Layer
@@ -993,7 +993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2469267080579021218, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_Layer
@@ -1714,7 +1714,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExplosionPrefab: {fileID: 11419752, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
-  explosionPoolSize: 10
+  ExplosionIcePrefab: {fileID: 11419752, guid: f76192904eb90044e955c07058015cf0, type: 3}
+  explosionPoolSize: 5
 --- !u!1001 &1372336302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2274,7 +2275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2469267080579021218, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_Layer

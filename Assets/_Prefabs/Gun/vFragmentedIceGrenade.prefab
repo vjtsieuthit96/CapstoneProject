@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3196170639015957850}
   - component: {fileID: 8745029160920629400}
   m_Layer: 0
-  m_Name: vFragmentedGrenade
+  m_Name: vFragmentedIceGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19599,7 +19599,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+      maxColor: {r: 0.66180134, g: 0.9811321, b: 0.931533, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
