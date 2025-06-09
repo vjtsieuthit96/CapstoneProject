@@ -12,6 +12,7 @@ public class CharacterConfigurator : MonoBehaviour
     private Animator animator;
     public vHUDController hudController;
     public float PlayerDamageMultiplier;
+    public bool isExplosive = false;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -31,6 +32,10 @@ public class CharacterConfigurator : MonoBehaviour
     #region Test Amour
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            isExplosive = !isExplosive;
+        }    
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             TakeDamage(15f);
