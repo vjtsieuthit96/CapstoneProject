@@ -32805,7 +32805,7 @@ AudioSource:
   m_GameObject: {fileID: 130014}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6496145734116381860, guid: 6e1b6ad2bd0cf5742acb5809d4116487, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -32943,10 +32943,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 1
   weaponCategory: Rifle
   _shootFrequency: 0.125
   isInfinityAmmo: 0
+  ExplosionPrefab: {fileID: 170736, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
   _ammo: 500
   ignoreTags:
   - Player

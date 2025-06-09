@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Invector
 {
     using System.Collections.Generic;
+    using Invector.vShooter;
     using vEventSystems;
 
     [vClassHeader("Explosive", openClose = false)]
@@ -33,6 +34,8 @@ namespace Invector
         [Tooltip("convert to progress 0 to 1")]
         public bool normalizeTime;
         public bool showGizmos;
+        public ParticleSystem explosionEffect;
+        private Transform originalParent;
         public UnityEngine.Events.UnityEvent onInitTimer;
         public OnUpdateTime onUpdateTimer;
         public UnityEngine.Events.UnityEvent onExplode;
@@ -97,8 +100,8 @@ namespace Invector
 
         protected virtual IEnumerator DestroyBomb()
         {
-            yield return new WaitForSeconds(0.1f);
-            Destroy(gameObject);
+            yield return new WaitForSeconds(4f);
+            PoolManager.Instance.ReturnObject("Explosion", this);
         }
 
         protected virtual void OnCollisionEnter(Collision collision)
@@ -109,8 +112,9 @@ namespace Invector
                 StartCoroutine(StartTimer());
         }
 
-        protected virtual void Explode()
+        public virtual void Explode()
         {
+            Debug.Log("Nổ");
             onExplode.Invoke();
             var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyDamageLayer);
 
@@ -136,7 +140,13 @@ namespace Invector
                     _damage.damageValue = (int)damageValue;
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
-
+                    //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    if (eHithandler != null)
+                    {                        
+                        //eHithandler.ApplyHit((int)damageValue);
+                        eHithandler.ApplyFreeze(10f);
+                    }
                 }
             }
             StartCoroutine(ApplyExplosionForce());
@@ -145,7 +155,7 @@ namespace Invector
 
         protected virtual IEnumerator ApplyExplosionForce()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.0f);
 
             var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyForceLayer);
             for (int i = 0; i < colliders.Length; i++)
@@ -221,7 +231,21 @@ namespace Invector
 
         public void RemoveParentOfOther(Transform other)
         {
+            originalParent = other.parent;
             other.parent = null;
+
+            float explosionDuration = explosionEffect.main.duration + explosionEffect.main.startLifetime.constantMax;
+            StartCoroutine(RestoreParentAfterDelay(other, 4f));
+        }
+        private IEnumerator RestoreParentAfterDelay(Transform other, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            RestoreParentOfOther(other);
+        }
+
+        public void RestoreParentOfOther(Transform other)
+        {
+            other.parent = originalParent;
         }
     }
 }

@@ -28,7 +28,16 @@ public class AnimationEventHandler : MonoBehaviour
             
         }
     }
+    
+    public void DisableMoving()
+    {
+        monsterAI.SetNavMeshStop(true);
+    }
 
+    public void EnableMoving()
+    {
+        monsterAI.SetNavMeshStop(false);
+    }
     public void StartGetHit()
     {
         monsterAI.SetIsHit(true);

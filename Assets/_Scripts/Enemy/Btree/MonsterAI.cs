@@ -19,7 +19,7 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Components-----")]    
     [SerializeField] protected MonsterStats monsterStats;
     [SerializeField] protected Animator monsterAnimator;
-    [SerializeField] protected NavMeshAgent _monsterAgent;
+    [SerializeField] protected NavMeshAgent monsterAgent;
     [SerializeField] protected SkillManager skillManager;
     [SerializeField] protected MonsterAudio monsterAudio;
     protected Node behaviorTree;
@@ -28,25 +28,27 @@ public abstract class MonsterAI : MonoBehaviour
     private bool hasRetreat = false;
     private bool isDead = false;
     private bool isHit = false;
+    private bool isFreeze = false;
       protected virtual void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        baseSpeed = _monsterAgent.speed;
+        baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();      
         InvokeRepeating("EvaluateBehaviorTree", 0f, 1.5f);
     }
     protected virtual void Update()
     {
-        float Speed = _monsterAgent.velocity.magnitude;
+        float Speed = monsterAgent.velocity.magnitude;
         SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);    
         if (!isDead && monsterStats.GetCurrentHealth()<=0)
         {
             isDead = true;
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
-            _monsterAgent.isStopped = true;
+            monsterAgent.isStopped = true;
         }
     }
+    #region Behavior
 
     public void EvaluateBehaviorTree()
     {
@@ -61,18 +63,38 @@ public abstract class MonsterAI : MonoBehaviour
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
 
+    public void FreezyEnemy(float duration)
+    {
+        if (!isFreeze)
+        {
+            isFreeze = true;
+            monsterAnimator.speed = 0;
+            monsterAgent.isStopped = true;
+            Debug.Log("Enemy Freeze");
+            Invoke(nameof(UnFreezeEnemy), duration);
+        }
+    }
+    public void UnFreezeEnemy()
+    {
+        monsterAnimator.speed = 1;
+        monsterAgent.isStopped = false;
+        isFreeze = false;
+        Debug.Log("enemy UnFreeze");
+    }
+    #endregion
+
     #region GET & SET
     public float GetViewRadius() => viewRadius;
     public float GetViewAngle() => viewAngle;
     public float GetAlertRadius()=> alertRadius;    
     public T GetBehaviorNode<T>() where T : Node
     {
-        return behaviorTree.FindNode<T>(); //Hàm lấy node từ cây hành vi
+        return behaviorTree.FindNode<T>(); 
     }
 
     public Transform GetTarget() { return target; }
     public float GetAttackRange() => attackRange;
-    public float GetStoppingDistance() => _monsterAgent.stoppingDistance;
+    public float GetStoppingDistance() => monsterAgent.stoppingDistance;
     public Vector3 GetRandomPatrolPoint()
     {
         Vector3 randomDirection = Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
@@ -94,7 +116,7 @@ public abstract class MonsterAI : MonoBehaviour
     }
     public void SetNavMeshStop(bool value)
     {
-        _monsterAgent.isStopped = value;
+        monsterAgent.isStopped = value;
     }
     public bool GetIsHit() => isHit;
     public void SetIsHit (bool value)

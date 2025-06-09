@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using Invector.vItemManager;
+using static UnityEditor.Progress;
 
 public class WeaponInjector : MonoBehaviour
 {
@@ -18,7 +19,22 @@ public class WeaponInjector : MonoBehaviour
         }
         inventory.onEquipItem.AddListener(OnEquipItemHandler);
     }
+    private void Update()
+    {
+        OnBulletState();
+    }
 
+    private void OnBulletState()
+    {
+        var weapon = GetComponentInChildren<vShooterWeapon>();
+        if (weapon != null)
+        {
+            if (characterConfigurator != null)
+            {
+                weapon.isExplosive = characterConfigurator.isExplosive;
+            }
+        }
+    }
     private void OnEquipItemHandler(vEquipArea equipArea, vItem item)
     {
         if (item == null) return;
@@ -27,28 +43,17 @@ public class WeaponInjector : MonoBehaviour
 
         if (weapon != null)
         {
-            Debug.Log("[WeaponInjector] Đổi súng mới: " + weapon.name);
             if (characterConfigurator != null)
             {
                 weapon.PlayerDamageMultiplier = characterConfigurator.PlayerDamageMultiplier;
-                Debug.Log($"[WeaponInjector] Đã set PlayerDamageMultiplier = {weapon.PlayerDamageMultiplier} cho súng {weapon.name}");
+                weapon.isExplosive = characterConfigurator.isExplosive;
             }
-            else
-            {
-                Debug.LogWarning("[WeaponInjector] characterConfigurator chưa được gán!");
-            }
-
             InjectToWeapon(weapon);
-        }
-        else
-        {
-            Debug.Log("[WeaponInjector] Item được trang bị không phải súng.");
         }
     }
 
     public void InjectToWeapon(vShooterWeapon weapon)
     {
-        Debug.Log("[WeaponInjector] Đã nhận được súng mới: " + weapon.name);
     }
 
     private void OnDestroy()
