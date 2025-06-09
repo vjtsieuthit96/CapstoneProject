@@ -140,10 +140,12 @@ namespace Invector
                     _damage.damageValue = (int)damageValue;
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
-                    EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    MonsterAI eHithandler = colliders[i].GetComponent<MonsterAI>();
                     if (eHithandler != null)
                     {
-                       eHithandler.ApplyHit((int)damageValue);
+                        //eHithandler.ApplyHit((int)damageValue);
+                        eHithandler.FreezyEnemy(10f);
                     }
                 }
             }
