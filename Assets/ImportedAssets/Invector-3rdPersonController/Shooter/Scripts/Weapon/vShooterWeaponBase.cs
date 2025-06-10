@@ -305,7 +305,7 @@ namespace Invector.vShooter
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
-                Debug.Log("Raycast Hit: " + hit.collider.name);
+                Debug.Log("Raycast Hit: " + hit.collider.tag);
 
                 #region XỬ LÍ SÁT THƯƠNG NỔ
                 if(isPhysicsDamage)
@@ -343,6 +343,13 @@ namespace Invector.vShooter
                             explosive.SetOverrideDamageSender(transform);
                             explosive.ExplodeIce();
                         }
+                        Quaternion randomRotation = Quaternion.Euler(
+                            Random.Range(0f, 360f),
+                            Random.Range(0f, 360f),
+                            Random.Range(0f, 360f)
+                        );
+
+                        GameObject iceCube = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, randomRotation);
                     }
                     else
                     {
@@ -358,22 +365,23 @@ namespace Invector.vShooter
                             //eHithandler.ApplyShock(5f);
 
                         }
-                    }
-                    if (hit.collider.transform.root.CompareTag("Ground"))
-                    {
-                        Quaternion rotation = Quaternion.Euler(0f, Random.Range(0f, 300f), 0f);
-                        GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, rotation);
-                    }
-                    else if (!hit.collider.transform.root.CompareTag("Ground") && !hit.collider.transform.root.CompareTag("Enemy"))
-                    {
                         Quaternion randomRotation = Quaternion.Euler(
-                            Random.Range(0f, 360f),
-                            Random.Range(0f, 360f),
-                            Random.Range(0f, 360f)
-                        );
+                           Random.Range(0f, 360f),
+                           Random.Range(0f, 360f),
+                           Random.Range(0f, 360f)
+                       );
 
-                        GameObject iceCube = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
+                        GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
                     }
+                    //if (hit.collider.transform.root.CompareTag("Ground"))
+                    //{
+                    //    Quaternion rotation = Quaternion.Euler(0f, Random.Range(0f, 300f), 0f);
+                    //    GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, rotation);
+                    //}
+                    //if (!hit.collider.transform.root.CompareTag("Ground") && !hit.collider.transform.root.CompareTag("Enemy"))
+                    //{
+                       
+                    //}
                 }
                 #endregion
                 TryCreateDecal(hit);
