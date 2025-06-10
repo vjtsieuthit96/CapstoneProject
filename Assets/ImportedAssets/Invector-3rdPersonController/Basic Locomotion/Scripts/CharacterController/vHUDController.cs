@@ -15,6 +15,11 @@ namespace Invector.vCharacterController
         public Slider staminaSlider;
         public float staminaSliderMaxValueSmooth = 10f;
         public float staminaSliderValueSmooth = 100;
+        // Hidden stamina slider if value dont change 
+        public float hiddenTime = 2f;
+        private float currentHiddenTime = 0f;
+        [SerializeField] private CanvasGroup staminaSliderCanvasGroup;
+        public float hiddenSmooth = 30f;
         public Slider shieldSlider;
         public float shieldSliderMaxValueSmooth = 10f;
         public float shieldSliderValueSmooth = 20f;
@@ -95,6 +100,10 @@ namespace Invector.vCharacterController
                     staminaSlider.onValueChanged.Invoke(staminaSlider.value);
                 }
                 staminaSlider.value = cc.currentStamina;
+                if (staminaSliderCanvasGroup)
+                {
+                    staminaSliderCanvasGroup.alpha = 0f;
+                }
             }
             if (shieldSlider)
             {
@@ -178,8 +187,27 @@ namespace Invector.vCharacterController
             {
                 if (cc.maxStamina != staminaSlider.maxValue)
                 {
+                    if (staminaSliderCanvasGroup && staminaSliderCanvasGroup.alpha < 1f)
+                    {
+                        // an stamina khi khong su dung                  
+                            staminaSliderCanvasGroup.alpha = Mathf.Lerp(staminaSliderCanvasGroup.alpha, 1f, staminaSliderCanvasGroup.alpha * Time.fixedDeltaTime);
+                        if(staminaSliderCanvasGroup.alpha >= 0.9f)
+                        {
+                            currentHiddenTime = Time.time;
+                            staminaSliderCanvasGroup.alpha = 1f;
+                        }
+                    }
                     staminaSlider.maxValue = Mathf.Lerp(staminaSlider.maxValue, cc.maxStamina, staminaSliderMaxValueSmooth * Time.fixedDeltaTime);
                     staminaSlider.onValueChanged.Invoke(staminaSlider.value);
+                }
+                if(Mathf.Abs(staminaSlider.value - cc.currentStamina) < 0.01f && Time.time > currentHiddenTime + hiddenTime)
+                {
+                    // an stamina khi khong su dung
+                    staminaSliderCanvasGroup.alpha = Mathf.Lerp(staminaSliderCanvasGroup.alpha, 0f, hiddenSmooth * Time.fixedDeltaTime);
+                    if(staminaSliderCanvasGroup.alpha <= 0.01f)
+                    {
+                        staminaSliderCanvasGroup.alpha = 0f;
+                    }
                 }
                 staminaSlider.value = Mathf.Lerp(staminaSlider.value, cc.currentStamina, staminaSliderValueSmooth * Time.fixedDeltaTime);
             }
@@ -189,6 +217,7 @@ namespace Invector.vCharacterController
                 {
                     shieldSlider.maxValue = Mathf.Lerp(shieldSlider.maxValue, cc.maxShield, shieldSliderMaxValueSmooth * Time.fixedDeltaTime);
                     shieldSlider.onValueChanged.Invoke(shieldSlider.value);
+                    currentHiddenTime = Time.time + hiddenTime;
                 }
                 shieldSlider.value = Mathf.Lerp(shieldSlider.value, cc.currentShield, shieldSliderValueSmooth * Time.fixedDeltaTime);
             }

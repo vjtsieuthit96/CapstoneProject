@@ -34,7 +34,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isFreeze = false;
       protected virtual void Start()
     {
-        PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
+        //PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
