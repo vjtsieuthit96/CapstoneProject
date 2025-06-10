@@ -55,7 +55,7 @@ public abstract class MonsterAI : MonoBehaviour
             isDead = true;
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             monsterAgent.isStopped = true;
-        }
+        }        
     }
     #region BEHAVIOR
     public void EvaluateBehaviorTree()

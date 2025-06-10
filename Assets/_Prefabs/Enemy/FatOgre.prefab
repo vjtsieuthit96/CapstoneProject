@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 7543050996030356812}
   - component: {fileID: 8281493453593552178}
   - component: {fileID: 7474254806907358215}
+  - component: {fileID: 7845008521349005969}
   m_Layer: 0
   m_Name: MORGENSTERN_TRUE
   m_TagString: Untagged
@@ -679,12 +680,26 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.6004099, y: 1.15, z: 1.94}
   m_Center: {x: 0.000000048595286, y: -0.17857529, z: 1.39}
+--- !u!114 &7845008521349005969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727945448769756311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 0}
+  bloodPrefabs: {fileID: 0}
 --- !u!1 &1968404784316099072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1417,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8369592721960931888}
   - component: {fileID: 8455961270345227133}
+  - component: {fileID: 3501852433735634973}
+  - component: {fileID: 6380886350549213172}
   - component: {fileID: 2772627718873202584}
   m_Layer: 0
   m_Name: FatOgre
@@ -1449,6 +1466,49 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3501852433735634973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259175055369822327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f174180ec775144b97dd619585d33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speedMultiplier: 1.75
+  viewRadius: 20
+  viewAngle: 360
+  alertRadius: 15
+  attackRange: 0
+  patrolRadius: 0
+  baseSpeed: 0
+  frozenEffect: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  monsterStats: {fileID: 6380886350549213172}
+  monsterAnimator: {fileID: 0}
+  monsterAgent: {fileID: 0}
+  skillManager: {fileID: 0}
+  monsterAudio: {fileID: 0}
+--- !u!114 &6380886350549213172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259175055369822327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cce55edca66fb842a284165619f9988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsSO: {fileID: 11400000, guid: 205d93fd7f3edc14da4e904c0eea1fa6, type: 2}
+  _currentHealth: 0
+  _currentDefense: 0
+  _currentDamage: 0
 --- !u!114 &2772627718873202584
 MonoBehaviour:
   m_ObjectHideFlags: 0
