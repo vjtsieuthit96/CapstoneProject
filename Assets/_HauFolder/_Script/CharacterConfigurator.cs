@@ -14,6 +14,9 @@ public class CharacterConfigurator : MonoBehaviour
     public float PlayerDamageMultiplier;
     public bool isExplosive = false;
     public bool isPhysicsDamage = true;
+    public bool isIceEffect = false;
+    public bool isElectricEffect = false;
+    public int EffectMode = 0;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -34,13 +37,17 @@ public class CharacterConfigurator : MonoBehaviour
     #region Test Amour
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            isExplosive = !isExplosive;
-        }  
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+          isExplosive = !isExplosive;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            isPhysicsDamage = !isPhysicsDamage;
+            EffectMode = (EffectMode + 1) % 3;
+            isPhysicsDamage = EffectMode == 0;
+            isIceEffect = EffectMode == 1;
+            isElectricEffect = EffectMode == 2;
+            Debug.Log(EffectMode);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

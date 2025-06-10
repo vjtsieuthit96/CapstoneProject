@@ -35,6 +35,7 @@ namespace Invector
         public bool normalizeTime;
         public bool showGizmos;
         public ParticleSystem explosionEffect;
+        [SerializeField] private string ObjectKey;
         private Transform originalParent;
         public UnityEngine.Events.UnityEvent onInitTimer;
         public OnUpdateTime onUpdateTimer;
@@ -101,7 +102,7 @@ namespace Invector
         protected virtual IEnumerator DestroyBomb()
         {
             yield return new WaitForSeconds(4f);
-            PoolManager.Instance.ReturnObject("Explosion", this);
+            PoolManager.Instance.ReturnObject(ObjectKey, this);
         }
 
         protected virtual void OnCollisionEnter(Collision collision)
@@ -114,7 +115,6 @@ namespace Invector
 
         public virtual void Explode()
         {
-            Debug.Log("Nổ");
             onExplode.Invoke();
             var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyDamageLayer);
 
@@ -153,7 +153,6 @@ namespace Invector
         }
         public virtual void ExplodeIce()
         {
-            Debug.Log("Nổ");
             onExplode.Invoke();
             var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyDamageLayer);
 
@@ -191,7 +190,45 @@ namespace Invector
             StartCoroutine(ApplyExplosionForce());
             if (destroyAfterExplode) StartCoroutine(DestroyBomb());
         }
+        public virtual void ExplodeElectric()
+        {
+            onExplode.Invoke();
+            var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyDamageLayer);
 
+            if (collidersReached == null)
+            {
+                collidersReached = new List<GameObject>();
+            }
+
+            for (int i = 0; i < colliders.Length; ++i)
+            {
+                if (colliders[i] != null && colliders[i].gameObject != null && !collidersReached.Contains(colliders[i].gameObject))
+                {
+                    collidersReached.Add(colliders[i].gameObject);
+                    var _damage = new vDamage(damage);
+                    _damage.sender = overrideDamageSender ? overrideDamageSender : transform;
+
+                    _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
+                    _damage.receiver = colliders[i].transform;
+                    var distance = Vector3.Distance(transform.position, _damage.hitPosition);
+                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
+
+                    _damage.damageValue = (int)damageValue;
+                    onHit.Invoke(colliders[i]);
+                    colliders[i].gameObject.ApplyDamage(_damage, null);
+                    //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
+                    if (eHithandler != null)
+                    {
+                        eHithandler.ApplySlowDown(0.5f, 5f);
+                        eHithandler.ApplyShock(5f);
+                    }
+                }
+            }
+            StartCoroutine(ApplyExplosionForce());
+            if (destroyAfterExplode) StartCoroutine(DestroyBomb());
+        }
         protected virtual IEnumerator ApplyExplosionForce()
         {
             yield return new WaitForSeconds(0.0f);
