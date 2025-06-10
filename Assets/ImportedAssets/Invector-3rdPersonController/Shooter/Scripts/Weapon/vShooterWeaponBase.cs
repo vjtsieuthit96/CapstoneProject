@@ -15,7 +15,7 @@ namespace Invector.vShooter
         [Tooltip("The category of the weapon\n Used to the IK offset system. \nExample: HandGun, Pistol, Machine-Gun")]
         public string weaponCategory = "MyCategory";
         public bool isExplosive;
-        public bool isPhysicsDamage;
+        public int EffectMode;
         [SerializeField, Tooltip("Frequency of shots"), FormerlySerializedAs("shootFrequency")]
         protected float _shootFrequency;
         public virtual float shootFrequency { get { return _shootFrequency; } set { _shootFrequency = value; } }
@@ -308,7 +308,7 @@ namespace Invector.vShooter
                 Debug.Log("Raycast Hit: " + hit.collider.tag);
 
                 #region XỬ LÍ SÁT THƯƠNG NỔ
-                if(isPhysicsDamage)
+                if(EffectMode == 0)
                 {
                     if (isExplosive)
                     {
@@ -333,7 +333,7 @@ namespace Invector.vShooter
                 }
                 #endregion
                 #region XỬ LÝ ĐÓNG BĂNG
-                else if(!isPhysicsDamage)
+                else if(EffectMode == 1)
                 {
                     if(isExplosive)
                     {
@@ -373,17 +373,35 @@ namespace Invector.vShooter
 
                         GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
                     }
-                    //if (hit.collider.transform.root.CompareTag("Ground"))
-                    //{
-                    //    Quaternion rotation = Quaternion.Euler(0f, Random.Range(0f, 300f), 0f);
-                    //    GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, rotation);
-                    //}
-                    //if (!hit.collider.transform.root.CompareTag("Ground") && !hit.collider.transform.root.CompareTag("Enemy"))
-                    //{
-                       
-                    //}
                 }
                 #endregion
+                #region XỬ LÝ ĐIỆN (TEST)
+                else if (EffectMode == 2)
+                {
+                    if (isExplosive)
+                    {
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("ElectricExplosion", hit.point, Quaternion.identity);
+
+                        if (explosive != null)
+                        {
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.ExplodeElectric();
+                        }
+                    }
+                    else
+                    {
+                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                        if (eHithandler != null)
+                        {
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            eHithandler.ApplySlowDown(0.5f, 5f);
+                            eHithandler.ApplyShock(5f);
+
+                        }
+                    }
+                }
+                #endregion
+
                 TryCreateDecal(hit);
             }
             else

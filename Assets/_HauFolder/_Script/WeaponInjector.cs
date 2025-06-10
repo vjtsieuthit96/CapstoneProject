@@ -32,7 +32,7 @@ public class WeaponInjector : MonoBehaviour
             if (characterConfigurator != null)
             {
                 weapon.isExplosive = characterConfigurator.isExplosive;
-                weapon.isPhysicsDamage = characterConfigurator.isPhysicsDamage;
+                weapon.EffectMode = characterConfigurator.EffectMode;
             }
         }
     }
