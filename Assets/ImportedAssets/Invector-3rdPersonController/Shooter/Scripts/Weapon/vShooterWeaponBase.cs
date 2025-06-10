@@ -349,20 +349,30 @@ namespace Invector.vShooter
                         EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
                         if (eHithandler != null)
                         {
+                            // Đóng băng:
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                            eHithandler.ApplyHit(raycastDamage/5);
+                            eHithandler.ApplyHit(raycastDamage / 5);
                             eHithandler.ApplyFreeze(5f);
-                            
+                            // Giật điện test
+                            //eHithandler.ApplySlowDown(0.5f, 5f);
+                            //eHithandler.ApplyShock(5f);
+
                         }
                     }
                     if (hit.collider.transform.root.CompareTag("Ground"))
                     {
-                        GameObject Iceplane = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, Quaternion.identity);
+                        Quaternion rotation = Quaternion.Euler(0f, Random.Range(0f, 300f), 0f);
+                        GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, rotation);
                     }
-                    else if(!hit.collider.transform.root.CompareTag("Ground") && !hit.collider.transform.root.CompareTag("Enemy"))
+                    else if (!hit.collider.transform.root.CompareTag("Ground") && !hit.collider.transform.root.CompareTag("Enemy"))
                     {
-                        GameObject Iceplane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, Quaternion.identity);
+                        Quaternion randomRotation = Quaternion.Euler(
+                            Random.Range(0f, 360f),
+                            Random.Range(0f, 360f),
+                            Random.Range(0f, 360f)
+                        );
 
+                        GameObject iceCube = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
                     }
                 }
                 #endregion
