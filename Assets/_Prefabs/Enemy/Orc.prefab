@@ -784,8 +784,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 626c131534176c44cb8303512f0f47a7, type: 3}
   - {fileID: 8300000, guid: e19930cc67c63854b93ccf272ea4e54d, type: 3}
   - {fileID: 8300000, guid: b183fd40d55e4184b8d940fbec01d0cb, type: 3}
-  atkSound_1: {fileID: 8300000, guid: 2529447dedb2a4346ac81d4293e14cde, type: 3}
-  atkSound_2: {fileID: 8300000, guid: 813a56194150f924ba66d31dcdd47305, type: 3}
+  atkSound:
+  - {fileID: 8300000, guid: 2529447dedb2a4346ac81d4293e14cde, type: 3}
+  - {fileID: 8300000, guid: 813a56194150f924ba66d31dcdd47305, type: 3}
 --- !u!195 &1568520819312927798
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1394,10 +1395,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterStats: {fileID: 5622012270302772746}
   bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
-  atkRange: 1
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &3671567522808774707
 GameObject:
   m_ObjectHideFlags: 0
