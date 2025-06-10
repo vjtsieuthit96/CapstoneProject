@@ -4,7 +4,6 @@ using System.Collections;
 public class ReturnToPool : MonoBehaviour
 {
     [SerializeField] private string poolKey = "IcePlane";
-    [SerializeField] private float returnDelay = 2f;
     private Material materialInstance;
     private Coroutine fadeSequenceCoroutine;
 
