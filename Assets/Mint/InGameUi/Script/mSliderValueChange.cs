@@ -1,11 +1,14 @@
+using Invector.Utils;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteInEditMode]
-public class HealthValueChange : MonoBehaviour
+public class mSliderValueChange : MonoBehaviour
 {
     [SerializeField] private Gradient healthGradient;
-    [SerializeField] private Image healthBarImage;
+    [SerializeField] private Image sliderBarImage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +18,7 @@ public class HealthValueChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       healthBarImage.color = healthGradient.Evaluate(healthBarImage.fillAmount);
+       sliderBarImage.color = healthGradient.Evaluate(sliderBarImage.fillAmount);
     }
+
 }
