@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ReturnToPool : MonoBehaviour
 {
-    [SerializeField] private string poolKey = "IcePlane";
+    [SerializeField] private string poolKey;
     private Material materialInstance;
     private Coroutine fadeSequenceCoroutine;
 
@@ -46,8 +46,8 @@ public class ReturnToPool : MonoBehaviour
         if (materialInstance == null)
             yield break;
 
-        yield return StartCoroutine(FadeAlpha(materialInstance, 0f, 200f / 255f, TimeFadeOn));
-        yield return StartCoroutine(FadeAlpha(materialInstance, 200f / 255f, 0f, TimeFadeOff));
+        yield return StartCoroutine(FadeAlpha(materialInstance, 0f, 255f / 255f, TimeFadeOn));
+        yield return StartCoroutine(FadeAlpha(materialInstance, 255f / 255f, 0f, TimeFadeOff));
         ReturnToPoolNow();
     }
 
