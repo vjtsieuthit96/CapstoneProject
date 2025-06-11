@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class SkillUsageNode : Node
 {
@@ -16,32 +17,25 @@ public class SkillUsageNode : Node
         Transform player = monster.GetTarget();
         if (player == null) return NodeState.FAILURE;
 
-        float distancetoPlayer = Vector3.Distance(monster.transform.position, player.transform.position);
-        if (distancetoPlayer > monster.GetStoppingDistance()*1.25f)
-        {
-            Debug.Log("Chưa đủ khoảng cách dùng skill");
-            return NodeState.FAILURE;
-        }
+        float distanceToPlayer = Vector3.Distance(monster.transform.position, player.position);
         monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
-        //  Danh sách skill ưu tiên (có thể sắp xếp để chọn skill mạnh nhất trước)
-        int[] skillPriority = 
-        {
-            MonsterAnimatorHash.skill_3Hash, // Skill mạnh nhất
-            MonsterAnimatorHash.skill_2Hash,
-            MonsterAnimatorHash.skill_1Hash  // Skill yếu nhất
-        };
-    
+
+        //Lấy danh sách skill từ `SkillManager`, sắp xếp theo khoảng cách giảm dần
+        List<int> skillPriority = skillManager.GetSkillListSortedByPriority();
+
         foreach (int skill in skillPriority)
         {
-            if (skillManager.CanUseSkill(skill))
+            float skillRange = skillManager.GetSkillRange(skill);
+
+            if (distanceToPlayer <= skillRange && skillManager.CanUseSkill(skill))
             {
                 skillManager.UseSkill(skill);
                 Debug.Log($"Dùng Skill {skill}");
-                return NodeState.RUNNING; // Ngừng tìm kiếm ngay sau khi dùng skill
+                return NodeState.RUNNING;
             }
         }
 
-        Debug.Log("Tất cả Skill đang CD, chọn hành vi khác.");
+        Debug.Log("Tất cả Skill đang hồi hoặc ngoài phạm vi.");
         return NodeState.FAILURE;
     }
 }

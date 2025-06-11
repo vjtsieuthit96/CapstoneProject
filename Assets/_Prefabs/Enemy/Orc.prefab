@@ -621,7 +621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7137831820275144453
 Transform:
   m_ObjectHideFlags: 0
@@ -636,6 +636,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7404814349895419620}
+  - {fileID: 5487444698101250367}
   - {fileID: 7108713979672858889}
   - {fileID: 6007496750003585323}
   - {fileID: 451425503381537697}
@@ -725,6 +726,9 @@ MonoBehaviour:
   skill1Cooldown: 5
   skill2Cooldown: 10
   skill3Cooldown: 15
+  skill1Range: 2.25
+  skill2Range: 2.25
+  skill3Range: 2.25
 --- !u!114 &673581269097418959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3083,6 +3087,72 @@ Transform:
   - {fileID: 5773389035359473396}
   m_Father: {fileID: 2248593695537661303}
   m_LocalEulerAnglesHint: {x: 0.00000019677736, y: 0.000002406833, z: -49.673973}
+--- !u!1001 &6634939713172105639
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7137831820275144453}
+    m_Modifications:
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96540654
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.14741375
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.1867318
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.10672734
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -14.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -23.848
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 15.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777050, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_Name
+      value: Cliff_ice_Death
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777050, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+--- !u!4 &5487444698101250367 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+  m_PrefabInstance: {fileID: 6634939713172105639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8256332689874649489
 PrefabInstance:
   m_ObjectHideFlags: 0

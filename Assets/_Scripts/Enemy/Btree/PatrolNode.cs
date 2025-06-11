@@ -29,7 +29,7 @@ public class PatrolNode : Node
 
         agent.speed = monster.GetBaseSpeed();
 
-        if (Vector3.Distance(monster.transform.position, patrolTarget) < 2f)
+        if (Vector3.Distance(monster.transform.position, patrolTarget) < agent.stoppingDistance*1.25f)
         {
             SetNewPatrolTarget();
         }
