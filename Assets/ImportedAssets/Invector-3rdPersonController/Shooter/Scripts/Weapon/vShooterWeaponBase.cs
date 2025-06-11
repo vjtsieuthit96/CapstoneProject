@@ -421,7 +421,7 @@ namespace Invector.vShooter
                         {
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                             eHithandler.ApplyBleed(hit.point);
-                            eHithandler.ApplyHit(raycastDamage);
+                            eHithandler.ApplyPoisonDamage(raycastDamage/5,30f);
                         }
                     }
                 }

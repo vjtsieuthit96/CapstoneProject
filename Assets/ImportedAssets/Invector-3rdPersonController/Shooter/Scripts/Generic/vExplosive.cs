@@ -260,8 +260,9 @@ namespace Invector
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
-                        eHithandler.ApplySlowDown(0.5f, 5f);
-                        eHithandler.ApplyShock(5f);
+                        eHithandler.ApplySlowDown(0.2f, 5f);
+                        eHithandler.ApplyPoisonDamage((int)damageValue / 5, 30f);
+
                     }
                 }
             }

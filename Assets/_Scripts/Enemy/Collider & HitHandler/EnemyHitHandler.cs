@@ -1,5 +1,6 @@
 ﻿using Invector;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyHitHandler : MonoBehaviour
 {
@@ -21,6 +22,22 @@ public class EnemyHitHandler : MonoBehaviour
         {
             monsterAi.SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
             Debug.Log("Enemy get hit animation");
+        }
+    }
+    public void ApplyPoisonDamage(float damage, float duration)
+    {
+        StartCoroutine(DamageOverTimeCoroutine(damage, duration));
+    }
+    private IEnumerator DamageOverTimeCoroutine(float damage, float duration)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            ApplyHit(damage);
+            Debug.Log("Take Poison Damage: " + damage);
+            yield return new WaitForSeconds(4f);
+            elapsed += 4f;
         }
     }
     public void ApplyFreeze(float duration)
