@@ -450,6 +450,7 @@ namespace Invector.vCharacterController
                 StrafeInput();
                 JumpInput();
                 RollInput();
+                SettingMenuInput();
             }
 
             #endregion
