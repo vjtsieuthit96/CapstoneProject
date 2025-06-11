@@ -401,6 +401,31 @@ namespace Invector.vShooter
                     }
                 }
                 #endregion
+                #region XỬ LÝ ĐỘC
+                else if (EffectMode == 3)
+                {
+                    if (isExplosive)
+                    {
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("PoisonExplosion", hit.point, Quaternion.identity);
+
+                        if (explosive != null)
+                        {
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.ExplodePoison();
+                        }
+                    }
+                    else
+                    {
+                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                        if (eHithandler != null)
+                        {
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            eHithandler.ApplyBleed(hit.point);
+                            eHithandler.ApplyHit(raycastDamage);
+                        }
+                    }
+                }
+                #endregion
 
                 TryCreateDecal(hit);
             }
