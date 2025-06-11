@@ -21,7 +21,7 @@ public class PatrolNode : Node
     {
         UpdatePatrolCenter(); 
 
-        if (monster.GetAnimatorParameter(MonsterAnimatorHash.isBattleHash))
+        if (monster.GetBoolAnimatorParameter(MonsterAnimatorHash.isBattleHash))
         {
             Debug.Log("Dừng tuần tra! Chuyển sang trạng thái chiến đấu.");
             return NodeState.FAILURE;

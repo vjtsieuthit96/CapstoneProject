@@ -214,9 +214,13 @@ public abstract class MonsterAI : MonoBehaviour
                 break;
         }
     }
-    public bool GetAnimatorParameter(int hash)
+    public bool GetBoolAnimatorParameter(int hash)
     {
         return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
+    }
+    public float GetFloatAnimatorParameter(int hash)
+    {
+        return monsterAnimator.GetFloat(hash);
     }
     #endregion    
 
