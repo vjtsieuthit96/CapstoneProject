@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         PoolManager.Instance.CreatePool("Explosion", ExplosionPrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("IceExplosion", ExplosionIcePrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("ElectricExplosion", ExplosionElectricPrefab, explosionPoolSize);
-        PoolManager.Instance.CreatePool("PoisonExplosion", ExplosionElectricPrefab, explosionPoolSize);
+        PoolManager.Instance.CreatePool("PoisonExplosion", ExplosionPoisonPrefab, explosionPoolSize);
         GameObjectPoolManager.Instance.CreatePool("IcePlane", IcePlanePrefab, explosionPoolSize * 2);
         GameObjectPoolManager.Instance.CreatePool("IceCube", IceCube, explosionPoolSize * 2);
 
