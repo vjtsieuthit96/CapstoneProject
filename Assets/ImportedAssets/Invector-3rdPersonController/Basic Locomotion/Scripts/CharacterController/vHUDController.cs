@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Invector.Utils;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Invector.vCharacterController
@@ -15,6 +16,12 @@ namespace Invector.vCharacterController
         public Slider staminaSlider;
         public float staminaSliderMaxValueSmooth = 10f;
         public float staminaSliderValueSmooth = 100;
+        // Hidden stamina slider if value dont change 
+        [SerializeField] private vFadeCanvas staminaSliderFadeCanvas;
+        public float hiddenTime = 2f;
+        private float currentHiddenTime = 0f;
+        [SerializeField] private CanvasGroup staminaSliderCanvasGroup;
+        public float hiddenSmooth = 30f;
         public Slider shieldSlider;
         public float shieldSliderMaxValueSmooth = 10f;
         public float shieldSliderValueSmooth = 20f;
@@ -93,6 +100,7 @@ namespace Invector.vCharacterController
                 {
                     staminaSlider.maxValue = cc.maxStamina;
                     staminaSlider.onValueChanged.Invoke(staminaSlider.value);
+                    
                 }
                 staminaSlider.value = cc.currentStamina;
             }
@@ -179,9 +187,26 @@ namespace Invector.vCharacterController
                 if (cc.maxStamina != staminaSlider.maxValue)
                 {
                     staminaSlider.maxValue = Mathf.Lerp(staminaSlider.maxValue, cc.maxStamina, staminaSliderMaxValueSmooth * Time.fixedDeltaTime);
-                    staminaSlider.onValueChanged.Invoke(staminaSlider.value);
+                   staminaSlider.onValueChanged.Invoke(staminaSlider.value);
                 }
-                staminaSlider.value = Mathf.Lerp(staminaSlider.value, cc.currentStamina, staminaSliderValueSmooth * Time.fixedDeltaTime);
+
+                if (staminaSliderCanvasGroup && staminaSliderFadeCanvas)
+                {
+                    if (staminaSlider.value - cc.currentStamina > 0.0f)
+                    {
+                        staminaSliderFadeCanvas.FadeIn();
+                        currentHiddenTime = Time.time + hiddenTime;
+                    }
+                    else
+                    if(Time.time > currentHiddenTime)
+                    {
+                        staminaSliderFadeCanvas.FadeOut();
+                    }
+                }
+                    // neu nguoi choi dang su dung stamina thi hien thi thanh stamina
+                   
+
+                    staminaSlider.value = Mathf.Lerp(staminaSlider.value, cc.currentStamina, staminaSliderValueSmooth * Time.fixedDeltaTime);
             }
             if(shieldSlider)
             {
@@ -189,6 +214,7 @@ namespace Invector.vCharacterController
                 {
                     shieldSlider.maxValue = Mathf.Lerp(shieldSlider.maxValue, cc.maxShield, shieldSliderMaxValueSmooth * Time.fixedDeltaTime);
                     shieldSlider.onValueChanged.Invoke(shieldSlider.value);
+                    currentHiddenTime = Time.time + hiddenTime;
                 }
                 shieldSlider.value = Mathf.Lerp(shieldSlider.value, cc.currentShield, shieldSliderValueSmooth * Time.fixedDeltaTime);
             }

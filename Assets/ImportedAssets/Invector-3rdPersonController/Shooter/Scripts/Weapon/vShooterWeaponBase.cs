@@ -15,7 +15,7 @@ namespace Invector.vShooter
         [Tooltip("The category of the weapon\n Used to the IK offset system. \nExample: HandGun, Pistol, Machine-Gun")]
         public string weaponCategory = "MyCategory";
         public bool isExplosive;
-        public bool isPhysicsDamage;
+        public int EffectMode;
         [SerializeField, Tooltip("Frequency of shots"), FormerlySerializedAs("shootFrequency")]
         protected float _shootFrequency;
         public virtual float shootFrequency { get { return _shootFrequency; } set { _shootFrequency = value; } }
@@ -305,10 +305,10 @@ namespace Invector.vShooter
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
-                Debug.Log("Raycast Hit: " + hit.collider.name);
+                Debug.Log("Raycast Hit: " + hit.collider.tag);
 
                 #region XỬ LÍ SÁT THƯƠNG NỔ
-                if(isPhysicsDamage)
+                if(EffectMode == 0)
                 {
                     if (isExplosive)
                     {
@@ -333,7 +333,7 @@ namespace Invector.vShooter
                 }
                 #endregion
                 #region XỬ LÝ ĐÓNG BĂNG
-                else if(!isPhysicsDamage)
+                else if(EffectMode == 1)
                 {
                     if(isExplosive)
                     {
@@ -343,6 +343,50 @@ namespace Invector.vShooter
                             explosive.SetOverrideDamageSender(transform);
                             explosive.ExplodeIce();
                         }
+                        Quaternion randomRotation = Quaternion.Euler(
+                            Random.Range(0f, 360f),
+                            Random.Range(0f, 360f),
+                            Random.Range(0f, 360f)
+                        );
+
+                        GameObject iceCube = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, randomRotation);
+                    }
+                    else
+                    {
+                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                        if (eHithandler != null)
+                        {
+                            // Đóng băng:
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            eHithandler.ApplyHit(raycastDamage / 5);
+                            eHithandler.ApplyFreeze(5f);
+                            // Giật điện test
+                            //eHithandler.ApplySlowDown(0.5f, 5f);
+                            //eHithandler.ApplyShock(5f);
+
+                        }
+                        Quaternion randomRotation = Quaternion.Euler(
+                           Random.Range(0f, 360f),
+                           Random.Range(0f, 360f),
+                           Random.Range(0f, 360f)
+                       );
+
+                        GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
+                    }
+                }
+                #endregion
+                #region XỬ LÝ ĐIỆN (TEST)
+                else if (EffectMode == 2)
+                {
+                    if (isExplosive)
+                    {
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("ElectricExplosion", hit.point, Quaternion.identity);
+
+                        if (explosive != null)
+                        {
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.ExplodeElectric();
+                        }
                     }
                     else
                     {
@@ -350,22 +394,14 @@ namespace Invector.vShooter
                         if (eHithandler != null)
                         {
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                            eHithandler.ApplyHit(raycastDamage/5);
-                            eHithandler.ApplyFreeze(5f);
-                            
-                        }
-                    }
-                    if (hit.collider.transform.root.CompareTag("Ground"))
-                    {
-                        GameObject Iceplane = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, Quaternion.identity);
-                    }
-                    else if(!hit.collider.transform.root.CompareTag("Ground") && !hit.collider.transform.root.CompareTag("Enemy"))
-                    {
-                        GameObject Iceplane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, Quaternion.identity);
+                            eHithandler.ApplySlowDown(0.5f, 5f);
+                            eHithandler.ApplyShock(5f);
 
+                        }
                     }
                 }
                 #endregion
+
                 TryCreateDecal(hit);
             }
             else
