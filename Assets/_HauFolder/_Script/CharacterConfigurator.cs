@@ -16,6 +16,7 @@ public class CharacterConfigurator : MonoBehaviour
     public bool isPhysicsDamage = true;
     public bool isIceEffect = false;
     public bool isElectricEffect = false;
+    public bool isPoisonEffect = false;
     public int EffectMode = 0;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
@@ -43,11 +44,12 @@ public class CharacterConfigurator : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            EffectMode = (EffectMode + 1) % 3;
+            EffectMode = (EffectMode + 1) % 4;
+
             isPhysicsDamage = EffectMode == 0;
             isIceEffect = EffectMode == 1;
             isElectricEffect = EffectMode == 2;
-            Debug.Log(EffectMode);
+            isPoisonEffect = EffectMode == 3;
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
