@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public abstract class MonsterAI : MonoBehaviour
 {
@@ -48,14 +49,13 @@ public abstract class MonsterAI : MonoBehaviour
     }
     protected virtual void Update()
     {
-        float Speed = monsterAgent.velocity.magnitude;
-        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);
+        GroundLocomotion();
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
             isDead = true;
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             monsterAgent.isStopped = true;
-        }
+        }        
     }
     #region BEHAVIOR
     public void EvaluateBehaviorTree()
@@ -64,6 +64,21 @@ public abstract class MonsterAI : MonoBehaviour
             behaviorTree.Evaluate();
     }
     protected abstract Node CreateBehaviorTree();
+    private void GroundLocomotion()
+    {
+        float Speed = monsterAgent.velocity.magnitude;
+        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);
+       
+        float normalizedSpeed = Speed / monsterAgent.speed; 
+        normalizedSpeed = Mathf.Clamp(normalizedSpeed, 0f, 1f); // Giới hạn từ 0 -> 1
+      
+        float locomotionValue = Vector3.Dot(monsterAgent.velocity.normalized, transform.forward) * normalizedSpeed;
+
+        //Điều chỉnh giá trị về khoảng -1 -> 1
+        locomotionValue = Mathf.Lerp(-1f, 1f, Mathf.Clamp01((locomotionValue + 1) / 2));
+       
+        SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);
+    }
     public void ApplyDamage(float amount)
     {
         monsterStats.TakeDamage(amount);
