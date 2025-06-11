@@ -7,8 +7,7 @@ public class MonsterAudio : MonoBehaviour
     [Header("Roar")]
     [SerializeField] private AudioClip[] roarSounds;
     [Header("AttackSound")]
-    public AudioClip atkSound_1;
-    public AudioClip atkSound_2;
+    public AudioClip[] atkSound;   
     
     public void PlayFootStep ()
     {
