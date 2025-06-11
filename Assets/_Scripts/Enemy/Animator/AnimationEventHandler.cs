@@ -57,11 +57,11 @@ public class AnimationEventHandler : MonoBehaviour
     }
     public void PlayATK1()
     {
-        monsterAudio.PlaySFX(monsterAudio.atkSound_1);
+        monsterAudio.PlaySFX(monsterAudio.atkSound[0]);
     }
     public void PlayATK2()
     {
-        monsterAudio.PlaySFX(monsterAudio.atkSound_2);
+        monsterAudio.PlaySFX(monsterAudio.atkSound[1]);
     }
   
     #endregion

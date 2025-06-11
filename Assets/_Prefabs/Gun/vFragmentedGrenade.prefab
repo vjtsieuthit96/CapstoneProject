@@ -89,6 +89,7 @@ MonoBehaviour:
   normalizeTime: 0
   showGizmos: 0
   explosionEffect: {fileID: 0}
+  ObjectKey: Explosion
   onInitTimer:
     m_PersistentCalls:
       m_Calls: []
@@ -19424,7 +19425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &496114692885602519
 Transform:
   m_ObjectHideFlags: 0
@@ -33901,7 +33902,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.66e-43, y: 1.2109748e-26, z: 6.64e-43, w: 60}
+  m_BoundingSphereOverride: {x: 66, y: 62, z: 5.675121e-20, w: 6.42954e-40}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
