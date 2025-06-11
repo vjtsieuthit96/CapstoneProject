@@ -26,11 +26,7 @@ public class OrcAI : MonsterAI
             new CheckPlayerInFOVNode(this),
             new RoarNode(this, monsterAudio),
             new ChaseNode(this, monsterAgent),            
-            new Selector(new List<Node> 
-            {
-                new SkillUsageNode(this, skillManager),
-                new MeleeAttackNode(this)
-            })
+            new SkillUsageNode(this, skillManager)            
         }),
         new PatrolNode(this, monsterAgent) //  Nếu mất dấu Player hoàn toàn, AI tuần tra lại
     });
