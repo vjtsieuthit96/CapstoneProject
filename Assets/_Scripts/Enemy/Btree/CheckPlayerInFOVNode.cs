@@ -7,6 +7,7 @@ public class CheckPlayerInFOVNode : Node
     private float lastSeenTime = float.MinValue; // Thời điểm cuối cùng thấy người chơi
     private float lastAttackedTime = float.MinValue; //  Lưu thời điểm AI bị tấn công
     private float attackMemoryDuration = 5f; //  AI nhớ kẻ tấn công trong 5 giây
+    private bool isRoar = false;
 
     public CheckPlayerInFOVNode(MonsterAI monster) { this.monsterAI = monster; }    
 
@@ -29,7 +30,7 @@ public class CheckPlayerInFOVNode : Node
         if (distanceToPlayer <= monsterAI.GetViewRadius() && angleToPlayer <= monsterAI.GetViewAngle() / 2)
         {
             lastSeenTime = Time.time;
-            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
+            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);           
             Debug.Log("AI nhìn thấy người chơi! Đuổi theo.");
             return NodeState.SUCCESS;
         }

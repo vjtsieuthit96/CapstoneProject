@@ -13,7 +13,7 @@ public class CheckLowHealthNode : Node
 
     public override NodeState Evaluate()
     {
-        if (monsterStats.GetCurrentHealth() < 0.3f * monsterStats.GetMaxHealth())
+        if (monsterStats.GetCurrentHealth() < 0.5f * monsterStats.GetMaxHealth())
         {
             Debug.Log("Low HP");
             return NodeState.SUCCESS;

@@ -307,6 +307,7 @@ namespace Invector.vShooter
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
                 Debug.Log("Raycast Hit: " + hit.collider.tag);
 
+
                 #region XỬ LÍ SÁT THƯƠNG NỔ
                 if(EffectMode == 0)
                 {

@@ -3,14 +3,16 @@
 public class RageNode : Node
 {    
     private MonsterStats monsterStats;
+    private MonsterAI monsterAI;
     [Header("-----Rage-----")]
-    [SerializeField] private float rageDuration = 30f; // Thời gian Cuồng Nộ
-    [SerializeField] private float rageCooldown = 600f; // Hồi chiêu Cuồng Nộ
-    [SerializeField] private float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
-    [SerializeField] private bool isEnraged = false; // Trạng thái Cuồng Nộ
+    private float rageDuration = 240f; // Thời gian Cuồng Nộ
+    private float rageCooldown = 600f; // Hồi chiêu Cuồng Nộ
+    private float lastRageTime = -Mathf.Infinity; // Thời điểm kích hoạt Cuồng Nộ
+    private bool isEnraged = false; // Trạng thái Cuồng Nộ
 
-    public RageNode(MonsterStats monsterStats)
+    public RageNode(MonsterAI monsterAI, MonsterStats monsterStats)
     { 
+        this.monsterAI = monsterAI;
         this.monsterStats = monsterStats;
     }
 
@@ -21,19 +23,22 @@ public class RageNode : Node
         if (isEnraged && timeSinceLastRage >= rageDuration)
         {
             isEnraged = false;
+            monsterStats.SetDefaultStats(); // Đặt lại stats về mặc định
             Debug.Log("Enraged End");
             return NodeState.FAILURE;
         }
         // Nếu Rage cd xong, kích hoạt lại
         if (!isEnraged && timeSinceLastRage >= rageCooldown)
         {
+            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.roarHash, null);            
             isEnraged = true;
             lastRageTime = Time.time;
             Debug.Log("Rage State");
-            //Logic của cuồng nộ
+            monsterStats.AddDamagePercent(50f); // Tăng 50% sát thương
+            monsterStats.AddDefensePercent(50f); // Tăng 50% phòng thủ
             return NodeState.SUCCESS;
         }
-        // Rage chưa hồi skill thì chạy thôi
+        
         return NodeState.FAILURE;
     }
 }
