@@ -141,14 +141,14 @@ public abstract class MonsterAI : MonoBehaviour
         while (timer < duration)
         {
             SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
-            Debug.Log(message: "Enemy bị giật nè");
+            //Debug.Log(message: "Enemy bị giật nè");
             yield return new WaitForSeconds(0.75f);
             timer += 0.75f;
         }
         isShocked = false;
         ElectricEffect.SetActive(false);
         //monsterAnimator.SetFloat("TakeShock", 1);
-        Debug.Log("Enemy bị giật xong rồi");
+        //Debug.Log("Enemy bị giật xong rồi");
     }       
     #endregion
 
