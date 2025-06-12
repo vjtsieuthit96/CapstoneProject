@@ -21,6 +21,7 @@ public abstract class MonsterAI : MonoBehaviour
     [SerializeField] protected float baseSpeed;
     [Header("-----Negative Effects-----")]
     [SerializeField] protected GameObject frozenEffect;
+    [SerializeField] protected GameObject ElectricEffect;
     [SerializeField] protected BloodEffect5 bloodEffect;
     [Header("-----Components-----")]
     [SerializeField] protected MonsterStats monsterStats;
@@ -92,7 +93,6 @@ public abstract class MonsterAI : MonoBehaviour
             monsterAnimator.speed = 0;
             monsterAgent.isStopped = true;
             frozenEffect.SetActive(true);
-            Debug.Log("Enemy Freeze");
             Invoke(nameof(UnFreezeEnemy), duration);
         }
     }
@@ -102,7 +102,6 @@ public abstract class MonsterAI : MonoBehaviour
         monsterAnimator.speed = 1;
         monsterAgent.isStopped = false;
         isFreeze = false;
-        Debug.Log("enemy UnFreeze");
     }
     public void SlowDown(float percent, float duration)
     {
@@ -127,6 +126,12 @@ public abstract class MonsterAI : MonoBehaviour
         if (!isShocked && !isDead)
         {
             isShocked = true;
+            //monsterAnimator.SetFloat(name: "TakeShock", duration * 5);
+            ElectricEffect.SetActive(true);
+            ParticleSystem electricParticle = ElectricEffect.GetComponent<ParticleSystem>();
+            electricParticle.Play();
+            ParticleSystem.MainModule mainModule = electricParticle.main;
+            mainModule.duration = duration;
             StartCoroutine(ShockLoop(duration));            
         }
     }
@@ -136,11 +141,13 @@ public abstract class MonsterAI : MonoBehaviour
         while (timer < duration)
         {
             SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
-            Debug.Log("Enemy bị giật nè");
+            Debug.Log(message: "Enemy bị giật nè");
             yield return new WaitForSeconds(0.75f);
             timer += 0.75f;
         }
-        isShocked = false;        
+        isShocked = false;
+        ElectricEffect.SetActive(false);
+        //monsterAnimator.SetFloat("TakeShock", 1);
         Debug.Log("Enemy bị giật xong rồi");
     }       
     #endregion
