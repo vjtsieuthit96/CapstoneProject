@@ -6,9 +6,9 @@ public class DimensionCutter : ESkillObjectMove
     [SerializeField] private DimensionHit hitPrefabs;
     
 
-    protected override void Start()
+    void Start()
     {       
-        base.Start();
+        
         PoolManager.Instance.CreatePool("DMHit", hitPrefabs, 10);
     }
     protected override void Update()

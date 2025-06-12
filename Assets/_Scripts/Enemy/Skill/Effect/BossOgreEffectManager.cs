@@ -18,8 +18,8 @@ public class BossOgreEffectManager : MonoBehaviour
     public void SpawnCutter()
     {
         DimensionCutter cutter = PoolManager.Instance.GetObject<DimensionCutter>("DMCutter", cutterSpawnPoint.position, Quaternion.identity);
-        cutter.SetStatAndTarget(monsterStats,monsterAI);    
+        cutter.SetStats(monsterStats);    
         cutter.SetTarget(monsterAI.GetTarget());
     }
-    
+   
 }

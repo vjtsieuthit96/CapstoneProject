@@ -10,18 +10,12 @@ public abstract class ESkillObjectMove : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
 
     protected MonsterStats monsterStats;
-    protected MonsterAI monsterAI;
-    private bool hasHit = false;
-
-    protected virtual void Start()
-    {
-      
-    }
+    private bool hasHit = false;   
 
     private void OnEnable()
     {
         Invoke(nameof(ReturnObject), DestroyTime);
-        hasHit = false; // Reset trạng thái để có thể trúng lần sau
+        hasHit = false; // Reset trạng thái
     }
 
     protected virtual void Update()
@@ -41,24 +35,23 @@ public abstract class ESkillObjectMove : MonoBehaviour
                 float angleOffset = spreadAngle * ((i / (float)(rayCount - 1)) - 0.5f);
                 Vector3 direction = Quaternion.Euler(0, angleOffset, 0) * transform.forward;
 
-                // Vẽ tia trong Scene để kiểm tra
+                // Vẽ tia trong Scene
                 Debug.DrawRay(transform.position, direction * MaxLength, Color.red, 0.1f);
 
                 if (Physics.Raycast(transform.position, direction, out hit, MaxLength, playerLayer))
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
-                        hasHit = true; // Đánh dấu đã trúng, ngừng kiểm tra tiếp
+                        hasHit = true; // Đánh dấu đã trúng
 
                         CharacterConfigurator player = hit.collider.GetComponent<CharacterConfigurator>();
                         if (player != null)
                         {
                             HitObj(hit);
                             float damage = monsterStats.GetCurrentDamage() * damageMultiplier;
-                            Debug.Log($"Monster {monsterAI.name} hit Player {player.name} with damage: {damage}");
                             player.TakeDamage(damage);
                             PoolManager.Instance.GetObject<BloodEffect4>("BloodEF4", hit.point, Quaternion.identity);
-                            break; // Ngừng kiểm tra tiếp nếu đã trúng
+                            break;
                         }
                     }
                 }
@@ -69,10 +62,9 @@ public abstract class ESkillObjectMove : MonoBehaviour
     protected abstract void HitObj(RaycastHit hit);
     protected abstract void ReturnObject();
 
-    public void SetStatAndTarget(MonsterStats stats, MonsterAI monsterAI)
-    {
-        this.monsterStats = stats;
-        this.monsterAI = monsterAI;
+    public void SetStats(MonsterStats stats)
+    { 
+        this.monsterStats = stats;      
     }
 
     public void SetTarget(Transform target)
