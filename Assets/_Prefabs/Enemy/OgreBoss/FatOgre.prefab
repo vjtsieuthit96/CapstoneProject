@@ -1191,6 +1191,37 @@ Transform:
   - {fileID: 496390800749747499}
   m_Father: {fileID: 2444178066363832832}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3683229077459724092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584474067925123380}
+  m_Layer: 0
+  m_Name: CutterSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584474067925123380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683229077459724092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.267, z: 0.988}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8369592721960931888}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3770676604890324228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1452,7 @@ GameObject:
   - component: {fileID: 6380886350549213172}
   - component: {fileID: 586331742707897794}
   - component: {fileID: 3770755493544155352}
+  - component: {fileID: 4177682175867347646}
   - component: {fileID: 2772627718873202584}
   - component: {fileID: 866160836189269294}
   - component: {fileID: 7564074496278537202}
@@ -1448,6 +1480,7 @@ Transform:
   - {fileID: 6457528683425184325}
   - {fileID: 5322855815511902172}
   - {fileID: 8772328443442261251}
+  - {fileID: 1584474067925123380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8455961270345227133
@@ -1544,11 +1577,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: {fileID: 3501852433735634973}
   skill1Cooldown: 1
-  skill2Cooldown: 300
-  skill3Cooldown: 300
-  skill1Range: 10
+  skill2Cooldown: 1000
+  skill3Cooldown: 1000
+  skill1Range: 20
   skill2Range: 3
   skill3Range: 3
+--- !u!114 &4177682175867347646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259175055369822327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e604b59c745450f4fa6154366de0ed04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dimensionCutterPrefab: {fileID: -6328881203089297981, guid: cbc69b70a7fa02c418505cf30b415b43, type: 3}
+  cutterSpawnPoint: {fileID: 1584474067925123380}
+  monsterStats: {fileID: 6380886350549213172}
+  monsterAI: {fileID: 3501852433735634973}
 --- !u!114 &2772627718873202584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1603,7 +1652,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
