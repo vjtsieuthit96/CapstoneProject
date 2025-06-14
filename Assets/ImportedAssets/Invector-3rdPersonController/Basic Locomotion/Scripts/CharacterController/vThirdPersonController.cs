@@ -267,6 +267,10 @@ namespace Invector.vCharacterController
         {
             isStrafing = !isStrafing;
         }
+        public virtual void OpenSettingMenu()
+        {
+            isOpenSettingMenu = !isOpenSettingMenu;
+        }
 
         /// <summary>
         /// Triggers the Jump Animation and set the necessary variables to make the Jump behavior in the <seealso cref="vThirdPersonMotor"/>
