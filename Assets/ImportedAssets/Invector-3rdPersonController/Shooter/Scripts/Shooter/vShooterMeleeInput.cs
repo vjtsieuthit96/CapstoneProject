@@ -435,11 +435,12 @@ namespace Invector.vCharacterController
         /// </summary>
         public override void InputHandle()
         {
+            SettingMenuInput();
+
             if (cc == null || cc.isDead)
             {
                 return;
             }
-
             #region BasicInput
 
             if (!cc.ragdolled && !lockInput)
@@ -450,7 +451,6 @@ namespace Invector.vCharacterController
                 StrafeInput();
                 JumpInput();
                 RollInput();
-                SettingMenuInput();
             }
 
             #endregion

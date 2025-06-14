@@ -311,22 +311,22 @@ MonoBehaviour:
       freeRotation: 1
     cameraMode: 2
   - Name: SettingMenu
-    forward: 60
-    right: 0
-    defaultDistance: 1.5
+    forward: -1
+    right: 3
+    defaultDistance: 1.8
     maxDistance: 3
     minDistance: 0.5
-    height: 0
+    height: 1.43
     smooth: 10
-    smoothDamp: 0
+    smoothDamp: 6
     xMouseSensitivity: 3
     yMouseSensitivity: 3
-    yMinLimit: -40
-    yMaxLimit: 80
+    yMinLimit: -70
+    yMaxLimit: 70
     xMinLimit: -360
     xMaxLimit: 360
-    rotationOffSet: {x: 0, y: 0, z: 0}
-    cullingHeight: 0.2
+    rotationOffSet: {x: 0.9, y: -30, z: 0}
+    cullingHeight: 1.9
     cullingMinDist: 0.1
     fov: 60
     useZoom: 0
