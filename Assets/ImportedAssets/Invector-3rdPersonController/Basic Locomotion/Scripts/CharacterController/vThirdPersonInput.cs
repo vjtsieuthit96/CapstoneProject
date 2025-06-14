@@ -492,6 +492,11 @@ namespace Invector.vCharacterController
             if (settingsInput.GetButtonDown())
             {
                 cc.OpenSettingMenu();
+                if (cc.isOpenSettingMenu)
+                {
+                    UpdateCameraStates();
+                    Debug.Log("Open Setting Menu...");
+                }
             }
         }
 
@@ -620,16 +625,17 @@ namespace Invector.vCharacterController
                     tpCamera.Init();
                 }
             }
-
+             if (cc.isOpenSettingMenu)
+            {
+                tpCamera.ChangeState("SettingMenu", true);
+                Debug.Log("Change CameraState..." + cc.isOpenSettingMenu);
+            }else
             if (changeCameraState)
             {
                 tpCamera.ChangeState(customCameraState, customlookAtPoint, smoothCameraState);
             }
             // TODO: add a way to change the camera state when press ESC KEYCODE, open Setting Menu
-            else if(settingsInput.GetButtonDown())
-            {
 
-            }    
             else if (cc.isCrouching)
             {
                 tpCamera.ChangeState("Crouch", true);

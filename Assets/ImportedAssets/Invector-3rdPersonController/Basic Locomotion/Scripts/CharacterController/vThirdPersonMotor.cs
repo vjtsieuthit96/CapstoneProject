@@ -14,15 +14,15 @@ namespace Invector.vCharacterController
 
         #endregion
         #region SettingMenu
-        protected bool _isOnSettingMenu;
-        public virtual bool isOnSettingMenu
+        protected bool _isOpenSettingMenu;
+        public virtual bool isOpenSettingMenu
         {
-            get { return _isOnSettingMenu; }
+            get { return _isOpenSettingMenu; }
             set
             {
-                if (_isOnSettingMenu != value)
+                if (_isOpenSettingMenu != value)
                 {
-                    _isOnSettingMenu = value;
+                    _isOpenSettingMenu = value;
                 }
             }
         }

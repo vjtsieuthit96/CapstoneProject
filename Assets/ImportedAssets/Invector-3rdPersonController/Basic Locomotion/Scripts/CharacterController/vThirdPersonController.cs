@@ -269,7 +269,7 @@ namespace Invector.vCharacterController
         }
         public virtual void OpenSettingMenu()
         {
-            isOnSettingMenu = !isOnSettingMenu;
+            isOpenSettingMenu = !isOpenSettingMenu;
         }
 
         /// <summary>
