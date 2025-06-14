@@ -30,7 +30,8 @@ public class ChaseNode : Node
         if (distanceToPlayer <= agent.stoppingDistance)
         {
             Debug.Log("Đã đến vị trí người chơi, khôi phục tốc độ.");
-            agent.speed = monster.GetBaseSpeed(); // Đến gần, quay về tốc độ bình thường      
+            agent.speed = monster.GetBaseSpeed(); // Đến gần, quay về tốc độ bình thường
+            monster.SetAnimatorParameter(MonsterAnimatorHash.nAttackHash, null); // Kích hoạt hành động tấn công
             return NodeState.SUCCESS;
         }
 

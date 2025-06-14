@@ -25,6 +25,14 @@ public class MonsterAudio : MonoBehaviour
             monsterAudio.PlayOneShot(roarSounds[randomIndex]);
         }
     }
+    
+    public void PlayRoarSelected(int index)
+    {
+        if (monsterAudio && roarSounds.Length > index && index >= 0)
+        {
+            monsterAudio.PlayOneShot(roarSounds[index]);
+        }
+    }
 
     public void PlaySFX(AudioClip clip)
     {

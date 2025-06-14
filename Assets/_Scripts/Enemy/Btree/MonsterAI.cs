@@ -40,7 +40,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isShocked = false;
     protected virtual void Start()
     {
-        //PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
+        PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
@@ -214,9 +214,13 @@ public abstract class MonsterAI : MonoBehaviour
                 break;
         }
     }
-    public bool GetAnimatorParameter(int hash)
+    public bool GetBoolAnimatorParameter(int hash)
     {
         return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
+    }
+    public float GetFloatAnimatorParameter(int hash)
+    {
+        return monsterAnimator.GetFloat(hash);
     }
     #endregion    
 
