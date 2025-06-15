@@ -13,6 +13,25 @@ namespace Invector.vCharacterController
         #region Variables               
 
         #endregion
+        #region ModelTransform
+        [vEditorToolbar("ModelTransform")]
+        [SerializeField] protected Transform _modelTransform;
+        public virtual Transform modelTransform
+        {
+            get
+            {
+                if (_modelTransform == null)
+                {
+                    _modelTransform = transform;
+                }
+                return _modelTransform;
+            }
+            set
+            {
+                _modelTransform = value;
+            }
+        }
+        #endregion
         #region SettingMenu
         protected bool _isOpenSettingMenu;
         public virtual bool isOpenSettingMenu

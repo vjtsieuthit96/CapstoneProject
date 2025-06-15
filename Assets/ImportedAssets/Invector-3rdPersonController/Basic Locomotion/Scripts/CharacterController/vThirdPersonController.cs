@@ -5,7 +5,7 @@ namespace Invector.vCharacterController
 {
     [vClassHeader("THIRD PERSON CONTROLLER", iconName = "controllerIcon")]
     public class vThirdPersonController : vThirdPersonAnimator
-    {
+    { 
         /// <summary>
         /// When Disabling the Controller Component we change the Capsule Collider to Fullsize to avoid sinking in the ground
         /// </summary>
@@ -266,6 +266,15 @@ namespace Invector.vCharacterController
         public virtual void Strafe()
         {
             isStrafing = !isStrafing;
+        }
+        // find the foward point of model
+        public float GetModelFowardX()
+        {
+            return transform.forward.x;
+        }
+        public float GetModelFowardY()
+        {
+            return transform.forward.y;
         }
         public virtual void OpenSettingMenu()
         {

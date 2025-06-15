@@ -508,12 +508,13 @@ namespace Invector.vCharacterController
         public void SettingMenuOn()
         {
             cc.StopCharacter();
-            if (tpCamera)
+            if (tpCamera && cc)
             {
-                tpCamera.mouseX = 0f;
+                float playerY = cc.transform.eulerAngles.y;
+                tpCamera.mouseX = playerY;
                 tpCamera.mouseY = 0f;
                 changeCameraState = true;
-                customCameraState = "SettingMenu";
+                ChangeCameraStateWithLerp("SettingMenu");
             }
             LockCursor(true);
             ShowCursor(true);
