@@ -219,7 +219,10 @@ namespace Invector.vCharacterController
                 shieldSlider.value = Mathf.Lerp(shieldSlider.value, cc.currentShield, shieldSliderValueSmooth * Time.fixedDeltaTime);
             }
         }
-
+        public void ToggleSettingsMenu()
+        {
+            Debug.Log("Toggle Settings Menu");
+        }    
         public void ShowDamageSprite()
         {
             if (damaged)

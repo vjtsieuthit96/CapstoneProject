@@ -12,6 +12,21 @@ namespace Invector.vCharacterController
     {
         #region Variables               
 
+        #endregion
+        #region SettingMenu
+        protected bool _isOpenSettingMenu;
+        public virtual bool isOpenSettingMenu
+        {
+            get { return _isOpenSettingMenu; }
+            set
+            {
+                if (_isOpenSettingMenu != value)
+                {
+                    _isOpenSettingMenu = value;
+                }
+            }
+        }
+        #endregion
         #region Stamina       
 
         [vEditorToolbar("Stamina", order = 2)]
@@ -353,6 +368,7 @@ namespace Invector.vCharacterController
 
         #region Actions
 
+
         public virtual bool isStrafing
         {
             get
@@ -537,7 +553,6 @@ namespace Invector.vCharacterController
 
         #endregion
 
-        #endregion
 
         #region Initilize Motor
 
