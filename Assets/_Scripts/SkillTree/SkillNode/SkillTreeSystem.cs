@@ -1,16 +1,25 @@
 using UnityEngine;
+using System;
 
 public class SkillTreeSystem : MonoBehaviour
 {
     public SkillTree skillTree;
-    public int availableSkillPoints;
+    public int availableSkillPoints = 6;
 
-    public void TryUnlock(SkillNode node)
+    public delegate void OnSkillPointsChanged();
+    public event OnSkillPointsChanged onSkillPointsChanged;
+
+    public bool TryUnlock(SkillNode node)
     {
-        if (availableSkillPoints > 0 && node.CanUnlock())
+        if (node.CanUnlock() && availableSkillPoints >= node.requiredPoints)
         {
             node.Unlock();
-            availableSkillPoints--;
+            availableSkillPoints -= node.requiredPoints;
+            onSkillPointsChanged?.Invoke();
+            return true;
         }
+        return false;
     }
+
+    public int GetPoints() => availableSkillPoints;
 }

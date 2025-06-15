@@ -6,6 +6,7 @@ public class SkillNodeButton : MonoBehaviour
     public Image icon;
     public Button button;
     public GameObject lockedOverlay;
+    public Text costText;
 
     private SkillNode node;
     private SkillTreeSystem system;
@@ -14,21 +15,31 @@ public class SkillNodeButton : MonoBehaviour
     {
         this.node = node;
         this.system = system;
+
         icon.sprite = node.icon;
+        costText.text = node.requiredPoints.ToString();
 
-        button.onClick.AddListener(() => system.TryUnlock(node));
+        button.onClick.AddListener(() => {
+            if (system.TryUnlock(node))
+                UpdateVisual();
+        });
+
+        system.onSkillPointsChanged += UpdateVisual;
         UpdateVisual();
     }
 
-    void Update()
+    void OnDestroy()
     {
-        UpdateVisual();
+        system.onSkillPointsChanged -= UpdateVisual;
     }
 
-    void UpdateVisual()
+    public void UpdateVisual()
     {
-        button.interactable = node.CanUnlock();
+        bool canUnlock = node.CanUnlock() && system.GetPoints() >= node.requiredPoints;
+
+        button.interactable = canUnlock && !node.isUnlocked;
         lockedOverlay.SetActive(!node.isUnlocked);
+
         icon.color = node.isUnlocked ? Color.white : Color.gray;
     }
 }
