@@ -50,5 +50,7 @@ public class CharacterStats : ScriptableObject
     public bool isImortal = false;
 
     [Header("Player Damage")]
-    public float PlayerDamageMultiplier = 1f;
+    public float PlayerDamageMultiplierLonggun = 1f;
+    public float PlayerDamageMultiplierShortgun = 1f;
+    public float PlayerShootingSpeed = 1f;
 }

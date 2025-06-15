@@ -46,7 +46,14 @@ public class WeaponInjector : MonoBehaviour
         {
             if (characterConfigurator != null)
             {
-                weapon.PlayerDamageMultiplier = characterConfigurator.PlayerDamageMultiplier;
+                if(weapon.gunData.GunType == GunType.ShortGun)
+                {
+                    weapon.PlayerDamageMultiplier = characterConfigurator.PlayerDamageMultiplierShortgun;
+                }
+                else if (weapon.gunData.GunType == GunType.LongGun)
+                {
+                    weapon.PlayerDamageMultiplier = characterConfigurator.PlayerDamageMultiplierLonggun;
+                }
                 weapon.isExplosive = characterConfigurator.isExplosive;
             }
             InjectToWeapon(weapon);

@@ -180,6 +180,8 @@ namespace Invector.vShooter
         [vEditorToolbar("Decal Item")]
         public vDecalManager decalManager;
 
+        [vEditorToolbar("Gun Stats")]
+        public GunData gunData;
 
         [HideInInspector]
         public Transform root;
