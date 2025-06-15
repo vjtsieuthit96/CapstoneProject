@@ -5444,10 +5444,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 10
   weaponCategory: Pistol
-  isExplosive: 0
-  isPhysicsDamage: 0
+  isExplosive: 1
+  EffectMode: 0
   _shootFrequency: 0.25
   isInfinityAmmo: 1
   ExplosionPrefab: {fileID: 170736, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
@@ -5633,6 +5633,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   decalManager: {fileID: 0}
+  gunData: {fileID: 11400000, guid: 209c2ed0db168e5478d6b4abf90fe6ec, type: 2}
   root: {fileID: 0}
   isSecundaryWeapon: 0
 --- !u!114 &5035605479587167707

@@ -136,8 +136,9 @@ public class CharacterConfigurator : MonoBehaviour
         // Animator
         if (animator != null)
         {
-            animator.SetFloat("FreeMovementSpeed", stats.freeMovementAnimatorSpeed);
-            animator.SetFloat("ReloadSpeed", stats.ReloadSpeed);
+            animator.SetFloat("FreeMovementSpeed", s.freeMovementAnimatorSpeed);
+            animator.SetFloat("ReloadSpeed", s.ReloadSpeed);
+            animator.SetFloat("ShootingSpeed", s.PlayerShootingSpeed);
         }
 
     }

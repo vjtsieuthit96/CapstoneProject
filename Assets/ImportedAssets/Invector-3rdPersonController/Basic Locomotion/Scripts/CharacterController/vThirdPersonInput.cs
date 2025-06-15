@@ -34,7 +34,7 @@ namespace Invector.vCharacterController
         protected bool _lockInput = false;
         [HideInInspector] public virtual bool lockInput { get { return _lockInput; } set { _lockInput = value; } }
 
-        [vEditorToolbar("Camera Settings")]
+        [vEditorToolbar(title: "Camera Settings")]
         public bool lockCameraInput;
         public bool invertCameraInputVertical, invertCameraInputHorizontal;
         [vEditorToolbar("Inputs")]

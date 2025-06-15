@@ -51,4 +51,5 @@ public class CharacterStats : ScriptableObject
 
     [Header("Player Damage")]
     public float PlayerDamageMultiplier = 1f;
+    public float PlayerShootingSpeed = 1f;
 }
