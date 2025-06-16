@@ -34,6 +34,10 @@ public class WeaponInjector : MonoBehaviour
                 weapon.isExplosive = characterConfigurator.isExplosive;
                 weapon.EffectMode = characterConfigurator.EffectMode;
                 weapon.shootFrequency = weapon.shootFrequency * characterConfigurator.PlayerFireRate;
+                if(weapon.gunData.GunType == GunType.LongGun)
+                {
+                    weapon.clipSize = characterConfigurator.LongGunClipSize;
+                }    
             }
         }
     }

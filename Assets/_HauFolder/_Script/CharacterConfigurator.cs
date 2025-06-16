@@ -68,10 +68,11 @@ public class CharacterConfigurator : MonoBehaviour
     [Header("Player Damage")]
     public float PlayerDamageMultiplierLonggun;
     public float PlayerDamageMultiplierShortgun;
+    [Header("Player Personal firearm index")]
     public float PlayerShootingSpeed;
     public float PlayerFireRate;
-
-#endregion
+    public int LongGunClipSize;
+    #endregion
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -182,6 +183,8 @@ public class CharacterConfigurator : MonoBehaviour
         PlayerDamageMultiplierShortgun = other.PlayerDamageMultiplierShortgun;
         PlayerShootingSpeed = other.PlayerShootingSpeed;
         PlayerFireRate = other.PlayerFireRate;
+
+        LongGunClipSize = other.LongGunClipSize;
     }
     #endregion
     #region Apply dữ liệu realtime
