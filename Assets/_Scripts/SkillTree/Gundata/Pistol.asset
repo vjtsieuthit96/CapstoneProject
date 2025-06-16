@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d3a35c20b6af946aa48a66e0fe99d8, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  ReloadTime: 0
+  ReloadTime: 1
   ReloadOnebyOne: 0
-  ClipSize: 0
+  ClipSize: 8
   DamageClass: 0
-  CameraStability: 0
-  RecoilRight: 0
-  RecoilLeft: 0
-  RecoilUp: 0
+  CameraStability: 0.5
+  RecoilRight: 0.5
+  RecoilLeft: -0.5
+  RecoilUp: 2
+  FireRate: 0.25
   GunElement: 0
   BulletType: 0
   GunType: 0

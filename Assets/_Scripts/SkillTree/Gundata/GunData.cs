@@ -15,6 +15,9 @@ public class GunData : ScriptableObject
     public float RecoilLeft;
     public float RecoilUp;
 
+    // Gun Shoot
+    public float FireRate;
+
     // Gun Stats
     public Element GunElement;
     public BulletType BulletType;

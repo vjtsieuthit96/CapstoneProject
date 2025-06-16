@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
+  m_Name: 5.Attack_Increase5%FireRateAllGuns
+  m_EditorClassIdentifier: 
+  id: 5AllGunsFireRate10%
+  displayName: All Guns Increase 10% Fire Rate
+  description: All Guns Increase 10% Fire Rate
+  icon: {fileID: 0}
+  prerequisites:
+  - {fileID: 11400000, guid: 85f14eb7098965f468fa319e547bafc1, type: 2}
+  - {fileID: 11400000, guid: cbbb1c2972d2d96459c51879eda5a16b, type: 2}
+  unlockCondition: 1
+  isUnlocked: 0
+  requiredPoints: 1
+  effect: {fileID: 11400000, guid: 6f916fb6285bd5a4a991e3dad915e40d, type: 2}

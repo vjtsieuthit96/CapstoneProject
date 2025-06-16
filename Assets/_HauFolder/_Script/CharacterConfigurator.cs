@@ -11,6 +11,7 @@ public class CharacterConfigurator : MonoBehaviour
     private vThirdPersonController controller;
     private Animator animator;
     public vHUDController hudController;
+    public WeaponInjector weaponInjector;
     public bool isExplosive = false;
     public bool isPhysicsDamage = true;
     public bool isIceEffect = false;
@@ -68,9 +69,16 @@ public class CharacterConfigurator : MonoBehaviour
     [Header("Player Damage")]
     public float PlayerDamageMultiplierLonggun;
     public float PlayerDamageMultiplierShortgun;
+    [Header("Player Personal firearm index")]
     public float PlayerShootingSpeed;
+    public float PlayerFireRate;
+    public int LongGunClipSize;
+    public float GunRecoil;
+    #endregion
 
-#endregion
+    public int CurrentBullet;
+    public int CurrentGunClipSize;
+    public GunType GunType;
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -180,6 +188,10 @@ public class CharacterConfigurator : MonoBehaviour
         PlayerDamageMultiplierLonggun = other.PlayerDamageMultiplierLonggun;
         PlayerDamageMultiplierShortgun = other.PlayerDamageMultiplierShortgun;
         PlayerShootingSpeed = other.PlayerShootingSpeed;
+        PlayerFireRate = other.PlayerFireRate;
+
+        LongGunClipSize = other.LongGunClipSize;
+        GunRecoil = other.GunRecoil;
     }
     #endregion
     #region Apply dữ liệu realtime
@@ -240,5 +252,16 @@ public class CharacterConfigurator : MonoBehaviour
         }
 
     }
+
     #endregion
+
+    public bool isHalfClip()
+    {
+        return CurrentBullet <= CurrentGunClipSize / 3;
+    }
+    public void AddBullet(int bullet)
+    {
+        weaponInjector.addBullet(bullet);
+    }    
 }
+
