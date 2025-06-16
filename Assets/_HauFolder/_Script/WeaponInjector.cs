@@ -42,6 +42,9 @@ public class WeaponInjector : MonoBehaviour
                 weapon.gunData.RecoilLeft *= characterConfigurator.GunRecoil;
                 weapon.gunData.RecoilRight *= characterConfigurator.GunRecoil;
                 weapon.gunData.RecoilUp *= characterConfigurator.GunRecoil;
+                characterConfigurator.GunType = weapon.gunData.GunType;
+                characterConfigurator.CurrentBullet = weapon.ammoCount;
+                characterConfigurator.CurrentGunClipSize = weapon.gunData.ClipSize;
             }
         }
     }
@@ -68,6 +71,12 @@ public class WeaponInjector : MonoBehaviour
             InjectToWeapon(weapon);
         }
     }
+    public void addBullet(int bullet)
+    {
+        var weapon = GetComponentInChildren<vShooterWeapon>();
+        weapon.AddAmmo(bullet);
+    }
+
 
     public void InjectToWeapon(vShooterWeapon weapon)
     {

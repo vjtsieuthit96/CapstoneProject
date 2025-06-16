@@ -72,6 +72,7 @@ namespace Invector.vShooter
         public bool automaticWeapon;
 
         [vEditorToolbar("Ammo")]
+        public int debugAmmo;
         public float reloadTime = 1f;
         public bool reloadOneByOne;
         [SerializeField, Tooltip("Max clip size of your weapon"), FormerlySerializedAs("clipSize")]
@@ -224,6 +225,7 @@ namespace Invector.vShooter
         private void Update()
         {
             updateGunData();
+            debugAmmo = ammoCount;
         }
         #region Copy Dữ liệu súng
         private void updateGunData()
@@ -403,6 +405,7 @@ namespace Invector.vShooter
                 }
                 else
                 {
+                    
                     ammo -= count;
                 }
             }

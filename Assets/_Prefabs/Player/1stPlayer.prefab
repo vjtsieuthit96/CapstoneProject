@@ -12246,6 +12246,7 @@ GameObject:
   - component: {fileID: 6214947831786320855}
   - component: {fileID: 8912581301584089194}
   - component: {fileID: 4130657884187016195}
+  - component: {fileID: 4826787594627469615}
   - component: {fileID: 7404855805508288429}
   - component: {fileID: 9036155935253771897}
   - component: {fileID: 8305026052352428771}
@@ -12372,6 +12373,18 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &4826787594627469615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831212676386197866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fe76cce257bad438b33a05607ef3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7404855805508288429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12386,13 +12399,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: a937d780589d0ae4dbcd5fe7d848662d, type: 2}
   hudController: {fileID: 5747890712328549891}
-  PlayerDamageMultiplier: 0
   isExplosive: 0
   isPhysicsDamage: 1
   isIceEffect: 0
   isElectricEffect: 0
   isPoisonEffect: 0
   EffectMode: 0
+  walkSpeed: 0
+  runSpeed: 0
+  sprintSpeed: 0
+  crouchSpeed: 0
+  maxStamina: 0
+  staminaRecovery: 0
+  sprintStamina: 0
+  jumpStamina: 0
+  rollStamina: 0
+  jumpHeight: 0
+  jumpTimer: 0
+  jumpStandingDelay: 0
+  airSpeed: 0
+  airSmooth: 0
+  extraGravity: 0
+  limitFallVelocity: 0
+  fallMinHeight: 0
+  fallMinVerticalVelocity: 0
+  fallDamage: 0
+  rollSpeed: 0
+  rollRotationSpeed: 0
+  rollExtraGravity: 0
+  timeToRollAgain: 0
+  noDamageWhileRolling: 0
+  noActiveRagdollWhileRolling: 0
+  freeMovementAnimatorSpeed: 0
+  ReloadSpeed: 0
+  PlayerMaxHealth: 0
+  PlayerMaxAmour: 0
+  HealthRecovery: 0
+  HealthRecoveryPerTime: 0
+  isImortal: 0
+  PlayerDamageMultiplierLonggun: 0
+  PlayerDamageMultiplierShortgun: 0
+  PlayerShootingSpeed: 0
+  PlayerFireRate: 0
+  LongGunClipSize: 0
+  GunRecoil: 0
+  CurrentBullet: 0
+  CurrentGunClipSize: 0
+  GunType: 0
   _currentAmour: 0
 --- !u!114 &9036155935253771897
 MonoBehaviour:
@@ -12408,7 +12461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 1
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 4
   _isDead: 1
   _currentHealth: 100
   isImmortal: 0
@@ -23599,7 +23652,7 @@ Transform:
   m_GameObject: {fileID: 3211797430243865923}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: -0, z: -0, w: 0.7071069}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.622, y: 1.692, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27057,7 +27110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -19.999998}
+  m_AnchoredPosition: {x: 0, y: -19.999939}
   m_SizeDelta: {x: 160, y: -40.000004}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3410355553694734853
@@ -42611,7 +42664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 0
   cameraStyle: 0
   canUseThrow: 0
   drawTrajectory: 1
@@ -57514,9 +57567,9 @@ MonoBehaviour:
   staminaSlider: {fileID: 1843464600009953292}
   staminaSliderMaxValueSmooth: 10
   staminaSliderValueSmooth: 100
-  staminaSliderFadeCanvas: {fileID: 107189100699619506}
+  staminaSliderFadeCanvas: {fileID: 0}
   hiddenTime: 2
-  staminaSliderCanvasGroup: {fileID: 7447105379273967833}
+  staminaSliderCanvasGroup: {fileID: 0}
   hiddenSmooth: 30
   shieldSlider: {fileID: 4784771388350592861}
   shieldSliderMaxValueSmooth: 10
@@ -65498,11 +65551,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2642540930199085823, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2642540930199085823, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3901177827499021586, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
       propertyPath: m_Type
@@ -65548,13 +65601,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Health&Stamina&Shield 1
       objectReference: {fileID: 0}
-    - target: {fileID: 9012502181510847429, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 7698238566679078693, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9012502181510847429, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012502181510847429, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9218282363578390444, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
       propertyPath: m_Pivot.x
@@ -65644,17 +65701,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2158297088023587686}
   m_SourcePrefab: {fileID: 100100000, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
---- !u!114 &107189100699619506 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5344375810560010018, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
-  m_PrefabInstance: {fileID: 5429026200420890512}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5f8d7f4b54ee5648818cf43b799bb4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &177933515582679809 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5273683305153240209, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
@@ -65704,11 +65750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!225 &7447105379273967833 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 3174659996950904649, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}
-  m_PrefabInstance: {fileID: 5429026200420890512}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7938595666897504513 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2701113189470420625, guid: 2124ffa6fd4c3564ca4a4532a7f8a6fa, type: 3}

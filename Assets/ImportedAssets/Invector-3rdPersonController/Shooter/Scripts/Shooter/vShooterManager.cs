@@ -902,6 +902,7 @@ namespace Invector.vShooter
                 string textA = weapon.dontUseReload ? (weapon.isInfinityAmmo || AllAmmoInfinity) ? "∞" : (weapon.ammoCount + extraAmmo).ToString("00") : weapon.ammoCount.ToString("00"); ;
                 string textB = weapon.dontUseReload && (weapon.isInfinityAmmo || AllAmmoInfinity) ? "" : !weapon.dontUseReload && (weapon.isInfinityAmmo || AllAmmoInfinity) ? "∞" : weapon.dontUseReload && !(weapon.isInfinityAmmo && AllAmmoInfinity) ? "" : (extraAmmo).ToString("00");
                 ammoDisplay.UpdateDisplay(textA, textB, weapon.ammoID);
+                //Debug.Log( "Lượng đạn còn lại là: "+ weapon.ammoCount);
             }
         }
 
