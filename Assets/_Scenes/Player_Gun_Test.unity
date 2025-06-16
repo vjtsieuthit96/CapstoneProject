@@ -949,6 +949,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11499380, guid: 490b027b4bc17844c86dfb0e3f50ba97, type: 3}
+      propertyPath: gunData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5958b9a5ca7cb0b49aa19005f9159364, type: 2}
+    - target: {fileID: 11499380, guid: 490b027b4bc17844c86dfb0e3f50ba97, type: 3}
       propertyPath: lightOnShot
       value: 
       objectReference: {fileID: 0}
@@ -961,8 +965,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 11499380, guid: 490b027b4bc17844c86dfb0e3f50ba97, type: 3}
+      propertyPath: decalManager
+      value: 
+      objectReference: {fileID: 862777442}
+    - target: {fileID: 11499380, guid: 490b027b4bc17844c86dfb0e3f50ba97, type: 3}
       propertyPath: handIKTarget
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499380, guid: 490b027b4bc17844c86dfb0e3f50ba97, type: 3}
+      propertyPath: selectedToolbar
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11499380, guid: 490b027b4bc17844c86dfb0e3f50ba97, type: 3}
       propertyPath: 'emittShurykenParticle.Array.data[0]'
@@ -1469,6 +1481,17 @@ Transform:
   - {fileID: 2086525413}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &862777442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3136579921569233362, guid: 490b027b4bc17844c86dfb0e3f50ba97, type: 3}
+  m_PrefabInstance: {fileID: 591466483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192cf5e148161f24ca871f4b201bccd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &866791324
 PrefabInstance:
   m_ObjectHideFlags: 0

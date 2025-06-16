@@ -72,6 +72,7 @@ public class CharacterConfigurator : MonoBehaviour
     public float PlayerShootingSpeed;
     public float PlayerFireRate;
     public int LongGunClipSize;
+    public float GunRecoil;
     #endregion
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
@@ -185,6 +186,7 @@ public class CharacterConfigurator : MonoBehaviour
         PlayerFireRate = other.PlayerFireRate;
 
         LongGunClipSize = other.LongGunClipSize;
+        GunRecoil = other.GunRecoil;
     }
     #endregion
     #region Apply dữ liệu realtime

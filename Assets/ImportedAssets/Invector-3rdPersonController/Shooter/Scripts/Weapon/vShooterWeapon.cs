@@ -221,6 +221,26 @@ namespace Invector.vShooter
 
         [System.NonSerialized] private float testTime;
 
+        private void Update()
+        {
+            updateGunData();
+        }
+        #region Copy Dữ liệu súng
+        private void updateGunData()
+        {
+            reloadTime = gunData.ReloadTime;
+            reloadOneByOne = gunData.ReloadOnebyOne;
+            clipSize = gunData.ClipSize;
+            cameraStability = gunData.CameraStability;
+            recoilLeft = gunData.RecoilLeft;
+            recoilRight = gunData.RecoilRight;
+            recoilUp = gunData.RecoilUp;
+            shootFrequency = gunData.FireRate;
+        }    
+
+
+        #endregion
+
         protected virtual void OnDrawGizmos()
         {
 

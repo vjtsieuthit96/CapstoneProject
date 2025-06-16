@@ -33,11 +33,15 @@ public class WeaponInjector : MonoBehaviour
             {
                 weapon.isExplosive = characterConfigurator.isExplosive;
                 weapon.EffectMode = characterConfigurator.EffectMode;
-                weapon.shootFrequency = weapon.shootFrequency * characterConfigurator.PlayerFireRate;
+                weapon.gunData.FireRate *= characterConfigurator.PlayerFireRate;
+                weapon.gunData.ReloadTime = characterConfigurator.ReloadSpeed;
                 if(weapon.gunData.GunType == GunType.LongGun)
                 {
-                    weapon.clipSize = characterConfigurator.LongGunClipSize;
-                }    
+                    weapon.gunData.ClipSize = characterConfigurator.LongGunClipSize;
+                }
+                weapon.gunData.RecoilLeft *= characterConfigurator.GunRecoil;
+                weapon.gunData.RecoilRight *= characterConfigurator.GunRecoil;
+                weapon.gunData.RecoilUp *= characterConfigurator.GunRecoil;
             }
         }
     }

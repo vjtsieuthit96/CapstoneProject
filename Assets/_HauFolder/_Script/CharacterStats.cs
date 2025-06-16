@@ -57,4 +57,5 @@ public class CharacterStats : ScriptableObject
     public float PlayerShootingSpeed = 1f;
     public float PlayerFireRate = 1f;
     public int LongGunClipSize = 25;
+    public float GunRecoil = 1;
 }

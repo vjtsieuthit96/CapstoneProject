@@ -5444,9 +5444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 9
   weaponCategory: Pistol
-  isExplosive: 1
+  isExplosive: 0
   EffectMode: 0
   _shootFrequency: 0.25
   isInfinityAmmo: 1
@@ -5463,7 +5463,7 @@ MonoBehaviour:
   quadDispersion: 0
   velocity: 310
   damageByDistance: 1
-  PlayerDamageMultiplier: 2
+  PlayerDamageMultiplier: 1
   _minDamageDistance: 8
   _maxDamageDistance: 50
   _minDamage: 15

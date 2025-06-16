@@ -7,6 +7,6 @@ public class IncreaseReloadSpeed : SkillEffect
     public float reloadSpeedPercent;
     public override void ApplyEffect(CharacterConfigurator configurator)
     {
-        configurator.ReloadSpeed += (configurator.ReloadSpeed * reloadSpeedPercent );
+        configurator.ReloadSpeed -= (configurator.ReloadSpeed * reloadSpeedPercent );
     }
 }
