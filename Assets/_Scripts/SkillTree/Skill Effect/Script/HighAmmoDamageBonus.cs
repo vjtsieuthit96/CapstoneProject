@@ -30,6 +30,7 @@ public class HighAmmoDamageBonus : SkillEffect
             configurator.PlayerDamageMultiplierLonggun += bonusLonggun;
 
             isActive = true;
+            Debug.Log($"{nameof(HighAmmoDamageBonus)} activated");
         }
         else if (!conditionMet && isActive)
         {

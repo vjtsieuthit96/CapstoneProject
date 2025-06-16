@@ -30,18 +30,24 @@ public class FinalAttack : SkillEffect
             configurator.PlayerDamageMultiplierLonggun += configurator.PlayerDamageMultiplierLonggun * finalBulletBonusPercent;
             configurator.PlayerDamageMultiplierShortgun += configurator.PlayerDamageMultiplierShortgun * finalBulletBonusPercent;
             finalBulletBonusActive = true;
+            Debug.Log($"{nameof(FinalAttack)}: Final bullet bonus activated");
+
         }
         else if (configurator.CurrentBullet > 1 && finalBulletBonusActive)
         {
             configurator.PlayerDamageMultiplierLonggun /= (1 + finalBulletBonusPercent);
             configurator.PlayerDamageMultiplierShortgun /= (1 + finalBulletBonusPercent);
             finalBulletBonusActive = false;
+            Debug.Log($"{nameof(FinalAttack)}: Final bullet bonus deactivated");
+
         }
         int currentHitCount = EnemyHitCounter.Instance.GetEnemyHitCount();
         if (currentHitCount != 0 && currentHitCount % killStreakToAddAmmo == 0 && currentHitCount != lastKillCheckpoint)
         {
             configurator.AddBullet(bulletToAdd);
             lastKillCheckpoint = currentHitCount;
+            Debug.Log($"{nameof(FinalAttack)}: Activate");
+
         }
     }
 }
