@@ -33,6 +33,7 @@ public class WeaponInjector : MonoBehaviour
             {
                 weapon.isExplosive = characterConfigurator.isExplosive;
                 weapon.EffectMode = characterConfigurator.EffectMode;
+                weapon.shootFrequency = weapon.shootFrequency * characterConfigurator.PlayerFireRate;
             }
         }
     }

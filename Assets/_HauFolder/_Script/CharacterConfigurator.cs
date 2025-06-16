@@ -69,6 +69,7 @@ public class CharacterConfigurator : MonoBehaviour
     public float PlayerDamageMultiplierLonggun;
     public float PlayerDamageMultiplierShortgun;
     public float PlayerShootingSpeed;
+    public float PlayerFireRate;
 
 #endregion
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
@@ -180,6 +181,7 @@ public class CharacterConfigurator : MonoBehaviour
         PlayerDamageMultiplierLonggun = other.PlayerDamageMultiplierLonggun;
         PlayerDamageMultiplierShortgun = other.PlayerDamageMultiplierShortgun;
         PlayerShootingSpeed = other.PlayerShootingSpeed;
+        PlayerFireRate = other.PlayerFireRate;
     }
     #endregion
     #region Apply dữ liệu realtime
