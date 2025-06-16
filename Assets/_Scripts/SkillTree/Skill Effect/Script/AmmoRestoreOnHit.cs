@@ -19,6 +19,7 @@ public class AmmoRestoreOnHit : SkillEffect
         {
             configurator.AddBullet(BullettoAdd);
             lastProcessedHitCount = currentHit;
+            Debug.Log($"{nameof(AmmoRestoreOnHit)}: Activate");
         }
     }
 }
