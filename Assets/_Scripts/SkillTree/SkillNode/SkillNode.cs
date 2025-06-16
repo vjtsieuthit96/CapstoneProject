@@ -35,10 +35,10 @@ public class SkillNode : ScriptableObject
         return false;
     }
 
-    public void Unlock()
+    public void Unlock(CharacterConfigurator configurator)
     {
         isUnlocked = true;
-        effect?.ApplyEffect();
+        effect?.ApplyEffect(configurator);
     }
 }
 

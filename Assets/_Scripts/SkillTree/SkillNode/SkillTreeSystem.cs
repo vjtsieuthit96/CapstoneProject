@@ -5,6 +5,7 @@ public class SkillTreeSystem : MonoBehaviour
 {
     public SkillTree skillTree;
     public int availableSkillPoints = 6;
+    [SerializeField] private CharacterConfigurator characterConfigurator;
 
     public delegate void OnSkillPointsChanged();
     public event OnSkillPointsChanged onSkillPointsChanged;
@@ -13,7 +14,7 @@ public class SkillTreeSystem : MonoBehaviour
     {
         if (node.CanUnlock() && availableSkillPoints >= node.requiredPoints)
         {
-            node.Unlock();
+            node.Unlock(characterConfigurator);
             availableSkillPoints -= node.requiredPoints;
             onSkillPointsChanged?.Invoke();
             return true;
