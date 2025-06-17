@@ -1,6 +1,6 @@
 using UnityEngine;
-[CreateAssetMenu(fileName = "PlayerHealth", menuName = "Scriptable Objects/Strength/PlayerHealth")]
-public class PlayerHealthSkillTree : SkillEffect
+[CreateAssetMenu(fileName = "PlayerSpeed", menuName = "Scriptable Objects/Strength/PlayerSpeed")]
+public class PlayerSpeedSkillTree : SkillEffect
 {
     [Header("Percent")]
     [Range(0f,1f)]

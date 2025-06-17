@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
-  m_Name: 3.Strength_PlayerHealth
+  m_Name: 8.Strength_JumpForce
   m_EditorClassIdentifier: 
-  id: 3PlayerHealth
-  displayName: Player Health
-  description: Player Health Increase 10%
+  id: 8StrengthJumpForce
+  displayName: JumpForce
+  description: Jump Force increase 20%
   icon: {fileID: 0}
   prerequisites:
-  - {fileID: 11400000, guid: b44c36751a3d04a4eb54ff9af15a2df5, type: 2}
+  - {fileID: 11400000, guid: e05992608068c7f4a9388ff967078edf, type: 2}
+  - {fileID: 11400000, guid: 62bee03362600f84481c90f10463f12e, type: 2}
   unlockCondition: 0
   isUnlocked: 0
   requiredPoints: 1
-  effect: {fileID: 11400000, guid: 479fc30311fa4a34db4c18b0fc4cd650, type: 2}
+  effect: {fileID: 11400000, guid: b2be5e64cdf2d7443bc79b4297e077b8, type: 2}

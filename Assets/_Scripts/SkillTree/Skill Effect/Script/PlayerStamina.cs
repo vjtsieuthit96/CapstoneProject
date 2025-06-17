@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[CreateAssetMenu(fileName = "PlayerStamina", menuName = "Scriptable Objects/Strength/PlayerStamina")]
 public class PlayerStamina : SkillEffect
 {
     [Header("Percent")]
