@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
+  m_Name: 4.Attack_LongGun10%
+  m_EditorClassIdentifier: 
+  id: 4LongGun10%
+  displayName: Long Gun + 10%
+  description: Long Gun + 10%
+  icon: {fileID: 0}
+  prerequisites:
+  - {fileID: 11400000, guid: 5140c553c2a23974a979321172a65fca, type: 2}
+  unlockCondition: 0
+  isUnlocked: 0
+  requiredPoints: 1
+  effect: {fileID: 11400000, guid: 1dcdb0bddfa0b8c449efc2dad16981ee, type: 2}

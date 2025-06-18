@@ -33,6 +33,18 @@ public class WeaponInjector : MonoBehaviour
             {
                 weapon.isExplosive = characterConfigurator.isExplosive;
                 weapon.EffectMode = characterConfigurator.EffectMode;
+                weapon.gunData.FireRate *= characterConfigurator.PlayerFireRate;
+                weapon.gunData.ReloadTime = characterConfigurator.ReloadSpeed;
+                if(weapon.gunData.GunType == GunType.LongGun)
+                {
+                    weapon.gunData.ClipSize = characterConfigurator.LongGunClipSize;
+                }
+                weapon.gunData.RecoilLeft *= characterConfigurator.GunRecoil;
+                weapon.gunData.RecoilRight *= characterConfigurator.GunRecoil;
+                weapon.gunData.RecoilUp *= characterConfigurator.GunRecoil;
+                characterConfigurator.GunType = weapon.gunData.GunType;
+                characterConfigurator.CurrentBullet = weapon.ammoCount;
+                characterConfigurator.CurrentGunClipSize = weapon.gunData.ClipSize;
             }
         }
     }
@@ -46,12 +58,25 @@ public class WeaponInjector : MonoBehaviour
         {
             if (characterConfigurator != null)
             {
-                weapon.PlayerDamageMultiplier = characterConfigurator.PlayerDamageMultiplier;
+                if(weapon.gunData.GunType == GunType.ShortGun)
+                {
+                    weapon.PlayerDamageMultiplier = characterConfigurator.PlayerDamageMultiplierShortgun;
+                }
+                else if (weapon.gunData.GunType == GunType.LongGun)
+                {
+                    weapon.PlayerDamageMultiplier = characterConfigurator.PlayerDamageMultiplierLonggun;
+                }
                 weapon.isExplosive = characterConfigurator.isExplosive;
             }
             InjectToWeapon(weapon);
         }
     }
+    public void addBullet(int bullet)
+    {
+        var weapon = GetComponentInChildren<vShooterWeapon>();
+        weapon.AddAmmo(bullet);
+    }
+
 
     public void InjectToWeapon(vShooterWeapon weapon)
     {

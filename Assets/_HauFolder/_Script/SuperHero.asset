@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672b24b782b18484899e083ee9d87033, type: 3}
+  m_Name: SuperHero
+  m_EditorClassIdentifier: 
+  walkSpeed: 5
+  runSpeed: 10
+  sprintSpeed: 60
+  crouchSpeed: 10
+  maxStamina: 20000
+  staminaRecovery: 150
+  sprintStamina: 3
+  jumpStamina: 3
+  rollStamina: 3
+  jumpHeight: 40
+  jumpTimer: 0.3
+  jumpStandingDelay: 0.25
+  airSpeed: 10
+  airSmooth: 60
+  extraGravity: -10
+  limitFallVelocity: -15
+  fallMinHeight: 40
+  fallMinVerticalVelocity: -10
+  fallDamage: 0
+  rollSpeed: 30
+  rollRotationSpeed: 200
+  rollExtraGravity: -10
+  timeToRollAgain: 0
+  noDamageWhileRolling: 1
+  noActiveRagdollWhileRolling: 1
+  freeMovementAnimatorSpeed: 5
+  ReloadSpeed: 1
+  PlayerMaxHealth: 1000
+  PlayerMaxAmour: 1000
+  HealthRecovery: 100
+  HealthRecoveryPerTime: 1
+  isImortal: 1
+  PlayerDamageMultiplier: 1
+  PlayerShootingSpeed: 1

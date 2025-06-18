@@ -27767,6 +27767,8 @@ MonoBehaviour:
   openCloseWindow: 1
   selectedToolbar: 1
   weaponCategory: Rifle
+  isExplosive: 0
+  EffectMode: 0
   _shootFrequency: 0.125
   isInfinityAmmo: 0
   ExplosionPrefab: {fileID: 170736, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
@@ -27991,6 +27993,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   decalManager: {fileID: 0}
+  gunData: {fileID: 11400000, guid: 5958b9a5ca7cb0b49aa19005f9159364, type: 2}
   root: {fileID: 0}
   isSecundaryWeapon: 0
 --- !u!114 &114382262437889658
