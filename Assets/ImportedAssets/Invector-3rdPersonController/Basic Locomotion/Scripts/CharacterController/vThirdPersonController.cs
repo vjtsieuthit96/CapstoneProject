@@ -5,7 +5,9 @@ namespace Invector.vCharacterController
 {
     [vClassHeader("THIRD PERSON CONTROLLER", iconName = "controllerIcon")]
     public class vThirdPersonController : vThirdPersonAnimator
-    { 
+    {
+        // add Optionmanager to the controller
+
         /// <summary>
         /// When Disabling the Controller Component we change the Capsule Collider to Fullsize to avoid sinking in the ground
         /// </summary>

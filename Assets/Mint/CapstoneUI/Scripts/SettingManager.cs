@@ -1,3 +1,4 @@
+using Invector.Utils;
 using System;
 using TMPro;
 using Unity.VisualScripting;
@@ -5,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionManager : MonoBehaviour
+public class SettingManager : MonoBehaviour
 {
     [SerializeField] private AudioClip clickSound;
     [Header("Quit")]
@@ -24,28 +25,38 @@ public class OptionManager : MonoBehaviour
     [SerializeField] private Button keyBindingsBtn;
     [SerializeField] private GameObject KeyBindingsPanel;
 
+    //turn in,off all panels
     [SerializeField] private GameObject[] panels;
 
     private void OnEnable()
     {
-        audioBtn.onClick.AddListener(ToggleAudioPanel);
-        keyBindingsBtn.onClick.AddListener(ToggleKeyBindingsPanel);
-        quitBtn.onClick.AddListener(ShowQuitGamePanel);
-        exitBtn.onClick.AddListener(ShowExitGamepPanel);
-        cancelBtn.onClick.AddListener(Cancel);
-        quitPanel.SetActive(false);
+        EnableUI();
     }
 
     
     private void Start()
     {
+        EnableUI();
 
-        audioBtn.Select();
-        audioBtn.onClick.AddListener(ToggleAudioPanel);
-        keyBindingsBtn.onClick.AddListener(ToggleKeyBindingsPanel);
-        quitBtn.onClick.AddListener(ShowQuitGamePanel);
-        exitBtn.onClick.AddListener(ShowExitGamepPanel);
-        cancelBtn.onClick.AddListener(Cancel);
+    }
+
+    private void EnableUI()
+    {
+        if (audioBtn)
+        {
+            audioBtn.Select();
+            audioBtn.onClick.AddListener(ToggleAudioPanel);
+        }
+        if (keyBindingsBtn)
+        {
+            keyBindingsBtn.onClick.AddListener(ToggleKeyBindingsPanel);
+        }
+        if(quitBtn)
+            quitBtn.onClick.AddListener(ShowQuitGamePanel);
+        if (exitBtn)
+            exitBtn.onClick.AddListener(ShowExitGamepPanel);
+        if (cancelBtn)
+            cancelBtn.onClick.AddListener(Cancel);
     }
 
     private void Cancel()
