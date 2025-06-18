@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,7 +35,9 @@ namespace Invector.vCharacterController
         protected bool _lockInput = false;
         [HideInInspector] public virtual bool lockInput { get { return _lockInput; } set { _lockInput = value; } }
 
-        [vEditorToolbar(title: "Camera Settings")]
+        [vEditorToolbar("OptionBoard")]
+        [SerializeField] protected OptionBoardController optionBoardController; // access OptionBoardController component
+        [vEditorToolbar("Camera Settings")]
         public bool lockCameraInput;
         public bool invertCameraInputVertical, invertCameraInputHorizontal;
         [vEditorToolbar("Inputs")]
@@ -508,22 +511,25 @@ namespace Invector.vCharacterController
         public void SettingMenuOn()
         {
             cc.StopCharacter();
-            if (tpCamera)
+            if (tpCamera && cc)
             {
-                tpCamera.mouseX = 0f;
+                float playerY = cc.transform.eulerAngles.y;
+                tpCamera.mouseX = playerY;
                 tpCamera.mouseY = 0f;
                 changeCameraState = true;
-                customCameraState = "SettingMenu";
+                ChangeCameraStateWithLerp("SettingMenu");
             }
             LockCursor(true);
             ShowCursor(true);
             SetLockCameraInput(true);
             SetLockAllInput(true);
+            optionBoardController.FadeIn();
         }
 
         public void SettingMenuClose()
         {
-            if(cc.isOpenSettingMenu)
+            optionBoardController.FadeOut();
+            if (cc.isOpenSettingMenu)
                 cc.isOpenSettingMenu = false;
             if(tpCamera)
                 changeCameraState = false;
