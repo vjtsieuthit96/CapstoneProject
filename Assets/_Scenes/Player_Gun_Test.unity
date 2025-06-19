@@ -1480,6 +1480,7 @@ GameObject:
   - component: {fileID: 382443083}
   - component: {fileID: 382443082}
   - component: {fileID: 382443081}
+  - component: {fileID: 382443084}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1548,6 +1549,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!222 &382443084
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382443080}
+  m_CullTransparentMesh: 1
 --- !u!1 &394062516
 GameObject:
   m_ObjectHideFlags: 0
@@ -5597,7 +5606,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &1621178763
 RectTransform:
@@ -7575,6 +7584,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7404855805508288429, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: SkillTreePanel
+      value: 
+      objectReference: {fileID: 2117430791}
     - target: {fileID: 7404855805508288429, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: weaponInjector
       value: 

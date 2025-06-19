@@ -12,6 +12,7 @@ public class CharacterConfigurator : MonoBehaviour
     private Animator animator;
     public vHUDController hudController;
     public WeaponInjector weaponInjector;
+    public vShooterMeleeInput MeleeInput;
     public bool isExplosive = false;
     public bool isPhysicsDamage = true;
     public bool isIceEffect = false;
@@ -79,6 +80,12 @@ public class CharacterConfigurator : MonoBehaviour
     public int CurrentBullet;
     public int CurrentGunClipSize;
     public GunType GunType;
+
+    // Canvas skilltree
+    public GameObject SkillTreePanel;
+    private bool isOn = false;
+
+
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -95,7 +102,23 @@ public class CharacterConfigurator : MonoBehaviour
             CopyFrom(stats);
         }
         isPhysicsDamage = true;
+        MeleeInput = GetComponent<vShooterMeleeInput>();
+
+    #region Test Sự kiện bắn
+        if (MeleeInput != null)
+        {
+            MeleeInput.OnTriggerShot += OnShot;
+        }
     }
+    int A = 0;
+    public void OnShot()
+    {
+        A++;
+        Debug.Log("Bắn lần: " + A);
+    }
+
+    #endregion
+
     #region Test Amour
     private void Update()
     {
@@ -116,6 +139,13 @@ public class CharacterConfigurator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             TakeDamage(15f);
+        }
+
+        //bật tắt canvas, xây dựng tạm thời
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            isOn = !isOn;
+            SkillTreePanel.SetActive(isOn);
         }
     }
     #endregion

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewSkillNode", menuName = "Scriptable Objects/SkillNode")]
 public class SkillNode : ScriptableObject
@@ -8,7 +9,7 @@ public class SkillNode : ScriptableObject
     public string id;
     public string displayName;
     public string description;
-    public Sprite icon;
+    public Image icon;
 
     public List<SkillNode> prerequisites;
     public UnlockConditionType unlockCondition = UnlockConditionType.AllPrerequisites;
