@@ -16,7 +16,7 @@ public class SkillNodeButton : MonoBehaviour
         this.node = node;
         this.system = system;
 
-        icon = node.icon;
+        icon.sprite = node.icon;
         costText.text = node.requiredPoints.ToString();
 
         button.onClick.AddListener(() => {
