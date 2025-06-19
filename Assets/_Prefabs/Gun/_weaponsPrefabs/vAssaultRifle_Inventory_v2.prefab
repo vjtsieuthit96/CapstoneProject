@@ -27765,7 +27765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 1
+  selectedToolbar: 0
   weaponCategory: Rifle
   isExplosive: 0
   EffectMode: 0
@@ -27785,7 +27785,7 @@ MonoBehaviour:
   quadDispersion: 0
   velocity: 380
   damageByDistance: 1
-  PlayerDamageMultiplier: 2
+  PlayerDamageMultiplier: 1
   _minDamageDistance: 8
   _maxDamageDistance: 50
   _minDamage: 15
@@ -27835,6 +27835,7 @@ MonoBehaviour:
   changeVelocityByCharge: 1
   chargeVelocityMultiplier: 2
   automaticWeapon: 1
+  debugAmmo: 0
   reloadTime: 1
   reloadOneByOne: 0
   _clipSize: 25

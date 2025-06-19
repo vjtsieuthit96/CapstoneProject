@@ -12,6 +12,7 @@ public class CharacterConfigurator : MonoBehaviour
     private Animator animator;
     public vHUDController hudController;
     public WeaponInjector weaponInjector;
+    public vShooterMeleeInput MeleeInput;
     public bool isExplosive = false;
     public bool isPhysicsDamage = true;
     public bool isIceEffect = false;
@@ -95,7 +96,23 @@ public class CharacterConfigurator : MonoBehaviour
             CopyFrom(stats);
         }
         isPhysicsDamage = true;
+        MeleeInput = GetComponent<vShooterMeleeInput>();
+
+    #region Test Sự kiện bắn
+        if (MeleeInput != null)
+        {
+            MeleeInput.OnTriggerShot += OnShot;
+        }
     }
+    int A = 0;
+    public void OnShot()
+    {
+        A++;
+        Debug.Log("Bắn lần: " + A);
+    }
+
+    #endregion
+
     #region Test Amour
     private void Update()
     {
@@ -117,6 +134,9 @@ public class CharacterConfigurator : MonoBehaviour
         {
             TakeDamage(15f);
         }
+
+        // bật tắt canvas, xây dựng tạm thời
+
     }
     #endregion
     public void TakeDamage(float damageValue)
