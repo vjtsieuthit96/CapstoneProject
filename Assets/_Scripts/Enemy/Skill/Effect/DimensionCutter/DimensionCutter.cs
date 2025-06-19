@@ -1,14 +1,10 @@
-using Invector.vCharacterController;
 using UnityEngine;
 
 public class DimensionCutter : ESkillObjectMove
 {
-    [SerializeField] private DimensionHit hitPrefabs;
-    
-
+    [SerializeField] private DimensionHit hitPrefabs;   
     void Start()
-    {       
-        
+    {      
         PoolManager.Instance.CreatePool("DMHit", hitPrefabs, 10);
     }
     protected override void Update()
