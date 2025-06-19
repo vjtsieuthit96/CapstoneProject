@@ -20,8 +20,7 @@ namespace Invector.vCharacterController
         [SerializeField] private vFadeCanvas staminaSliderFadeCanvas;
         public float hiddenTime = 2f;
         private float currentHiddenTime = 0f;
-        [SerializeField] private CanvasGroup staminaSliderCanvasGroup;
-        public float hiddenSmooth = 30f;
+        //public float hiddenSmooth = 30f;
         public Slider shieldSlider;
         public float shieldSliderMaxValueSmooth = 10f;
         public float shieldSliderValueSmooth = 20f;
@@ -183,29 +182,28 @@ namespace Invector.vCharacterController
                 healthSlider.value = Mathf.Lerp(healthSlider.value, cc.currentHealth, healthSliderValueSmooth * Time.fixedDeltaTime);
             }
             if (staminaSlider)
-            {
+            {             
                 if (cc.maxStamina != staminaSlider.maxValue)
                 {
                     staminaSlider.maxValue = Mathf.Lerp(staminaSlider.maxValue, cc.maxStamina, staminaSliderMaxValueSmooth * Time.fixedDeltaTime);
                    staminaSlider.onValueChanged.Invoke(staminaSlider.value);
                 }
 
-                if (staminaSliderCanvasGroup && staminaSliderFadeCanvas)
+                if (staminaSliderFadeCanvas)
                 {
                     if (staminaSlider.value - cc.currentStamina > 0.0f)
                     {
                         staminaSliderFadeCanvas.FadeIn();
-                        currentHiddenTime = Time.time + hiddenTime;
+                        currentHiddenTime = Time.time;
                     }
                     else
-                    if(Time.time > currentHiddenTime)
+                    if(Time.time > currentHiddenTime + hiddenTime)
                     {
                         staminaSliderFadeCanvas.FadeOut();
+                        Debug.Log("HiddenStamina");
                     }
                 }
                     // neu nguoi choi dang su dung stamina thi hien thi thanh stamina
-                   
-
                     staminaSlider.value = Mathf.Lerp(staminaSlider.value, cc.currentStamina, staminaSliderValueSmooth * Time.fixedDeltaTime);
             }
             if(shieldSlider)

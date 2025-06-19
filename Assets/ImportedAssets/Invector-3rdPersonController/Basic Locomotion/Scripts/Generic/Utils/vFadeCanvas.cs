@@ -46,6 +46,7 @@ namespace Invector.Utils
         public virtual void AlphaZero()
         {
             if (group) group.alpha = 0f;
+           
         }
 
         public virtual void AlphaFull()
