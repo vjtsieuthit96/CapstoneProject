@@ -609,8 +609,7 @@ Transform:
   m_LocalPosition: {x: -0.30204627, y: 0.10833618, z: -0.0025807188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6687550318726924043}
+  m_Children: []
   m_Father: {fileID: 8959128520756241919}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7543050996030356812
@@ -1319,6 +1318,37 @@ Transform:
   - {fileID: 6324386265837563664}
   m_Father: {fileID: 1500501292114640354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4177897134797361120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2322848647491883607}
+  m_Layer: 0
+  m_Name: DrawSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2322848647491883607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177897134797361120}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.031, y: 1.26, z: 0.866}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8369592721960931888}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4195613676626245515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8369592721960931888
 Transform:
   m_ObjectHideFlags: 0
@@ -1482,6 +1512,7 @@ Transform:
   - {fileID: 5322855815511902172}
   - {fileID: 8772328443442261251}
   - {fileID: 1584474067925123380}
+  - {fileID: 2322848647491883607}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8455961270345227133
@@ -1578,9 +1609,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 3501852433735634973}
-  skill1Cooldown: 1
+  skill1Cooldown: 1000
   skill2Cooldown: 1000
-  skill3Cooldown: 1000
+  skill3Cooldown: 2
   skill1Range: 20
   skill2Range: 3
   skill3Range: 3
@@ -1599,7 +1630,7 @@ MonoBehaviour:
   dimensionCutterPrefab: {fileID: -6328881203089297981, guid: cbc69b70a7fa02c418505cf30b415b43, type: 3}
   cutterSpawnPoint: {fileID: 1584474067925123380}
   dimensionDrawPrefab: {fileID: 3087558391121309100, guid: ad0c8304762626b4280dfd0cf4964ea4, type: 3}
-  DrawSpawnPoint: {fileID: 6687550318726924043}
+  DrawSpawnPoint: {fileID: 2322848647491883607}
   monsterStats: {fileID: 6380886350549213172}
   monsterAI: {fileID: 3501852433735634973}
 --- !u!114 &2772627718873202584
@@ -2685,37 +2716,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5494240802236284171}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8975661682594854597
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6687550318726924043}
-  m_Layer: 0
-  m_Name: Skill 2 Effect Spawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6687550318726924043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8975661682594854597}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0029, y: -0.0214, z: 1.3706}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4883761255874934763}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5309351962517023453
 PrefabInstance:
