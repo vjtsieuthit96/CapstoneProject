@@ -16,6 +16,7 @@ public class EnemyHitCounter : MonoBehaviour
     public void RegisterEnemyHit()
     {
         enemyHitCount++;
+        enemyHitCountForElement++;
         Debug.Log("Enemy Hit Count: " + enemyHitCount);
     }
 
@@ -28,12 +29,6 @@ public class EnemyHitCounter : MonoBehaviour
     {
         enemyHitCount = 0;
     }
-    public void RegisterElementEnemyHit()
-    {
-        enemyHitCountForElement++;
-        Debug.Log("Enemy Elements Hit Count: " + enemyHitCountForElement);
-    }
-
     public int GetElementEnemyHitCount()
     {
         return enemyHitCountForElement;

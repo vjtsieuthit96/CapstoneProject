@@ -309,7 +309,6 @@ namespace Invector.vShooter
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     EnemyHitCounter.Instance?.RegisterEnemyHit();
-                    EnemyHitCounter.Instance?.RegisterElementEnemyHit();
                 }
 
                 #region XỬ LÍ SÁT THƯƠNG NỔ

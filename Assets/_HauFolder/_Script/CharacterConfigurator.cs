@@ -80,6 +80,12 @@ public class CharacterConfigurator : MonoBehaviour
     public int CurrentBullet;
     public int CurrentGunClipSize;
     public GunType GunType;
+
+    // Canvas skilltree
+    public GameObject SkillTreePanel;
+    private bool isOn = false;
+
+
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -135,8 +141,12 @@ public class CharacterConfigurator : MonoBehaviour
             TakeDamage(15f);
         }
 
-        // bật tắt canvas, xây dựng tạm thời
-
+        //bật tắt canvas, xây dựng tạm thời
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            isOn = !isOn;
+            SkillTreePanel.SetActive(isOn);
+        }
     }
     #endregion
     public void TakeDamage(float damageValue)
