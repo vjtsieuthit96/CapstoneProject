@@ -857,13 +857,14 @@ namespace Invector.vCharacterController
                 TriggerShot();
             }
         }
-
+        public event System.Action OnTriggerShot;
         public virtual void TriggerShot()
         {
             animator.SetFloat(vAnimatorParameters.Shot_ID, shooterManager.GetShotID());
             shooterManager.Shoot(AimPosition, !isAimingByInput);
             if (CurrentActiveWeapon.chargeWeapon) CurrentActiveWeapon.powerCharge = 0;
             shootCountA--;
+            OnTriggerShot?.Invoke();
         }
 
         /// <summary>
