@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 6007496750003585323}
   m_Layer: 0
   m_Name: root
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 502968482998836789}
   m_Layer: 0
   m_Name: SK_OrcPonytail
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,7 +621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7137831820275144453
 Transform:
   m_ObjectHideFlags: 0
@@ -635,6 +635,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8217437025795631692}
   - {fileID: 7404814349895419620}
   - {fileID: 5487444698101250367}
   - {fileID: 7108713979672858889}
@@ -688,6 +689,7 @@ MonoBehaviour:
   patrolRadius: 5
   baseSpeed: 0
   frozenEffect: {fileID: 7404814349895419622}
+  ElectricEffect: {fileID: 8217437025795631695}
   bloodEffect: {fileID: 3392999217821159849, guid: 6d3629f845b40e24fb51d381e84bbc77, type: 3}
   monsterStats: {fileID: 5622012270302772746}
   monsterAnimator: {fileID: 5932104796652673785}
@@ -1255,7 +1257,7 @@ GameObject:
   - component: {fileID: 4696233351396675598}
   m_Layer: 0
   m_Name: ORC_
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1827,7 +1829,7 @@ GameObject:
   - component: {fileID: 8364164696455933501}
   m_Layer: 0
   m_Name: SK_ShoulderPads
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2614,7 +2616,7 @@ GameObject:
   - component: {fileID: 2903942431903596637}
   m_Layer: 0
   m_Name: SK_OrcBody
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2938,7 +2940,7 @@ GameObject:
   - component: {fileID: 5546472507427091710}
   m_Layer: 0
   m_Name: SK_BellyArmor
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3087,6 +3089,97 @@ Transform:
   - {fileID: 5773389035359473396}
   m_Father: {fileID: 2248593695537661303}
   m_LocalEulerAnglesHint: {x: 0.00000019677736, y: 0.000002406833, z: -49.673973}
+--- !u!1001 &1784162418651630246
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7137831820275144453}
+    m_Modifications:
+    - target: {fileID: 7694590366642987241, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_Name
+      value: Electric_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987243, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987243, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+--- !u!4 &8217437025795631692 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+  m_PrefabInstance: {fileID: 1784162418651630246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8217437025795631695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7694590366642987241, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+  m_PrefabInstance: {fileID: 1784162418651630246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6634939713172105639
 PrefabInstance:
   m_ObjectHideFlags: 0

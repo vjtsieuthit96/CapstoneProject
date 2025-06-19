@@ -306,10 +306,13 @@ namespace Invector.vShooter
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
                 Debug.Log("Raycast Hit: " + hit.collider.tag);
-
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    EnemyHitCounter.Instance?.RegisterEnemyHit();
+                }
 
                 #region XỬ LÍ SÁT THƯƠNG NỔ
-                if(EffectMode == 0)
+                if (EffectMode == 0)
                 {
                     if (isExplosive)
                     {

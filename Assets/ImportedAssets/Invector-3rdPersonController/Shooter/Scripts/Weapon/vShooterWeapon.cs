@@ -72,6 +72,7 @@ namespace Invector.vShooter
         public bool automaticWeapon;
 
         [vEditorToolbar("Ammo")]
+        public int debugAmmo;
         public float reloadTime = 1f;
         public bool reloadOneByOne;
         [SerializeField, Tooltip("Max clip size of your weapon"), FormerlySerializedAs("clipSize")]
@@ -180,6 +181,8 @@ namespace Invector.vShooter
         [vEditorToolbar("Decal Item")]
         public vDecalManager decalManager;
 
+        [vEditorToolbar("Gun Stats")]
+        public GunData gunData;
 
         [HideInInspector]
         public Transform root;
@@ -218,6 +221,27 @@ namespace Invector.vShooter
         #endregion
 
         [System.NonSerialized] private float testTime;
+
+        private void Update()
+        {
+            updateGunData();
+            debugAmmo = ammoCount;
+        }
+        #region Copy Dữ liệu súng
+        private void updateGunData()
+        {
+            reloadTime = gunData.ReloadTime;
+            reloadOneByOne = gunData.ReloadOnebyOne;
+            clipSize = gunData.ClipSize;
+            cameraStability = gunData.CameraStability;
+            recoilLeft = gunData.RecoilLeft;
+            recoilRight = gunData.RecoilRight;
+            recoilUp = gunData.RecoilUp;
+            shootFrequency = gunData.FireRate;
+        }    
+
+
+        #endregion
 
         protected virtual void OnDrawGizmos()
         {
@@ -381,6 +405,7 @@ namespace Invector.vShooter
                 }
                 else
                 {
+                    
                     ammo -= count;
                 }
             }

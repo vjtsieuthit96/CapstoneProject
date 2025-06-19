@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,6 +35,8 @@ namespace Invector.vCharacterController
         protected bool _lockInput = false;
         [HideInInspector] public virtual bool lockInput { get { return _lockInput; } set { _lockInput = value; } }
 
+        [vEditorToolbar("OptionBoard")]
+        [SerializeField] protected OptionBoardController optionBoardController; // access OptionBoardController component
         [vEditorToolbar("Camera Settings")]
         public bool lockCameraInput;
         public bool invertCameraInputVertical, invertCameraInputHorizontal;
@@ -42,6 +45,8 @@ namespace Invector.vCharacterController
         public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
         public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
         public GenericInput cameraZoomInput = new GenericInput("Mouse ScrollWheel", "", "");
+        [Header("Settings Input")]
+        public GenericInput settingsInput = new GenericInput("Escape", "Start", "Start");
 
         [vEditorToolbar("Events")]
         public UnityEvent OnLockCamera;
@@ -433,6 +438,7 @@ namespace Invector.vCharacterController
 
         public virtual void InputHandle()
         {
+            SettingMenuInput();
             if (lockInput || cc.ragdolled)
             {
                 return;
@@ -485,7 +491,54 @@ namespace Invector.vCharacterController
                 cc.ControlRotationType();                                   // handle the controller rotation type (strafe or free)
             }
         }
+        #region SettingMenuActions
+        public virtual void SettingMenuInput()
+        {
+            if (settingsInput.GetButtonDown())
+            {
+                cc.OpenSettingMenu();
+                if(cc.isOpenSettingMenu)
+                {
+                    SettingMenuOn();
+                }
+                else
+                {
+                    SettingMenuClose();
+                    
+                }
+            }
+        }
+        public void SettingMenuOn()
+        {
+            cc.StopCharacter();
+            if (tpCamera && cc)
+            {
+                float playerY = cc.transform.eulerAngles.y;
+                tpCamera.mouseX = playerY;
+                tpCamera.mouseY = 0f;
+                changeCameraState = true;
+                ChangeCameraStateWithLerp("SettingMenu");
+            }
+            LockCursor(true);
+            ShowCursor(true);
+            SetLockCameraInput(true);
+            SetLockAllInput(true);
+            optionBoardController.FadeIn();
+        }
 
+        public void SettingMenuClose()
+        {
+            optionBoardController.FadeOut();
+            if (cc.isOpenSettingMenu)
+                cc.isOpenSettingMenu = false;
+            if(tpCamera)
+                changeCameraState = false;
+            SetLockAllInput(false);
+            SetLockCameraInput(false);
+            LockCursor(false);
+            ShowCursor(false);
+        }
+        #endregion
         public virtual void StrafeInput()
         {
             if (strafeInput.GetButtonDown())
@@ -612,10 +665,12 @@ namespace Invector.vCharacterController
                 }
             }
 
+            
             if (changeCameraState)
             {
                 tpCamera.ChangeState(customCameraState, customlookAtPoint, smoothCameraState);
             }
+            // TODO: add a way to change the camera state when press ESC KEYCODE, open Setting Menu
             else if (cc.isCrouching)
             {
                 tpCamera.ChangeState("Crouch", true);

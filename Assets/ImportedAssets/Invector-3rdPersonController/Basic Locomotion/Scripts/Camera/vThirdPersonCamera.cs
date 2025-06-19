@@ -792,7 +792,13 @@ namespace Invector.vCamera
             transformWeight = Mathf.Clamp(transformWeight += Time.fixedDeltaTime * startSmoothFactor, 0f, 1f);
             if (useSmooth)
             {
-                currentState.Slerp(lerpState, smoothBetweenState * Time.fixedDeltaTime);
+                if(currentStateName == "SettingMenu")
+                {
+                    //make the lerp small when in SettingMenu
+                    currentState.Slerp(lerpState, 1f * Time.fixedDeltaTime);
+                }else
+                    currentState.Slerp(lerpState, smoothBetweenState * Time.fixedDeltaTime);
+                
             }
             else
             {

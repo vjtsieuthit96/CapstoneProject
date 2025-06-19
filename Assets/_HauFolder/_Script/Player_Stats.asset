@@ -44,4 +44,9 @@ MonoBehaviour:
   HealthRecovery: 2
   HealthRecoveryPerTime: 1.5
   isImortal: 0
-  PlayerDamageMultiplier: 2
+  PlayerDamageMultiplierLonggun: 1
+  PlayerDamageMultiplierShortgun: 1
+  PlayerShootingSpeed: 1
+  PlayerFireRate: 1
+  LongGunClipSize: 25
+  GunRecoil: 1
