@@ -181,8 +181,7 @@ namespace Invector.vShooter
         [vEditorToolbar("Decal Item")]
         public vDecalManager decalManager;
 
-        [vEditorToolbar("Gun Stats")]
-        public GunData gunData;
+
 
         [HideInInspector]
         public Transform root;
@@ -225,6 +224,7 @@ namespace Invector.vShooter
         private void Update()
         {
             updateGunData();
+            PlayerElementDamageClass(PlayerElementClass);
             debugAmmo = ammoCount;
         }
         #region Copy Dữ liệu súng
@@ -238,6 +238,9 @@ namespace Invector.vShooter
             recoilRight = gunData.RecoilRight;
             recoilUp = gunData.RecoilUp;
             shootFrequency = gunData.FireRate;
+            GunElement = gunData.GunElement;
+            BulletType = gunData.BulletType;
+            GunType = gunData.GunType;
         }    
 
 

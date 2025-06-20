@@ -44,6 +44,8 @@ namespace Invector
         private bool inTimer;
         protected List<GameObject> collidersReached;
 
+        private float damageExplosive;
+
         void OnDrawGizmosSelected()
         {
             if (!showGizmos) return;
@@ -54,6 +56,8 @@ namespace Invector
         }
 
         public void SetOverrideDamageSender(Transform target) => overrideDamageSender = target;
+
+        public void SetDamageSender(float damage) => damageExplosive = damage;
         public void SetDamage(vDamage damage)
         {
             this.damage = damage;
@@ -134,7 +138,7 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
 
                     _damage.damageValue = (int)damageValue;
@@ -172,7 +176,7 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
 
                     _damage.damageValue = (int)damageValue;
@@ -211,7 +215,7 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
 
                     _damage.damageValue = (int)damageValue;
@@ -250,7 +254,7 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
 
                     _damage.damageValue = (int)damageValue;

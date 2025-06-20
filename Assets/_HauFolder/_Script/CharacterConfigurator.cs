@@ -13,12 +13,6 @@ public class CharacterConfigurator : MonoBehaviour
     public vHUDController hudController;
     public WeaponInjector weaponInjector;
     public vShooterMeleeInput MeleeInput;
-    public bool isExplosive = false;
-    public bool isPhysicsDamage = true;
-    public bool isIceEffect = false;
-    public bool isElectricEffect = false;
-    public bool isPoisonEffect = false;
-    public int EffectMode = 0;
 
     #region Dữ Liệu Clone Từ Character Stats ra dữ liệu RunTime
     [Header("Movement Speeds")]
@@ -81,6 +75,11 @@ public class CharacterConfigurator : MonoBehaviour
     public int CurrentGunClipSize;
     public GunType GunType;
 
+    // Element & ShotType
+    public bool isExplosive;
+    public bool isEffectMode = false;
+    public int PlayerElementClass = 0;
+    public int ExplosiveClass = 0;
     // Canvas skilltree
     public GameObject SkillTreePanel;
     private bool isOn = false;
@@ -101,7 +100,6 @@ public class CharacterConfigurator : MonoBehaviour
         {
             CopyFrom(stats);
         }
-        isPhysicsDamage = true;
         MeleeInput = GetComponent<vShooterMeleeInput>();
 
     #region Test Sự kiện bắn
@@ -123,30 +121,17 @@ public class CharacterConfigurator : MonoBehaviour
     private void Update()
     {
         ApplyStats();
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-          isExplosive = !isExplosive;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            EffectMode = (EffectMode + 1) % 4;
-
-            isPhysicsDamage = EffectMode == 0;
-            isIceEffect = EffectMode == 1;
-            isElectricEffect = EffectMode == 2;
-            isPoisonEffect = EffectMode == 3;
-        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             TakeDamage(15f);
         }
 
         //bật tắt canvas, xây dựng tạm thời
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            isOn = !isOn;
-            SkillTreePanel.SetActive(isOn);
-        }
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    isOn = !isOn;
+        //    SkillTreePanel.SetActive(isOn);
+        //}
     }
     #endregion
     public void TakeDamage(float damageValue)

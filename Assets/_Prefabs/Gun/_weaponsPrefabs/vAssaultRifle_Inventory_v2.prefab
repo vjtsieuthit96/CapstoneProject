@@ -27765,7 +27765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 0
+  selectedToolbar: 6
   weaponCategory: Rifle
   isExplosive: 0
   EffectMode: 0
@@ -27827,6 +27827,14 @@ MonoBehaviour:
   onInstantiateProjectile:
     m_PersistentCalls:
       m_Calls: []
+  gunData: {fileID: 11400000, guid: 5958b9a5ca7cb0b49aa19005f9159364, type: 2}
+  PlayerElementClass: 0
+  DetentionTime: 0
+  ReductEnemySpeedPercent: 0
+  ElectricDamagePercent: 0
+  EletricDuration: 0
+  PoisonDamagePercent: 0
+  PoisonDuration: 0
   isLeftWeapon: 0
   chargeWeapon: 0
   autoShotOnFinishCharge: 0
@@ -27994,7 +28002,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   decalManager: {fileID: 0}
-  gunData: {fileID: 11400000, guid: 5958b9a5ca7cb0b49aa19005f9159364, type: 2}
   root: {fileID: 0}
   isSecundaryWeapon: 0
 --- !u!114 &114382262437889658
