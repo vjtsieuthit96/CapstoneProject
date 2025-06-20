@@ -391,7 +391,7 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 explosive.SetOverrideDamageSender(transform);
-                                explosive.SetDamageSender(raycastDamage);
+                                explosive.SetOverDataSender(DetentionTime,ReductEnemySpeedPercent,ElectricDamagePercent,EletricDuration,PoisonDamagePercent,PoisonDuration,raycastDamage);
                                 explosive.Explode();
                             }
 
@@ -418,7 +418,7 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 explosive.SetOverrideDamageSender(transform);
-                                explosive.SetDamageSender(raycastDamage * ElectricDamagePercent);
+                                explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
                                 explosive.ExplodeIce();
                             }
                             Quaternion randomRotation = Quaternion.Euler(
@@ -461,7 +461,7 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 explosive.SetOverrideDamageSender(transform);
-                                explosive.SetDamageSender(raycastDamage * ElectricDamagePercent);
+                                explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
                                 explosive.ExplodeElectric();
                             }
                         }
@@ -471,7 +471,7 @@ namespace Invector.vShooter
                             if (eHithandler != null)
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                                eHithandler.ApplySlowDown(0.5f, 5f);
+                                eHithandler.ApplySlowDown(ReductEnemySpeedPercent, EletricDuration);
                                 eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent);
                                 eHithandler.ApplyShock(1f);
 
@@ -490,7 +490,7 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 explosive.SetOverrideDamageSender(transform);
-                                explosive.SetDamageSender(raycastDamage * PoisonDamagePercent);
+                                explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
                                 explosive.ExplodePoison();
                             }
                         }
@@ -518,7 +518,7 @@ namespace Invector.vShooter
                         {
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                             explosive.SetOverrideDamageSender(transform);
-                            explosive.SetDamageSender(raycastDamage);
+                            explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
                             explosive.Explode();
                         }
 
