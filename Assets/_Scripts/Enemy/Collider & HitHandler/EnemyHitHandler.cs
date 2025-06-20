@@ -36,8 +36,8 @@ public class EnemyHitHandler : MonoBehaviour
         {
             ApplyHit(damage);
             Debug.Log("Take Poison Damage: " + damage);
-            yield return new WaitForSeconds(4f);
-            elapsed += 4f;
+            yield return new WaitForSeconds(3f);
+            elapsed += 3f;
         }
     }
     public void ApplyFreeze(float duration)

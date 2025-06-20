@@ -5656,7 +5656,6 @@ GameObject:
   - component: {fileID: 1621178760}
   - component: {fileID: 1621178766}
   - component: {fileID: 1621178764}
-  - component: {fileID: 1621178765}
   m_Layer: 5
   m_Name: Skill Tree Canvas Test
   m_TagString: Untagged
@@ -5762,20 +5761,6 @@ MonoBehaviour:
   skillTree: {fileID: 11400000, guid: 6ed90e84f87d9464d8f7b34936910157, type: 2}
   availableSkillPoints: 100
   characterConfigurator: {fileID: 1364715714}
---- !u!114 &1621178765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621178759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc623d809646dc4c80a6b208f5eced9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillTree: {fileID: 11400000, guid: 6ed90e84f87d9464d8f7b34936910157, type: 2}
-  configurator: {fileID: 1364715714}
 --- !u!114 &1621178766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7654,6 +7639,10 @@ PrefabInstance:
     - target: {fileID: 4744407370641312119, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747890712328549891, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: staminaSlider
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6044268303513064398, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_AnchorMax.y

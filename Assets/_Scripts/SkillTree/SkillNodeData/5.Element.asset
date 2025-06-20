@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
-  m_Name: 2.BulletType
+  m_Name: 5.Element
   m_EditorClassIdentifier: 
-  id: bullettypes
-  displayName: Bullet Type
-  description: Class 1
+  id: Element
+  displayName: Class 4
+  description: Class 4
   icon: {fileID: 0}
   prerequisites:
-  - {fileID: 11400000, guid: 95dd891a9e7be6d47a056711c5cbadb6, type: 2}
+  - {fileID: 11400000, guid: 35cdd865b0c43b947976b8228b49689b, type: 2}
   unlockCondition: 0
   isUnlocked: 0
   requiredPoints: 1
-  effect: {fileID: 11400000, guid: 9f7df34a017a0114cb305dccee0d9e09, type: 2}
+  effect: {fileID: 11400000, guid: 903740f0be98f3249844d6d1ef2750e3, type: 2}
