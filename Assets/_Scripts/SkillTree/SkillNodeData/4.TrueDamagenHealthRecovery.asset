@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
+  m_Name: 4.TrueDamagenHealthRecovery
+  m_EditorClassIdentifier: 
+  id: Class 4 True Damage and Health Recovery
+  displayName: True Damagen Health Recovery
+  description: TrueDamagenHealthRecovery
+  icon: {fileID: 0}
+  prerequisites:
+  - {fileID: 11400000, guid: 15e003a3aa8f7914e96e04d499683a2f, type: 2}
+  - {fileID: 11400000, guid: 7fd5f5d7957b5ec4cb4c9f385ed16282, type: 2}
+  unlockCondition: 0
+  isUnlocked: 0
+  requiredPoints: 1
+  effect: {fileID: 11400000, guid: 6bcb880282d94b04594a23481bfa3ea5, type: 2}

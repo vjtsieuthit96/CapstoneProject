@@ -56,6 +56,7 @@ public class CharacterConfigurator : MonoBehaviour
 
     [Header("Player Health")]
     public float PlayerMaxHealth;
+    public float DamageRatio;
     public float PlayerMaxAmour;
     public float HealthRecovery;
     public float HealthRecoveryPerTime;
@@ -83,7 +84,7 @@ public class CharacterConfigurator : MonoBehaviour
     // Canvas skilltree
     public GameObject SkillTreePanel;
     private bool isOn = false;
-
+    
 
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
@@ -136,26 +137,26 @@ public class CharacterConfigurator : MonoBehaviour
     #endregion
     public void TakeDamage(float damageValue)
     {
-        if (damageValue <= 0 || controller == null) return;
+        float TrueDamage = damageValue * DamageRatio;
+        if (TrueDamage <= 0 || controller == null) return;
 
         if (controller.currentShield > 0)
         {
-            if (controller.currentShield >= damageValue)
+            if (controller.currentShield >= TrueDamage)
             {
-                controller.currentShield -= damageValue;
-                hudController.EnableDamageSprite(new vDamage(damageValue));
-                Debug.Log("Amour hiện tại là: " + controller.currentShield);
+                controller.currentShield -= TrueDamage;
+                hudController.EnableDamageSprite(new vDamage(TrueDamage));
             }
             else
             {
-                float remainingDamage = damageValue - controller.currentShield;
+                float remainingDamage = TrueDamage - controller.currentShield;
                 controller.currentShield = 0;
                 controller.TakeDamage(new vDamage(remainingDamage));
             }
         }
         else
         {
-            controller.TakeDamage(new vDamage(damageValue));
+            controller.TakeDamage(new vDamage(TrueDamage));
         }
     }
     #region Clone Dữ Liệu ra
@@ -195,6 +196,7 @@ public class CharacterConfigurator : MonoBehaviour
         ReloadSpeed = other.ReloadSpeed;
 
         PlayerMaxHealth = other.PlayerMaxHealth;
+        DamageRatio = other.DamageRatio;
         PlayerMaxAmour = other.PlayerMaxAmour;
         HealthRecovery = other.HealthRecovery;
         HealthRecoveryPerTime = other.HealthRecoveryPerTime;
