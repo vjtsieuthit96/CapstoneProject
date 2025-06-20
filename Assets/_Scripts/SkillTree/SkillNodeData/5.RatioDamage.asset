@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
+  m_Name: 5.RatioDamage
+  m_EditorClassIdentifier: 
+  id: class 5 Ratio Damage
+  displayName: Ratio Damage
+  description: Ratio Damage
+  icon: {fileID: 0}
+  prerequisites:
+  - {fileID: 11400000, guid: be39412c0b71a7b4c95be7cb75ecfc9a, type: 2}
+  unlockCondition: 0
+  isUnlocked: 0
+  requiredPoints: 1
+  effect: {fileID: 11400000, guid: e410c87c0b33d994fbd31377e7d98626, type: 2}

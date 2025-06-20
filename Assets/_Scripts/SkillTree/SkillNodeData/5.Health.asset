@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
+  m_Name: 5.Health
+  m_EditorClassIdentifier: 
+  id: Class 5 Health
+  displayName: Health
+  description: Health
+  icon: {fileID: 0}
+  prerequisites:
+  - {fileID: 11400000, guid: acbb598fbc3c6de43a9b9ea06ab54b88, type: 2}
+  unlockCondition: 0
+  isUnlocked: 0
+  requiredPoints: 1
+  effect: {fileID: 11400000, guid: dfe7dba85daac344bb614a407e7d9cc6, type: 2}

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
+  m_Name: 4.HealthnAmour
+  m_EditorClassIdentifier: 
+  id: class 4 Health and Amour
+  displayName: 'Health and Amour '
+  description: 'Health and Amour '
+  icon: {fileID: 0}
+  prerequisites:
+  - {fileID: 11400000, guid: 1ad38437a4e99ee429dcf36a6945e9cb, type: 2}
+  - {fileID: 11400000, guid: 65eb5faff3b21a649970dcada369832e, type: 2}
+  unlockCondition: 0
+  isUnlocked: 0
+  requiredPoints: 1
+  effect: {fileID: 11400000, guid: cd26b2479aa9e554d893b866b462aeab, type: 2}
