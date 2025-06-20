@@ -199,8 +199,9 @@ namespace Invector.vCharacterController
                     else
                     if(Time.time > currentHiddenTime + hiddenTime)
                     {
-                        staminaSliderFadeCanvas.FadeOut();
                         Debug.Log("HiddenStamina");
+                        staminaSliderFadeCanvas.FadeOut();
+                       
                     }
                 }
                     // neu nguoi choi dang su dung stamina thi hien thi thanh stamina
@@ -212,7 +213,6 @@ namespace Invector.vCharacterController
                 {
                     shieldSlider.maxValue = Mathf.Lerp(shieldSlider.maxValue, cc.maxShield, shieldSliderMaxValueSmooth * Time.fixedDeltaTime);
                     shieldSlider.onValueChanged.Invoke(shieldSlider.value);
-                    currentHiddenTime = Time.time + hiddenTime;
                 }
                 shieldSlider.value = Mathf.Lerp(shieldSlider.value, cc.currentShield, shieldSliderValueSmooth * Time.fixedDeltaTime);
             }

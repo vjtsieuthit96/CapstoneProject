@@ -145,7 +145,7 @@ public class CharacterConfigurator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             isOn = !isOn;
-            SkillTreePanel.SetActive(isOn);
+            //SkillTreePanel.SetActive(isOn);
         }
     }
     #endregion
