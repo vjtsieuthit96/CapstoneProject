@@ -278,9 +278,9 @@ namespace Invector.vCharacterController
         {
             return transform.forward.y;
         }
-        public virtual void OpenSettingMenu()
+        public virtual void OpenOptionsMenu()
         {
-            isOpenSettingMenu = !isOpenSettingMenu;
+            isOpenOptionsMenu = !isOpenOptionsMenu;
         }
 
         /// <summary>

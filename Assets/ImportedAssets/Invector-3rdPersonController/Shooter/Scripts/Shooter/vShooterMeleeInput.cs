@@ -435,7 +435,7 @@ namespace Invector.vCharacterController
         /// </summary>
         public override void InputHandle()
         {
-            SettingMenuInput();
+            OptionsMenuInput();
 
             if (cc == null || cc.isDead)
             {

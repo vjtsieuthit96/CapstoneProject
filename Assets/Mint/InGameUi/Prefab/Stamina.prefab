@@ -206,7 +206,7 @@ PrefabInstance:
     - target: {fileID: 6194499605127587658, guid: d78d46770f18dc442966f90434e004dc, type: 3}
       propertyPath: m_HandleRect
       value: 
-      objectReference: {fileID: 8122785619239782758}
+      objectReference: {fileID: 0}
     - target: {fileID: 6600927703704525373, guid: d78d46770f18dc442966f90434e004dc, type: 3}
       propertyPath: m_Name
       value: StaminaBar
@@ -231,10 +231,5 @@ PrefabInstance:
 --- !u!224 &7305374398615998006 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5239295476140262177, guid: d78d46770f18dc442966f90434e004dc, type: 3}
-  m_PrefabInstance: {fileID: 3302352616878214423}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &8122785619239782758 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6732246262913680497, guid: d78d46770f18dc442966f90434e004dc, type: 3}
   m_PrefabInstance: {fileID: 3302352616878214423}
   m_PrefabAsset: {fileID: 0}
