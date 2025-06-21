@@ -4,6 +4,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using Invector;
 using Invector.vShooter;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 
 public class CharacterConfigurator : MonoBehaviour
 {
@@ -121,7 +122,7 @@ public class CharacterConfigurator : MonoBehaviour
     #region Test Amour
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             isEffectMode = !isEffectMode;
         }

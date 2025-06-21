@@ -70,7 +70,6 @@ public class EnemyHitCounter : MonoBehaviour
         enemyHitCountForElement = 0;
     }
 
-    // Element Shot
     public void ElementShot()
     {
         if (CountElement)
