@@ -5,8 +5,11 @@ public enum PanelType
 {
     None,
     Option,
-    Setting
+    Setting,
+    Inventory,
+    SkillTree,
 }
+[RequireComponent(typeof(vFadeCanvas))] // Ensure that the GameObject this script is attached to has a vFadeCanvas component
 public class UIPanel : MonoBehaviour
 {
    

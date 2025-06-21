@@ -1,5 +1,6 @@
 using Invector.Utils;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Jobs;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class OptionBoardController : MonoBehaviour
     private Dictionary<PanelType, UIPanel> panelDictionary; // Dictionary to map PanelType to UIPanel
     [Header("Button")]
     [SerializeField] Button settingBtn; // Array of buttons to control the panels
+    [SerializeField] Button[] backToOptionBtns; // Button to go back to the previous panel
+    [SerializeField] Button skillTreeBtn; // Button to close the current panel
 
     private void Awake()
     {
@@ -26,17 +29,24 @@ public class OptionBoardController : MonoBehaviour
             }
             else
             {
-                panelDictionary.Add(showUIPanel[i].panelType, showUIPanel[i]); // Add each UIPanel to the dictionary with its corresponding PanelType
+                panelDictionary.Add(showUIPanel[i].panelType, showUIPanel[i]);              
             }
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        settingBtn.onClick.AddListener(() => FadeIn(PanelType.Setting)); // Add listener to the button to call FadeIn with PanelType.Option
+        // Add listener to the button 
+        settingBtn.onClick.AddListener(() => FadeIn(PanelType.Setting));
+        foreach (var btn in backToOptionBtns)
+        {
+            btn.onClick.AddListener(() => FadeIn(PanelType.Option)); // Add listener to each button to go back to the Option panel
+        }
+        skillTreeBtn.onClick.AddListener(() => FadeIn(PanelType.SkillTree));
     }
 
-  
+
+
 
     public void FadeIn(PanelType panelType)
     {
@@ -48,10 +58,11 @@ public class OptionBoardController : MonoBehaviour
                 panel.gameObject.SetActive(false); // Hide all panels
 
             }
+           
             panelDictionary[panelType].gameObject.SetActive(true); // Show the selected panel
-            panelDictionary[panelType].FadeIn(); // Fade in the selected panel\
+            StartCoroutine(FadeInNextFrame(panelDictionary[panelType], 1)); // Start fading in the selected panel
 
-            if(panelDictionary[panelType].clickSound)
+            if (panelDictionary[panelType].clickSound)
                 SoundMixerManager.Instance.PlaySFXAudio(panelDictionary[panelType].clickSound); // Play the click audio when fading in
         }
         else
@@ -59,10 +70,6 @@ public class OptionBoardController : MonoBehaviour
             Debug.LogError("PanelType not found in dictionary: " + panelType);
         }
        
-    }
-    public PanelType GetPanelFadein()
-    {
-        return PanelType.None; 
     }
     public void FadeOut(PanelType panelType)
     {
@@ -80,7 +87,17 @@ public class OptionBoardController : MonoBehaviour
     {
         foreach (var panel in showUIPanel)
         {
-                panel.FadeOut(); // Fade out all other panels
+          panel.FadeOut(); // Fade out all other panels
         }
+    }
+
+    private IEnumerator FadeInNextFrame(UIPanel panel,int index)
+    {
+        yield return null; // Wait for the next frame
+
+        if (index == 1)
+            panel.FadeIn();
+        else
+            panel.FadeOut();
     }
 }

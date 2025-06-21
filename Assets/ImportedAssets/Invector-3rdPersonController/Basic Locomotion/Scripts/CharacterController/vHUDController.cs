@@ -199,7 +199,6 @@ namespace Invector.vCharacterController
                     else
                     if(Time.time > currentHiddenTime + hiddenTime)
                     {
-                        Debug.Log("HiddenStamina");
                         staminaSliderFadeCanvas.FadeOut();
                        
                     }
