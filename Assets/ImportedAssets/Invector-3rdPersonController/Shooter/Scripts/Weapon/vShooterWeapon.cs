@@ -223,7 +223,6 @@ namespace Invector.vShooter
 
         private void Update()
         {
-            updateGunData();
             PlayerElementDamageClass(PlayerElementClass);
             debugAmmo = ammoCount;
         }
@@ -272,6 +271,7 @@ namespace Invector.vShooter
 
         protected virtual void Start()
         {
+            updateGunData();
             if (!reloadSource)
             {
                 reloadSource = source;

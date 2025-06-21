@@ -41,21 +41,21 @@ public class WeaponInjector : MonoBehaviour
             weapon.isExplosive = characterConfigurator.isExplosive;
             weapon.isEffectMode = characterConfigurator.isEffectMode;
             weapon.PlayerElementClass = characterConfigurator.PlayerElementClass;
-            weapon.gunData.FireRate *= characterConfigurator.PlayerFireRate;
-            weapon.gunData.ReloadTime = characterConfigurator.ReloadSpeed;
+            weapon.shootFrequency *= characterConfigurator.PlayerFireRate;
+            weapon.reloadTime = characterConfigurator.ReloadSpeed;
 
-            if (weapon.gunData.GunType == GunType.LongGun)
-                weapon.gunData.ClipSize = characterConfigurator.LongGunClipSize;
+            if (weapon.GunType == GunType.LongGun)
+                weapon.clipSize = characterConfigurator.LongGunClipSize;
 
-            weapon.gunData.RecoilLeft *= characterConfigurator.GunRecoil;
-            weapon.gunData.RecoilRight *= characterConfigurator.GunRecoil;
-            weapon.gunData.RecoilUp *= characterConfigurator.GunRecoil;
+            weapon.recoilLeft *= characterConfigurator.GunRecoil;
+            weapon.recoilRight *= characterConfigurator.GunRecoil;
+            weapon.recoilUp *= characterConfigurator.GunRecoil;
 
-            characterConfigurator.GunType = weapon.gunData.GunType;
+            characterConfigurator.GunType = weapon.GunType;
             characterConfigurator.CurrentBullet = weapon.ammoCount;
-            characterConfigurator.CurrentGunClipSize = weapon.gunData.ClipSize;
+            characterConfigurator.CurrentGunClipSize = weapon.clipSize;
 
-            weapon.PlayerDamageMultiplier = (weapon.gunData.GunType == GunType.ShortGun)
+            weapon.PlayerDamageMultiplier = (weapon.GunType == GunType.ShortGun)
                 ? characterConfigurator.PlayerDamageMultiplierShortgun
                 : characterConfigurator.PlayerDamageMultiplierLonggun;
 
