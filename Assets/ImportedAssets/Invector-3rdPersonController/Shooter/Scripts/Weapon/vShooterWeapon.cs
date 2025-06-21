@@ -277,6 +277,7 @@ namespace Invector.vShooter
                 reloadSource = source;
             }
             SetScopeZoom(scopeZoom);
+            CacheDefaultParticleColors();
         }
 
         public virtual void Shootest()
