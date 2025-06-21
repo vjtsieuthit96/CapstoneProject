@@ -13,12 +13,6 @@ public class CharacterConfigurator : MonoBehaviour
     public vHUDController hudController;
     public WeaponInjector weaponInjector;
     public vShooterMeleeInput MeleeInput;
-    public bool isExplosive = false;
-    public bool isPhysicsDamage = true;
-    public bool isIceEffect = false;
-    public bool isElectricEffect = false;
-    public bool isPoisonEffect = false;
-    public int EffectMode = 0;
 
     #region Dữ Liệu Clone Từ Character Stats ra dữ liệu RunTime
     [Header("Movement Speeds")]
@@ -62,6 +56,7 @@ public class CharacterConfigurator : MonoBehaviour
 
     [Header("Player Health")]
     public float PlayerMaxHealth;
+    public float DamageRatio;
     public float PlayerMaxAmour;
     public float HealthRecovery;
     public float HealthRecoveryPerTime;
@@ -81,10 +76,15 @@ public class CharacterConfigurator : MonoBehaviour
     public int CurrentGunClipSize;
     public GunType GunType;
 
+    // Element & ShotType
+    public bool isExplosive;
+    public bool isEffectMode = false;
+    public int PlayerElementClass = 0;
+    public int ExplosiveClass = 0;
     // Canvas skilltree
     public GameObject SkillTreePanel;
     private bool isOn = false;
-
+    
 
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
@@ -101,7 +101,6 @@ public class CharacterConfigurator : MonoBehaviour
         {
             CopyFrom(stats);
         }
-        isPhysicsDamage = true;
         MeleeInput = GetComponent<vShooterMeleeInput>();
 
     #region Test Sự kiện bắn
@@ -123,54 +122,41 @@ public class CharacterConfigurator : MonoBehaviour
     private void Update()
     {
         ApplyStats();
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-          isExplosive = !isExplosive;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            EffectMode = (EffectMode + 1) % 4;
-
-            isPhysicsDamage = EffectMode == 0;
-            isIceEffect = EffectMode == 1;
-            isElectricEffect = EffectMode == 2;
-            isPoisonEffect = EffectMode == 3;
-        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             TakeDamage(15f);
         }
 
         //bật tắt canvas, xây dựng tạm thời
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            isOn = !isOn;
-            //SkillTreePanel.SetActive(isOn);
-        }
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    isOn = !isOn;
+        //    SkillTreePanel.SetActive(isOn);
+        //}
     }
     #endregion
     public void TakeDamage(float damageValue)
     {
-        if (damageValue <= 0 || controller == null) return;
+        float TrueDamage = damageValue * DamageRatio;
+        if (TrueDamage <= 0 || controller == null) return;
 
         if (controller.currentShield > 0)
         {
-            if (controller.currentShield >= damageValue)
+            if (controller.currentShield >= TrueDamage)
             {
-                controller.currentShield -= damageValue;
-                hudController.EnableDamageSprite(new vDamage(damageValue));
-                Debug.Log("Amour hiện tại là: " + controller.currentShield);
+                controller.currentShield -= TrueDamage;
+                hudController.EnableDamageSprite(new vDamage(TrueDamage));
             }
             else
             {
-                float remainingDamage = damageValue - controller.currentShield;
+                float remainingDamage = TrueDamage - controller.currentShield;
                 controller.currentShield = 0;
                 controller.TakeDamage(new vDamage(remainingDamage));
             }
         }
         else
         {
-            controller.TakeDamage(new vDamage(damageValue));
+            controller.TakeDamage(new vDamage(TrueDamage));
         }
     }
     #region Clone Dữ Liệu ra
@@ -210,6 +196,7 @@ public class CharacterConfigurator : MonoBehaviour
         ReloadSpeed = other.ReloadSpeed;
 
         PlayerMaxHealth = other.PlayerMaxHealth;
+        DamageRatio = other.DamageRatio;
         PlayerMaxAmour = other.PlayerMaxAmour;
         HealthRecovery = other.HealthRecovery;
         HealthRecoveryPerTime = other.HealthRecoveryPerTime;

@@ -44,6 +44,15 @@ namespace Invector
         private bool inTimer;
         protected List<GameObject> collidersReached;
 
+        public float DetentionTime;
+        public float ReductEnemySpeedPercent;
+        public float ElectricDamagePercent;
+        public float EletricDuration;
+        public float PoisonDamagePercent;
+        public float PoisonDuration;
+
+        private float damageExplosive;
+
         void OnDrawGizmosSelected()
         {
             if (!showGizmos) return;
@@ -54,6 +63,20 @@ namespace Invector
         }
 
         public void SetOverrideDamageSender(Transform target) => overrideDamageSender = target;
+
+        public void SetOverDataSender(float DetentionTime, float ReductEnemySpeedPercent, 
+            float EletricDamagePercent, float ElectricDuration, float PoisonDamagePercent, 
+            float PoisonDuration, float damage)
+        {
+            this.DetentionTime = DetentionTime;
+            this.ReductEnemySpeedPercent = ReductEnemySpeedPercent;
+            this.ElectricDamagePercent = EletricDamagePercent;
+            this.EletricDuration = ElectricDuration;
+            this.PoisonDamagePercent = PoisonDamagePercent;
+            this.PoisonDuration = PoisonDuration;
+            this.damageExplosive = damage;
+        }    
+
         public void SetDamage(vDamage damage)
         {
             this.damage = damage;
@@ -134,9 +157,8 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
-
                     _damage.damageValue = (int)damageValue;
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
@@ -144,7 +166,7 @@ namespace Invector
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {                        
-                        eHithandler.ApplyHit((int)damageValue);
+                        eHithandler.ApplyHit(damageValue);
                     }
                 }
             }
@@ -172,7 +194,7 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
 
                     _damage.damageValue = (int)damageValue;
@@ -182,8 +204,8 @@ namespace Invector
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
-                        eHithandler.ApplyHit((int)damageValue/5);
-                        eHithandler.ApplyFreeze(10f);
+                        eHithandler.ApplyHit(damageValue * ElectricDamagePercent);
+                        eHithandler.ApplyFreeze(DetentionTime);
                     }
                 }
             }
@@ -211,7 +233,7 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
 
                     _damage.damageValue = (int)damageValue;
@@ -221,8 +243,9 @@ namespace Invector
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
-                        eHithandler.ApplySlowDown(0.5f, 5f);
-                        eHithandler.ApplyShock(5f);
+                        eHithandler.ApplySlowDown(ReductEnemySpeedPercent, EletricDuration);
+                        eHithandler.ApplyHit(damageValue * ElectricDamagePercent);
+                        eHithandler.ApplyShock(1f);
                     }
                 }
             }
@@ -250,7 +273,7 @@ namespace Invector
                     _damage.hitPosition = colliders[i].ClosestPointOnBounds(transform.position);
                     _damage.receiver = colliders[i].transform;
                     var distance = Vector3.Distance(transform.position, _damage.hitPosition);
-                    var damageValue = distance <= minExplosionRadius ? damage.damageValue * damageOnMinRangeMultiplier : Mathf.Lerp(damage.damageValue * damageOnMaxRangeMultiplier, damage.damageValue * damageOnMinRangeMultiplier, EvaluateDistance(distance));
+                    var damageValue = distance <= minExplosionRadius ? damageExplosive * damageOnMinRangeMultiplier : Mathf.Lerp(damageExplosive * damageOnMaxRangeMultiplier, damageExplosive * damageOnMinRangeMultiplier, EvaluateDistance(distance));
                     _damage.activeRagdoll = distance > maxExplosionRadius * 0.5f ? false : _damage.activeRagdoll;
 
                     _damage.damageValue = (int)damageValue;
@@ -260,8 +283,7 @@ namespace Invector
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
-                        eHithandler.ApplySlowDown(0.2f, 5f);
-                        eHithandler.ApplyPoisonDamage((int)damageValue / 5, 30f);
+                        eHithandler.ApplyPoisonDamage(damageValue * PoisonDamagePercent, PoisonDuration);
 
                     }
                 }

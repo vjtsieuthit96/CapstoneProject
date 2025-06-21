@@ -9,7 +9,7 @@ public class SkillNode : ScriptableObject
     public string id;
     public string displayName;
     public string description;
-    public Image icon;
+    public Sprite icon;
 
     public List<SkillNode> prerequisites;
     public UnlockConditionType unlockCondition = UnlockConditionType.AllPrerequisites;

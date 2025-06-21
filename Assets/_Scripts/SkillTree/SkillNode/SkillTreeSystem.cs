@@ -15,6 +15,16 @@ public class SkillTreeSystem : MonoBehaviour
     {
         RefreshOnStart();
     }
+    void Update()
+    {
+        foreach (var node in skillTree.allNodes)
+        {
+            if (node.isUnlocked && node.effect != null)
+            {
+                node.effect.UpdateCondition(characterConfigurator);
+            }
+        }
+    }
     public bool TryUnlock(SkillNode node)
     {
         if (node.CanUnlock() && availableSkillPoints >= node.requiredPoints)

@@ -45,7 +45,8 @@ public class CharacterStats : ScriptableObject
     [Header("Player Health")]
     public float PlayerMaxHealth;
     public float PlayerMaxAmour;
-    public float HealthRecovery = 2f;
+    public float DamageRatio = 1f;
+    public float HealthRecovery = 1f;
     public float HealthRecoveryPerTime = 1.5f;
     public bool isImortal = false;
 

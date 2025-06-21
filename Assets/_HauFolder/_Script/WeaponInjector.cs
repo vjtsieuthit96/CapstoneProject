@@ -32,7 +32,8 @@ public class WeaponInjector : MonoBehaviour
             if (characterConfigurator != null)
             {
                 weapon.isExplosive = characterConfigurator.isExplosive;
-                weapon.EffectMode = characterConfigurator.EffectMode;
+                weapon.isEffectMode = characterConfigurator.isEffectMode;
+                weapon.PlayerElementClass = characterConfigurator.PlayerElementClass;
                 weapon.gunData.FireRate *= characterConfigurator.PlayerFireRate;
                 weapon.gunData.ReloadTime = characterConfigurator.ReloadSpeed;
                 if(weapon.gunData.GunType == GunType.LongGun)

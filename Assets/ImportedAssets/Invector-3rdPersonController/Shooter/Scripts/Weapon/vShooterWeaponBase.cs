@@ -15,7 +15,7 @@ namespace Invector.vShooter
         [Tooltip("The category of the weapon\n Used to the IK offset system. \nExample: HandGun, Pistol, Machine-Gun")]
         public string weaponCategory = "MyCategory";
         public bool isExplosive;
-        public int EffectMode;
+        public bool isEffectMode;
         [SerializeField, Tooltip("Frequency of shots"), FormerlySerializedAs("shootFrequency")]
         protected float _shootFrequency;
         public virtual float shootFrequency { get { return _shootFrequency; } set { _shootFrequency = value; } }
@@ -100,6 +100,9 @@ namespace Invector.vShooter
         protected virtual float _nextShootTime { get; set; }
         protected virtual float _nextEmptyClipTime { get; set; }
         protected virtual Transform sender { get; set; }
+
+        [vEditorToolbar("Gun Stats")]
+        public GunData gunData;
         #endregion
 
         #region Public Methods
@@ -243,6 +246,68 @@ namespace Invector.vShooter
 
         #region Protected Methods
 
+        #region Player Class 
+        public int PlayerElementClass = 0;
+        public Element GunElement;
+        public BulletType BulletType;
+        public GunType GunType;
+        public float DetentionTime;
+        public float ReductEnemySpeedPercent;
+        public float ElectricDamagePercent;
+        public float EletricDuration;
+        public float PoisonDamagePercent;
+        public float PoisonDuration;
+
+        #endregion
+
+        public void PlayerElementDamageClass(int PlayerClass)
+        {
+            switch(PlayerClass)
+            {
+                case 1:
+                    DetentionTime = 2f;
+                    ReductEnemySpeedPercent = 0.2f;
+                    ElectricDamagePercent = 0.2f;
+                    EletricDuration = 5f;
+                    PoisonDamagePercent = 0.2f;
+                    PoisonDuration = 9f;
+                    break;
+                case 2:
+                    DetentionTime = 4f;
+                    ReductEnemySpeedPercent = 0.4f;
+                    ElectricDamagePercent = 0.4f;
+                    EletricDuration = 5f;
+                    PoisonDamagePercent = 0.4f;
+                    PoisonDuration = 9f;
+                    break;
+                case 3:
+                    DetentionTime = 6f;
+                    ReductEnemySpeedPercent = 0.6f;
+                    ElectricDamagePercent = 0.6f;
+                    EletricDuration = 8f;
+                    PoisonDamagePercent = 0.6f;
+                    PoisonDuration = 12f;
+                    break;
+                case 4:
+                    DetentionTime = 7f;
+                    ReductEnemySpeedPercent = 0.7f;
+                    ElectricDamagePercent = 0.7f;
+                    EletricDuration = 8f;
+                    PoisonDamagePercent = 0.6f;
+                    PoisonDuration = 15f;
+                    break;
+                default:
+                    DetentionTime = 0f;
+                    ReductEnemySpeedPercent = 0f;
+                    ElectricDamagePercent = 0f;
+                    EletricDuration = 0f;
+                    PoisonDamagePercent = 0f;
+                    PoisonDuration = 0f;
+                    break;
+            }       
+        }   
+        
+
         protected virtual void OnDestroy()
         {
             onDestroy.Invoke(gameObject);
@@ -306,20 +371,154 @@ namespace Invector.vShooter
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
                 Debug.Log("Raycast Hit: " + hit.collider.tag);
+                EnemyHitCounter.Instance?.ElementShot();
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     EnemyHitCounter.Instance?.RegisterEnemyHit();
+                    EnemyHitCounter.Instance?.RegisterElementHit();
+
                 }
 
-                #region XỬ LÍ SÁT THƯƠNG NỔ
-                if (EffectMode == 0)
+                if (isEffectMode)
                 {
-                    if (isExplosive)
+                    #region XỬ LÍ SÁT THƯƠNG NỔ
+                    if (GunElement == Element.None)
+                    {
+                        if (isExplosive && BulletType == BulletType.Explosion)
+                        {
+                            vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                            if (explosive != null)
+                            {
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                explosive.SetOverrideDamageSender(transform);
+                                explosive.SetOverDataSender(DetentionTime,ReductEnemySpeedPercent,ElectricDamagePercent,EletricDuration,PoisonDamagePercent,PoisonDuration,raycastDamage);
+                                explosive.Explode();
+                            }
+
+                        }
+                        else
+                        {
+                            EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                            if (eHithandler != null)
+                            {
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                eHithandler.ApplyBleed(hit.point);
+                                eHithandler.ApplyHit(raycastDamage);
+                            }
+                        }
+                    }
+                    #endregion
+                    #region XỬ LÝ ĐÓNG BĂNG
+                    else if (GunElement == Element.Frozen)
+                    {
+                        if (isExplosive && BulletType == BulletType.Explosion)
+                        {
+                            vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("IceExplosion", hit.point, Quaternion.identity);
+                            if (explosive != null)
+                            {
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                explosive.SetOverrideDamageSender(transform);
+                                explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
+                                explosive.ExplodeIce();
+                            }
+                            Quaternion randomRotation = Quaternion.Euler(
+                                Random.Range(0f, 360f),
+                                Random.Range(0f, 360f),
+                                Random.Range(0f, 360f)
+                            );
+
+                            GameObject iceCube = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, randomRotation);
+                        }
+                        else
+                        {
+                            EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                            if (eHithandler != null)
+                            {
+                                // Đóng băng:
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent);
+                                eHithandler.ApplyFreeze(DetentionTime);
+
+                            }
+                            Quaternion randomRotation = Quaternion.Euler(
+                               Random.Range(0f, 360f),
+                               Random.Range(0f, 360f),
+                               Random.Range(0f, 360f)
+                           );
+
+                            GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
+                        }
+                    }
+                    #endregion
+                    #region XỬ LÝ ĐIỆN
+                    else if (GunElement == Element.Electric)
+                    {
+                        if (isExplosive && BulletType == BulletType.Explosion)
+                        {
+                            vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("ElectricExplosion", hit.point, Quaternion.identity);
+
+                            if (explosive != null)
+                            {
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                explosive.SetOverrideDamageSender(transform);
+                                explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
+                                explosive.ExplodeElectric();
+                            }
+                        }
+                        else
+                        {
+                            EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                            if (eHithandler != null)
+                            {
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                eHithandler.ApplySlowDown(ReductEnemySpeedPercent, EletricDuration);
+                                eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent);
+                                eHithandler.ApplyShock(1f);
+
+                            }
+                        }
+                    }
+                    #endregion
+                    #region XỬ LÝ ĐỘC
+                    else if (GunElement == Element.Poison)
+                    {
+                        if (isExplosive && BulletType == BulletType.Explosion)
+                        {
+                            vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("PoisonExplosion", hit.point, Quaternion.identity);
+
+                            if (explosive != null)
+                            {
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                explosive.SetOverrideDamageSender(transform);
+                                explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
+                                explosive.ExplodePoison();
+                            }
+                        }
+                        else
+                        {
+                            EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
+                            if (eHithandler != null)
+                            {
+                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                eHithandler.ApplyBleed(hit.point);
+                                eHithandler.ApplyPoisonDamage(raycastDamage * PoisonDamagePercent, PoisonDuration);
+                            }
+                        }
+                    }
+                    #endregion
+
+                    TryCreateDecal(hit);
+                }
+                else
+                {
+                    if (isExplosive && BulletType == BulletType.Explosion)
                     {
                         vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
                         if (explosive != null)
                         {
+                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                             explosive.SetOverrideDamageSender(transform);
+                            explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
                             explosive.Explode();
                         }
 
@@ -334,107 +533,13 @@ namespace Invector.vShooter
                             eHithandler.ApplyHit(raycastDamage);
                         }
                     }
+                    TryCreateDecal(hit);
                 }
-                #endregion
-                #region XỬ LÝ ĐÓNG BĂNG
-                else if(EffectMode == 1)
-                {
-                    if(isExplosive)
-                    {
-                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("IceExplosion", hit.point, Quaternion.identity);
-                        if (explosive != null)
-                        {
-                            explosive.SetOverrideDamageSender(transform);
-                            explosive.ExplodeIce();
-                        }
-                        Quaternion randomRotation = Quaternion.Euler(
-                            Random.Range(0f, 360f),
-                            Random.Range(0f, 360f),
-                            Random.Range(0f, 360f)
-                        );
-
-                        GameObject iceCube = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, randomRotation);
-                    }
-                    else
-                    {
-                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
-                        if (eHithandler != null)
-                        {
-                            // Đóng băng:
-                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                            eHithandler.ApplyHit(raycastDamage / 5);
-                            eHithandler.ApplyFreeze(5f);
-                            // Giật điện test
-                            //eHithandler.ApplySlowDown(0.5f, 5f);
-                            //eHithandler.ApplyShock(5f);
-
-                        }
-                        Quaternion randomRotation = Quaternion.Euler(
-                           Random.Range(0f, 360f),
-                           Random.Range(0f, 360f),
-                           Random.Range(0f, 360f)
-                       );
-
-                        GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
-                    }
-                }
-                #endregion
-                #region XỬ LÝ ĐIỆN (TEST)
-                else if (EffectMode == 2)
-                {
-                    if (isExplosive)
-                    {
-                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("ElectricExplosion", hit.point, Quaternion.identity);
-
-                        if (explosive != null)
-                        {
-                            explosive.SetOverrideDamageSender(transform);
-                            explosive.ExplodeElectric();
-                        }
-                    }
-                    else
-                    {
-                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
-                        if (eHithandler != null)
-                        {
-                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                            eHithandler.ApplySlowDown(0.5f, 5f);
-                            eHithandler.ApplyShock(5f);
-
-                        }
-                    }
-                }
-                #endregion
-                #region XỬ LÝ ĐỘC
-                else if (EffectMode == 3)
-                {
-                    if (isExplosive)
-                    {
-                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("PoisonExplosion", hit.point, Quaternion.identity);
-
-                        if (explosive != null)
-                        {
-                            explosive.SetOverrideDamageSender(transform);
-                            explosive.ExplodePoison();
-                        }
-                    }
-                    else
-                    {
-                        EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
-                        if (eHithandler != null)
-                        {
-                            int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                            eHithandler.ApplyBleed(hit.point);
-                            eHithandler.ApplyPoisonDamage(raycastDamage/5,30f);
-                        }
-                    }
-                }
-                #endregion
-
-                TryCreateDecal(hit);
             }
             else
             {
+                EnemyHitCounter.Instance?.ResetCounterElement();
+                EnemyHitCounter.Instance?.ResetCounter();
                 Debug.DrawRay(ray.origin, ray.direction * 300f, Color.black, 2f);
             }
         }
