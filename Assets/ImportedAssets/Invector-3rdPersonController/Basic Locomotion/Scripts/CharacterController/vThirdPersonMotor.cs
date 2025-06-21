@@ -32,16 +32,16 @@ namespace Invector.vCharacterController
             }
         }
         #endregion
-        #region SettingMenu
-        protected bool _isOpenSettingMenu;
-        public virtual bool isOpenSettingMenu
+        #region Options
+        protected bool _isOpenOptionsMenu;
+        public virtual bool isOpenOptionsMenu
         {
-            get { return _isOpenSettingMenu; }
+            get { return _isOpenOptionsMenu; }
             set
             {
-                if (_isOpenSettingMenu != value)
+                if (_isOpenOptionsMenu != value)
                 {
-                    _isOpenSettingMenu = value;
+                    _isOpenOptionsMenu = value;
                 }
             }
         }

@@ -45,8 +45,8 @@ namespace Invector.vCharacterController
         public GenericInput rotateCameraXInput = new GenericInput("Mouse X", "RightAnalogHorizontal", "Mouse X");
         public GenericInput rotateCameraYInput = new GenericInput("Mouse Y", "RightAnalogVertical", "Mouse Y");
         public GenericInput cameraZoomInput = new GenericInput("Mouse ScrollWheel", "", "");
-        [Header("Settings Input")]
-        public GenericInput settingsInput = new GenericInput("Escape", "Start", "Start");
+        [Header("Options Input")]
+        public GenericInput optionsInput = new GenericInput("Escape", "Start", "Start");
 
         [vEditorToolbar("Events")]
         public UnityEvent OnLockCamera;
@@ -438,7 +438,7 @@ namespace Invector.vCharacterController
 
         public virtual void InputHandle()
         {
-            SettingMenuInput();
+            OptionsMenuInput();
             if (lockInput || cc.ragdolled)
             {
                 return;
@@ -491,24 +491,24 @@ namespace Invector.vCharacterController
                 cc.ControlRotationType();                                   // handle the controller rotation type (strafe or free)
             }
         }
-        #region SettingMenuActions
-        public virtual void SettingMenuInput()
+        #region OptionsMenuActions
+        public virtual void OptionsMenuInput()
         {
-            if (settingsInput.GetButtonDown())
+            if (optionsInput.GetButtonDown())
             {
-                cc.OpenSettingMenu();
-                if(cc.isOpenSettingMenu)
+                cc.OpenOptionsMenu();
+                if(cc.isOpenOptionsMenu)
                 {
-                    SettingMenuOn();
+                    OptionsMenuOn();
                 }
                 else
                 {
-                    SettingMenuClose();
+                    OptionsMenuClose();
                     
                 }
             }
         }
-        public void SettingMenuOn()
+        public void OptionsMenuOn()
         {
             cc.StopCharacter();
             if (tpCamera && cc)
@@ -523,14 +523,14 @@ namespace Invector.vCharacterController
             ShowCursor(true);
             SetLockCameraInput(true);
             SetLockAllInput(true);
-            optionBoardController.FadeIn();
+            optionBoardController.FadeIn(PanelType.Option);
         }
 
-        public void SettingMenuClose()
+        public void OptionsMenuClose()
         {
             optionBoardController.FadeOut();
-            if (cc.isOpenSettingMenu)
-                cc.isOpenSettingMenu = false;
+            if (cc.isOpenOptionsMenu)
+                cc.isOpenOptionsMenu = false;
             if(tpCamera)
                 changeCameraState = false;
             SetLockAllInput(false);
