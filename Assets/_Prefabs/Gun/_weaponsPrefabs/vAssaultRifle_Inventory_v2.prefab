@@ -27765,10 +27765,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 6
+  selectedToolbar: 4
   weaponCategory: Rifle
   isExplosive: 0
-  EffectMode: 0
+  isEffectMode: 0
   _shootFrequency: 0.125
   isInfinityAmmo: 0
   ExplosionPrefab: {fileID: 170736, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
@@ -27788,8 +27788,8 @@ MonoBehaviour:
   PlayerDamageMultiplier: 1
   _minDamageDistance: 8
   _maxDamageDistance: 50
-  _minDamage: 15
-  _maxDamage: 25
+  _minDamage: 20
+  _maxDamage: 42
   source: {fileID: 8229992}
   fireClip: {fileID: 8300000, guid: 097e8235e0162d64ba53da9ef4ab8d61, type: 3}
   emptyClip: {fileID: 8300000, guid: 9b2ce00d16b72c34a9b46200421a6def, type: 3}
@@ -27829,6 +27829,9 @@ MonoBehaviour:
       m_Calls: []
   gunData: {fileID: 11400000, guid: 5958b9a5ca7cb0b49aa19005f9159364, type: 2}
   PlayerElementClass: 0
+  GunElement: 0
+  BulletType: 0
+  GunType: 0
   DetentionTime: 0
   ReductEnemySpeedPercent: 0
   ElectricDamagePercent: 0

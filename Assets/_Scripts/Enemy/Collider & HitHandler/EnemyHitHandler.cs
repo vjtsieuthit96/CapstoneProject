@@ -16,12 +16,10 @@ public class EnemyHitHandler : MonoBehaviour
     {
         float finalDamage = bulletDamage * damageMultiplier;
         monsterAi.ApplyDamage(finalDamage);
-        Debug.Log($"Hit: {gameObject.name}, Damage: {finalDamage}");
         int rate = Random.Range(0, 100);      
         if (rate <= 30 && !monsterAi.GetIsHit())
         {
-            monsterAi.SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);           
-            Debug.Log("Enemy get hit animation");
+            monsterAi.SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
         }
     }
     public void ApplyPoisonDamage(float damage, float duration)

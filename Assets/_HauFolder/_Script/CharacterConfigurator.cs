@@ -121,11 +121,30 @@ public class CharacterConfigurator : MonoBehaviour
     #region Test Amour
     private void Update()
     {
-        ApplyStats();
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            TakeDamage(15f);
+            isEffectMode = !isEffectMode;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            isExplosive = !isExplosive;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if(PlayerElementClass <=5)
+            { 
+                PlayerElementClass++;
+            }
+            else
+            {
+                PlayerElementClass = 0;
+            }
+        }
+        ApplyStats();
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    TakeDamage(15f);
+        //}
 
         //bật tắt canvas, xây dựng tạm thời
         //if (Input.GetKeyDown(KeyCode.I))
