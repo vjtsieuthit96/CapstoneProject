@@ -84,7 +84,10 @@ namespace Invector.vShooter
         [SerializeField]
         public ParticleSystem[] emittShurykenParticle;
         private Dictionary<ParticleSystem, Color> defaultParticleColors = new Dictionary<ParticleSystem, Color>();
-
+        [SerializeField] private Color electricColor = new Color(0f, 0.4f, 1f);
+        [SerializeField] private Color frozenColor = new Color(0.5f, 0.8f, 1f);
+        [SerializeField] private Color poisonColor = new Color(0f, 0.6f, 0.3f);
+        [SerializeField] private ParticleSystem electricParticle;
 
         [HideInInspector]
         public OnDestroyEvent onDestroy;
@@ -631,6 +634,14 @@ namespace Invector.vShooter
                     pe.Emit(1);
                 }
             }
+            UpdateElectricParticle();
+        }
+        public void UpdateElectricParticle()
+        {
+            if (isEffectMode && GunElement == Element.Electric)
+            {
+                electricParticle.Emit(1);
+            }
         }
         public void CacheDefaultParticleColors()
         {
@@ -640,13 +651,14 @@ namespace Invector.vShooter
 
             foreach (var ps in emittShurykenParticle)
             {
-                if (ps != null)
+                var renderer = ps.GetComponent<Renderer>();
+                if (ps != null && renderer != null && renderer.material != null)
                 {
-                    var main = ps.main;
-                    defaultParticleColors[ps] = main.startColor.color;
+                    defaultParticleColors[ps] = renderer.material.color;
                 }
             }
         }
+
 
         private void UpdateParticleColors()
         {
@@ -656,11 +668,12 @@ namespace Invector.vShooter
             {
                 if (ps == null || !defaultParticleColors.ContainsKey(ps)) continue;
 
-                var main = ps.main;
+                var renderer = ps.GetComponent<Renderer>();
+                if (renderer == null || renderer.material == null) continue;
 
                 if (!isEffectMode)
                 {
-                    main.startColor = defaultParticleColors[ps];
+                    renderer.material.color = defaultParticleColors[ps];
                 }
                 else
                 {
@@ -669,23 +682,24 @@ namespace Invector.vShooter
                     switch (GunElement)
                     {
                         case Element.Electric:
-                            newColor = new Color(0f, 0.4f, 1f);
+                            newColor = electricColor;
                             break;
                         case Element.Frozen:
-                            newColor = new Color(0.5f, 0.8f, 1f);
+                            newColor = frozenColor;
                             break;
                         case Element.Poison:
-                            newColor = new Color(0f, 0.6f, 0.3f);
+                            newColor = poisonColor;
                             break;
                         case Element.None:
                             newColor = defaultParticleColors[ps];
                             break;
                     }
 
-                    main.startColor = newColor;
+                    renderer.material.color = newColor;
                 }
             }
         }
+
 
 
         protected virtual void StopEmitters()
