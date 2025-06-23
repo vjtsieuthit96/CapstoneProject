@@ -50,7 +50,7 @@ MonoBehaviour:
   minRadius: 0
   maxRadius: 45
   delay: 0.5
-  effectCount: 12
+  effectCount: 22
 --- !u!1 &1913279151708742408
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 25
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5106,7 +5106,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 25
       minScalar: 5
       maxCurve:
         serializedVersion: 2
