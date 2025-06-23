@@ -83,7 +83,11 @@ namespace Invector.vShooter
         public Light lightOnShot;
         [SerializeField]
         public ParticleSystem[] emittShurykenParticle;
-
+        private Dictionary<ParticleSystem, Color> defaultParticleColors = new Dictionary<ParticleSystem, Color>();
+        [SerializeField] private Color electricColor = new Color(0f, 0.4f, 1f);
+        [SerializeField] private Color frozenColor = new Color(0.5f, 0.8f, 1f);
+        [SerializeField] private Color poisonColor = new Color(0f, 0.6f, 0.3f);
+        [SerializeField] private ParticleSystem electricParticle;
 
         [HideInInspector]
         public OnDestroyEvent onDestroy;
@@ -370,7 +374,6 @@ namespace Invector.vShooter
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
-                Debug.Log("Raycast Hit: " + hit.collider.tag);
                 EnemyHitCounter.Instance?.ElementShot();
                 if (hit.collider.CompareTag("Enemy"))
                 {
@@ -529,6 +532,7 @@ namespace Invector.vShooter
                         if (eHithandler != null)
                         {
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                            Debug.Log("Damage: " + raycastDamage);
                             eHithandler.ApplyBleed(hit.point);
                             eHithandler.ApplyHit(raycastDamage);
                         }
@@ -560,7 +564,7 @@ namespace Invector.vShooter
             try
             {
                 var _rigidbody = bulletObject.GetComponent<Rigidbody>();
-                _rigidbody.mass = _rigidbody.mass / projectilesPerShot;//Change mass per projectiles count.
+                _rigidbody.mass = _rigidbody.mass / projectilesPerShot;
 
                 _rigidbody.AddForce((direction.normalized * velocityChanged), ForceMode.VelocityChange);
             }
@@ -592,13 +596,13 @@ namespace Invector.vShooter
             onShot.Invoke();
 
             StopCoroutine(LightOnShoot());
-            if (source && fireClip)
-            {
 
+            if (source && fireClip)
                 source.PlayOneShot(fireClip);
-            }
 
             StartCoroutine(LightOnShoot(0.037f));
+
+            UpdateParticleColors();
             StartEmitters();
         }
 
@@ -630,7 +634,73 @@ namespace Invector.vShooter
                     pe.Emit(1);
                 }
             }
+            UpdateElectricParticle();
         }
+        public void UpdateElectricParticle()
+        {
+            if (isEffectMode && GunElement == Element.Electric)
+            {
+                electricParticle.Emit(1);
+            }
+        }
+        public void CacheDefaultParticleColors()
+        {
+            defaultParticleColors.Clear();
+
+            if (emittShurykenParticle == null) return;
+
+            foreach (var ps in emittShurykenParticle)
+            {
+                var renderer = ps.GetComponent<Renderer>();
+                if (ps != null && renderer != null && renderer.material != null)
+                {
+                    defaultParticleColors[ps] = renderer.material.color;
+                }
+            }
+        }
+
+
+        private void UpdateParticleColors()
+        {
+            if (emittShurykenParticle == null) return;
+
+            foreach (var ps in emittShurykenParticle)
+            {
+                if (ps == null || !defaultParticleColors.ContainsKey(ps)) continue;
+
+                var renderer = ps.GetComponent<Renderer>();
+                if (renderer == null || renderer.material == null) continue;
+
+                if (!isEffectMode)
+                {
+                    renderer.material.color = defaultParticleColors[ps];
+                }
+                else
+                {
+                    Color newColor = defaultParticleColors[ps];
+
+                    switch (GunElement)
+                    {
+                        case Element.Electric:
+                            newColor = electricColor;
+                            break;
+                        case Element.Frozen:
+                            newColor = frozenColor;
+                            break;
+                        case Element.Poison:
+                            newColor = poisonColor;
+                            break;
+                        case Element.None:
+                            newColor = defaultParticleColors[ps];
+                            break;
+                    }
+
+                    renderer.material.color = newColor;
+                }
+            }
+        }
+
+
 
         protected virtual void StopEmitters()
         {

@@ -34,8 +34,8 @@ public class RageNode : Node
             isEnraged = true;
             lastRageTime = Time.time;
             Debug.Log("Rage State");
-            monsterStats.AddDamagePercent(50f); // Tăng 50% sát thương
-            monsterStats.AddDefensePercent(50f); // Tăng 50% phòng thủ
+            monsterStats.AddDamagePercent(75f); // Tăng sát thương
+            monsterStats.AddDefensePercent(75f); // Tăng phòng thủ
             return NodeState.SUCCESS;
         }
         

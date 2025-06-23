@@ -32943,10 +32943,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 9
+  selectedToolbar: 6
   weaponCategory: Rifle
   isExplosive: 0
-  EffectMode: 0
+  isEffectMode: 0
   _shootFrequency: 0.125
   isInfinityAmmo: 0
   ExplosionPrefab: {fileID: 170736, guid: 6f15bbfa9d9f32c4a843e163f81e3f51, type: 3}
@@ -33006,6 +33006,17 @@ MonoBehaviour:
   onInstantiateProjectile:
     m_PersistentCalls:
       m_Calls: []
+  gunData: {fileID: 0}
+  PlayerElementClass: 0
+  GunElement: 0
+  BulletType: 0
+  GunType: 0
+  DetentionTime: 0
+  ReductEnemySpeedPercent: 0
+  ElectricDamagePercent: 0
+  EletricDuration: 0
+  PoisonDamagePercent: 0
+  PoisonDuration: 0
   isLeftWeapon: 0
   chargeWeapon: 0
   autoShotOnFinishCharge: 0
@@ -33014,6 +33025,7 @@ MonoBehaviour:
   changeVelocityByCharge: 1
   chargeVelocityMultiplier: 2
   automaticWeapon: 1
+  debugAmmo: 0
   reloadTime: 1
   reloadOneByOne: 0
   _clipSize: 25
@@ -33172,7 +33184,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   decalManager: {fileID: 0}
-  gunData: {fileID: 0}
   root: {fileID: 0}
   isSecundaryWeapon: 0
 --- !u!114 &114382262437889658
