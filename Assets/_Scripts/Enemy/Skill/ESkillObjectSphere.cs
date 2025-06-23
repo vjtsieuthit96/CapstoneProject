@@ -30,7 +30,7 @@ public abstract class ESkillObjectSphere : MonoBehaviour
             if (col.CompareTag("Player"))
             {
                 hasHit = true;
-
+                Debug.Log("Hit player: " + col.name);
                 CharacterConfigurator player = col.GetComponent<CharacterConfigurator>();
                 if (player != null)
                 {
@@ -47,7 +47,16 @@ public abstract class ESkillObjectSphere : MonoBehaviour
             }
         }
     }
-   
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0f, 0.5f, 1f, 0.25f); // Màu xanh dương nhạt có alpha
+
+        Vector3 explosionPos = transform.position + Vector3.up * positionOffset;
+        Gizmos.DrawSphere(explosionPos, sphereRadius);
+    }
+
+
+
     protected abstract void HitObj(RaycastHit hit);
     protected abstract void ReturnObject();
 
