@@ -261,6 +261,7 @@ namespace Invector.vShooter
         public float EletricDuration;
         public float PoisonDamagePercent;
         public float PoisonDuration;
+        public GameObject Gunowner;
 
         #endregion
 
@@ -390,6 +391,7 @@ namespace Invector.vShooter
                         if (isExplosive && BulletType == BulletType.Explosion)
                         {
                             vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                            explosive.Owner = Gunowner;
                             if (explosive != null)
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);

@@ -53,6 +53,8 @@ namespace Invector
 
         private float damageExplosive;
 
+        public GameObject Owner;
+
         void OnDrawGizmosSelected()
         {
             if (!showGizmos) return;
@@ -68,13 +70,14 @@ namespace Invector
             float EletricDamagePercent, float ElectricDuration, float PoisonDamagePercent, 
             float PoisonDuration, float damage)
         {
+            float rand = Random.Range(3, 7);
             this.DetentionTime = DetentionTime;
             this.ReductEnemySpeedPercent = ReductEnemySpeedPercent;
             this.ElectricDamagePercent = EletricDamagePercent;
             this.EletricDuration = ElectricDuration;
             this.PoisonDamagePercent = PoisonDamagePercent;
             this.PoisonDuration = PoisonDuration;
-            this.damageExplosive = damage;
+            this.damageExplosive = damage * rand;
         }    
 
         public void SetDamage(vDamage damage)
@@ -165,7 +168,8 @@ namespace Invector
                     //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
-                    {                        
+                    {
+                        Debug.Log("Grenade's Owner: " + Owner);
                         eHithandler.ApplyHit(damageValue);
                     }
                 }
