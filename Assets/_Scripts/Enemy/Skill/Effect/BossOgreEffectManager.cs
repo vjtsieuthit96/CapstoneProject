@@ -13,6 +13,8 @@ public class BossOgreEffectManager : MonoBehaviour
     [Header("-----Dimension AOE-----")]
     [SerializeField] private DimensionSpawnEffect dimensionAOEPrefab;  
     [SerializeField] private GameObject aoePlane;
+    [Header("-----Rage-----")]
+    [SerializeField] private GameObject rageEffect;
     [Header("-----Component-----")]
     [SerializeField] private MonsterStats monsterStats;
     [SerializeField] private MonsterAI monsterAI;
@@ -49,4 +51,12 @@ public class BossOgreEffectManager : MonoBehaviour
         aoePlane.SetActive(true);
     }
 
+    public void EnableRageRoar()
+    {
+        rageEffect.SetActive(true);
+    }
+    public void DisableRageRoar()
+    {
+        rageEffect.SetActive(false);
+    }
 }
