@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using UnityEditor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
+
 
 public abstract class MonsterAI : MonoBehaviour
 {
@@ -90,8 +89,8 @@ public abstract class MonsterAI : MonoBehaviour
         if (!isFreeze && !isDead)
         {
             isFreeze = true;
-            monsterAnimator.speed = 0;
             monsterAgent.isStopped = true;
+            monsterAnimator.speed = 0;            
             frozenEffect.SetActive(true);
             Invoke(nameof(UnFreezeEnemy), duration);
         }
