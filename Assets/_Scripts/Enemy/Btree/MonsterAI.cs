@@ -52,9 +52,10 @@ public abstract class MonsterAI : MonoBehaviour
         GroundLocomotion();
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
+            
             isDead = true;
-            SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             monsterAgent.isStopped = true;
+            SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);          
         }        
     }
     #region BEHAVIOR
