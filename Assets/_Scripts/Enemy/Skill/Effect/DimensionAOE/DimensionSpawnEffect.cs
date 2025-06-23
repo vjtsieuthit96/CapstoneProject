@@ -20,7 +20,7 @@ public class DimensionSpawnEffect : MonoBehaviour
         if (spawnRoutine != null)
             StopCoroutine(spawnRoutine);
         spawnRoutine = StartCoroutine(SpawnDimension(transform.position, effectCount, delay));
-        Invoke(nameof(ReturnOjbect), effectCount * delay + 1f); 
+        Invoke(nameof(ReturnOjbect), effectCount * delay + 3f); 
     }
 
     private void OnDisable()
