@@ -20,6 +20,7 @@ public class DimensionSpawnEffect : MonoBehaviour
         if (spawnRoutine != null)
             StopCoroutine(spawnRoutine);
         spawnRoutine = StartCoroutine(SpawnDimension(transform.position, effectCount, delay));
+        Invoke(nameof(ReturnOjbect), effectCount * delay + 1f); 
     }
 
     private void OnDisable()
@@ -46,5 +47,9 @@ public class DimensionSpawnEffect : MonoBehaviour
     public void SetStats(MonsterStats stats)
     {
         this.monsterStats = stats;
+    }
+    public void ReturnOjbect()
+    {
+        PoolManager.Instance.ReturnObject("DMAOE", this);
     }
 }

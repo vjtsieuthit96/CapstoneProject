@@ -1490,7 +1490,7 @@ GameObject:
   - component: {fileID: 4081185204654997941}
   m_Layer: 0
   m_Name: FatOgre
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1636,6 +1636,7 @@ MonoBehaviour:
   hitPrefabs: {fileID: -5270279735350829934, guid: 5159df3c8b37dcb41b7405b994fc30e1, type: 3}
   dimensionAOEPrefab: {fileID: 5521618449784747113, guid: 4f84a23805604674bb878d474adb8857, type: 3}
   aoePlane: {fileID: 933640807052827430}
+  rageEffect: {fileID: 470627941908377371}
   monsterStats: {fileID: 6380886350549213172}
   monsterAI: {fileID: 3501852433735634973}
 --- !u!114 &2772627718873202584
@@ -3013,6 +3014,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e9c6397b745fe845aad593fd17d49ee, type: 3}
+--- !u!1 &470627941908377371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7741230564936521548, guid: 8e9c6397b745fe845aad593fd17d49ee, type: 3}
+  m_PrefabInstance: {fileID: 7919124410729134167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6074753915700482302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4155623101521979561, guid: 8e9c6397b745fe845aad593fd17d49ee, type: 3}
