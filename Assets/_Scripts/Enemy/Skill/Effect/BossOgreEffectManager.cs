@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossOgreEffectManager : MonoBehaviour
@@ -8,7 +9,10 @@ public class BossOgreEffectManager : MonoBehaviour
     [Header("-----Dimension Draw-----")]
     [SerializeField] private DimensionDraw dimensionDrawPrefab;
     [SerializeField] private Transform DrawSpawnPoint;
-
+    [SerializeField] private DimensionDrawHit hitPrefabs;
+    [Header("-----Dimension AOE-----")]
+    [SerializeField] private DimensionSpawnEffect dimensionAOEPrefab;  
+    [SerializeField] private GameObject aoePlane;
     [Header("-----Component-----")]
     [SerializeField] private MonsterStats monsterStats;
     [SerializeField] private MonsterAI monsterAI;
@@ -18,6 +22,8 @@ public class BossOgreEffectManager : MonoBehaviour
     {        
         PoolManager.Instance.CreatePool<DimensionCutter>("DMCutter",dimensionCutterPrefab,5);
         PoolManager.Instance.CreatePool<DimensionDraw>("DMDraw", dimensionDrawPrefab, 5);
+        PoolManager.Instance.CreatePool<DimensionSpawnEffect>("DMAOE", dimensionAOEPrefab, 2);        
+        PoolManager.Instance.CreatePool("DMDrawHit", hitPrefabs, 10);        
     }
 
     public void SpawnCutter()
@@ -34,5 +40,13 @@ public class BossOgreEffectManager : MonoBehaviour
         draw.SetStats(monsterStats);
     }
 
+    public void SpawnDimensionAOE()
+    {
+        Vector3 spawmPos = monsterAI.GetTarget().position;
+        spawmPos.y = 0; 
+        DimensionSpawnEffect aoe = PoolManager.Instance.GetObject<DimensionSpawnEffect>("DMAOE", spawmPos, Quaternion.identity);
+        aoe.SetStats(monsterStats);
+        aoePlane.SetActive(true);
+    }
 
 }
