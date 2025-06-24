@@ -512,7 +512,10 @@ namespace Invector.vShooter
                     }
                     #endregion
 
-                    TryCreateDecal(hit);
+                    if (!hit.collider.CompareTag("Enemy"))
+                    {
+                        TryCreateDecal(hit);
+                    }
                 }
                 else
                 {
@@ -539,7 +542,10 @@ namespace Invector.vShooter
                             eHithandler.ApplyHit(raycastDamage);
                         }
                     }
-                    TryCreateDecal(hit);
+                    if (!hit.collider.CompareTag("Enemy"))
+                    {
+                        TryCreateDecal(hit);
+                    }
                 }
             }
             else
