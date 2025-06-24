@@ -369,7 +369,7 @@ namespace Invector.vShooter
         {
             Debug.Log(damageMultiplier);
             var dir = endPoint - startPoint;
-
+            Debug.Log("Gun's Owner: " + Gunowner);
             Ray ray = new Ray(startPoint, dir.normalized);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
@@ -523,6 +523,7 @@ namespace Invector.vShooter
                     if (isExplosive && BulletType == BulletType.Explosion)
                     {
                         vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                        explosive.Owner = Gunowner;
                         if (explosive != null)
                         {
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);

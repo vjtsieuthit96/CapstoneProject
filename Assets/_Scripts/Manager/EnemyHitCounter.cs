@@ -13,6 +13,7 @@ public class EnemyHitCounter : MonoBehaviour
     private bool isElementCount = false;
     private bool isExplosive = false;
     private bool isCount = true;
+    private int PlayerKill = 0;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class EnemyHitCounter : MonoBehaviour
         else Destroy(gameObject);
         isCount = true;
     }
+
     // Normal Shot
     public void RegisterEnemyHit()
     {
