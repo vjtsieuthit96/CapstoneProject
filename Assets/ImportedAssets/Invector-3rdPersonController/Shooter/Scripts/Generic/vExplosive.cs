@@ -170,7 +170,7 @@ namespace Invector
                     if (eHithandler != null)
                     {
                         Debug.Log("Grenade's Owner: " + Owner);
-                        eHithandler.ApplyHit(damageValue);
+                        eHithandler.ApplyHit(damageValue, Owner);
                     }
                 }
             }
@@ -204,11 +204,10 @@ namespace Invector
                     _damage.damageValue = (int)damageValue;
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
-                    //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
-                        eHithandler.ApplyHit(damageValue * ElectricDamagePercent);
+                        eHithandler.ApplyHit(damageValue * ElectricDamagePercent, Owner);
                         eHithandler.ApplyFreeze(DetentionTime);
                     }
                 }
@@ -243,12 +242,11 @@ namespace Invector
                     _damage.damageValue = (int)damageValue;
                     onHit.Invoke(colliders[i]);
                     colliders[i].gameObject.ApplyDamage(_damage, null);
-                    //EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
                         eHithandler.ApplySlowDown(ReductEnemySpeedPercent, EletricDuration);
-                        eHithandler.ApplyHit(damageValue * ElectricDamagePercent);
+                        eHithandler.ApplyHit(damageValue * ElectricDamagePercent, Owner);
                         eHithandler.ApplyShock(1f);
                     }
                 }
@@ -287,8 +285,7 @@ namespace Invector
                     EnemyHitHandler eHithandler = colliders[i].GetComponent<EnemyHitHandler>();
                     if (eHithandler != null)
                     {
-                        eHithandler.ApplyPoisonDamage(damageValue * PoisonDamagePercent, PoisonDuration);
-
+                        eHithandler.ApplyPoisonDamage(damageValue * PoisonDamagePercent, PoisonDuration,Owner);
                     }
                 }
             }

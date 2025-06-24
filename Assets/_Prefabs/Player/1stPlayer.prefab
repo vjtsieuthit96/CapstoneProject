@@ -12332,6 +12332,7 @@ GameObject:
   - component: {fileID: 4731234365030928325}
   - component: {fileID: 2709935119174296593}
   - component: {fileID: 780531588530017248}
+  - component: {fileID: 6146291814225516412}
   m_Layer: 8
   m_Name: 1stPlayer
   m_TagString: Player
@@ -14070,6 +14071,19 @@ MonoBehaviour:
   defaultStaminaRecoveryDelay: 1
   defaultDefenseRate: 100
   defaultDefenseRange: 90
+--- !u!114 &6146291814225516412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831212676386197866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac86a20b6ffc63045b5ced197480f865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerKill: 0
 --- !u!1 &1840727238878433245
 GameObject:
   m_ObjectHideFlags: 0
