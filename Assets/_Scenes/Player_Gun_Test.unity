@@ -5502,6 +5502,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3501852433735634973, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: enemyType
+      value: FatOgre
+      objectReference: {fileID: 0}
     - target: {fileID: 3573897591610786107, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: m_TagString
       value: Enemy

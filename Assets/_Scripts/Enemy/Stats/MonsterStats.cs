@@ -7,7 +7,11 @@ public class MonsterStats : MonoBehaviour
     [SerializeField]private float _currentHealth;
     [SerializeField]private float _currentDefense;
     [SerializeField]private float _currentDamage;
-
+    public string enemyType;
+    private void Awake()
+    {
+        enemyType = statsSO.enemyType;
+    }
     private void Start()
     {
         SetDefaultStats();
