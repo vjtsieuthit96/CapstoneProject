@@ -39,7 +39,7 @@ public class EnemyHitHandler : MonoBehaviour
 
         while (elapsed < duration)
         {
-            ApplyHit(damage);
+            ApplyHit(damage,Player);
             Debug.Log("Take Poison Damage: " + damage);
             yield return new WaitForSeconds(3f);
             elapsed += 3f;

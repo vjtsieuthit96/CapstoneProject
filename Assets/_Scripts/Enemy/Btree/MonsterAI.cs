@@ -32,6 +32,8 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Player Kill Log-----")]
     private GameObject lastAttacker = null;
     private Dictionary<GameObject, float> damageLog = new Dictionary<GameObject, float>();
+    [SerializeField] private string enemyType = "Orc";
+    public string GetEnemyType() => enemyType;
 
     protected Node behaviorTree;
     private Vector3 _patrolCenter;
@@ -44,6 +46,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isShocked = false;
     protected virtual void Start()
     {
+        enemyType = monsterStats.enemyType;
         PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = monsterAgent.speed;
@@ -81,7 +84,8 @@ public abstract class MonsterAI : MonoBehaviour
             {
                 Debug.Log($"<color=green>Final blow by: {lastAttacker.name}</color>");
                 PlayerPlayRecords playerPlayRecords = lastAttacker.GetComponent<PlayerPlayRecords>();
-                playerPlayRecords.PlayerCountKill();
+                string enemyType = GetEnemyType();
+                playerPlayRecords.RegisterKill(enemyType);
             }
             else
             {
