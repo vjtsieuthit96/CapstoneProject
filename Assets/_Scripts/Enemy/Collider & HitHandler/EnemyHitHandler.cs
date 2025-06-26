@@ -12,21 +12,28 @@ public class EnemyHitHandler : MonoBehaviour
         this.monsterAi = monsterAi;
         this.damageMultiplier = multiplier;
     }
-    public void ApplyHit(float bulletDamage)
+    public void ApplyHit(float bulletDamage, GameObject Player = null)
     {
         float finalDamage = bulletDamage * damageMultiplier;
+
+        if (Player != null)
+        {
+            monsterAi.RegisterDamage(Player, finalDamage);
+        }
+
         monsterAi.ApplyDamage(finalDamage);
-        int rate = Random.Range(0, 100);      
+
+        int rate = Random.Range(0, 100);
         if (rate <= 30 && !monsterAi.GetIsHit())
         {
             monsterAi.SetAnimatorParameter(MonsterAnimatorHash.takeHitHash, null);
         }
     }
-    public void ApplyPoisonDamage(float damage, float duration)
+    public void ApplyPoisonDamage(float damage, float duration, GameObject player = null)
     {
-        StartCoroutine(DamageOverTimeCoroutine(damage, duration));
+        StartCoroutine(DamageOverTimeCoroutine(damage, duration, player));
     }
-    private IEnumerator DamageOverTimeCoroutine(float damage, float duration)
+    private IEnumerator DamageOverTimeCoroutine(float damage, float duration, GameObject Player = null)
     {
         float elapsed = 0f;
 

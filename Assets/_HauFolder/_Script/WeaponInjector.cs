@@ -80,6 +80,8 @@ public class WeaponInjector : MonoBehaviour
                     : characterConfigurator.PlayerDamageMultiplierLonggun;
 
                 weapon.isExplosive = characterConfigurator.isExplosive;
+                weapon.Gunowner = characterConfigurator.gameObject;
+                Debug.Log("Gun's Owner: " + weapon.Gunowner);
             }
 
             uiController.currentWeapon = weapon;
