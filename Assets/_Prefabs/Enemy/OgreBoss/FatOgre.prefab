@@ -1611,12 +1611,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 3501852433735634973}
-  skill1Cooldown: 45
-  skill2Cooldown: 90
-  skill3Cooldown: 60
+  skill1Cooldown: 15
+  skill2Cooldown: 60
+  skill3Cooldown: 30
   skill1Range: 25
-  skill2Range: 20
-  skill3Range: 3
+  skill2Range: 30
+  skill3Range: 4
 --- !u!114 &4177682175867347646
 MonoBehaviour:
   m_ObjectHideFlags: 0
