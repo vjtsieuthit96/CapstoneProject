@@ -1,9 +1,9 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
+
 
 public abstract class MonsterAI : MonoBehaviour
 {
@@ -29,6 +29,11 @@ public abstract class MonsterAI : MonoBehaviour
     [SerializeField] protected NavMeshAgent monsterAgent;
     [SerializeField] protected SkillManager skillManager;
     [SerializeField] protected MonsterAudio monsterAudio;
+    [Header("-----Player Kill Log-----")]
+    private GameObject lastAttacker = null;
+    private Dictionary<GameObject, float> damageLog = new Dictionary<GameObject, float>();
+    [SerializeField] private string enemyType = "Orc";
+    public string GetEnemyType() => enemyType;
 
     protected Node behaviorTree;
     private Vector3 _patrolCenter;
@@ -41,6 +46,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isShocked = false;
     protected virtual void Start()
     {
+        enemyType = monsterStats.enemyType;
         PoolManager.Instance.CreatePool<BloodEffect5>("BloodEF5", bloodEffect, 50);
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         baseSpeed = monsterAgent.speed;
@@ -51,12 +57,52 @@ public abstract class MonsterAI : MonoBehaviour
     protected virtual void Update()
     {
         GroundLocomotion();
+        Die();
+    }
+
+    public void Die()
+    {
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
             isDead = true;
-            SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             monsterAgent.isStopped = true;
-        }        
+            SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
+            Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
+            float totalDamage = 0f;
+            foreach (var entry in damageLog)
+            {
+                totalDamage += entry.Value;
+            }
+
+            foreach (var entry in damageLog)
+            {
+                float percent = totalDamage > 0 ? (entry.Value / totalDamage) * 100f : 0f;
+                Debug.Log($"{entry.Key.name} dealt {entry.Value:F1} damage ({percent:F1}%)");
+            }
+
+            if (lastAttacker != null)
+            {
+                Debug.Log($"<color=green>Final blow by: {lastAttacker.name}</color>");
+                PlayerPlayRecords playerPlayRecords = lastAttacker.GetComponent<PlayerPlayRecords>();
+                string enemyType = GetEnemyType();
+                playerPlayRecords.RegisterKill(enemyType);
+            }
+            else
+            {
+                Debug.Log("Enemy died with unknown killer.");
+            }
+        }
+    }
+    public void RegisterDamage(GameObject attacker, float damage)
+    {
+        if (attacker == null || isDead) return;
+
+        lastAttacker = attacker;
+
+        if (!damageLog.ContainsKey(attacker))
+            damageLog[attacker] = 0f;
+
+        damageLog[attacker] += damage;
     }
     #region BEHAVIOR
     public void EvaluateBehaviorTree()
@@ -90,8 +136,8 @@ public abstract class MonsterAI : MonoBehaviour
         if (!isFreeze && !isDead)
         {
             isFreeze = true;
-            monsterAnimator.speed = 0;
             monsterAgent.isStopped = true;
+            monsterAnimator.speed = 0;            
             frozenEffect.SetActive(true);
             Invoke(nameof(UnFreezeEnemy), duration);
         }

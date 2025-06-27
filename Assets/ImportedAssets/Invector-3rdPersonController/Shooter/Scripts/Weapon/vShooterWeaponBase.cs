@@ -261,6 +261,7 @@ namespace Invector.vShooter
         public float EletricDuration;
         public float PoisonDamagePercent;
         public float PoisonDuration;
+        public GameObject Gunowner;
 
         #endregion
 
@@ -368,7 +369,7 @@ namespace Invector.vShooter
         {
             Debug.Log(damageMultiplier);
             var dir = endPoint - startPoint;
-
+            Debug.Log("Gun's Owner: " + Gunowner);
             Ray ray = new Ray(startPoint, dir.normalized);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
@@ -390,6 +391,7 @@ namespace Invector.vShooter
                         if (isExplosive && BulletType == BulletType.Explosion)
                         {
                             vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                            explosive.Owner = Gunowner;
                             if (explosive != null)
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
@@ -406,7 +408,7 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 eHithandler.ApplyBleed(hit.point);
-                                eHithandler.ApplyHit(raycastDamage);
+                                eHithandler.ApplyHit(raycastDamage,Gunowner);
                             }
                         }
                     }
@@ -417,6 +419,7 @@ namespace Invector.vShooter
                         if (isExplosive && BulletType == BulletType.Explosion)
                         {
                             vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("IceExplosion", hit.point, Quaternion.identity);
+                            explosive.Owner = Gunowner;
                             if (explosive != null)
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
@@ -439,7 +442,7 @@ namespace Invector.vShooter
                             {
                                 // Đóng băng:
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
-                                eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent);
+                                eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent, Gunowner);
                                 eHithandler.ApplyFreeze(DetentionTime);
 
                             }
@@ -459,7 +462,7 @@ namespace Invector.vShooter
                         if (isExplosive && BulletType == BulletType.Explosion)
                         {
                             vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("ElectricExplosion", hit.point, Quaternion.identity);
-
+                            explosive.Owner = Gunowner;
                             if (explosive != null)
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
@@ -475,7 +478,7 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 eHithandler.ApplySlowDown(ReductEnemySpeedPercent, EletricDuration);
-                                eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent);
+                                eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent, Gunowner);
                                 eHithandler.ApplyShock(1f);
 
                             }
@@ -488,7 +491,7 @@ namespace Invector.vShooter
                         if (isExplosive && BulletType == BulletType.Explosion)
                         {
                             vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("PoisonExplosion", hit.point, Quaternion.identity);
-
+                            explosive.Owner = Gunowner;
                             if (explosive != null)
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
@@ -504,19 +507,23 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 eHithandler.ApplyBleed(hit.point);
-                                eHithandler.ApplyPoisonDamage(raycastDamage * PoisonDamagePercent, PoisonDuration);
+                                eHithandler.ApplyPoisonDamage(raycastDamage * PoisonDamagePercent, PoisonDuration, Gunowner);
                             }
                         }
                     }
                     #endregion
 
-                    TryCreateDecal(hit);
+                    if (!hit.collider.CompareTag("Enemy"))
+                    {
+                        TryCreateDecal(hit);
+                    }
                 }
                 else
                 {
                     if (isExplosive && BulletType == BulletType.Explosion)
                     {
                         vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                        explosive.Owner = Gunowner;
                         if (explosive != null)
                         {
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
@@ -534,10 +541,13 @@ namespace Invector.vShooter
                             int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                             Debug.Log("Damage: " + raycastDamage);
                             eHithandler.ApplyBleed(hit.point);
-                            eHithandler.ApplyHit(raycastDamage);
+                            eHithandler.ApplyHit(raycastDamage, Gunowner);
                         }
                     }
-                    TryCreateDecal(hit);
+                    if (!hit.collider.CompareTag("Enemy"))
+                    {
+                        TryCreateDecal(hit);
+                    }
                 }
             }
             else

@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16470589, g: 0.5647059, b: 0.7058824, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12332,6 +12332,7 @@ GameObject:
   - component: {fileID: 4731234365030928325}
   - component: {fileID: 2709935119174296593}
   - component: {fileID: 780531588530017248}
+  - component: {fileID: 6146291814225516412}
   m_Layer: 8
   m_Name: 1stPlayer
   m_TagString: Player
@@ -12743,7 +12744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 1
+  selectedToolbar: 0
   unlockCursorOnStart: 0
   showCursorOnStart: 0
   toggleWalk: 301
@@ -12911,11 +12912,11 @@ MonoBehaviour:
     timeButtonWasPressed: 0
     lastTimeTheButtonWasPressed: 0
     inButtomTimer: 0
-  settingsInput:
+  optionsInput:
     useInput: 1
     isAxisInUse: 0
     isUnityInput: 0
-    keyboard: I
+    keyboard: Escape
     keyboardAxis: 0
     joystick: Start
     joystickAxis: 0
@@ -14070,6 +14071,19 @@ MonoBehaviour:
   defaultStaminaRecoveryDelay: 1
   defaultDefenseRate: 100
   defaultDefenseRange: 90
+--- !u!114 &6146291814225516412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831212676386197866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac86a20b6ffc63045b5ced197480f865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerKill: 0
 --- !u!1 &1840727238878433245
 GameObject:
   m_ObjectHideFlags: 0
@@ -22173,6 +22187,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterConfigurator: {fileID: 7404855805508288429}
   inventory: {fileID: 2869166705453112092}
+  uiController:
+    imageElement: {fileID: 301350606812242149}
+    imageExplosion: {fileID: 6653022088892567193}
+    characterConfigurator: {fileID: 7404855805508288429}
+    currentWeapon: {fileID: 0}
+    noneTexture: {fileID: 2800000, guid: f8365b9c609d2224ca24aa085e0f9922, type: 3}
+    electricTexture: {fileID: 2800000, guid: 7f4012804dfa00746abe87765a4dcf76, type: 3}
+    frozenTexture: {fileID: 2800000, guid: 816c1c3e91586ac40970cb0924eebe2e, type: 3}
+    poisonTexture: {fileID: 2800000, guid: 83c0b8ef46acca045b0b88c9d063faaa, type: 3}
+    explosionColorNone: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    explosionColorElectric: {r: 0, g: 0, b: 1, a: 1}
+    explosionColorFrozen: {r: 0, g: 1, b: 1, a: 1}
+    explosionColorPoison: {r: 0, g: 1, b: 0, a: 1}
+    disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &3013210221545641192
 GameObject:
   m_ObjectHideFlags: 0
@@ -57706,8 +57734,6 @@ MonoBehaviour:
   staminaSliderValueSmooth: 100
   staminaSliderFadeCanvas: {fileID: 0}
   hiddenTime: 2
-  staminaSliderCanvasGroup: {fileID: 0}
-  hiddenSmooth: 30
   shieldSlider: {fileID: 4784771388350592861}
   shieldSliderMaxValueSmooth: 10
   shieldSliderValueSmooth: 20

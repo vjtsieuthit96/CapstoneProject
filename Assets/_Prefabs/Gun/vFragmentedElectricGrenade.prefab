@@ -443,7 +443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1189817990461306567, guid: 57e817bb49ae3554ba0ce10c664360a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.07
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1189817990461306567, guid: 57e817bb49ae3554ba0ce10c664360a5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -480,6 +480,18 @@ PrefabInstance:
     - target: {fileID: 2408211102464662951, guid: 57e817bb49ae3554ba0ce10c664360a5, type: 3}
       propertyPath: m_Name
       value: Effect_38_LightField_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045123641175247950, guid: 57e817bb49ae3554ba0ce10c664360a5, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045123641175247950, guid: 57e817bb49ae3554ba0ce10c664360a5, type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045123641175247950, guid: 57e817bb49ae3554ba0ce10c664360a5, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -875,6 +887,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Effect_38_LightField
       objectReference: {fileID: 0}
+    - target: {fileID: 2831841560813090086, guid: c2f53917fbf05124c8d15a959974887a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831841560813090086, guid: c2f53917fbf05124c8d15a959974887a, type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2831841560813090086, guid: c2f53917fbf05124c8d15a959974887a, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2831841560813090087, guid: c2f53917fbf05124c8d15a959974887a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.35
@@ -893,11 +917,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2831841560813090087, guid: c2f53917fbf05124c8d15a959974887a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.81
+      value: 1.29
       objectReference: {fileID: 0}
     - target: {fileID: 2831841560813090087, guid: c2f53917fbf05124c8d15a959974887a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2831841560813090087, guid: c2f53917fbf05124c8d15a959974887a, type: 3}
       propertyPath: m_LocalRotation.w
