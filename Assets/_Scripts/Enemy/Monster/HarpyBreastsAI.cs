@@ -1,44 +1,64 @@
+﻿using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class HarpyBreastsAI : MonsterAI
 {
     [Header("-----Addon Components------")]
-    [SerializeField] private GameObject Player;
-    [SerializeField] private Transform catchPoint;        
+    [SerializeField] private GameObject player;
+    [SerializeField] private Transform catchPoint;
+    private bool isCatch;
 
     protected override void Start()
     {
         base.Start();
-        if (Player == null)
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
         {
-            Player = GameObject.FindGameObjectWithTag("Player");
+            Debug.LogWarning("Không tìm thấy GameObject có tag 'Player'");
         }
     }
     protected override void Update()
     {
         base.Update();
+        if (Input.GetKey(KeyCode.Keypad1))
+        {
+            CatchPrey();
+        }
+        if (Input.GetKey(KeyCode.Keypad2))
+        {
+            ReleasePrey();
+        }
     }
 
     protected override Node CreateBehaviorTree()
     {
-        throw new System.NotImplementedException();
+        return new Sequence(new List<Node> //  Nếu máu thấp, AI retreat rồi tiếp tục hành vi khác
+        {
+            new CheckRetreatNode(this, monsterStats),
+            new RetreatNode(this, monsterAgent)
+        });
     }
 
     public void CatchPrey()
     {
-        FixedJoint joint = this.AddComponent<FixedJoint>();
-        joint.connectedBody = Player.GetComponent<Rigidbody>();
+        if (!isCatch)
+        {
+            isCatch = true;
+            player.transform.position = catchPoint.position;
+            FixedJoint joint = this.AddComponent<FixedJoint>();
+            joint.connectedBody = player.GetComponent<Rigidbody>();
+        }
     }
-
-    //private void GetTargetToPlayer()
-    //{
-    //    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-    //    if (players.Length > 0)
-    //    {
-    //        GameObject targetPlayer = players[Random.Range(0, players.Length)];           
-    //    }
-    //}
+    public void ReleasePrey()
+    {
+        FixedJoint joint = GetComponent<FixedJoint>();
+        if (joint != null)
+        {
+            Destroy(joint);
+            isCatch = false;
+        }    
+    }
 }
 
 
