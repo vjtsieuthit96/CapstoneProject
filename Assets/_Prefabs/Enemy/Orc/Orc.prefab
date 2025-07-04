@@ -696,6 +696,7 @@ MonoBehaviour:
   monsterAgent: {fileID: 1568520819312927798}
   skillManager: {fileID: 7296942623870602421}
   monsterAudio: {fileID: 680867627703430608}
+  enemyType: Orc
 --- !u!114 &5622012270302772746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,6 +713,7 @@ MonoBehaviour:
   _currentHealth: 0
   _currentDefense: 0
   _currentDamage: 0
+  enemyType: 
 --- !u!114 &7296942623870602421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +745,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bffaac69d5031b745b2d81891d483882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCollider: {fileID: 983467460142843794}
+  weaponColliders:
+  - {fileID: 983467460142843794}
   monsterAudio: {fileID: 680867627703430608}
   monsterAI: {fileID: 1370349457503210661}
 --- !u!114 &8959749289575215032

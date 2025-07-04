@@ -1,34 +1,43 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    [SerializeField] private Collider weaponCollider;
+    [SerializeField] private Collider[] weaponColliders;
     [SerializeField] private MonsterAudio monsterAudio;
     [SerializeField] private MonsterAI monsterAI;
 
     private void Start()
-    {    
-        if (!weaponCollider) Debug.LogWarning("WeaponCollider chưa được gán!");
-        else weaponCollider.enabled = false;     
-    }
-
-    public void EWC() // Enable Weapon Collider
     {
-        if (weaponCollider)
+        if (weaponColliders == null)
         {
-            weaponCollider.enabled = true;            
+            Debug.LogWarning("Chưa gán WeaponColliders!");
+        }
+        else
+        {
+            foreach (var col in weaponColliders)
+            {
+                if (col) col.enabled = false;
+            }
         }
     }
 
-    public void DWC() //Disable Weapon Collider
+    public void EWC() // Enable Weapon Colliders
     {
-        if (weaponCollider)
+        foreach (var col in weaponColliders)
         {
-            weaponCollider.enabled = false;
-            
+            if (col) col.enabled = true;
         }
     }
-    
+
+    public void DWC() // Disable Weapon Colliders
+    {
+        foreach (var col in weaponColliders)
+        {
+            if (col) col.enabled = false;
+        }
+    }
+
     public void DisableMoving()
     {
         monsterAI.SetNavMeshStop(true);
