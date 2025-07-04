@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AnimationEventHandler : MonoBehaviour
 {
@@ -21,23 +20,44 @@ public class AnimationEventHandler : MonoBehaviour
             }
         }
     }
+    #region Weapon Collider 
 
-    public void EWC() // Enable Weapon Colliders
+    public void EWC() // Enable default collider at index 0
     {
-        foreach (var col in weaponColliders)
+        EWC(0);
+    }
+
+    public void EWC(int index) // Enable specific collider
+    {
+        if (index >= 0 && index < weaponColliders.Length && weaponColliders[index])
         {
-            if (col) col.enabled = true;
+            weaponColliders[index].enabled = true;
+        }
+        else
+        {
+            Debug.LogWarning($"Không tìm thấy WeaponCollider ở index {index}");
         }
     }
 
-    public void DWC() // Disable Weapon Colliders
+    public void DWC() // Disable default collider at index 0
     {
-        foreach (var col in weaponColliders)
-        {
-            if (col) col.enabled = false;
-        }
+        DWC(0);
     }
 
+    public void DWC(int index) // Disable specific collider
+    {
+        if (index >= 0 && index < weaponColliders.Length && weaponColliders[index])
+        {
+            weaponColliders[index].enabled = false;
+        }
+        else
+        {
+            Debug.LogWarning($"Không tìm thấy WeaponCollider ở index {index}");
+        }
+    }
+    #endregion
+
+    #region Movement
     public void DisableMoving()
     {
         monsterAI.SetNavMeshStop(true);
@@ -58,6 +78,7 @@ public class AnimationEventHandler : MonoBehaviour
         monsterAI.SetIsHit(true);
         monsterAI.SetNavMeshStop(false);
     }
+    #endregion
 
     #region SOUND 
     public void PlayFootstep()
