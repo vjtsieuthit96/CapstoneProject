@@ -2,33 +2,62 @@
 
 public class AnimationEventHandler : MonoBehaviour
 {
-    [SerializeField] private Collider weaponCollider;
+    [SerializeField] private Collider[] weaponColliders;
     [SerializeField] private MonsterAudio monsterAudio;
     [SerializeField] private MonsterAI monsterAI;
 
     private void Start()
-    {    
-        if (!weaponCollider) Debug.LogWarning("WeaponCollider chưa được gán!");
-        else weaponCollider.enabled = false;     
+    {
+        if (weaponColliders == null)
+        {
+            Debug.LogWarning("Chưa gán WeaponColliders!");
+        }
+        else
+        {
+            foreach (var col in weaponColliders)
+            {
+                if (col) col.enabled = false;
+            }
+        }
+    }
+    #region Weapon Collider 
+
+    public void EWC() // Enable default collider at index 0
+    {
+        EWC(0);
     }
 
-    public void EWC() // Enable Weapon Collider
+    public void EWC(int index) // Enable specific collider
     {
-        if (weaponCollider)
+        if (index >= 0 && index < weaponColliders.Length && weaponColliders[index])
         {
-            weaponCollider.enabled = true;            
+            weaponColliders[index].enabled = true;
+        }
+        else
+        {
+            Debug.LogWarning($"Không tìm thấy WeaponCollider ở index {index}");
         }
     }
 
-    public void DWC() //Disable Weapon Collider
+    public void DWC() // Disable default collider at index 0
     {
-        if (weaponCollider)
+        DWC(0);
+    }
+
+    public void DWC(int index) // Disable specific collider
+    {
+        if (index >= 0 && index < weaponColliders.Length && weaponColliders[index])
         {
-            weaponCollider.enabled = false;
-            
+            weaponColliders[index].enabled = false;
+        }
+        else
+        {
+            Debug.LogWarning($"Không tìm thấy WeaponCollider ở index {index}");
         }
     }
-    
+    #endregion
+
+    #region Movement
     public void DisableMoving()
     {
         monsterAI.SetNavMeshStop(true);
@@ -49,6 +78,7 @@ public class AnimationEventHandler : MonoBehaviour
         monsterAI.SetIsHit(true);
         monsterAI.SetNavMeshStop(false);
     }
+    #endregion
 
     #region SOUND 
     public void PlayFootstep()

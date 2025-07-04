@@ -298,6 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 683561284388845881}
+  - component: {fileID: 8251476768686908486}
   m_Layer: 0
   m_Name: HARPY_ R UpperArm
   m_TagString: Untagged
@@ -321,6 +322,29 @@ Transform:
   - {fileID: 8619651664029672830}
   m_Father: {fileID: 5149392378690665679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8251476768686908486
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500704366069774143}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 0.75
+  m_Direction: 0
+  m_Center: {x: -0.3, y: 0.15, z: 0}
 --- !u!1 &1534428326433595947
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,8 +387,14 @@ GameObject:
   - component: {fileID: 5190558615541466889}
   - component: {fileID: 7402061462377747008}
   - component: {fileID: 6704138362308421087}
+  - component: {fileID: 683549913991860154}
+  - component: {fileID: 4177331161201610049}
+  - component: {fileID: 2309737700175711498}
+  - component: {fileID: 6325268892199237102}
+  - component: {fileID: 7973936021140199648}
   - component: {fileID: 2759944068264964190}
   - component: {fileID: 5685868069982412413}
+  - component: {fileID: 4513566646704936931}
   m_Layer: 0
   m_Name: HarpyBreasts
   m_TagString: Enemy
@@ -385,6 +415,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 170982302479922967}
+  - {fileID: 7655965314555099321}
   - {fileID: 7809702663324814511}
   - {fileID: 3735834892617731004}
   m_Father: {fileID: 0}
@@ -423,8 +455,120 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13179dd088de29419f8b31bde0c88e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  target: {fileID: 0}
+  speedMultiplier: 2.5
+  viewRadius: 20
+  viewAngle: 150
+  alertRadius: 15
+  attackRange: 3
+  patrolRadius: 5
+  baseSpeed: 0
+  frozenEffect: {fileID: 7655965314555099323}
+  ElectricEffect: {fileID: 170982302479922964}
+  bloodEffect: {fileID: 3392999217821159849, guid: 6d3629f845b40e24fb51d381e84bbc77, type: 3}
+  monsterStats: {fileID: 683549913991860154}
+  monsterAnimator: {fileID: 7402061462377747008}
+  monsterAgent: {fileID: 5685868069982412413}
+  skillManager: {fileID: 4177331161201610049}
+  monsterAudio: {fileID: 7973936021140199648}
+  enemyType: Harpy
+  player: {fileID: 0}
   catchPoint: {fileID: 7068927139581022095}
+--- !u!114 &683549913991860154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626419186463484491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cce55edca66fb842a284165619f9988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsSO: {fileID: 11400000, guid: 7f148b131c390094b8dfb304a8f9355c, type: 2}
+  _currentHealth: 0
+  _currentDefense: 0
+  _currentDamage: 0
+  enemyType: Harpy
+--- !u!114 &4177331161201610049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626419186463484491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b3b94fbbe157e4b874a4b3e8d54adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 6704138362308421087}
+  skill1Cooldown: 0
+  skill2Cooldown: 0
+  skill3Cooldown: 0
+  skill1Range: 0
+  skill2Range: 0
+  skill3Range: 0
+--- !u!114 &2309737700175711498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626419186463484491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bffaac69d5031b745b2d81891d483882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponColliders:
+  - {fileID: 6761324505591301147}
+  - {fileID: 1746876098807102299}
+  - {fileID: 6465158347665385636}
+  - {fileID: 31533645920360241}
+  monsterAudio: {fileID: 7973936021140199648}
+  monsterAI: {fileID: 6704138362308421087}
+--- !u!114 &6325268892199237102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626419186463484491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a901093ce2b414d857c6d6a85b36cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterAi: {fileID: 6704138362308421087}
+  headCollider: {fileID: 5911036017172408502}
+  headshotMultiplier: 2
+  colliders:
+  - {fileID: 5797748502979366763}
+  - {fileID: 5943675093501607188}
+  - {fileID: 773905095889192302}
+  - {fileID: 8616500572705856581}
+  - {fileID: 2229682354350334187}
+  - {fileID: 8251476768686908486}
+  - {fileID: 3917182515743662747}
+  - {fileID: 2081227411368144681}
+--- !u!114 &7973936021140199648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626419186463484491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6955deacfb800134280cca0c2d670c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterAudio: {fileID: 4513566646704936931}
+  footstepSounds: []
+  roarSounds: []
+  atkSound: []
 --- !u!54 &2759944068264964190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -474,6 +618,103 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!82 &4513566646704936931
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626419186463484491}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1634105921796645190
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5168722578577848199}
+  - component: {fileID: 5943675093501607188}
   m_Layer: 0
   m_Name: HARPY_ L HorseLink
   m_TagString: Untagged
@@ -537,6 +779,29 @@ Transform:
   - {fileID: 7366121138144733994}
   m_Father: {fileID: 4999064794543345081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5943675093501607188
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639143192348183798}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.2
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1813783770276244730
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +874,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4267505986441659427}
+  - component: {fileID: 6761324505591301147}
+  - component: {fileID: 283552691421846597}
   m_Layer: 0
   m_Name: HARPY_ L Finger01
   m_TagString: Untagged
@@ -631,6 +898,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3838146907610896385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6761324505591301147
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942987484227125177}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &283552691421846597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942987484227125177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 683549913991860154}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &1959953910721990845
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +1133,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7205276057292973942}
+  - component: {fileID: 31533645920360241}
+  - component: {fileID: 8243419155197891932}
   m_Layer: 0
   m_Name: HARPY_ R Toe2
   m_TagString: Untagged
@@ -854,6 +1158,41 @@ Transform:
   - {fileID: 3705542224461861513}
   m_Father: {fileID: 457164201043291709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &31533645920360241
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362614820106247287}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8243419155197891932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362614820106247287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 683549913991860154}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &3374095288663164894
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +1202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3214570577893239109}
+  - component: {fileID: 2229682354350334187}
   m_Layer: 0
   m_Name: HARPY_ L Forearm
   m_TagString: Untagged
@@ -886,6 +1226,29 @@ Transform:
   - {fileID: 4450739489047072903}
   m_Father: {fileID: 7602442385049108935}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2229682354350334187
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3374095288663164894}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.5
+  m_Direction: 0
+  m_Center: {x: -0.5, y: 0.2, z: 0}
 --- !u!1 &3395519744541164642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1467,7 @@ Transform:
   m_GameObject: {fileID: 4313546153848897466}
   serializedVersion: 2
   m_LocalRotation: {x: -0.9313713, y: 0.32750508, z: 0.15466543, w: -0.03696819}
-  m_LocalPosition: {x: 0.866, y: 1.323, z: -0.069}
+  m_LocalPosition: {x: 2.14, y: 0.74, z: -0.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1371,6 +1734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7602442385049108935}
+  - component: {fileID: 8616500572705856581}
   m_Layer: 0
   m_Name: HARPY_ L UpperArm
   m_TagString: Untagged
@@ -1394,6 +1758,29 @@ Transform:
   - {fileID: 3214570577893239109}
   m_Father: {fileID: 2407634711038454380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8616500572705856581
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5203791981613717258}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 0.75
+  m_Direction: 0
+  m_Center: {x: -0.3, y: 0.15, z: 0}
 --- !u!1 &5248745805886422070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,6 +1790,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7611556486789434354}
+  - component: {fileID: 6465158347665385636}
+  - component: {fileID: 6527990369869678013}
   m_Layer: 0
   m_Name: HARPY_ L Toe2
   m_TagString: Untagged
@@ -1426,6 +1815,41 @@ Transform:
   - {fileID: 4594051365982170481}
   m_Father: {fileID: 7366121138144733994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6465158347665385636
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248745805886422070}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6527990369869678013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248745805886422070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 683549913991860154}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &5306354033997440308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4847558924518579739}
+  - component: {fileID: 773905095889192302}
   m_Layer: 0
   m_Name: HARPY_ R HorseLink
   m_TagString: Untagged
@@ -1458,6 +1883,29 @@ Transform:
   - {fileID: 457164201043291709}
   m_Father: {fileID: 5986418910397450841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &773905095889192302
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5306354033997440308}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.2
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5579434446881816525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,6 +2077,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5660549075947152939}
+  - component: {fileID: 1746876098807102299}
+  - component: {fileID: 3138584210785256229}
   m_Layer: 0
   m_Name: HARPY_ R Finger01
   m_TagString: Untagged
@@ -1651,6 +2101,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4034148003694088153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1746876098807102299
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150274268552039836}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.35
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3138584210785256229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150274268552039836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 683549913991860154}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &6519645585706005985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,6 +2145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8619651664029672830}
+  - component: {fileID: 3917182515743662747}
   m_Layer: 0
   m_Name: HARPY_ R Forearm
   m_TagString: Untagged
@@ -1683,6 +2169,29 @@ Transform:
   - {fileID: 101653564008959014}
   m_Father: {fileID: 683561284388845881}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3917182515743662747
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6519645585706005985}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.5
+  m_Direction: 0
+  m_Center: {x: -0.5, y: 0.2, z: 0}
 --- !u!1 &6581386200349959014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,6 +2396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6609861955482771963}
+  - component: {fileID: 5797748502979366763}
   m_Layer: 0
   m_Name: HARPY_ Spine1
   m_TagString: Untagged
@@ -1914,6 +2424,29 @@ Transform:
   - {fileID: 5873727075877982769}
   m_Father: {fileID: 1050970795551225085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5797748502979366763
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7249308997716354674}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: 0, y: -0.075, z: 0}
 --- !u!1 &7293285708096444578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,6 +2614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8723768588471435472}
+  - component: {fileID: 5911036017172408502}
   m_Layer: 0
   m_Name: HARPY_ Head
   m_TagString: Untagged
@@ -2107,6 +2641,27 @@ Transform:
   - {fileID: 4391975507719986593}
   m_Father: {fileID: 2321463105122594256}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5911036017172408502
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551962496388467516}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.165
+  m_Center: {x: -0.075, y: 0, z: 0}
 --- !u!1 &7913958047735310714
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,6 +2950,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7348065316308830317}
+  - component: {fileID: 2081227411368144681}
   m_Layer: 0
   m_Name: HARPY_ Tail
   m_TagString: Untagged
@@ -2417,6 +2973,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7268800287881675805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2081227411368144681
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148202447656442480}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.18
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9180317405342944555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,3 +3026,165 @@ Transform:
   - {fileID: 6845192530786693002}
   m_Father: {fileID: 3094372889713967216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7536736954823759869
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5190558615541466889}
+    m_Modifications:
+    - target: {fileID: 7694590366642987241, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_Name
+      value: 'Electric_Effect '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987243, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7694590366642987243, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+--- !u!1 &170982302479922964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7694590366642987241, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+  m_PrefabInstance: {fileID: 7536736954823759869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &170982302479922967 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7694590366642987242, guid: 014c532b1ee3017409e0cf77a8fd5c99, type: 3}
+  m_PrefabInstance: {fileID: 7536736954823759869}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8794448732329945121
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5190558615541466889}
+    m_Modifications:
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.28221202
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.27624938
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6905128
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.60599905
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 42.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 98.342
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -81.131
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777050, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_Name
+      value: Cliff_ice
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167377218157777050, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+--- !u!4 &7655965314555099321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1167377218157777048, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+  m_PrefabInstance: {fileID: 8794448732329945121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7655965314555099323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1167377218157777050, guid: c8914b7d9f5da7e4587685217e4e858b, type: 3}
+  m_PrefabInstance: {fileID: 8794448732329945121}
+  m_PrefabAsset: {fileID: 0}
