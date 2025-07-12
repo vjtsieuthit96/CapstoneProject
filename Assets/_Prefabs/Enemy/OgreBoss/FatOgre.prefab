@@ -1585,6 +1585,7 @@ MonoBehaviour:
   _currentHealth: 0
   _currentDefense: 0
   _currentDamage: 0
+  enemyType: 
 --- !u!114 &586331742707897794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,7 +1598,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bffaac69d5031b745b2d81891d483882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCollider: {fileID: 7474254806907358215}
+  weaponColliders:
+  - {fileID: 7474254806907358215}
   monsterAudio: {fileID: 866160836189269294}
   monsterAI: {fileID: 3501852433735634973}
 --- !u!114 &3770755493544155352
