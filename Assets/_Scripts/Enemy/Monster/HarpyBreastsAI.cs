@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.Hierarchy;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class HarpyBreastsAI : MonsterAI
     [SerializeField] private GameObject player;
     [SerializeField] private Transform catchPoint;
     private bool isCatch;
-    private bool isFlying;
+    public bool isFlying;
 
     protected override void Start()
     {
@@ -30,6 +31,7 @@ public class HarpyBreastsAI : MonsterAI
         {
             ReleasePrey();
         }
+        AdjustFlyingHeight();
     }
 
     protected override Node CreateBehaviorTree()
@@ -61,6 +63,18 @@ public class HarpyBreastsAI : MonsterAI
             Destroy(joint);
             isCatch = false;
         }    
+    }
+
+    private void AdjustFlyingHeight()
+    {
+        if (isFlying && !isCatch)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            float minOffset = 0.25f;
+            float maxOffset = 10f;
+            float targetOffset = Mathf.Lerp(minOffset, maxOffset, distanceToPlayer / 15.0f);
+            monsterAgent.baseOffset = Mathf.Lerp(monsterAgent.baseOffset, targetOffset, Time.deltaTime * 2.0f);
+        }
     }
 }
 
