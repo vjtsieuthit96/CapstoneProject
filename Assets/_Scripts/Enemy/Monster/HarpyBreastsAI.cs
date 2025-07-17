@@ -12,6 +12,7 @@ public class HarpyBreastsAI : MonsterAI
     private bool isLanding;
     private float desiredOffset = 0f;
     private float flyingBlendSpeed = 1.5f;
+    private float monsterHeight;
 
     protected override void Start()
     {
@@ -21,6 +22,7 @@ public class HarpyBreastsAI : MonsterAI
         {
             Debug.LogWarning("Không tìm thấy GameObject có tag 'Player'");
         }
+        monsterHeight = monsterAgent.height;
     }
     protected override void Update()
     {
@@ -80,10 +82,8 @@ public class HarpyBreastsAI : MonsterAI
     {
         // Chỉ điều chỉnh khi đang bay và không giữ player
         if (isFlying && !isCatch && player != null && monsterAgent.enabled)
-        {
-
+        {        
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
             float minOffset = 0.25f;
             float maxOffset = 10f;
 
@@ -93,6 +93,7 @@ public class HarpyBreastsAI : MonsterAI
             desiredOffset = Mathf.Lerp(minOffset, maxOffset, t);
             // Áp dụng độ cao mượt mà bằng Lerp
             monsterAgent.baseOffset = Mathf.Lerp(monsterAgent.baseOffset, desiredOffset, Time.deltaTime * flyingBlendSpeed);
+            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
         }        
     }
 
@@ -100,14 +101,16 @@ public class HarpyBreastsAI : MonsterAI
     {
         if (isLanding)
         {
-            if (monsterAgent.enabled && monsterAgent.baseOffset > 0.1f)
+            if (monsterAgent.enabled && monsterAgent.baseOffset > 0.15f)
             {
-                monsterAgent.baseOffset = Mathf.Lerp(monsterAgent.baseOffset, 0f, Time.deltaTime*1.5f);              
+                monsterAgent.baseOffset = Mathf.Lerp(monsterAgent.baseOffset, 0f, Time.deltaTime*1.5f);
+                monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
             }
             else
             {
                 SetAnimatorParameter(MonsterAnimatorHash.landHash,null);
                 monsterAgent.baseOffset = 0f;
+                monsterAgent.height = monsterHeight;
                 isLanding = false;
             }
         }
