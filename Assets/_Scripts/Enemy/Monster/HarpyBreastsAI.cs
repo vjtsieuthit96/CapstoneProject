@@ -8,6 +8,7 @@ public class HarpyBreastsAI : MonsterAI
     [SerializeField] private GameObject player;
     [SerializeField] private Transform catchPoint;
     private bool isCatch;
+    private bool isFlying;
 
     protected override void Start()
     {
@@ -46,6 +47,7 @@ public class HarpyBreastsAI : MonsterAI
         {
             isCatch = true;
             player.transform.position = catchPoint.position;
+            SetAnimatorParameter(MonsterAnimatorHash.CatchHash,null);
             FixedJoint joint = this.AddComponent<FixedJoint>();
             joint.connectedBody = player.GetComponent<Rigidbody>();
         }
@@ -55,6 +57,7 @@ public class HarpyBreastsAI : MonsterAI
         FixedJoint joint = GetComponent<FixedJoint>();
         if (joint != null)
         {
+            SetAnimatorParameter(MonsterAnimatorHash.ReleaseHash, null);
             Destroy(joint);
             isCatch = false;
         }    
