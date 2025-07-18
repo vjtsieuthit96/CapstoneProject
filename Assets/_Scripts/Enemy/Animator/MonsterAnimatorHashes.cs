@@ -19,5 +19,6 @@ public static class MonsterAnimatorHash
     public static readonly int ReleaseHash = Animator.StringToHash("release");
     public static readonly int isFlyingHash = Animator.StringToHash("isFlying");
     public static readonly int landHash = Animator.StringToHash("land");
+    public static readonly int CatchedHash = Animator.StringToHash("isCaught");
 
 }

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-
-
 public abstract class MonsterAI : MonoBehaviour
 {
     [Header("-----Target-----")]
@@ -44,6 +42,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isFreeze = false;
     private bool isSlowDown = false;
     private bool isShocked = false;
+    private bool isInCombat;
     protected virtual void Start()
     {
         enemyType = monsterStats.enemyType;
@@ -52,7 +51,7 @@ public abstract class MonsterAI : MonoBehaviour
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
-        InvokeRepeating("EvaluateBehaviorTree", 0f, 1.5f);
+        
     }
     protected virtual void Update()
     {
@@ -110,6 +109,11 @@ public abstract class MonsterAI : MonoBehaviour
         if (!isDead && !isFreeze)
             behaviorTree.Evaluate();
     }
+    public void RepeatEvaluateBehaviorTree(float time, float repeatRate)
+    {
+        InvokeRepeating("EvaluateBehaviorTree", time, repeatRate);
+    }
+
     protected abstract Node CreateBehaviorTree();
     private void GroundLocomotion()
     {
@@ -199,6 +203,11 @@ public abstract class MonsterAI : MonoBehaviour
     #endregion
 
     #region GET & SET
+    public bool IsInCombat() => isInCombat;
+    public void SetInCombat(bool value)
+    {
+        isInCombat = value;       
+    }
     public float GetViewRadius() => viewRadius;
     public float GetViewAngle() => viewAngle;
     public float GetAlertRadius()=> alertRadius;    
