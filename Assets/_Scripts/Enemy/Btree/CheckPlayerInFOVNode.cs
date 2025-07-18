@@ -30,7 +30,8 @@ public class CheckPlayerInFOVNode : Node
         if (distanceToPlayer <= monsterAI.GetViewRadius() && angleToPlayer <= monsterAI.GetViewAngle() / 2)
         {
             lastSeenTime = Time.time;
-            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);           
+            monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
+            monsterAI.SetInCombat(true); // Đặt AI vào trạng thái chiến đấu
             Debug.Log("AI nhìn thấy người chơi! Đuổi theo.");
             return NodeState.SUCCESS;
         }
@@ -40,6 +41,7 @@ public class CheckPlayerInFOVNode : Node
         {
             lastSeenTime = Time.time;
             monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
+            monsterAI.SetInCombat(true); // Đặt AI vào trạng thái chiến đấu
             Debug.Log("AI vẫn nhớ kẻ tấn công! Tiếp tục đuổi theo.");
             return NodeState.SUCCESS;
         }
@@ -48,6 +50,7 @@ public class CheckPlayerInFOVNode : Node
         if (Time.time - lastSeenTime >= memoryDuration)
         {
             monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, false);
+            monsterAI.SetInCombat(false); // Đặt AI về trạng thái không chiến đấu
             Debug.Log("Hoàn toàn mất dấu! Quay về tuần tra.");
             return NodeState.FAILURE;
         }

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HarpyBreastsAI : MonsterAI
 {
@@ -8,11 +10,15 @@ public class HarpyBreastsAI : MonsterAI
     [SerializeField] private GameObject player;
     [SerializeField] private Transform catchPoint;
     private bool isCatch;
-    public bool isFlying;
+    private bool isFlying;   
     private bool isLanding;
-    private float desiredOffset = 0f;
-    private float flyingBlendSpeed = 1.5f;
+    private bool isTakeOff;
     private float monsterHeight;
+    private bool isFalling;
+    private bool isFlyToPlayer;
+    private float riseVelocity = 0f;
+    private float fallVelocity = 0f;
+
 
     protected override void Start()
     {
@@ -26,75 +32,94 @@ public class HarpyBreastsAI : MonsterAI
     }
     protected override void Update()
     {
-        if (isFlying) {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, true);}
-        else {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false); }
         base.Update();
-        AdjustFlyingHeight();
+        if (isFlying) {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, true);}
+        else {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false); }      
         Landing();
-        if (Input.GetKey(KeyCode.Keypad1))
+        if (isCatch)
         {
-            CatchPrey();
+            monsterAgent.baseOffset = Mathf.SmoothDamp(monsterAgent.baseOffset, 20f, ref riseVelocity,2f);
+            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
         }
-        if (Input.GetKey(KeyCode.Keypad2))
+        if (isTakeOff)
         {
-            ReleasePrey();
+            monsterAgent.baseOffset = Mathf.SmoothDamp(monsterAgent.baseOffset, 15f, ref riseVelocity, 3f);
+            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
         }
-        
+        if (isFlyToPlayer)
+        {
+            monsterAgent.baseOffset = Mathf.SmoothDamp(monsterAgent.baseOffset, 1.15f, ref fallVelocity, 1.5f);
+            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
+        }
     }
 
     protected override Node CreateBehaviorTree()
     {
-        return new Sequence(new List<Node> //  Nếu máu thấp, AI retreat rồi tiếp tục hành vi khác
+        return new Selector(new List<Node>
         {
-            new CheckRetreatNode(this, monsterStats),
-            new RetreatNode(this, monsterAgent)
+        new CatchPreyNode(this, monsterAgent), 
+
+        new Sequence(new List<Node>
+        {
+            new CheckPlayerInFOVNode(this),            
+        }),
+        new PatrolNode(this, monsterAgent)
         });
+    }
+    public void SetIsFalling(bool value)
+    {
+        isFalling = value;
+    }
+    public bool IsFalling()
+    {
+        return isFalling;
     }
 
     #region Catch&Release
+
 
     public void CatchPrey()
     {
         if (!isCatch)
         {
-            isCatch = true;
-            player.transform.position = catchPoint.position;
-            SetAnimatorParameter(MonsterAnimatorHash.CatchHash,null);
+            isCatch = true;        
+            player.transform.position = catchPoint.position;                      
             FixedJoint joint = this.AddComponent<FixedJoint>();
             joint.connectedBody = player.GetComponent<Rigidbody>();
+            joint.massScale = 0.01f; // Giảm trọng lượng của Joint để không làm Player bị kéo xuống quá nhanh
+            joint.connectedMassScale = 0.01f; // Giảm trọng lượng của Player khi bị giữ       
         }
     }
+   
     public void ReleasePrey()
     {
         FixedJoint joint = GetComponent<FixedJoint>();
         if (joint != null)
-        {
-            SetAnimatorParameter(MonsterAnimatorHash.ReleaseHash, null);
-            Destroy(joint);
+        {            
+            Destroy(joint);            
             isCatch = false;
         }    
-    }
+    }   
+
     #endregion
 
     #region Fly&Land
-
-    private void AdjustFlyingHeight()
+    public bool IsFlying() => isFlying;
+    public void SetIsFlying(bool value)
     {
-        // Chỉ điều chỉnh khi đang bay và không giữ player
-        if (isFlying && !isCatch && player != null && monsterAgent.enabled)
-        {        
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            float minOffset = 0.25f;
-            float maxOffset = 10f;
-
-            // Clamp giá trị chuẩn hóa để không vượt quá 1
-            float t = Mathf.Clamp01(distanceToPlayer / 25f);
-            // Tính độ cao mong muốn theo khoảng cách
-            desiredOffset = Mathf.Lerp(minOffset, maxOffset, t);
-            // Áp dụng độ cao mượt mà bằng Lerp
-            monsterAgent.baseOffset = Mathf.Lerp(monsterAgent.baseOffset, desiredOffset, Time.deltaTime * flyingBlendSpeed);
-            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
-        }        
+        isFlying = value;
+    }
+    public void TakeOff()
+    {
+        isTakeOff = true;
+    }
+    public void DoneTakeOff()
+    {
+        isTakeOff = false;
+    }
+    public void FlyToPlayer(bool value)
+    {
+        isFlyToPlayer = value;       
     }
 
     private void Landing()
@@ -111,7 +136,7 @@ public class HarpyBreastsAI : MonsterAI
                 SetAnimatorParameter(MonsterAnimatorHash.landHash,null);
                 monsterAgent.baseOffset = 0f;
                 monsterAgent.height = monsterHeight;
-                isLanding = false;
+                isLanding = false;               
             }
         }
     }
@@ -119,6 +144,7 @@ public class HarpyBreastsAI : MonsterAI
     {
         isLanding = true;
     }
+    
     #endregion
 }
 

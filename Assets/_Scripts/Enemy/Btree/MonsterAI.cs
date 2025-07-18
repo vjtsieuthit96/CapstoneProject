@@ -44,6 +44,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isFreeze = false;
     private bool isSlowDown = false;
     private bool isShocked = false;
+    private bool isInCombat;
     protected virtual void Start()
     {
         enemyType = monsterStats.enemyType;
@@ -199,6 +200,11 @@ public abstract class MonsterAI : MonoBehaviour
     #endregion
 
     #region GET & SET
+    public bool IsInCombat() => isInCombat;
+    public void SetInCombat(bool value)
+    {
+        isInCombat = value;       
+    }
     public float GetViewRadius() => viewRadius;
     public float GetViewAngle() => viewAngle;
     public float GetAlertRadius()=> alertRadius;    
