@@ -3,43 +3,71 @@ using UnityEngine.UI;
 
 public class SkillNodeButton : MonoBehaviour
 {
-    public Image icon;
+    //public Image icon;
     public Button button;
-    public GameObject lockedOverlay;
-    public Text costText;
+    //public GameObject lockedOverlay;
+    //public Text costText;
 
-    private SkillNode node;
-    private SkillTreeSystem system;
-
-    public void Setup(SkillNode node, SkillTreeSystem system)
+    [SerializeField] private SkillNode node;
+    private void Start()
     {
-        this.node = node;
-        this.system = system;
+        button = GetComponent<Button>();     
+        button.onClick.AddListener(OnButtonClick);
+    }
+    //private SkillTreeSystem system;
 
-        icon.sprite = node.icon;
-        costText.text = node.requiredPoints.ToString();
+    //public void Setup(SkillNode node, SkillTreeSystem system)
+    //{
+    //    this.node = node;
+    //    this.system = system;
 
-        button.onClick.AddListener(() => {
-            if (system.TryUnlock(node))
-                UpdateVisual();
-        });
+    //    icon.sprite = node.icon;
+    //    costText.text = node.requiredPoints.ToString();
 
-        system.onSkillPointsChanged += UpdateVisual;
-        UpdateVisual();
+    //    button.onClick.AddListener(() => {
+    //        if (system.TryUnlock(node))
+    //            UpdateVisual();
+    //    });
+
+    //    system.onSkillPointsChanged += UpdateVisual;
+    //    UpdateVisual();
+    //}
+
+    //void OnDestroy()
+    //{
+    //    system.onSkillPointsChanged -= UpdateVisual;
+    //}
+
+    //public void UpdateVisual()
+    //{
+    //    bool canUnlock = node.CanUnlock() && system.GetPoints() >= node.requiredPoints;
+
+    //    button.interactable = canUnlock && !node.isUnlocked;
+
+    //}
+
+    public void UpdateUI(int point)
+    {
+        if (node == null) Debug.Log("Node doesn't exits");
+        if(node.CanUnlock(point))
+        {
+            Debug.Log("Can unlock: " + node.displayName);
+        }
+        else
+        {
+            Debug.Log("Cannot unlock: " + node.displayName + " - Required Points: " + node.requiredPoints);
+        }
     }
 
-    void OnDestroy()
+    public void Unlock()
     {
-        system.onSkillPointsChanged -= UpdateVisual;
+        Debug.Log("Unlocking: " + node.displayName);
+        EventsManager.Instance.skillTreePointEvents.OnSkillPointAdded(-node.requiredPoints);
+
     }
-
-    public void UpdateVisual()
-    {
-        bool canUnlock = node.CanUnlock() && system.GetPoints() >= node.requiredPoints;
-
-        button.interactable = canUnlock && !node.isUnlocked;
-        lockedOverlay.SetActive(!node.isUnlocked);
-
-        icon.color = node.isUnlocked ? Color.white : Color.gray;
+    private void OnButtonClick()
+    { 
+        EventsManager.Instance.skillTreePointEvents.OnSkillNodeUnlocked(node);
+        Debug.Log("Try To Unlock...");
     }
 }

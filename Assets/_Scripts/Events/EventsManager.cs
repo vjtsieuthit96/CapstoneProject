@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class EventsManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public SkillTreePointEvents skillTreePointEvents;
+    public static EventsManager Instance { get; private set; }
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (Instance != null)
+        {
+            Debug.Log("one or more object GameEventManager in scene");
+        }
+        Instance = this;
+        skillTreePointEvents = new SkillTreePointEvents();
     }
 }

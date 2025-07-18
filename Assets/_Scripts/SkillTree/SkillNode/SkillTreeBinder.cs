@@ -14,21 +14,21 @@ public class SkillTreeBinder : MonoBehaviour
 
     public List<NodeBinding> bindings;
 
-    void Start()
-    {
-        foreach (var binding in bindings)
-        {
-            binding.button.Setup(binding.node, skillSystem);
-        }
+    //void Start()
+    //{
+    //    foreach (var binding in bindings)
+    //    {
+    //        binding.button.Setup(binding.node, skillSystem);
+    //    }
 
-        skillSystem.onSkillPointsChanged += RefreshAll;
-    }
+    //    skillSystem.onSkillPointsChanged += RefreshAll;
+    //}
 
-    void RefreshAll()
-    {
-        foreach (var binding in bindings)
-        {
-            binding.button.UpdateVisual();
-        }
-    }
+    //void RefreshAll()
+    //{
+    //    foreach (var binding in bindings)
+    //    {
+    //        binding.button.UpdateVisual();
+    //    }
+    //}
 }
