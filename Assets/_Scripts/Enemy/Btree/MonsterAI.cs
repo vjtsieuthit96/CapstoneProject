@@ -37,7 +37,7 @@ public abstract class MonsterAI : MonoBehaviour
     private Vector3 _patrolCenter;
 
     private bool hasRetreat = false;
-    protected bool isDead = false;
+    private bool isDead = false;
     private bool isHit = false;
     private bool isFreeze = false;
     private bool isSlowDown = false;
