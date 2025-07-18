@@ -16,7 +16,8 @@ MonoBehaviour:
   displayName: All Gun 5%
   description: "Damage c\u1EE7a t\u1EA5t c\u1EA3 lo\u1EA1i s\xFAng t\u0103ng 5%"
   icon: {fileID: 0}
-  prerequisites: []
+  prerequisites:
+  - {fileID: 11400000, guid: 5eece3becaf4c9546846995eb4b39248, type: 2}
   unlockCondition: 0
   isUnlocked: 0
   requiredPoints: 1

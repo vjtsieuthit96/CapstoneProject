@@ -19,9 +19,9 @@ public class SkillNode : ScriptableObject
 
     public SkillEffect effect;
 
-    public bool CanUnlock(int point)
+    public bool CanUnlock()
     {
-        if (isUnlocked || point <=0 || point < requiredPoints) return false;
+        if (isUnlocked) return false;
         if (prerequisites == null || prerequisites.Count == 0) return true;
 
         switch (unlockCondition)
@@ -38,9 +38,6 @@ public class SkillNode : ScriptableObject
 
     public void Unlock(CharacterConfigurator configurator)
     {
-        if (isUnlocked)
-            return;
-
         isUnlocked = true;
         effect?.ApplyEffect(configurator);
     }

@@ -12,7 +12,7 @@ public class CatchPreyNode : Node
 
     private Vector3 retreatTarget;
     private float retreatRadius = 35f; // Khoảng cách tối đa để tìm vị trí retreat
-    private float catchDistance = 1.5f;
+    private float catchDistance = 3f;
     private float retreatTargetReachThreshold = 1.5f;
 
     private float hoverTime;
