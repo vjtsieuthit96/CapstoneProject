@@ -7,7 +7,8 @@ public class BossOrgeAI : MonsterAI
     private float turnVelocity = 0f;
     protected override void Start()
     {
-        base.Start();      
+        base.Start();
+        RepeatEvaluateBehaviorTree(0f, 1.5f);
 
     }   
     protected override void Update()

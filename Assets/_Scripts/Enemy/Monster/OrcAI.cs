@@ -6,7 +6,8 @@ public class OrcAI : MonsterAI
     protected override void Start()
     {
         base.Start();
-        
+        RepeatEvaluateBehaviorTree(0f, 1.5f);
+
     }
     protected override void Update()
     {
@@ -18,7 +19,7 @@ public class OrcAI : MonsterAI
     {
         new Sequence(new List<Node> //  Nếu máu thấp, AI retreat rồi tiếp tục hành vi khác
         {
-            new CheckRetreatNode(this, monsterStats),
+            new CheckRetreatNode(this, monsterStats,0.25f),
             new RetreatNode(this, monsterAgent)
         }),
         new Sequence(new List<Node> //  Nếu thấy Player, AI chiến đấu
