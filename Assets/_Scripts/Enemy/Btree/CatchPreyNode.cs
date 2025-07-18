@@ -57,13 +57,30 @@ public class CatchPreyNode : Node
                 Vector3 playerPosXZ = new Vector3(player.position.x, 0f, player.position.z);
                 float distance = Vector3.Distance(monsterPosXZ, playerPosXZ);
 
-                if (distance < catchDistance)
+                if (distance < catchDistance && !monster.IsCatch())
                 {
                     Debug.Log("Bắt prey!");
                     monster.SetAnimatorParameter(MonsterAnimatorHash.CatchHash, null);
-                    monster.FlyToPlayer(false);
-                    retreatTarget = GetRandomRetreatPosition();
-                    currentState = CatchState.Retreating;                    
+                    monster.FlyToPlayer(false);                    
+                    currentState = CatchState.Catching;                    
+                }
+                return NodeState.RUNNING;
+
+            case CatchState.Catching:
+                if (monster.IsCatch())
+                {
+                   retreatTarget = GetRandomRetreatPosition();
+                    currentState = CatchState.Retreating;
+                }
+                else
+                {
+                    hoverTimer -= Time.deltaTime;
+                    if (hoverTimer <= 0f)
+                    {                      
+                        currentState = CatchState.Hovering;
+                        hoverTime = Random.Range(0,0.2f);
+                        hoverTimer = hoverTime;
+                    }
                 }
                 return NodeState.RUNNING;
 
@@ -73,8 +90,7 @@ public class CatchPreyNode : Node
                 float distanceToRetreat = Vector3.Distance(monsterPosXZ, retreatPosXZ);
 
                 if (distanceToRetreat < retreatTargetReachThreshold)
-                {
-                    Debug.Log("Đã đến điểm retreat! Thả prey.");
+                {                    
                     monster.SetAnimatorParameter(MonsterAnimatorHash.ReleaseHash, null);
                     currentState = CatchState.Hovering;
                     hoverTime = Random.Range(0, 0.2f);
@@ -83,12 +99,13 @@ public class CatchPreyNode : Node
                 return NodeState.RUNNING;
 
             case CatchState.Hovering:
-                hoverTimer -= Time.deltaTime;
-                Debug.Log(hoverTimer);
-                FlyAroundPoint(retreatTarget); //  Vẫn bay quanh retreatTarget khi hover
+                monster.SetIsHovering(true);
+                hoverTimer -= Time.deltaTime;             
+                FlyAroundPoint(player.transform.position);                
                 if (hoverTimer <= 0f)
                 {
                     currentState = CatchState.FlyingToPlayer;
+                    monster.SetIsHovering(false);
                 }
                 return NodeState.RUNNING;
                 

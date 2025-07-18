@@ -1124,62 +1124,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HarpyBreasts
       objectReference: {fileID: 0}
-    - target: {fileID: 1626419186463484491, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2759944068264964190, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_Mass
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2759944068264964190, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2759944068264964190, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_AngularDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4177331161201610049, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: skill1Range
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4177331161201610049, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: skill2Range
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4177331161201610049, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: skill3Range
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4177331161201610049, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: skill1Cooldown
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4177331161201610049, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: skill2Cooldown
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4177331161201610049, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: skill3Cooldown
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4513566646704936931, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4513566646704936931, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4513566646704936931, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -6496145734116381860, guid: 6e1b6ad2bd0cf5742acb5809d4116487, type: 2}
-    - target: {fileID: 4513566646704936931, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5190558615541466889, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.3
@@ -1220,29 +1164,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5685868069982412413, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_Speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5685868069982412413, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 5685868069982412413, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6704138362308421087, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: viewAngle
-      value: 140
-      objectReference: {fileID: 0}
-    - target: {fileID: 6704138362308421087, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: viewRadius
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6704138362308421087, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: speedMultiplier
-      value: 1.5
+      propertyPath: catchableLayer.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

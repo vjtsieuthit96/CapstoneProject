@@ -1,28 +1,33 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
+
 
 public class HarpyBreastsAI : MonsterAI
 {
     [Header("-----Addon Components------")]
     [SerializeField] private GameObject player;
     [SerializeField] private Transform catchPoint;
+    [SerializeField] private float catchRadius = 2f;
+    [SerializeField] private LayerMask catchableLayer;
     private bool isCatch;
     private bool isFlying;   
     private bool isLanding;
     private bool isTakeOff;
-    private float monsterHeight;
-    private bool isFalling;
+    private bool isFalling;  
     private bool isFlyToPlayer;
+    private bool isHovering;
+    private float monsterHeight;   
     private float riseVelocity = 0f;
     private float fallVelocity = 0f;
+
 
 
     protected override void Start()
     {
         base.Start();
+        RepeatEvaluateBehaviorTree(0f, 1f);
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
@@ -32,25 +37,11 @@ public class HarpyBreastsAI : MonsterAI
     }
     protected override void Update()
     {
-        base.Update();
+        base.Update();        
         if (isFlying) {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, true);}
         else {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false); }      
         Landing();
-        if (isCatch)
-        {
-            monsterAgent.baseOffset = Mathf.SmoothDamp(monsterAgent.baseOffset, 20f, ref riseVelocity,2f);
-            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
-        }
-        if (isTakeOff)
-        {
-            monsterAgent.baseOffset = Mathf.SmoothDamp(monsterAgent.baseOffset, 15f, ref riseVelocity, 3f);
-            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
-        }
-        if (isFlyToPlayer)
-        {
-            monsterAgent.baseOffset = Mathf.SmoothDamp(monsterAgent.baseOffset, 1.15f, ref fallVelocity, 1.5f);
-            monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
-        }
+        AdjustFlyHeight();
     }
 
     protected override Node CreateBehaviorTree()
@@ -66,31 +57,76 @@ public class HarpyBreastsAI : MonsterAI
         new PatrolNode(this, monsterAgent)
         });
     }
-    public void SetIsFalling(bool value)
+
+    private void AdjustFlyHeight()
     {
-        isFalling = value;
+        if (isCatch)        
+            SetBaseOffSet(20f, ref riseVelocity, 5f);
+        
+        if (isTakeOff)        
+            SetBaseOffSet(10f, ref riseVelocity, 2f);
+        
+        if (isFlyToPlayer)        
+            SetBaseOffSet(1.15f, ref fallVelocity, 1.5f);
+        
+        if (isHovering)
+            SetBaseOffSet(15f, ref riseVelocity, 5f);
+        
+        if (isFalling)
+            SetBaseOffSet(0f, ref fallVelocity, 1f);
+    
     }
+    private void SetBaseOffSet(float target, ref float velocity, float smoothTime)
+    {
+        monsterAgent.baseOffset = Mathf.SmoothDamp(monsterAgent.baseOffset, target, ref velocity, smoothTime);
+        monsterAgent.height = monsterHeight + monsterAgent.baseOffset;
+    }
+    private void HitTheGround()
+    {
+        monsterAgent.baseOffset = 0f;
+    }
+    public void SetIsFalling()
+    {
+        isFalling = true;
+    }   
     public bool IsFalling()
     {
         return isFalling;
     }
+    public void SetIsHovering(bool value)
+    {
+        isHovering = value;
+    }
 
     #region Catch&Release
 
-
+    public bool IsCatch() => isCatch;
     public void CatchPrey()
     {
-        if (!isCatch)
+        if (isCatch) return;
+
+        Collider[] hits = Physics.OverlapSphere(transform.position, catchRadius, catchableLayer);
+
+        foreach (Collider hit in hits)
         {
-            isCatch = true;        
-            player.transform.position = catchPoint.position;                      
-            FixedJoint joint = this.AddComponent<FixedJoint>();
-            joint.connectedBody = player.GetComponent<Rigidbody>();
-            joint.massScale = 0.01f; // Giảm trọng lượng của Joint để không làm Player bị kéo xuống quá nhanh
-            joint.connectedMassScale = 0.01f; // Giảm trọng lượng của Player khi bị giữ       
-        }
+            if (hit.CompareTag("Player"))
+            {
+                isCatch = true;
+
+                // Di chuyển player đến điểm bắt
+                hit.transform.position = catchPoint.position;
+
+                // Gắn joint
+                FixedJoint joint = this.AddComponent<FixedJoint>();
+                joint.connectedBody = hit.GetComponent<Rigidbody>();
+                joint.massScale = 0.01f;
+                joint.connectedMassScale = 0.01f;            
+                SetAnimatorParameter(MonsterAnimatorHash.CatchedHash,true);
+                return;
+            }
+        }    
     }
-   
+
     public void ReleasePrey()
     {
         FixedJoint joint = GetComponent<FixedJoint>();
@@ -98,6 +134,7 @@ public class HarpyBreastsAI : MonsterAI
         {            
             Destroy(joint);            
             isCatch = false;
+            SetAnimatorParameter(MonsterAnimatorHash.CatchedHash,false);
         }    
     }   
 

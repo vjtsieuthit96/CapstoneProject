@@ -6,7 +6,8 @@ public class OrcAI : MonsterAI
     protected override void Start()
     {
         base.Start();
-        
+        RepeatEvaluateBehaviorTree(0f, 1.5f);
+
     }
     protected override void Update()
     {

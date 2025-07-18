@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-
-
 public abstract class MonsterAI : MonoBehaviour
 {
     [Header("-----Target-----")]
@@ -53,7 +51,7 @@ public abstract class MonsterAI : MonoBehaviour
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
-        InvokeRepeating("EvaluateBehaviorTree", 0f, 1.5f);
+        
     }
     protected virtual void Update()
     {
@@ -111,6 +109,11 @@ public abstract class MonsterAI : MonoBehaviour
         if (!isDead && !isFreeze)
             behaviorTree.Evaluate();
     }
+    public void RepeatEvaluateBehaviorTree(float time, float repeatRate)
+    {
+        InvokeRepeating("EvaluateBehaviorTree", time, repeatRate);
+    }
+
     protected abstract Node CreateBehaviorTree();
     private void GroundLocomotion()
     {
