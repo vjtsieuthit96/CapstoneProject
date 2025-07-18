@@ -21,14 +21,12 @@ public class HarpyBreastsAI : MonsterAI
     private float monsterHeight;   
     private float riseVelocity = 0f;
     private float fallVelocity = 0f;
-    private Rigidbody rb;
 
 
 
     protected override void Start()
     {
         base.Start();
-        rb = GetComponent<Rigidbody>();
         RepeatEvaluateBehaviorTree(0f, 1f);
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
@@ -62,22 +60,21 @@ public class HarpyBreastsAI : MonsterAI
 
     private void AdjustFlyHeight()
     {
-        if(!isDead)
-        {
-            if (isCatch)
-                SetBaseOffSet(20f, ref riseVelocity, 5f);
-
-            if (isTakeOff)
-                SetBaseOffSet(10f, ref riseVelocity, 2f);
-
-            if (isFlyToPlayer)
-                SetBaseOffSet(1.15f, ref fallVelocity, 1.5f);
-
-            if (isHovering)
-                SetBaseOffSet(15f, ref riseVelocity, 5f);
-        }
+        if (isCatch)        
+            SetBaseOffSet(20f, ref riseVelocity, 5f);
+        
+        if (isTakeOff)        
+            SetBaseOffSet(10f, ref riseVelocity, 2f);
+        
+        if (isFlyToPlayer)        
+            SetBaseOffSet(1.15f, ref fallVelocity, 1.5f);
+        
+        if (isHovering)
+            SetBaseOffSet(15f, ref riseVelocity, 5f);
+        
         if (isFalling)
             SetBaseOffSet(0f, ref fallVelocity, 1f);
+    
     }
     private void SetBaseOffSet(float target, ref float velocity, float smoothTime)
     {
@@ -87,9 +84,6 @@ public class HarpyBreastsAI : MonsterAI
     private void HitTheGround()
     {
         monsterAgent.baseOffset = 0f;
-        rb.isKinematic = true;
-        this.enabled = false;
-
     }
     public void SetIsFalling()
     {
