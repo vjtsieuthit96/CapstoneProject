@@ -6,7 +6,7 @@ public class MonsterStatsSO : ScriptableObject
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _damage;
     [SerializeField] private float _defense;
-
+    public string enemyType;
     // Getter cho các chỉ số
     public float GetMaxHealth() => _maxHealth;
     public float GetDamage() => _damage;

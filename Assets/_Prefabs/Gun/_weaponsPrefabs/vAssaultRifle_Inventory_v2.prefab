@@ -27766,7 +27766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 0
   openCloseWindow: 1
-  selectedToolbar: 4
+  selectedToolbar: 6
   weaponCategory: Rifle
   isExplosive: 0
   isEffectMode: 0
@@ -27843,6 +27843,7 @@ MonoBehaviour:
   EletricDuration: 0
   PoisonDamagePercent: 0
   PoisonDuration: 0
+  Gunowner: {fileID: 0}
   isLeftWeapon: 0
   chargeWeapon: 0
   autoShotOnFinishCharge: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4018816193991025613}
   - component: {fileID: 3744358244378580621}
   - component: {fileID: 72633771622213025}
+  - component: {fileID: 789345568328588756}
   m_Layer: 0
   m_Name: Navmesh & Pool
   m_TagString: Untagged
@@ -110,3 +111,15 @@ MonoBehaviour:
   IcePlanePrefab: {fileID: 1167377218157777050, guid: 4818e6f7452984f4d847c194347b3fc2, type: 3}
   IceCube: {fileID: 1167377218157777050, guid: f8199782d45746e48aeede386a3ecc52, type: 3}
   explosionPoolSize: 5
+--- !u!114 &789345568328588756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608576018017118198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02fe76cce257bad438b33a05607ef3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

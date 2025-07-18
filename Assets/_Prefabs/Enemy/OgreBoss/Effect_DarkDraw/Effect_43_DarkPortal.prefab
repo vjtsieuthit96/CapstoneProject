@@ -14857,10 +14857,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbleHit: 1
   DestroyTime: 8
-  damageMultiplier: 1
+  damageMultiplier: 1.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 4294967295
   sphereRadius: 5
   positionOffset: 0
-  hitPrefabs: {fileID: -5270279735350829934, guid: 5159df3c8b37dcb41b7405b994fc30e1, type: 3}
