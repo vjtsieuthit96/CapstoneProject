@@ -70,7 +70,7 @@ namespace Invector.vCharacterController
         public vThirdPersonController cc;                   // access the ThirdPersonController component
         [HideInInspector]
         public vHUDController hud;                          // access vHUDController component
-        protected bool updateIK = false;
+        public bool updateIK = false;
         protected bool isInit;
         [HideInInspector] public bool lockMoveInput;
         protected InputDevice inputDevice { get { return vInput.instance.inputDevice; } }
@@ -198,6 +198,11 @@ namespace Invector.vCharacterController
 
         protected virtual void LateUpdate()
         {
+            PlayerLateUpdate();
+        }
+
+        public void PlayerLateUpdate()
+        {
             if (cc == null)
             {
                 return;
@@ -216,7 +221,7 @@ namespace Invector.vCharacterController
             CameraInput();                      // update camera input
             UpdateCameraStates();               // update camera states                        
             updateIK = false;
-        }
+        }    
 
         protected virtual void FixedUpdate()
         {
@@ -546,6 +551,7 @@ namespace Invector.vCharacterController
         {
             yield return new WaitForSeconds(0.5f);
             GameManager.Instance.isPause = true;
+
         }
         #endregion
         public virtual void StrafeInput()

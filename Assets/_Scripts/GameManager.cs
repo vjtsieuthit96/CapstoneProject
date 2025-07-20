@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     }
     private void Update()
-    {   
+    {
         if (isPause)
         {
             Time.timeScale = 0f;
@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             anim.updateMode = AnimatorUpdateMode.Fixed;
-
         }
     }
 }
