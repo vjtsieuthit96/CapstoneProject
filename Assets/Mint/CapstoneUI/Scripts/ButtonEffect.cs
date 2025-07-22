@@ -9,26 +9,35 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
 {
     [SerializeField] private AudioClip hoverSound;
     [SerializeField] private GameObject hoverBorder;
-    [SerializeField] private GameObject hoverPanel;
+    [SerializeField] private Image hoverPanel;
+    private bool isHovering = false;
     [SerializeField] private float scaleFactor = 0.3f;
     private Vector3 currentScale;
 
-    private Image img;
-    public Color colorChange;
-    [SerializeField] private bool canChangeColor;
+    [SerializeField] private bool haveShowEffect;
     private Color currentColor;
     private void Awake()
     {
-        img = GetComponent<Image>();
-        if(img != null)
-            currentColor = img.color;
         currentScale = transform.localScale;
+        //Actived();
+    }
+    private void Start()
+    {
         Actived();
     }
     private void OnEnable()
     {
         // Reset the scale when the button is enabled
         Actived();
+    }
+
+    private void Update()
+    {
+        if(isHovering && hoverPanel != null && hoverPanel.color != Color.white)
+        {
+            // Keep the border active while hovering
+            hoverPanel.color += new Color(0,0,0,0.025f); // Set the color to white or any desired color
+        }
     }
     // Make Zoom efect on button hover
     public void OnPointerEnter(PointerEventData eventData)
@@ -40,30 +49,17 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
         }
         if(hoverPanel)
         {
-            hoverPanel.SetActive(true);
-        }
-        if (canChangeColor && img)
-        {
-            img.color = colorChange;
-        }
+            if(haveShowEffect)
+                isHovering = true;
+            else
+                hoverPanel.gameObject.SetActive(true);
+        }    
         SoundMixerManager.Instance.PlaySFXAudio(hoverSound);
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        gameObject.transform.localScale -= Vector3.one * scaleFactor;
-        if(hoverBorder)
-        {
-            hoverBorder.SetActive(false);
-        }
-        if (hoverPanel)
-        {
-            hoverPanel.SetActive(false);
-        }
-        if (canChangeColor && img)
-        {
-            img.color = currentColor;
-        }
+        Actived();
     }
 
     private void Actived()
@@ -72,10 +68,27 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
         {
             hoverBorder.SetActive(false);
         }
-        if (hoverPanel && hoverPanel.activeSelf)
+        if (hoverPanel)
         {
-            hoverPanel.SetActive(false);
+            if (hoverPanel)
+            {
+                if (haveShowEffect)
+                {
+                    isHovering = false;
+                    HideHoverPanel();
+                }
+                else
+                    hoverPanel.gameObject.SetActive(false);
+            }
         }
         transform.localScale = currentScale;
+    }
+    private void HideHoverPanel()
+    {
+        var img = hoverPanel;
+        if (img != null)
+        {
+            img.color = new Color(1f, 1f, 1f, 0f); // Set the color to transparent
+        }
     }
 }
