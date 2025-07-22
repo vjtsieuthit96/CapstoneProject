@@ -8,7 +8,8 @@ namespace Invector
         // Update is called once per frame
         void Update()
         {
-            transform.Rotate(rotationSpeed * Time.deltaTime, Space.Self);
+            if(this.gameObject.activeSelf)
+                transform.Rotate(rotationSpeed * Time.deltaTime, Space.Self);
         }
     }
 }
