@@ -70,7 +70,7 @@ namespace Invector.vCharacterController
         public vThirdPersonController cc;                   // access the ThirdPersonController component
         [HideInInspector]
         public vHUDController hud;                          // access vHUDController component
-        protected bool updateIK = false;
+        public bool updateIK = false;
         protected bool isInit;
         [HideInInspector] public bool lockMoveInput;
         protected InputDevice inputDevice { get { return vInput.instance.inputDevice; } }
@@ -198,6 +198,11 @@ namespace Invector.vCharacterController
 
         protected virtual void LateUpdate()
         {
+            PlayerLateUpdate();
+        }
+
+        public void PlayerLateUpdate()
+        {
             if (cc == null)
             {
                 return;
@@ -216,7 +221,7 @@ namespace Invector.vCharacterController
             CameraInput();                      // update camera input
             UpdateCameraStates();               // update camera states                        
             updateIK = false;
-        }
+        }    
 
         protected virtual void FixedUpdate()
         {
@@ -235,7 +240,7 @@ namespace Invector.vCharacterController
 
         protected virtual void Update()
         {
-            if (cc == null || Time.timeScale == 0)
+            if (cc == null/* || Time.timeScale == 0*/)
             {
                 return;
             }
@@ -524,7 +529,9 @@ namespace Invector.vCharacterController
             SetLockCameraInput(true);
             SetLockAllInput(true);
             optionBoardController.FadeIn(PanelType.Option);
+            StartCoroutine(DelayedPauseOn());
         }
+
 
         public void OptionsMenuClose()
         {
@@ -537,6 +544,14 @@ namespace Invector.vCharacterController
             SetLockCameraInput(false);
             LockCursor(false);
             ShowCursor(false);
+            GameManager.Instance.isPause = false;
+        }
+
+        private IEnumerator DelayedPauseOn()
+        {
+            yield return new WaitForSeconds(0.5f);
+            GameManager.Instance.isPause = true;
+
         }
         #endregion
         public virtual void StrafeInput()
@@ -669,6 +684,10 @@ namespace Invector.vCharacterController
             if (changeCameraState)
             {
                 tpCamera.ChangeState(customCameraState, customlookAtPoint, smoothCameraState);
+                if (tpCamera.CurrentStateName == customCameraState)
+                {
+                    if (customCameraState == "SettingMenu");
+                }
             }
             // TODO: add a way to change the camera state when press ESC KEYCODE, open Setting Menu
             else if (cc.isCrouching)
