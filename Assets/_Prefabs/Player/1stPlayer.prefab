@@ -65155,6 +65155,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1179026398231778726, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1476524343912246962, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -65162,6 +65166,18 @@ PrefabInstance:
     - target: {fileID: 1476524343912246962, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964332776733059352, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
+      propertyPath: m_Color.a
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061422471989771146, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061422471989771146, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2383110137347459600, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_Pivot.x
@@ -65253,7 +65269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381488734507781084, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3590737243709312007, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_Name
@@ -65356,7 +65372,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1566759364197964752, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3805350405042435344, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       insertIndex: -1
