@@ -24,7 +24,7 @@ namespace Invector.vCharacterController
         public float freeBodyWeight = 0.6f;
 
         [SerializeField] protected float smooth = 10f;
-
+        [SerializeField] public float rotationSpeedWhenPaused = 5f;
         [Header("Default Offsets ")]
         [SerializeField] protected Vector2 defaultOffsetSpine;
         [SerializeField] protected Vector2 defaultOffsetHead;
@@ -133,7 +133,7 @@ namespace Invector.vCharacterController
         protected virtual vICharacter vChar { get; set; }
         protected virtual Transform forwardReference { get; set; }
 
-        protected int currentLookAngleH_Hash = -1;
+        protected int currentLookAngleH_Hash = 1;
         protected int currentLookAngleV_Hash = -1;
         protected int desiredLookAngleH_Hash = -1;
         protected int desiredLookAngleV_Hash = -1;
@@ -147,7 +147,7 @@ namespace Invector.vCharacterController
         {
             get
             {
-                return ignoreSmooth ? 1f : smooth * Time.deltaTime;
+                return ignoreSmooth ? 1f : smooth * Time.unscaledDeltaTime;
             }
         }
 
@@ -283,20 +283,28 @@ namespace Invector.vCharacterController
         public virtual void UpdateHeadTrack()
         {
             if (animator == null || !animator.enabled)
-            {
                 return;
-            }
 
             if (vChar != null && vChar.currentHealth > 0f && animator != null && !vChar.ragdolled)
             {
                 onInitUpdate.Invoke();
-                if (!freezeLookPoint)
+
+                if (GameManager.Instance.isPause && !freezeLookPoint && simpleTarget != null)
+                {
+                    currentLookPosition = simpleTarget.position;
+
+                    var desiredDirection = simpleTarget.position - headPoint;
+                    _desiredlookAngle = GetTargetAngle(desiredDirection);
+                    desiredLookDirection = desiredDirection;
+                    _relativeLookAngle = -(GetTargetAngle(LookDirection) - _desiredlookAngle);
+                }
+                else if (!freezeLookPoint)
                 {
                     currentLookPosition = GetLookPoint();
                 }
-
                 SetLookAtPosition(currentLookPosition, _currentHeadWeight, _currentBodyWeight);
                 UpdateAngles();
+
                 onFinishUpdate.Invoke();
             }
         }
@@ -309,9 +317,32 @@ namespace Invector.vCharacterController
             var y = NormalizeAngle(euler.y);
             var x = NormalizeAngle(euler.x);
             var eulerB = considerHeadAnimationForward ? forwardReference.eulerAngles - transform.eulerAngles : Vector3.zero;
-            currentVerticalLookAngle = Mathf.Clamp(Mathf.Lerp(currentVerticalLookAngle, ((x) - eulerB.NormalizeAngle().x) + Quaternion.Euler(offsetSpine + defaultOffsetSpine).eulerAngles.NormalizeAngle().x, Smooth), verticalAngleLimit.x, verticalAngleLimit.y);
-            currentHorizontalLookAngle = Mathf.Clamp(Mathf.Lerp(currentHorizontalLookAngle, ((y) - eulerB.NormalizeAngle().y) + Quaternion.Euler(offsetSpine + defaultOffsetSpine).eulerAngles.NormalizeAngle().y, Smooth), horizontalAngleLimit.x, horizontalAngleLimit.y);
+            float deltaTime = GameManager.Instance != null && GameManager.Instance.isPause ? Time.unscaledDeltaTime : Time.deltaTime;
+            float targetVertical = ((x) - eulerB.NormalizeAngle().x) +
+                                   Quaternion.Euler(offsetSpine + defaultOffsetSpine).eulerAngles.NormalizeAngle().x;
 
+            float targetHorizontal = ((y) - eulerB.NormalizeAngle().y) +
+                                     Quaternion.Euler(offsetSpine + defaultOffsetSpine).eulerAngles.NormalizeAngle().y;
+            if (GameManager.Instance != null && GameManager.Instance.isPause)
+            {
+                currentVerticalLookAngle = Mathf.Clamp(
+                    Mathf.MoveTowards(currentVerticalLookAngle, targetVertical, rotationSpeedWhenPaused * deltaTime),
+                    verticalAngleLimit.x, verticalAngleLimit.y);
+
+                currentHorizontalLookAngle = Mathf.Clamp(
+                    Mathf.MoveTowards(currentHorizontalLookAngle, targetHorizontal, rotationSpeedWhenPaused * deltaTime),
+                    horizontalAngleLimit.x, horizontalAngleLimit.y);
+            }
+            else 
+            {
+                currentVerticalLookAngle = Mathf.Clamp(
+                    Mathf.Lerp(currentVerticalLookAngle, targetVertical, Smooth),
+                    verticalAngleLimit.x, verticalAngleLimit.y);
+
+                currentHorizontalLookAngle = Mathf.Clamp(
+                    Mathf.Lerp(currentHorizontalLookAngle, targetHorizontal, Smooth),
+                    horizontalAngleLimit.x, horizontalAngleLimit.y);
+            }
             var xSpine = NormalizeAngle(currentVerticalLookAngle);
             var ySpine = NormalizeAngle(currentHorizontalLookAngle);
 
@@ -319,19 +350,27 @@ namespace Invector.vCharacterController
             {
                 var rotY = Quaternion.AngleAxis((ySpine * spineWeight) / spine.Count, segment.InverseTransformDirection(transform.up));
                 segment.rotation *= rotY;
+
                 var rotX = Quaternion.AngleAxis((xSpine * spineWeight) / spine.Count, segment.InverseTransformDirection(transform.TransformDirection(upDownAxis)));
                 segment.rotation *= rotX;
             }
+
             if (head)
             {
-                var xHead = NormalizeAngle(currentVerticalLookAngle - (xSpine * spineWeight) + Quaternion.Euler(offsetHead + defaultOffsetHead).eulerAngles.NormalizeAngle().x);
-                var yHead = NormalizeAngle(currentHorizontalLookAngle - (ySpine * spineWeight) + Quaternion.Euler(offsetHead + defaultOffsetHead).eulerAngles.NormalizeAngle().y);
+                var xHead = NormalizeAngle(currentVerticalLookAngle - (xSpine * spineWeight) +
+                           Quaternion.Euler(offsetHead + defaultOffsetHead).eulerAngles.NormalizeAngle().x);
+
+                var yHead = NormalizeAngle(currentHorizontalLookAngle - (ySpine * spineWeight) +
+                           Quaternion.Euler(offsetHead + defaultOffsetHead).eulerAngles.NormalizeAngle().y);
+
                 var _rotY = Quaternion.AngleAxis(yHead * headWeight, head.InverseTransformDirection(transform.up));
                 head.rotation *= _rotY;
+
                 var _rotX = Quaternion.AngleAxis(xHead * headWeight, head.InverseTransformDirection(transform.TransformDirection(upDownAxis)));
                 head.rotation *= _rotX;
             }
         }
+
 
         public virtual void UpdateAngles()
         {           
@@ -442,7 +481,7 @@ namespace Invector.vCharacterController
                 else
                 {
                     desiredLookDirection = temporaryLookPoint - headPoint;
-                    temporaryLookTime -= Time.deltaTime;
+                    temporaryLookTime -= Time.unscaledDeltaTime;
                     if (currentLookTarget && currentLookTarget == lastLookTarget)
                     {
                         currentLookTarget.ExitLook(this);
@@ -631,7 +670,7 @@ namespace Invector.vCharacterController
 
         protected virtual void SortTargets()
         {
-            interaction += Time.deltaTime;
+            interaction += Time.unscaledTime;
             if (interaction > updateTargetInteraction)
             {
                 interaction -= updateTargetInteraction;

@@ -78,6 +78,7 @@ namespace Invector.vCamera
         public Transform currentTarget;
         [HideInInspector]
         public vThirdPersonCameraState currentState;
+        public string CurrentStateName => currentState != null ? currentState.Name : string.Empty;
         [HideInInspector]
         public vThirdPersonCameraListData CameraStateList;
         [HideInInspector]

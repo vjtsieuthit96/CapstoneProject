@@ -12163,6 +12163,7 @@ GameObject:
   - component: {fileID: 2709935119174296593}
   - component: {fileID: 780531588530017248}
   - component: {fileID: 6146291814225516412}
+  - component: {fileID: 7157660158630837345}
   m_Layer: 8
   m_Name: 1stPlayer
   m_TagString: Player
@@ -12186,6 +12187,7 @@ Transform:
   - {fileID: 1789914563140870054}
   - {fileID: 3717738954279288659}
   - {fileID: 6257969213533866409}
+  - {fileID: 4449563019088821520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1487197426284330897
@@ -12216,7 +12218,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 073374ff34a2c3d458f66bdef5aad330, type: 3}
   m_Controller: {fileID: 9100000, guid: 87885946b43e2d1449e1d5aa2042f8a8, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 1
+  m_UpdateMode: 2
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -12778,6 +12780,7 @@ MonoBehaviour:
   smoothCameraState: 0
   cc: {fileID: 0}
   hud: {fileID: 0}
+  updateIK: 0
   lockMoveInput: 0
   weakAttackInput:
     useInput: 1
@@ -13105,7 +13108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCloseEvents: 0
-  openCloseWindow: 0
+  openCloseWindow: 1
   selectedToolbar: 0
   upDownAxis: {x: 1, y: 0, z: 0}
   strafeHeadWeight: 0.8
@@ -13115,6 +13118,7 @@ MonoBehaviour:
   freeHeadWeight: 1
   freeBodyWeight: 0.4
   smooth: 12
+  rotationSpeedWhenPaused: 100
   defaultOffsetSpine: {x: 0, y: 0}
   defaultOffsetHead: {x: 0, y: 0}
   offsetSpine: {x: 0, y: 0}
@@ -13122,8 +13126,8 @@ MonoBehaviour:
   followCamera: 1
   _freezeLookPoint: 0
   _alwaysFollowCamera: 0
-  cancelTrackOutOfAngle: 1
-  considerHeadAnimationForward: 0
+  cancelTrackOutOfAngle: 0
+  considerHeadAnimationForward: 1
   horizontalAngleLimit: {x: -90, y: 90}
   verticalAngleLimit: {x: -80, y: 80}
   animatorIgnoreTags:
@@ -13146,8 +13150,8 @@ MonoBehaviour:
   _currentLookAngle: {x: 0, y: 0}
   _relativeLookAngle: {x: 0, y: 0}
   useDesiredLookAngle: 0
-  desiredLookAngleH: HorizontalLookAngle
-  desiredLookAngleV: VerticalLookAngle
+  desiredLookAngleH: 1
+  desiredLookAngleV: 1
   useCurrentAngle: 0
   currentAngleH: CurrentHorizontalLookAngle
   currentAngleV: CurrentVerticalLookAngle
@@ -13915,6 +13919,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalKills: 0
   enemyKillList: []
+--- !u!114 &7157660158630837345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831212676386197866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9d01de3472eeb4bb442f4330791f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headTrack: {fileID: 38107825016294648}
+  lookTarget: {fileID: 4449563019088821520}
+  Target: {fileID: 888238135216616199}
+  input: {fileID: 8305026052352428771}
 --- !u!1 &1840727238878433245
 GameObject:
   m_ObjectHideFlags: 0
@@ -13948,6 +13968,80 @@ Transform:
   - {fileID: 2929568987596307315}
   m_Father: {fileID: 6581708093004275153}
   m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!1 &1840920401357657123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4449563019088821520}
+  - component: {fileID: 5615414868401300416}
+  - component: {fileID: 888238135216616199}
+  m_Layer: 8
+  m_Name: Pause Target
+  m_TagString: LookAt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4449563019088821520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840920401357657123}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1138045021076635767}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5615414868401300416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840920401357657123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4918e7e6f723848a827509599e8fd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTarget: {fileID: 0}
+  moveSpeed: 3
+  moveDirection: {x: 1, y: 0, z: 0}
+--- !u!114 &888238135216616199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840920401357657123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079af0928a59a2a489c3eb00c58cd2f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreHeadTrackAngle: 0
+  lookPointTarget: {fileID: 0}
+  centerArea: {x: 0, y: 0, z: 0}
+  sizeArea: {x: 1, y: 1, z: 1}
+  useLimitToDetect: 1
+  minDistanceToDetect: 1000
+  visibleCheckType: 0
+  HideObject: 0
+  onEnterLook:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitLook:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1846451392267148649
 GameObject:
   m_ObjectHideFlags: 0
