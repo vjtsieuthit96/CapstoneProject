@@ -598,7 +598,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 868ffd5ac429bbf4fb192627c8c69e58, type: 3}
   - {fileID: 8300000, guid: 9a1d725527c1a824a9aca8eb9dd291d8, type: 3}
   - {fileID: 8300000, guid: b4832bc15a4c20c4390044b1217bc5c4, type: 3}
-  getHitSounds: []
+  getHitSounds:
+  - {fileID: 8300000, guid: bc0fcf58f214fd0439853cfb16f9147f, type: 3}
+  - {fileID: 8300000, guid: ccf116e83734ab64aa54e774f9dce854, type: 3}
+  - {fileID: 8300000, guid: 74f0666c23b83a04d94bc13cc6d70ca9, type: 3}
+  - {fileID: 8300000, guid: e776a194be7b9164393e156fb1c3b0b0, type: 3}
+  - {fileID: 8300000, guid: e8837c2b77447db47a7b725fcd8d7bc3, type: 3}
   otherSounds: []
 --- !u!54 &2759944068264964190
 Rigidbody:
