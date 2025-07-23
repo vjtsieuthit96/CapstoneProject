@@ -252,10 +252,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FatOgre
       objectReference: {fileID: 0}
-    - target: {fileID: 4259175055369822327, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.7875416
@@ -295,10 +291,6 @@ PrefabInstance:
     - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8455961270345227133, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1356,21 +1348,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 680867627703430608, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_Name
       value: Orc
-      objectReference: {fileID: 0}
-    - target: {fileID: 2277023041870629272, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3027906811202869841, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7137831820275144453, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1429,10 +1409,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HarpyBreasts
       objectReference: {fileID: 0}
-    - target: {fileID: 4513566646704936931, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: MinDistance
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5190558615541466889, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.3
@@ -1473,98 +1449,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: roarSounds.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: wingsSounds.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'roarSounds.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 397b3feefde9efe4484730724a50cc6a, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'roarSounds.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: ddfe90ba84a43a2478dddbaaf90de186, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'roarSounds.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: db6cbff229982ff47bed0f184206d020, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'roarSounds.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 13922f9656d14824ba8be0e900a1abae, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: footstepSounds.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: f330a22ff365d7943828b07549db855c, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 54ebbbcc66441a34d9bef43adb302492, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 30959eb18a0ba494797c25ba08fab53d, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: fe8919d157bf7f04e8f749d7b02a7c88, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[4]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 2d9cbe05733b0ce4d80d477ac421873f, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[5]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 78367839f256d2348bc6f04aa85e65a0, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[6]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 41f16a638af81204fb2d54a257b341e6, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'wingsSounds.Array.data[7]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 795658cdd79b6fb4aadfef12a97b0f0b, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 881fdc8a790a3a242a5d8eaec804ab06, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 606838a612f2da146a3abc015ccbc9a8, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: be3f7602b2af57542920ff6c1a469c6c, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 59d87a86da48d76448696d85671551a8, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[4]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 706e4d8b1798e214b8a9ad5bd21c65fd, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[5]'
-      value: 
-      objectReference: {fileID: 8300000, guid: cc2773d8669ecb94aa7ad3da44702b6e, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[6]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 93102ef59c871a14fa22313e38d21224, type: 3}
-    - target: {fileID: 7973936021140199648, guid: 8553e943b46bdd94c8c68daf61ec3d6b, type: 3}
-      propertyPath: 'footstepSounds.Array.data[7]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 50172745fe5b9f947b7b431a410f0d31, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

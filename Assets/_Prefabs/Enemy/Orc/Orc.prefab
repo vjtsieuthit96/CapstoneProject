@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 6007496750003585323}
   m_Layer: 0
   m_Name: root
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 502968482998836789}
   m_Layer: 0
   m_Name: SK_OrcPonytail
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -787,6 +787,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: df844921a7b03aa43a58330cf7152cb8, type: 3}
   - {fileID: 8300000, guid: 30286abde0efcac4a8f10f06c88b572c, type: 3}
   - {fileID: 8300000, guid: 34484c344bfe26f45a7fefa2f519fcba, type: 3}
+  wingsSounds: []
   roarSounds:
   - {fileID: 8300000, guid: a077bed9bb33e3042b23b0f8eee8ed42, type: 3}
   - {fileID: 8300000, guid: 5db6873195c917147a91bba1495d88f6, type: 3}
@@ -796,6 +797,14 @@ MonoBehaviour:
   atkSound:
   - {fileID: 8300000, guid: 2529447dedb2a4346ac81d4293e14cde, type: 3}
   - {fileID: 8300000, guid: 813a56194150f924ba66d31dcdd47305, type: 3}
+  getHitSounds:
+  - {fileID: 8300000, guid: cce30cda39c191d4ba004047f37f7bbb, type: 3}
+  - {fileID: 8300000, guid: 590556a093c236e4f887d1b6ff8f36aa, type: 3}
+  - {fileID: 8300000, guid: b071881b79bb6a841989273b795e6eee, type: 3}
+  - {fileID: 8300000, guid: 1181b101f401da548872eeabef5a18df, type: 3}
+  - {fileID: 8300000, guid: b116276327d2f9444b54a02276550171, type: 3}
+  - {fileID: 8300000, guid: fcebb7f6e92f26841aa19fcf0e73d684, type: 3}
+  otherSounds: []
 --- !u!195 &1568520819312927798
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1260,7 +1269,7 @@ GameObject:
   - component: {fileID: 4696233351396675598}
   m_Layer: 0
   m_Name: ORC_
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1832,7 +1841,7 @@ GameObject:
   - component: {fileID: 8364164696455933501}
   m_Layer: 0
   m_Name: SK_ShoulderPads
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2619,7 +2628,7 @@ GameObject:
   - component: {fileID: 2903942431903596637}
   m_Layer: 0
   m_Name: SK_OrcBody
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2943,7 +2952,7 @@ GameObject:
   - component: {fileID: 5546472507427091710}
   m_Layer: 0
   m_Name: SK_BellyArmor
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
