@@ -5,14 +5,14 @@ public class CatchPreyNode : Node
 {
     private HarpyBreastsAI monster;
     private NavMeshAgent agent;
-    private Transform player;  
+    private Transform player;     
 
     private enum CatchState { Idle, FlyingToPlayer, Catching, Retreating, Releasing, Hovering }
     private CatchState currentState = CatchState.Idle;
 
     private Vector3 retreatTarget;
     private float retreatRadius = 35f; // Khoảng cách tối đa để tìm vị trí retreat
-    private float catchDistance = 1.5f;
+    private float catchDistance = 2.5f;
     private float retreatTargetReachThreshold = 1.5f;
 
     private float hoverTime;
@@ -24,7 +24,7 @@ public class CatchPreyNode : Node
     {
         this.monster = monster;
         this.player = monster.GetTarget();
-        this.agent = agent;
+        this.agent = agent;    
     }
 
     public override NodeState Evaluate()
@@ -58,8 +58,7 @@ public class CatchPreyNode : Node
                 float distance = Vector3.Distance(monsterPosXZ, playerPosXZ);
 
                 if (distance < catchDistance && !monster.IsCatch())
-                {
-                    Debug.Log("Bắt prey!");
+                {                  
                     monster.SetAnimatorParameter(MonsterAnimatorHash.CatchHash, null);
                     monster.FlyToPlayer(false);                    
                     currentState = CatchState.Catching;                    
@@ -101,7 +100,8 @@ public class CatchPreyNode : Node
             case CatchState.Hovering:
                 monster.SetIsHovering(true);
                 hoverTimer -= Time.deltaTime;             
-                FlyAroundPoint(player.transform.position);                
+                FlyAroundPoint(player.transform.position);
+                monster.PlayRoar();
                 if (hoverTimer <= 0f)
                 {
                     currentState = CatchState.FlyingToPlayer;
