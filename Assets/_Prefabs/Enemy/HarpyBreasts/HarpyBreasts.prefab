@@ -474,6 +474,10 @@ MonoBehaviour:
   enemyType: Harpy
   player: {fileID: 0}
   catchPoint: {fileID: 7068927139581022095}
+  catchRadius: 3.5
+  catchableLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &683549913991860154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,9 +570,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterAudio: {fileID: 4513566646704936931}
-  footstepSounds: []
-  roarSounds: []
-  atkSound: []
+  footstepSounds:
+  - {fileID: 8300000, guid: 881fdc8a790a3a242a5d8eaec804ab06, type: 3}
+  - {fileID: 8300000, guid: 606838a612f2da146a3abc015ccbc9a8, type: 3}
+  - {fileID: 8300000, guid: be3f7602b2af57542920ff6c1a469c6c, type: 3}
+  - {fileID: 8300000, guid: 59d87a86da48d76448696d85671551a8, type: 3}
+  - {fileID: 8300000, guid: 706e4d8b1798e214b8a9ad5bd21c65fd, type: 3}
+  - {fileID: 8300000, guid: cc2773d8669ecb94aa7ad3da44702b6e, type: 3}
+  - {fileID: 8300000, guid: 93102ef59c871a14fa22313e38d21224, type: 3}
+  - {fileID: 8300000, guid: 50172745fe5b9f947b7b431a410f0d31, type: 3}
+  wingsSounds:
+  - {fileID: 8300000, guid: f330a22ff365d7943828b07549db855c, type: 3}
+  - {fileID: 8300000, guid: 54ebbbcc66441a34d9bef43adb302492, type: 3}
+  - {fileID: 8300000, guid: 30959eb18a0ba494797c25ba08fab53d, type: 3}
+  - {fileID: 8300000, guid: fe8919d157bf7f04e8f749d7b02a7c88, type: 3}
+  - {fileID: 8300000, guid: 2d9cbe05733b0ce4d80d477ac421873f, type: 3}
+  - {fileID: 8300000, guid: 78367839f256d2348bc6f04aa85e65a0, type: 3}
+  - {fileID: 8300000, guid: 41f16a638af81204fb2d54a257b341e6, type: 3}
+  - {fileID: 8300000, guid: 795658cdd79b6fb4aadfef12a97b0f0b, type: 3}
+  roarSounds:
+  - {fileID: 8300000, guid: 397b3feefde9efe4484730724a50cc6a, type: 3}
+  - {fileID: 8300000, guid: ddfe90ba84a43a2478dddbaaf90de186, type: 3}
+  - {fileID: 8300000, guid: db6cbff229982ff47bed0f184206d020, type: 3}
+  - {fileID: 8300000, guid: 13922f9656d14824ba8be0e900a1abae, type: 3}
+  atkSound:
+  - {fileID: 8300000, guid: 28832743fbfe49b4dbcef4482fc49e70, type: 3}
+  - {fileID: 8300000, guid: 868ffd5ac429bbf4fb192627c8c69e58, type: 3}
+  - {fileID: 8300000, guid: 9a1d725527c1a824a9aca8eb9dd291d8, type: 3}
+  - {fileID: 8300000, guid: b4832bc15a4c20c4390044b1217bc5c4, type: 3}
+  getHitSounds:
+  - {fileID: 8300000, guid: bc0fcf58f214fd0439853cfb16f9147f, type: 3}
+  - {fileID: 8300000, guid: ccf116e83734ab64aa54e774f9dce854, type: 3}
+  - {fileID: 8300000, guid: 74f0666c23b83a04d94bc13cc6d70ca9, type: 3}
+  - {fileID: 8300000, guid: e776a194be7b9164393e156fb1c3b0b0, type: 3}
+  - {fileID: 8300000, guid: e8837c2b77447db47a7b725fcd8d7bc3, type: 3}
+  otherSounds: []
 --- !u!54 &2759944068264964190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -639,7 +675,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 10
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
