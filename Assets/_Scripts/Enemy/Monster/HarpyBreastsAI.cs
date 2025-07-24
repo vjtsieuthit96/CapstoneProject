@@ -1,4 +1,5 @@
 ﻿
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,11 +7,11 @@ using UnityEngine;
 
 public class HarpyBreastsAI : MonsterAI
 {
-    [Header("-----Addon Components------")]
+    [Header("-----Addon Components------")]    
     [SerializeField] private GameObject player;
     [SerializeField] private Transform catchPoint;
     [SerializeField] private float catchRadius = 2f;
-    [SerializeField] private LayerMask catchableLayer;
+    [SerializeField] private LayerMask catchableLayer;    
     private bool isCatch;
     private bool isFlying;   
     private bool isLanding;
@@ -18,15 +19,19 @@ public class HarpyBreastsAI : MonsterAI
     private bool isFalling;  
     private bool isFlyToPlayer;
     private bool isHovering;
+    private bool isRoar = false; 
     private float monsterHeight;   
     private float riseVelocity = 0f;
     private float fallVelocity = 0f;
-
+    private Rigidbody rb;
+    private MonsterAudio Audio;
 
 
     protected override void Start()
     {
         base.Start();
+        rb = GetComponent<Rigidbody>(); 
+        Audio = GetComponent<MonsterAudio>();
         RepeatEvaluateBehaviorTree(0f, 1f);
         player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
@@ -43,6 +48,10 @@ public class HarpyBreastsAI : MonsterAI
         Landing();
         AdjustFlyHeight();
     }
+    private void OnEnable()
+    {
+        rb.isKinematic = false;
+    }
 
     protected override Node CreateBehaviorTree()
     {
@@ -56,25 +65,27 @@ public class HarpyBreastsAI : MonsterAI
         }),
         new PatrolNode(this, monsterAgent)
         });
-    }
+    }    
 
     private void AdjustFlyHeight()
     {
-        if (isCatch)        
-            SetBaseOffSet(20f, ref riseVelocity, 5f);
-        
-        if (isTakeOff)        
-            SetBaseOffSet(10f, ref riseVelocity, 2f);
-        
-        if (isFlyToPlayer)        
-            SetBaseOffSet(1.15f, ref fallVelocity, 1.5f);
-        
-        if (isHovering)
-            SetBaseOffSet(15f, ref riseVelocity, 5f);
-        
-        if (isFalling)
-            SetBaseOffSet(0f, ref fallVelocity, 1f);
-    
+        if (!isDead)
+        {
+            if (isCatch)
+                SetBaseOffSet(20f, ref riseVelocity, 5f);
+
+            if (isTakeOff)
+                SetBaseOffSet(10f, ref riseVelocity, 2f);
+
+            if (isFlyToPlayer)
+                SetBaseOffSet(1.15f, ref fallVelocity, 1.5f);
+
+            if (isHovering)
+                SetBaseOffSet(15f, ref riseVelocity, 5f);            
+        }
+        if(isFalling)
+                SetBaseOffSet(0f, ref fallVelocity, 0.5f);
+
     }
     private void SetBaseOffSet(float target, ref float velocity, float smoothTime)
     {
@@ -84,7 +95,9 @@ public class HarpyBreastsAI : MonsterAI
     private void HitTheGround()
     {
         monsterAgent.baseOffset = 0f;
+        rb.isKinematic = true;
     }
+
     public void SetIsFalling()
     {
         isFalling = true;
@@ -181,7 +194,23 @@ public class HarpyBreastsAI : MonsterAI
     {
         isLanding = true;
     }
-    
+
+    #endregion
+    #region Sound
+    private IEnumerator PlayRoarSound()
+    {
+        isRoar = true;
+        Audio.PlayRoar();        
+        yield return new WaitForSecondsRealtime(Random.Range(3f,10f));    
+        isRoar = false;
+    }
+    public void PlayRoar()
+    {
+        if (!isRoar)
+        {
+            StartCoroutine(PlayRoarSound());
+        }      
+    }
     #endregion
 }
 
