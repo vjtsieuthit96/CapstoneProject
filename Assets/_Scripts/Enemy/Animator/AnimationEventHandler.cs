@@ -81,10 +81,7 @@ public class AnimationEventHandler : MonoBehaviour
     #endregion
 
     #region SOUND 
-    public void PlayFootstep()
-    {
-        monsterAudio.PlayFootStep();
-    }
+
     public void PlayATK1()
     {
         monsterAudio.PlaySFX(monsterAudio.atkSound[0]);
@@ -93,6 +90,6 @@ public class AnimationEventHandler : MonoBehaviour
     {
         monsterAudio.PlaySFX(monsterAudio.atkSound[1]);
     }
-  
+
     #endregion
 }

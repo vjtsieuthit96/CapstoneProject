@@ -63,11 +63,14 @@ public class CheckPlayerInFOVNode : Node
         float alertRadius = monsterAI.GetAlertRadius();
 
         GameObject[] allies = GameObject.FindGameObjectsWithTag(allyTag);
+        
 
         foreach (GameObject ally in allies)
         {
+           
             if (ally.transform != monsterAI.transform) // 🔥 Tránh cảnh báo chính nó
             {
+                Debug.Log(ally.name + " đang ở gần AI: " + monsterAI.name);
                 float distanceToAlly = Vector3.Distance(monsterAI.transform.position, ally.transform.position);
 
                 if (distanceToAlly <= alertRadius)
@@ -77,13 +80,13 @@ public class CheckPlayerInFOVNode : Node
 
                     if (allyMonsterAI != null)
                     {
-                        // 🔥 Tìm `CheckPlayerInFOVNode` trong cây hành vi của đồng minh
+                        // Tìm `CheckPlayerInFOVNode` trong cây hành vi của đồng minh
                         CheckPlayerInFOVNode allyFOVNode = allyMonsterAI.GetBehaviorNode<CheckPlayerInFOVNode>();
 
                         if (allyFOVNode != null)
                         {
-                            allyFOVNode.lastSeenTime = Time.time; // 🔥 Ghi nhớ vị trí Player
-                            allyMonsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true); // 🔥 Chuyển sang trạng thái chiến đấu
+                            allyFOVNode.lastSeenTime = Time.time; // Ghi nhớ vị trí Player
+                            allyMonsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true); // Chuyển sang trạng thái chiến đấu
                             Debug.Log($"Đồng minh {ally.name} nhận cảnh báo! Bắt đầu truy đuổi Player.");
                         }
                     }
