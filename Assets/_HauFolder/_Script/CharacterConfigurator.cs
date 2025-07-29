@@ -58,6 +58,7 @@ public class CharacterConfigurator : MonoBehaviour
     [Header("Player Health")]
     public float PlayerMaxHealth;
     public float DamageRatio;
+    public float PlayerCurrentHealth;
     public float PlayerMaxAmour;
     public float HealthRecovery;
     public float HealthRecoveryPerTime;
@@ -216,6 +217,7 @@ public class CharacterConfigurator : MonoBehaviour
         ReloadSpeed = other.ReloadSpeed;
 
         PlayerMaxHealth = other.PlayerMaxHealth;
+
         DamageRatio = other.DamageRatio;
         PlayerMaxAmour = other.PlayerMaxAmour;
         HealthRecovery = other.HealthRecovery;
@@ -279,6 +281,7 @@ public class CharacterConfigurator : MonoBehaviour
         controller.maxHealth = PlayerMaxHealth;
         controller.maxShield = PlayerMaxAmour;
         controller.currentShield = controller.maxShield;
+        controller.healthRecovery = HealthRecovery;
 
         // Animator
         if (animator != null)

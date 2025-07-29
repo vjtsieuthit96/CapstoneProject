@@ -37,16 +37,18 @@ MonoBehaviour:
   timeToRollAgain: 0.75
   noDamageWhileRolling: 1
   noActiveRagdollWhileRolling: 1
-  freeMovementAnimatorSpeed: 2
+  freeMovementAnimatorSpeed: 1
   ReloadSpeed: 1
   PlayerMaxHealth: 100
   PlayerMaxAmour: 100
-  HealthRecovery: 2
-  HealthRecoveryPerTime: 1.5
-  isImortal: 0
+  PlayerCurrentHealth: 0
+  DamageRatio: 1
+  HealthRecovery: 0.1
+  HealthRecoveryPerTime: 0.1
+  isImortal: 1
   PlayerDamageMultiplierLonggun: 1
   PlayerDamageMultiplierShortgun: 1
   PlayerShootingSpeed: 1
   PlayerFireRate: 1
-  LongGunClipSize: 25
+  LongGunClipSize: 30
   GunRecoil: 1
