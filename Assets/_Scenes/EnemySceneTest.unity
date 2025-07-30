@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: skill1Cooldown
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4081185204654997941, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: MinDistance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4259175055369822327, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: m_Name
       value: FatOgre
