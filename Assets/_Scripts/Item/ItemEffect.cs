@@ -6,7 +6,7 @@ public class ItemEffect : ScriptableObject
 {
     public ItemEffectType effectType;
     [Header("Percent %")]
-    [UnityEngine.Range(0f, 1f)]
+    [UnityEngine.Range(0f, 2f)]
     public float value;
     public float duration;
 }

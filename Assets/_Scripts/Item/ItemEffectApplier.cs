@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ItemEffectApplier : MonoBehaviour
 {
-    private CharacterConfigurator stats;
+    public CharacterConfigurator stats;
     private void Awake()
     {
         stats = GetComponent<CharacterConfigurator>();
@@ -34,6 +34,7 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.fallMinHeight *= 1f + effect.value;
                 stats.rollSpeed *= 1f + effect.value;
                 stats.rollRotationSpeed *= 1f + effect.value;
+                stats.freeMovementAnimatorSpeed *= 1f + effect.value;
                 break;
             case ItemEffectType.Doping:
                 stats.maxStamina *= 1f + effect.value;
@@ -43,9 +44,10 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.rollStamina *= 1f - effect.value;
                 break;
             case ItemEffectType.BerserkState:
-                stats.DamageRatio *= 1f + effect.value;
-                stats.PlayerShootingSpeed *= 1f + effect.value;
-                stats.PlayerFireRate *= 1f + effect.value;
+                stats.DamageRatio /= 1f + effect.value;
+                stats.PlayerShootingSpeed /= 1f + effect.value;
+                stats.PlayerFireRate /= 1f + effect.value;
+                stats.ReloadSpeed *= 1f + effect.value;
                 break;
         }
 
@@ -67,6 +69,8 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.fallMinHeight /= 1f + effect.value;
                 stats.rollSpeed /= 1f + effect.value;
                 stats.rollRotationSpeed /= 1f + effect.value;
+                stats.freeMovementAnimatorSpeed /= 1f + effect.value;
+
                 break;
             case ItemEffectType.Doping:
                 stats.maxStamina /= 1f + effect.value;
@@ -76,9 +80,11 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.rollStamina /= 1f - effect.value;
                 break;
             case ItemEffectType.BerserkState:
-                stats.DamageRatio /= 1f + effect.value;
-                stats.PlayerShootingSpeed /= 1f + effect.value;
-                stats.PlayerFireRate /= 1f + effect.value;
+                stats.DamageRatio *= 1f + effect.value;
+                stats.PlayerShootingSpeed *= 1f + effect.value;
+                stats.PlayerFireRate *= 1f + effect.value;
+                stats.ReloadSpeed /= 1f + effect.value;
+
                 break;
         }
 
