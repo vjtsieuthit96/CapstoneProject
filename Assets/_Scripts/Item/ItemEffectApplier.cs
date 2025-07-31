@@ -46,9 +46,8 @@ public class ItemEffectApplier : MonoBehaviour
             case ItemEffectType.BerserkState:
                 stats.DamageRatio /= 1f + effect.value;
                 stats.PlayerShootingSpeed /= 1f + effect.value;
-                stats.PlayerFireRate /= 1f + effect.value;
-                stats.GunRecoil /= 1f + effect.value;
                 stats.ReloadSpeed *= 1f + effect.value;
+                stats.updateFireRate(1f + effect.value);
                 break;
         }
 
@@ -83,10 +82,8 @@ public class ItemEffectApplier : MonoBehaviour
             case ItemEffectType.BerserkState:
                 stats.DamageRatio *= 1f + effect.value;
                 stats.PlayerShootingSpeed *= 1f + effect.value;
-                stats.PlayerFireRate *= 1f + effect.value;
                 stats.ReloadSpeed /= 1f + effect.value;
-                stats.GunRecoil *= 1f + effect.value;
-
+                stats.updateFireRate(1/(1f + effect.value));
                 break;
         }
 
