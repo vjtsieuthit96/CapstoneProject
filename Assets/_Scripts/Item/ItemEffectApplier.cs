@@ -47,6 +47,7 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.DamageRatio /= 1f + effect.value;
                 stats.PlayerShootingSpeed /= 1f + effect.value;
                 stats.PlayerFireRate /= 1f + effect.value;
+                stats.GunRecoil /= 1f + effect.value;
                 stats.ReloadSpeed *= 1f + effect.value;
                 break;
         }
@@ -84,6 +85,7 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.PlayerShootingSpeed *= 1f + effect.value;
                 stats.PlayerFireRate *= 1f + effect.value;
                 stats.ReloadSpeed /= 1f + effect.value;
+                stats.GunRecoil *= 1f + effect.value;
 
                 break;
         }
