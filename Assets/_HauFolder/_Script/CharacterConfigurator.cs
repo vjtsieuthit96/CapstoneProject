@@ -145,7 +145,7 @@ public class CharacterConfigurator : MonoBehaviour
         ApplyStats();
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //{
-        //    TakeDamage(15f);
+        //    TakeDamage(100f);
         //}
 
         //bật tắt canvas, xây dựng tạm thời
@@ -166,7 +166,7 @@ public class CharacterConfigurator : MonoBehaviour
             if (controller.currentShield >= TrueDamage)
             {
                 controller.currentShield -= TrueDamage;
-                hudController.EnableDamageSprite(new vDamage(TrueDamage));
+                hudController.EnableDamageSprite(new vDamage(damageValue));
             }
             else
             {
