@@ -1494,7 +1494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8369592721960931888
 Transform:
   m_ObjectHideFlags: 0
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 3501852433735634973}
-  skill1Cooldown: 15
+  skill1Cooldown: 5
   skill2Cooldown: 60
   skill3Cooldown: 30
   skill1Range: 25
@@ -1680,11 +1680,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterAudio: {fileID: 4081185204654997941}
-  footstepSounds: []
+  footstepSounds:
+  - {fileID: 8300000, guid: cc036d51887cf9c4a8bfa4d8fe13a972, type: 3}
+  - {fileID: 8300000, guid: afda84f25b5b093418b101e241a67475, type: 3}
+  - {fileID: 8300000, guid: 18e10e85f48689c48bc1a48d6321f87e, type: 3}
+  - {fileID: 8300000, guid: f3beda60a45288b48a6cafca040abcaa, type: 3}
+  - {fileID: 8300000, guid: 19f0950e80204fc4e8ed64e5899a72b1, type: 3}
+  - {fileID: 8300000, guid: 1ff923650a39d2344806ad16c91493f0, type: 3}
   wingsSounds: []
-  roarSounds: []
-  atkSound: []
-  getHitSounds: []
+  roarSounds:
+  - {fileID: 8300000, guid: b021fc31161d51e4eab63608afe563f7, type: 3}
+  - {fileID: 8300000, guid: 732e59fa68b8ba94a9f0791668e7023f, type: 3}
+  - {fileID: 8300000, guid: bdba4118b829f62439fb5b4e4f602a84, type: 3}
+  - {fileID: 8300000, guid: d46d04ff6d64a824a8ace2918f37ea78, type: 3}
+  atkSound:
+  - {fileID: 8300000, guid: 4b081969a95d280498ea30dccbb2cb5c, type: 3}
+  - {fileID: 8300000, guid: c328941476d0475488169d751b8c5416, type: 3}
+  - {fileID: 8300000, guid: bbba76a8d61c2f74bac9aace496e06bb, type: 3}
+  - {fileID: 8300000, guid: 2825e74484df06741b13adf76c994fcb, type: 3}
+  - {fileID: 8300000, guid: 7250fcdbd8f1e2042bf226b64f5a9c18, type: 3}
+  - {fileID: 8300000, guid: 11d52240c70c92b4e9d79eac27fa468c, type: 3}
+  - {fileID: 8300000, guid: 581d62443dca6a847a7317d37dfd401f, type: 3}
+  - {fileID: 8300000, guid: 87b29d98a591e7c43a5a6f1189797f97, type: 3}
+  - {fileID: 8300000, guid: 8c8cd958750e9e84e9290b19ef7730ac, type: 3}
+  getHitSounds:
+  - {fileID: 8300000, guid: e8cb31be74835794299835ec4491a772, type: 3}
+  - {fileID: 8300000, guid: 08daac1e538b87248ac02a3072a7a1d1, type: 3}
+  - {fileID: 8300000, guid: 6efbee7737c44214aa8001bbb774d311, type: 3}
   otherSounds: []
 --- !u!195 &7564074496278537202
 NavMeshAgent:
@@ -1729,7 +1751,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1765,7 +1787,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
