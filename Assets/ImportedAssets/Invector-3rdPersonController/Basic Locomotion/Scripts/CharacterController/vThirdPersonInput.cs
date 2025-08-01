@@ -501,16 +501,16 @@ namespace Invector.vCharacterController
         {
             if (optionsInput.GetButtonDown())
             {
-                cc.OpenOptionsMenu();
-                if(cc.isOpenOptionsMenu)
+                if(optionBoardController.currentPanelType == PanelType.None)
                 {
                     OptionsMenuOn();
                 }
-                else
+                else if (optionBoardController.currentPanelType == PanelType.Option)
                 {
                     OptionsMenuClose();
-                    
                 }
+                else
+                    EventsManager.Instance.pressEvents.OnOptionButtonPress(optionBoardController.currentPanelType);
             }
         }
         public void OptionsMenuOn()
@@ -536,21 +536,20 @@ namespace Invector.vCharacterController
         public void OptionsMenuClose()
         {
             optionBoardController.FadeOut();
-            if (cc.isOpenOptionsMenu)
-                cc.isOpenOptionsMenu = false;
-            if(tpCamera)
+            optionBoardController.currentPanelType = PanelType.None;
+            if (tpCamera)
                 changeCameraState = false;
             SetLockAllInput(false);
             SetLockCameraInput(false);
             LockCursor(false);
             ShowCursor(false);
-            GameManager.Instance.isPause = false;
+            //GameManager.Instance.isPause = false;
         }
 
         private IEnumerator DelayedPauseOn()
         {
             yield return new WaitForSeconds(0.5f);
-            GameManager.Instance.isPause = true;
+            //GameManager.Instance.isPause = true;
 
         }
         #endregion

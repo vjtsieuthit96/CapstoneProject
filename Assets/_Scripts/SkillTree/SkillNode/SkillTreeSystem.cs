@@ -2,13 +2,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Invector.Utils;
 
 public class SkillTreeSystem : MonoBehaviour
 {
     public SkillTree skillTree;
     public int availableSkillPoints = 6;
     [SerializeField] private CharacterConfigurator characterConfigurator;
-    [SerializeField] private SkillNodeButton[] OffenceBtn;
+    [Header("ButtonLists")]
+
+    [SerializeField] private SkillTreeListInfo offenceList;
+    [SerializeField] private SkillTreeListInfo defenceList; 
+    [SerializeField] private SkillTreeListInfo vietnegryList;
 
     public delegate void OnSkillPointsChanged();
     public event OnSkillPointsChanged onSkillPointsChanged;
@@ -16,10 +21,8 @@ public class SkillTreeSystem : MonoBehaviour
     private void Start()
     {
         RefreshOnStart();
-        foreach (var btn in OffenceBtn)
-        {
-            btn.UpdateUI(availableSkillPoints);
-        }
+        UpdateButtonsUI();
+       
     }
     private void OnEnable()
     {
@@ -35,12 +38,10 @@ public class SkillTreeSystem : MonoBehaviour
     public void OnSkillPointAdded(int skillPoint)
     {
         availableSkillPoints += skillPoint;
-        foreach (var btn in OffenceBtn)
-        {
-           btn.UpdateUI(availableSkillPoints);
-        }
+        UpdateButtonsUI();
         //onSkillPointsChanged?.Invoke();
     }
+    // mo khoa ki nang
     private void OnSkillNodeUnlocked(SkillNode node)
     {
         if (node.CanUnlock(availableSkillPoints))
@@ -51,10 +52,7 @@ public class SkillTreeSystem : MonoBehaviour
         }
         else { Debug.Log("Cannot unlock: " + node.displayName + " - Required Points: " + node.requiredPoints); return; }
 
-        foreach (var btn in OffenceBtn)
-            {
-                btn.UpdateUI(availableSkillPoints);
-            }
+        UpdateButtonsUI();
     }
     void Update()
     {
@@ -81,6 +79,31 @@ public class SkillTreeSystem : MonoBehaviour
             return true;
         }
         return false;
+    }
+    private void UpdateButtonsUI()
+    {
+        if(offenceList.skillNodeButtons.Length > 0)
+        {
+            foreach (var btn in offenceList.skillNodeButtons)
+            {
+                btn.UpdateUI(availableSkillPoints);
+            }
+        }
+       
+        if(defenceList.skillNodeButtons.Length > 0)
+        {
+            foreach (var btn in defenceList.skillNodeButtons)
+            {
+                btn.UpdateUI(availableSkillPoints);
+            }
+        }
+        if(vietnegryList.skillNodeButtons.Length > 0)
+        {
+            foreach (var btn in vietnegryList.skillNodeButtons)
+            {
+                btn.UpdateUI(availableSkillPoints);
+            }
+        }
     }
 
     public void RefreshOnStart()

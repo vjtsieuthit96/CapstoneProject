@@ -3,6 +3,7 @@ using UnityEngine;
 public class EventsManager : MonoBehaviour
 {
     public SkillTreePointEvents skillTreePointEvents;
+    public PressEvent pressEvents;
     public static EventsManager Instance { get; private set; }
     private void Awake()
     {
@@ -12,5 +13,6 @@ public class EventsManager : MonoBehaviour
         }
         Instance = this;
         skillTreePointEvents = new SkillTreePointEvents();
+        pressEvents = new PressEvent();
     }
 }

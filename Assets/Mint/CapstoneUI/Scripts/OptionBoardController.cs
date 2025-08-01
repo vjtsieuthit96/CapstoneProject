@@ -12,6 +12,8 @@ public class OptionBoardController : MonoBehaviour
     [Header("Panel")]
     [SerializeField] UIPanel[] showUIPanel;
     private Dictionary<PanelType, UIPanel> panelDictionary; // Dictionary to map PanelType to UIPanel
+    public PanelType currentPanelType;
+    public bool isPanelChildActing = false;
     [Header("Button")]
     [SerializeField] Button settingBtn; // Array of buttons to control the panels
     [SerializeField] Button[] backToOptionBtns; // Button to go back to the previous panel
@@ -45,9 +47,6 @@ public class OptionBoardController : MonoBehaviour
         skillTreeBtn.onClick.AddListener(() => FadeIn(PanelType.SkillTree));
     }
 
-
-
-
     public void FadeIn(PanelType panelType)
     {
         if(panelDictionary.ContainsKey(panelType))
@@ -69,7 +68,8 @@ public class OptionBoardController : MonoBehaviour
         {
             Debug.LogError("PanelType not found in dictionary: " + panelType);
         }
-       
+        currentPanelType = panelType; // Update the current panel type
+        isPanelChildActing = false;
     }
     public void FadeOut(PanelType panelType)
     {
@@ -81,6 +81,7 @@ public class OptionBoardController : MonoBehaviour
         {
             Debug.LogError("PanelType not found in dictionary: " + panelType);
         }
+        isPanelChildActing = false; // Reset the acting state
     }
 
     public void FadeOut()
@@ -98,6 +99,7 @@ public class OptionBoardController : MonoBehaviour
         if (index == 1)
             panel.FadeIn();
         else
-            panel.FadeOut();
+            panel.FadeOut(); 
     }
 }
+    

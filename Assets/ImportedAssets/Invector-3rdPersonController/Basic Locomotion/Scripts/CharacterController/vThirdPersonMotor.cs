@@ -32,20 +32,7 @@ namespace Invector.vCharacterController
             }
         }
         #endregion
-        #region Options
-        protected bool _isOpenOptionsMenu;
-        public virtual bool isOpenOptionsMenu
-        {
-            get { return _isOpenOptionsMenu; }
-            set
-            {
-                if (_isOpenOptionsMenu != value)
-                {
-                    _isOpenOptionsMenu = value;
-                }
-            }
-        }
-        #endregion
+
         #region Stamina       
 
         [vEditorToolbar("Stamina", order = 2)]
