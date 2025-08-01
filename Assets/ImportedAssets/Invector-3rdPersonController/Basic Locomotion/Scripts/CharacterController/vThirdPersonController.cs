@@ -278,10 +278,10 @@ namespace Invector.vCharacterController
         {
             return transform.forward.y;
         }
-        public virtual void OpenOptionsMenu()
-        {
-            isOpenOptionsMenu = !isOpenOptionsMenu;
-        }
+        //public virtual void OpenOptionsMenu()
+        //{
+        //    isOpenOptionsMenu = !isOpenOptionsMenu;
+        //}
 
         /// <summary>
         /// Triggers the Jump Animation and set the necessary variables to make the Jump behavior in the <seealso cref="vThirdPersonMotor"/>

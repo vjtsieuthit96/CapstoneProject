@@ -1,4 +1,4 @@
-﻿using UnityEngine; 
+﻿using UnityEngine;
 using System.Collections.Generic;
 using Invector.Utils;
 using System;
@@ -6,9 +6,13 @@ using Unity.VisualScripting.ReorderableList;
 using System.Collections;
 using System.Security.Cryptography;
 using TMPro;
+using Unity.VisualScripting;
 
 public class SkillTreeUIManager : MonoBehaviour
 {
+    private UIPanel uiPanel;
+    [Header("Option Board Controller")]
+    [SerializeField] private OptionBoardController optionBoardController;
     [SerializeField] private TextMeshProUGUI totalPointText;
     private int totalPoint = 0;
     // OffenceButton
@@ -27,7 +31,7 @@ public class SkillTreeUIManager : MonoBehaviour
     [SerializeField] private GameObject defenceSelected;
     [SerializeField] private GameObject vietnegySelected;
 
-    [SerializeField]private RectTransform rectTransformPanelOnPos;
+    [SerializeField] private RectTransform rectTransformPanelOnPos;
     private Vector2 rectTransformOffencePos;
     private Vector2 rectTransformDefencePos;
     private Vector2 rectShieldVietnegryPos;
@@ -36,6 +40,8 @@ public class SkillTreeUIManager : MonoBehaviour
     private bool isButtonShow = true;
     private void Start()
     {
+        uiPanel = GetComponent<UIPanel>();
+
         rectTransformOffencePos = offenceBtnCanvas.GetComponent<RectTransform>().anchoredPosition;
         rectTransformDefencePos = defenceBtnCanvas.GetComponent<RectTransform>().anchoredPosition;
         rectShieldVietnegryPos = vietnegyfadeCanvas.GetComponent<RectTransform>().anchoredPosition;
@@ -47,10 +53,14 @@ public class SkillTreeUIManager : MonoBehaviour
     }
     private void OnEnable()
     {
-       Restart();
+        EventsManager.Instance.pressEvents.onOpitonButtonPress += OptionButtonActing;
+        Restart();
+
     }
     private void OnDisable()
     {
+        EventsManager.Instance.pressEvents.onOpitonButtonPress -= OptionButtonActing;
+
         var rectTransformOffence = offenceBtnCanvas.GetComponent<RectTransform>();
         rectTransformOffence.anchoredPosition = rectTransformOffencePos;
 
@@ -63,10 +73,35 @@ public class SkillTreeUIManager : MonoBehaviour
 
     private void Update()
     {
-        if(skillSystem.availableSkillPoints != totalPoint)
+        if (skillSystem.availableSkillPoints != totalPoint)
         {
             totalPoint = skillSystem.availableSkillPoints;
             totalPointText.text = "Skill Points: " + totalPoint.ToString();
+        }
+    }
+
+    private void OptionButtonActing(PanelType type)
+    {
+        if (type == uiPanel.panelType && optionBoardController.isPanelChildActing)
+        {
+            //To Do out chil, return state;
+            if (offenceSelected.activeSelf)
+            {
+                StartCoroutine(ButtonMoving(0, false));
+            }
+            else
+            if (defenceSelected.activeSelf)
+            {
+                StartCoroutine(ButtonMoving(1, false));
+            }
+            else
+            if (vietnegySelected.activeSelf)
+            { StartCoroutine(ButtonMoving(2, false)); }
+        }
+        else
+        if (type == uiPanel.panelType && !optionBoardController.isPanelChildActing)
+        {
+            optionBoardController.FadeIn(PanelType.Option);
         }
     }
     public void OpenOffencePanel()
@@ -84,41 +119,43 @@ public class SkillTreeUIManager : MonoBehaviour
 
     private void FadeIn(int index)
     {
-        if(!isButtonShow)
+        if (!isButtonShow)
         {
             return;
-        }else
+        }
+        else
             isButtonShow = false;
+        optionBoardController.isPanelChildActing = true;
         switch (index)
-            {
-                case 0:
-                    offenceBtnCanvas.FadeIn();
-                    defenceBtnCanvas.FadeOut();
-                    vietnegyfadeCanvas.FadeOut();
+        {
+            case 0:
+                offenceBtnCanvas.FadeIn();
+                defenceBtnCanvas.FadeOut();
+                vietnegyfadeCanvas.FadeOut();
 
-                    offenceSelected.SetActive(true);
-                    ButtonMovingOn(0);
-                    break;
-                case 1:
-                    defenceBtnCanvas.FadeIn();
-                    offenceBtnCanvas.FadeOut();
-                    vietnegyfadeCanvas.FadeOut();
+                offenceSelected.SetActive(true);
+                ButtonMovingOn(0);
+                break;
+            case 1:
+                defenceBtnCanvas.FadeIn();
+                offenceBtnCanvas.FadeOut();
+                vietnegyfadeCanvas.FadeOut();
 
-                    defenceSelected.SetActive(true);
-                    ButtonMovingOn(1);
-                    break;
-                case 2:
-                    vietnegyfadeCanvas.FadeIn();
-                    offenceBtnCanvas.FadeOut();
-                    defenceBtnCanvas.FadeOut();
+                defenceSelected.SetActive(true);
+                ButtonMovingOn(1);
+                break;
+            case 2:
+                vietnegyfadeCanvas.FadeIn();
+                offenceBtnCanvas.FadeOut();
+                defenceBtnCanvas.FadeOut();
 
-                    vietnegySelected.SetActive(true);
-                    ButtonMovingOn(2);
-                    break;
-                default:
-                    Debug.LogWarning("Invalid index for FadeIn");
-                    break;
-            }
+                vietnegySelected.SetActive(true);
+                ButtonMovingOn(2);
+                break;
+            default:
+                Debug.LogWarning("Invalid index for FadeIn");
+                break;
+        }
 
     }
 
@@ -173,7 +210,7 @@ public class SkillTreeUIManager : MonoBehaviour
             targetLocalPos = ConvertAnchorPosition(movingRect, targetRect);
         else
         {
-            if(index == 0)
+            if (index == 0)
             {
                 targetLocalPos = rectTransformOffencePos;
             }
@@ -218,11 +255,16 @@ public class SkillTreeUIManager : MonoBehaviour
                 vietnegyPanelCanvas.FadeIn();
             }
         }
+        else
+        {
+            yield return null;
+            Restart();
+        }
     }
 
     Vector2 ConvertAnchorPosition(RectTransform rtA, RectTransform rtB)
     {
-        
+
         // 1. Lấy parent và kích thước
         RectTransform rtParent = rtA.parent as RectTransform;
         Vector2 parentSize = rtParent.rect.size;
@@ -260,5 +302,6 @@ public class SkillTreeUIManager : MonoBehaviour
         defencePanelCanvas.AlphaZero();
         vietnegyPanelCanvas.AlphaZero();
         isButtonShow = true;
+        optionBoardController.isPanelChildActing = false;
     }
 }

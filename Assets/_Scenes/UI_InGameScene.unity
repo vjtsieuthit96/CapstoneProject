@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 289630300}
   - component: {fileID: 289630299}
   - component: {fileID: 289630298}
+  - component: {fileID: 289630302}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -500,6 +501,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289630296}
   m_CullTransparentMesh: 1
+--- !u!114 &289630302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289630296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7600a772000640a50de666a986d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1742420593}
 --- !u!1 &302033003
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +527,7 @@ GameObject:
   - component: {fileID: 302033007}
   - component: {fileID: 302033006}
   - component: {fileID: 302033005}
+  - component: {fileID: 302033009}
   m_Layer: 5
   m_Name: HealthAndAmour
   m_TagString: Untagged
@@ -636,6 +651,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302033003}
   m_CullTransparentMesh: 1
+--- !u!114 &302033009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302033003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7600a772000640a50de666a986d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1742420593}
 --- !u!1 &318659194
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +677,7 @@ GameObject:
   - component: {fileID: 318659198}
   - component: {fileID: 318659197}
   - component: {fileID: 318659196}
+  - component: {fileID: 318659200}
   m_Layer: 5
   m_Name: RationDamage
   m_TagString: Untagged
@@ -772,6 +801,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318659194}
   m_CullTransparentMesh: 1
+--- !u!114 &318659200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318659194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7600a772000640a50de666a986d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1742420593}
 --- !u!1 &377705816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,6 +1491,7 @@ GameObject:
   - component: {fileID: 1656207198}
   - component: {fileID: 1656207197}
   - component: {fileID: 1656207196}
+  - component: {fileID: 1656207200}
   m_Layer: 5
   m_Name: HealthRecovery 2
   m_TagString: Untagged
@@ -1572,6 +1615,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656207194}
   m_CullTransparentMesh: 1
+--- !u!114 &1656207200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656207194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7600a772000640a50de666a986d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1742420593}
 --- !u!1 &1690605187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,6 +1641,7 @@ GameObject:
   - component: {fileID: 1690605191}
   - component: {fileID: 1690605190}
   - component: {fileID: 1690605189}
+  - component: {fileID: 1690605193}
   m_Layer: 5
   m_Name: Shield 2
   m_TagString: Untagged
@@ -1708,6 +1765,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690605187}
   m_CullTransparentMesh: 1
+--- !u!114 &1690605193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690605187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7600a772000640a50de666a986d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1742420593}
 --- !u!1 &1719745948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,6 +1791,7 @@ GameObject:
   - component: {fileID: 1719745952}
   - component: {fileID: 1719745951}
   - component: {fileID: 1719745950}
+  - component: {fileID: 1719745954}
   m_Layer: 5
   m_Name: Health 2
   m_TagString: Untagged
@@ -1844,6 +1915,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719745948}
   m_CullTransparentMesh: 1
+--- !u!114 &1719745954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719745948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7600a772000640a50de666a986d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1742420593}
 --- !u!1 &1732201160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,6 +2871,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8442308817171531674, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1742420589}
+    - targetCorrespondingSourceObject: {fileID: 8442308817171531674, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1742420591}
     - targetCorrespondingSourceObject: {fileID: 8604180220132383292, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       insertIndex: 2
       addedObject: {fileID: 1466472423}
@@ -2832,6 +2919,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockedImg: {fileID: 0}
   node: {fileID: 11400000, guid: 3631d147808cc3649bfe8d2a23e07f06, type: 2}
+--- !u!114 &1742420591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742420588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d7600a772000640a50de666a986d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1742420593}
 --- !u!114 &1742420593 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6124871616089972174, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
@@ -2891,9 +2991,9 @@ MonoBehaviour:
   skillTree: {fileID: 11400000, guid: 6ed90e84f87d9464d8f7b34936910157, type: 2}
   availableSkillPoints: 6
   characterConfigurator: {fileID: 1742420586}
-  offenceList: {fileID: 0}
-  defenceList: {fileID: 0}
-  vietnegryList: {fileID: 0}
+  offenceList: {fileID: 1466472423}
+  defenceList: {fileID: 1733982705}
+  vietnegryList: {fileID: 642413187}
 --- !u!1 &1927742879
 GameObject:
   m_ObjectHideFlags: 0

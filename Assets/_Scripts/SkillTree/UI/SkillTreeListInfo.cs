@@ -18,7 +18,7 @@ public class SkillTreeListInfo : MonoBehaviour, IPointerEnterHandler
                 totalPointsActived++;
             }
         }
-        string information = $"{this.name}\npoint actived: {totalPointsActived.ToString()}";
+        string information = $"{this.name}\nPoint actived: {totalPointsActived.ToString()}";
         if (text != null)
         {
             text.ActivateText(information);
