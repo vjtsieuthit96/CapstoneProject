@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-public class SkillTreePointEvents : MonoBehaviour
+public class SkillTreePointEvents
 {
     public event Action<int> onSkillPointAdded;
     public void OnSkillPointAdded(int skillPoint)
