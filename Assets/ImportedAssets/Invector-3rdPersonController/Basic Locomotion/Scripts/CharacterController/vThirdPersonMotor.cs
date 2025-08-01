@@ -65,7 +65,7 @@ namespace Invector.vCharacterController
         [vEditorToolbar("Shield", order = 10)]
         [SerializeField] protected float _maxShield = 150f;
         public virtual float maxShield { get { return _maxShield; } set { _maxShield = value; } }
-        internal float currentShield;
+        public float currentShield;
         #endregion
 
         #region Crouch

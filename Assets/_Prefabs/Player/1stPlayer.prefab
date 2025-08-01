@@ -12794,6 +12794,7 @@ GameObject:
   - component: {fileID: 780531588530017248}
   - component: {fileID: 6146291814225516412}
   - component: {fileID: 7157660158630837345}
+  - component: {fileID: 557820054428517719}
   m_Layer: 8
   m_Name: 1stPlayer
   m_TagString: Player
@@ -12953,6 +12954,7 @@ MonoBehaviour:
   ReloadSpeed: 0
   PlayerMaxHealth: 0
   DamageRatio: 0
+  PlayerCurrentHealth: 0
   PlayerMaxAmour: 0
   HealthRecovery: 0
   HealthRecoveryPerTime: 0
@@ -14565,6 +14567,18 @@ MonoBehaviour:
   lookTarget: {fileID: 4449563019088821520}
   Target: {fileID: 888238135216616199}
   input: {fileID: 8305026052352428771}
+--- !u!114 &557820054428517719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831212676386197866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd9a842694556648a8ac9a55448929e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1840727238878433245
 GameObject:
   m_ObjectHideFlags: 0
