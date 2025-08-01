@@ -46,12 +46,21 @@ namespace Invector.Utils
         public virtual void AlphaZero()
         {
             if (group) group.alpha = 0f;
-           
+            if (autoControlCanvasGroup && group)
+            {
+                group.interactable = false;
+                group.blocksRaycasts = true;
+            }
         }
 
         public virtual void AlphaFull()
         {
             if (group) group.alpha = 1f;
+            if (autoControlCanvasGroup && group)
+            {
+                group.interactable = true;
+                group.blocksRaycasts = true;
+            }
         }
 
         public virtual void FadeIn()

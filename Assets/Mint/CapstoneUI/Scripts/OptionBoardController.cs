@@ -98,6 +98,7 @@ public class OptionBoardController : MonoBehaviour
         if (index == 1)
             panel.FadeIn();
         else
-            panel.FadeOut();
+            panel.FadeOut(); 
     }
 }
+    

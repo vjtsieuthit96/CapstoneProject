@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler
 {
+    [Header("Sound")]
     [SerializeField] private AudioClip hoverSound;
+    [Header("Hover Effect")]
     [SerializeField] private GameObject hoverBorder;
     [SerializeField] private Image hoverPanel;
     private bool isHovering = false;
@@ -37,20 +39,19 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         gameObject.transform.localScale += Vector3.one * scaleFactor;
-        if(hoverBorder)
+        if (hoverBorder)
         {
             hoverBorder.SetActive(true);
         }
-        if(hoverPanel)
+        if (hoverPanel)
         {
-            if(haveShowEffect)
+            if (haveShowEffect)
                 isHovering = true;
             else
                 hoverPanel.gameObject.SetActive(true);
-        }    
-        SoundMixerManager.Instance.PlaySFXAudio(hoverSound);
+        }
+            SoundMixerManager.Instance.PlaySFXAudio(hoverSound);
     }
-
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         Actived();

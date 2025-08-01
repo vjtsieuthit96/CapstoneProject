@@ -544,13 +544,13 @@ namespace Invector.vCharacterController
             SetLockCameraInput(false);
             LockCursor(false);
             ShowCursor(false);
-            GameManager.Instance.isPause = false;
+            //GameManager.Instance.isPause = false;
         }
 
         private IEnumerator DelayedPauseOn()
         {
             yield return new WaitForSeconds(0.5f);
-            GameManager.Instance.isPause = true;
+            //GameManager.Instance.isPause = true;
 
         }
         #endregion

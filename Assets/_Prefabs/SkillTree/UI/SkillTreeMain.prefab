@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 8583962095506833470, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+      propertyPath: m_Name
+      value: 'VietnegyPanel '
+      objectReference: {fileID: 0}
     - target: {fileID: 8924207971483270068, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -341,10 +345,190 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2482324229797392041, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7469115501214414684}
+    - targetCorrespondingSourceObject: {fileID: 2482324229797392041, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6156557401144250591}
+    - targetCorrespondingSourceObject: {fileID: 8475915529655498539, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8294437678136184356}
+    - targetCorrespondingSourceObject: {fileID: 8475915529655498539, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 381787185417966001}
+    - targetCorrespondingSourceObject: {fileID: 8583962095506833470, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 150463391662759905}
+    - targetCorrespondingSourceObject: {fileID: 8583962095506833470, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5252900307491207828}
   m_SourcePrefab: {fileID: 100100000, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
 --- !u!224 &454735465596369443 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8924207971483270068, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
   m_PrefabInstance: {fileID: 9049610309749997975}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &591709764967839420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8475915529655498539, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+  m_PrefabInstance: {fileID: 9049610309749997975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8294437678136184356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591709764967839420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f8d7f4b54ee5648818cf43b799bb4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openCloseEvents: 0
+  openCloseWindow: 1
+  selectedToolbar: 0
+  group: {fileID: 381787185417966001}
+  fadeSpeed: 7
+  onStartFadeIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishFadeIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onStartFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
+  OnChangeValue:
+    m_PersistentCalls:
+      m_Calls: []
+  autoControlCanvasGroup: 0
+  fadeInStart: 0
+  fadeOutStart: 0
+  startWithAlphaZero: 1
+  startWithAlphaFull: 0
+--- !u!225 &381787185417966001
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591709764967839420}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!1 &772069003106894249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8583962095506833470, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+  m_PrefabInstance: {fileID: 9049610309749997975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &150463391662759905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772069003106894249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f8d7f4b54ee5648818cf43b799bb4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openCloseEvents: 0
+  openCloseWindow: 1
+  selectedToolbar: 0
+  group: {fileID: 5252900307491207828}
+  fadeSpeed: 7
+  onStartFadeIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishFadeIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onStartFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
+  OnChangeValue:
+    m_PersistentCalls:
+      m_Calls: []
+  autoControlCanvasGroup: 0
+  fadeInStart: 0
+  fadeOutStart: 0
+  startWithAlphaZero: 1
+  startWithAlphaFull: 0
+--- !u!225 &5252900307491207828
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772069003106894249}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!1 &6909735814083096382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2482324229797392041, guid: 8f502ae58117c9a46a65366096b5e866, type: 3}
+  m_PrefabInstance: {fileID: 9049610309749997975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7469115501214414684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6909735814083096382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f8d7f4b54ee5648818cf43b799bb4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openCloseEvents: 0
+  openCloseWindow: 1
+  selectedToolbar: 0
+  group: {fileID: 6156557401144250591}
+  fadeSpeed: 7
+  onStartFadeIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishFadeIn:
+    m_PersistentCalls:
+      m_Calls: []
+  onStartFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishFadeOut:
+    m_PersistentCalls:
+      m_Calls: []
+  OnChangeValue:
+    m_PersistentCalls:
+      m_Calls: []
+  autoControlCanvasGroup: 0
+  fadeInStart: 0
+  fadeOutStart: 0
+  startWithAlphaZero: 1
+  startWithAlphaFull: 0
+--- !u!225 &6156557401144250591
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6909735814083096382}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
