@@ -32,20 +32,7 @@ namespace Invector.vCharacterController
             }
         }
         #endregion
-        #region Options
-        protected bool _isOpenOptionsMenu;
-        public virtual bool isOpenOptionsMenu
-        {
-            get { return _isOpenOptionsMenu; }
-            set
-            {
-                if (_isOpenOptionsMenu != value)
-                {
-                    _isOpenOptionsMenu = value;
-                }
-            }
-        }
-        #endregion
+
         #region Stamina       
 
         [vEditorToolbar("Stamina", order = 2)]
@@ -78,7 +65,7 @@ namespace Invector.vCharacterController
         [vEditorToolbar("Shield", order = 10)]
         [SerializeField] protected float _maxShield = 150f;
         public virtual float maxShield { get { return _maxShield; } set { _maxShield = value; } }
-        internal float currentShield;
+        public float currentShield;
         #endregion
 
         #region Crouch

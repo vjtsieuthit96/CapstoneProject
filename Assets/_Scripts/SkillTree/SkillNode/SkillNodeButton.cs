@@ -1,60 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(SkillNodeButtonInfo))]
 public class SkillNodeButton : MonoBehaviour
 {
     //public Image icon;
-    public Button button;
+    private Button button;
+    [SerializeField] private Image unlockedImg;
     //public GameObject lockedOverlay;
     //public Text costText;
 
     [SerializeField] private SkillNode node;
     private void Start()
     {
-        button = GetComponent<Button>();     
+        button = GetComponent<Button>();
+        unlockedImg = GetComponentInChildren<Image>();
         button.onClick.AddListener(OnButtonClick);
     }
-    //private SkillTreeSystem system;
 
-    //public void Setup(SkillNode node, SkillTreeSystem system)
-    //{
-    //    this.node = node;
-    //    this.system = system;
-
-    //    icon.sprite = node.icon;
-    //    costText.text = node.requiredPoints.ToString();
-
-    //    button.onClick.AddListener(() => {
-    //        if (system.TryUnlock(node))
-    //            UpdateVisual();
-    //    });
-
-    //    system.onSkillPointsChanged += UpdateVisual;
-    //    UpdateVisual();
-    //}
-
-    //void OnDestroy()
-    //{
-    //    system.onSkillPointsChanged -= UpdateVisual;
-    //}
-
-    //public void UpdateVisual()
-    //{
-    //    bool canUnlock = node.CanUnlock() && system.GetPoints() >= node.requiredPoints;
-
-    //    button.interactable = canUnlock && !node.isUnlocked;
-
-    //}
+    public bool IsUnlocked
+    {
+        get { return node.isUnlocked; }
+    }
 
     public void UpdateUI(int point)
     {
         if (node == null) Debug.Log("Node doesn't exits");
-        if(node.CanUnlock(point))
+        if(node.isUnlocked)
         {
-            Debug.Log("Can unlock: " + node.displayName);
+            unlockedImg.color = Color.blue;
+            return;
+        }
+
+        if (node.CanUnlock(point))
+        {
+            unlockedImg.color = Color.cyan;
         }
         else
         {
+            unlockedImg.color = Color.black;
             Debug.Log("Cannot unlock: " + node.displayName + " - Required Points: " + node.requiredPoints);
         }
     }
@@ -63,11 +47,35 @@ public class SkillNodeButton : MonoBehaviour
     {
         Debug.Log("Unlocking: " + node.displayName);
         EventsManager.Instance.skillTreePointEvents.OnSkillPointAdded(-node.requiredPoints);
+        unlockedImg.color = Color.blue;
 
     }
+   
     private void OnButtonClick()
     { 
         EventsManager.Instance.skillTreePointEvents.OnSkillNodeUnlocked(node);
         Debug.Log("Try To Unlock...");
+    }
+
+    public string NodeInfo()
+    {
+        if (node == null)
+            return string.Empty;
+
+        var sb = new System.Text.StringBuilder();
+        sb.AppendLine(node.displayName);
+        sb.AppendLine(node.description);
+        sb.AppendLine();
+
+        if (node.isUnlocked)
+        {
+            sb.AppendLine("<color=green>Activated</color>");
+        }
+        else
+        {
+            sb.AppendLine($"Required Points: {node.requiredPoints}");
+        }
+
+        return sb.ToString();
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Invector.vItemManager;
+using static UnityEditor.Progress;
 
 public class WeaponInjector : MonoBehaviour
 {
@@ -41,16 +42,14 @@ public class WeaponInjector : MonoBehaviour
             weapon.isExplosive = characterConfigurator.isExplosive;
             weapon.isEffectMode = characterConfigurator.isEffectMode;
             weapon.PlayerElementClass = characterConfigurator.PlayerElementClass;
-            weapon.shootFrequency *= characterConfigurator.PlayerFireRate;
             weapon.reloadTime = characterConfigurator.ReloadSpeed;
+            weapon.shootFrequency *= characterConfigurator.PlayerFireRate;
 
             if (weapon.GunType == GunType.LongGun)
                 weapon.clipSize = characterConfigurator.LongGunClipSize;
-
             weapon.recoilLeft *= characterConfigurator.GunRecoil;
             weapon.recoilRight *= characterConfigurator.GunRecoil;
             weapon.recoilUp *= characterConfigurator.GunRecoil;
-
             characterConfigurator.GunType = weapon.GunType;
             characterConfigurator.CurrentBullet = weapon.ammoCount;
             characterConfigurator.CurrentGunClipSize = weapon.clipSize;
@@ -65,7 +64,14 @@ public class WeaponInjector : MonoBehaviour
             }
         }
     }
-
+    public void UpdatePlayerFireRate(float Rate)
+    {
+        var weapon = GetComponentInChildren<vShooterWeapon>();
+        weapon.shootFrequency *= Rate;
+        weapon.recoilLeft *= Rate;
+        weapon.recoilRight *= Rate;
+        weapon.recoilUp *= Rate;
+    }    
     private void OnEquipItemHandler(vEquipArea equipArea, vItem item)
     {
         if (item == null) return;

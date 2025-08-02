@@ -1,10 +1,6 @@
-﻿using UnityEngine;
+﻿using Invector;
 using Invector.vCharacterController;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using Invector;
-using Invector.vShooter;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
+using UnityEngine;
 
 public class CharacterConfigurator : MonoBehaviour
 {
@@ -86,7 +82,6 @@ public class CharacterConfigurator : MonoBehaviour
     // Canvas skilltree
     public GameObject SkillTreePanel;
     private bool isOn = false;
-    
 
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
@@ -103,22 +98,16 @@ public class CharacterConfigurator : MonoBehaviour
         {
             CopyFrom(stats);
         }
+        controller.currentShield = controller.maxShield;
         MeleeInput = GetComponent<vShooterMeleeInput>();
 
-    #region Test Sự kiện bắn
-        if (MeleeInput != null)
-        {
-            MeleeInput.OnTriggerShot += OnShot;
-        }
     }
     int A = 0;
-    public void OnShot()
+    
+    public void updateFireRate(float Rate)
     {
-        A++;
-        Debug.Log("Bắn lần: " + A);
-    }
-
-    #endregion
+        weaponInjector.UpdatePlayerFireRate(Rate);
+    }    
 
     #region Test Amour
     private void Update()
@@ -131,10 +120,10 @@ public class CharacterConfigurator : MonoBehaviour
         {
             isExplosive = !isExplosive;
         }
-        if(Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if(PlayerElementClass <=5)
-            { 
+            if (PlayerElementClass <= 5)
+            {
                 PlayerElementClass++;
             }
             else
@@ -145,7 +134,7 @@ public class CharacterConfigurator : MonoBehaviour
         ApplyStats();
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //{
-        //    TakeDamage(15f);
+        //    TakeDamage(100f);
         //}
 
         //bật tắt canvas, xây dựng tạm thời
@@ -166,7 +155,7 @@ public class CharacterConfigurator : MonoBehaviour
             if (controller.currentShield >= TrueDamage)
             {
                 controller.currentShield -= TrueDamage;
-                hudController.EnableDamageSprite(new vDamage(TrueDamage));
+                hudController.EnableDamageSprite(new vDamage(damageValue));
             }
             else
             {
@@ -228,7 +217,6 @@ public class CharacterConfigurator : MonoBehaviour
         PlayerDamageMultiplierShortgun = other.PlayerDamageMultiplierShortgun;
         PlayerShootingSpeed = other.PlayerShootingSpeed;
         PlayerFireRate = other.PlayerFireRate;
-
         LongGunClipSize = other.LongGunClipSize;
         GunRecoil = other.GunRecoil;
     }
@@ -280,7 +268,6 @@ public class CharacterConfigurator : MonoBehaviour
         //Player Max Health
         controller.maxHealth = PlayerMaxHealth;
         controller.maxShield = PlayerMaxAmour;
-        controller.currentShield = controller.maxShield;
         controller.healthRecovery = HealthRecovery;
 
         // Animator
@@ -302,6 +289,6 @@ public class CharacterConfigurator : MonoBehaviour
     public void AddBullet(int bullet)
     {
         weaponInjector.addBullet(bullet);
-    }    
+    }
 }
 
