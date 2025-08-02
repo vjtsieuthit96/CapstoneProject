@@ -19,24 +19,8 @@ public class ItemEffectApplier : MonoBehaviour
     {
         foreach (var ps in EffectParticle)
         {
-            var renderer = ps.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                var mat = renderer.material;
-                if (mat.HasProperty("_Color"))
-                {
-                    mat.color = color;
-                }
-                else if (mat.HasProperty("_TintColor"))
-                {
-                    mat.SetColor("_TintColor", color);
-                }
-                else if (mat.HasProperty("_BaseColor"))
-                {
-                    mat.SetColor("_BaseColor", color);
-                }
-            }
-
+            var main = ps.main;
+            main.startColor = color;
             ps.Play();
         }
     }
