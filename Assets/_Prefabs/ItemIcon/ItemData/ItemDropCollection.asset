@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f14303f1d1d9247b71f26c270fd75f, type: 3}
+  m_Name: ItemDropCollection
+  m_EditorClassIdentifier: 
+  overallDropChance: 0.3
+  possibleDrops:
+  - itemPrefab: {fileID: 2012104641230161445, guid: b8e2211e71101ad4b89125c8c0e45367, type: 3}
+    dropRate: 0.15
+  - itemPrefab: {fileID: 2012104641230161445, guid: e2130a3469928c342bbbd3231d3ff27e, type: 3}
+    dropRate: 0.08
+  - itemPrefab: {fileID: 2012104641230161445, guid: bd994df077c1aca469b663aa6d678e76, type: 3}
+    dropRate: 0.3
+  - itemPrefab: {fileID: 2012104641230161445, guid: 5f250d60b35ee9443804aba586613ac0, type: 3}
+    dropRate: 0.4
