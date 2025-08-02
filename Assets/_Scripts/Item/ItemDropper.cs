@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemDropper : MonoBehaviour
 {
@@ -25,7 +25,20 @@ public class ItemDropper : MonoBehaviour
             cumulative += entry.dropRate;
             if (randomPoint <= cumulative)
             {
-                Instantiate(entry.itemPrefab, transform.position, Quaternion.identity);
+                GameObject item = ItemPoolManager.Instance.GetFromPool(entry.itemPrefab);
+                if (item != null)
+                {
+                    item.transform.position = transform.position;
+                    item.transform.rotation = Quaternion.identity;
+                    item.SetActive(true);
+
+                    // Gán prefab gốc để biết đường trả lại pool đúng
+                    var pickup = item.GetComponent<ItemPickup>();
+                    if (pickup != null)
+                    {
+                        pickup.SetOrigin(entry.itemPrefab);
+                    }
+                }
                 return;
             }
         }
