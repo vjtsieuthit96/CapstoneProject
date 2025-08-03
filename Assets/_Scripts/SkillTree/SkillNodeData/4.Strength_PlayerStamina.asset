@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 4.Strength_PlayerStamina
   m_EditorClassIdentifier: 
-  id: 4StrengthPlayerStamina
-  displayName: Player Stamina
-  description: Player Stamina
+  id: stamina_up
+  displayName: "Endurance Boost\t"
+  description: 'Increase maximum stamina by 10%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: f7ae67ebe48d0374aadfadc07c25c163, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 2
   effect: {fileID: 11400000, guid: dcfb24162ac15ac4b820ac9f92b71018, type: 2}

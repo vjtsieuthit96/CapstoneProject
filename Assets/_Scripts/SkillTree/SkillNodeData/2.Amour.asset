@@ -16,8 +16,9 @@ MonoBehaviour:
   displayName: Amour
   description: Increase 10% maximum Amour
   icon: {fileID: 0}
-  prerequisites: []
+  prerequisites:
+  - {fileID: 11400000, guid: 12a26aaa70ff5124dbad56767cb48cc0, type: 2}
   unlockCondition: 0
   isUnlocked: 0
   requiredPoints: 1
-  effect: {fileID: 11400000, guid: 80d8870b2e1fe6942a17aaf06424be1f, type: 2}
+  effect: {fileID: 11400000, guid: e436f0a6d2e2d514e80c13caed59a6c2, type: 2}

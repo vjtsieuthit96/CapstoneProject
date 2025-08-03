@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Invector.Utils;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
-using Invector.Utils;
 
 public class SkillTreeSystem : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class SkillTreeSystem : MonoBehaviour
     [SerializeField] private SkillTreeListInfo offenceList;
     [SerializeField] private SkillTreeListInfo defenceList; 
     [SerializeField] private SkillTreeListInfo vietnegryList;
-
     public delegate void OnSkillPointsChanged();
     public event OnSkillPointsChanged onSkillPointsChanged;
 
@@ -22,7 +22,11 @@ public class SkillTreeSystem : MonoBehaviour
     {
         RefreshOnStart();
         UpdateButtonsUI();
-       
+        foreach(var n in skillTree.allNodes)
+        {
+            n.TryAutoUnlock(characterConfigurator);
+        }    
+
     }
     private void OnEnable()
     {
@@ -46,8 +50,8 @@ public class SkillTreeSystem : MonoBehaviour
     {
         if (node.CanUnlock(availableSkillPoints))
         {
-            node.Unlock(characterConfigurator);
-            availableSkillPoints -= node.requiredPoints;
+            //node.Unlock(characterConfigurator);
+            //availableSkillPoints -= node.requiredPoints;
             Debug.Log("Unlocked: " + node.displayName + " - Remaining Points: " + availableSkillPoints);
         }
         else { Debug.Log("Cannot unlock: " + node.displayName + " - Required Points: " + node.requiredPoints); return; }
@@ -73,7 +77,7 @@ public class SkillTreeSystem : MonoBehaviour
     {
         if (node.CanUnlock(availableSkillPoints) && availableSkillPoints >= node.requiredPoints)
         {
-            node.Unlock(characterConfigurator);
+            //node.Unlock(characterConfigurator);
             availableSkillPoints -= node.requiredPoints;
             onSkillPointsChanged?.Invoke();
             return true;

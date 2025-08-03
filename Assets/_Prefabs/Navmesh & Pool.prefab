@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 72633771622213025}
   - component: {fileID: 789345568328588756}
   - component: {fileID: 4761909509448271679}
+  - component: {fileID: 6228868017541610231}
   m_Layer: 0
   m_Name: Navmesh & Pool
   m_TagString: Untagged
@@ -148,3 +149,15 @@ MonoBehaviour:
     size: 5
   - prefab: {fileID: 2012104641230161445, guid: b8e2211e71101ad4b89125c8c0e45367, type: 3}
     size: 5
+--- !u!114 &6228868017541610231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608576018017118198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf91c0e1d8088fb4a8b01a64bd0dd74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

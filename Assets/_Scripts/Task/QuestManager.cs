@@ -38,7 +38,6 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteTask(TaskID taskID)
     {
-        // Tìm và đánh dấu hoàn thành
         QuestData task = FindTaskByID(taskID);
         if (task != null)
         {
