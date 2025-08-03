@@ -299,8 +299,11 @@ public class SkillTreeUIManager : MonoBehaviour
             vietnegySelected.SetActive(false);
 
         offencePanelCanvas.AlphaZero();
+
         defencePanelCanvas.AlphaZero();
+
         vietnegyPanelCanvas.AlphaZero();
+
         isButtonShow = true;
         optionBoardController.isPanelChildActing = false;
     }

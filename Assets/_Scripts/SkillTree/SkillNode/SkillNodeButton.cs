@@ -63,15 +63,16 @@ public class SkillNodeButton : MonoBehaviour
             return string.Empty;
 
         var sb = new System.Text.StringBuilder();
+        if (node.isUnlocked)
+        {
+            sb.AppendLine("       <color=green>Activated</color>");
+        }
         sb.AppendLine(node.displayName);
         sb.AppendLine(node.description);
         sb.AppendLine();
 
-        if (node.isUnlocked)
-        {
-            sb.AppendLine("<color=green>Activated</color>");
-        }
-        else
+        
+        if(!node.isUnlocked)
         {
             sb.AppendLine($"Required Points: {node.requiredPoints}");
         }
