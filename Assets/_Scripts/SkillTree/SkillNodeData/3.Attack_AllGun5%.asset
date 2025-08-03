@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 3.Attack_AllGun5%
   m_EditorClassIdentifier: 
-  id: 3AttackAllGun5%
-  displayName: All Gun 5%
-  description: "Damage c\u1EE7a t\u1EA5t c\u1EA3 lo\u1EA1i s\xFAng t\u0103ng 5%"
+  id: gun_damage_all
+  displayName: Universal Gun Damage
+  description: Increase damage of all gun types by 5%.
   icon: {fileID: 0}
-  prerequisites: []
+  prerequisites:
+  - {fileID: 11400000, guid: 382aae0daa5b4a34cae8508e7d3ec03b, type: 2}
   unlockCondition: 0
   isUnlocked: 0
   requiredPoints: 1

@@ -36,13 +36,20 @@ public class SkillNode : ScriptableObject
         return false;
     }
 
+    public void TryAutoUnlock(CharacterConfigurator configurator)
+    {
+        if (!isUnlocked && (prerequisites == null || prerequisites.Count == 0))
+        {
+            Unlock(configurator);
+        }
+    }
+
     public void Unlock(CharacterConfigurator configurator)
     {
+        Debug.Log($"[DEBUG] Unlocking: {displayName}, effect: {(effect == null ? "NULL" : effect.name)}");
         if (isUnlocked)
             return;
-
         isUnlocked = true;
-        effect?.ApplyEffect(configurator);
     }
 }
 

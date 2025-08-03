@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 5.Attack_Increase5%FireRateAllGuns
   m_EditorClassIdentifier: 
-  id: 5AllGunsFireRate10%
-  displayName: All Guns Increase 10% Fire Rate
-  description: All Guns Increase 10% Fire Rate
+  id: gun_firerate_up
+  displayName: Trigger Discipline
+  description: Improve firing rate by 3%.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 85f14eb7098965f468fa319e547bafc1, type: 2}
   - {fileID: 11400000, guid: cbbb1c2972d2d96459c51879eda5a16b, type: 2}
   unlockCondition: 1
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 3
   effect: {fileID: 11400000, guid: 6f916fb6285bd5a4a991e3dad915e40d, type: 2}
