@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 2.Health 1
   m_EditorClassIdentifier: 
-  id: Class 2 Health
-  displayName: 'Health '
-  description: Increase 10% Maximum Health
+  id: HP_001
+  displayName: "Vital Core I\t"
+  description: 'Increases maximum health by 7%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 12a26aaa70ff5124dbad56767cb48cc0, type: 2}

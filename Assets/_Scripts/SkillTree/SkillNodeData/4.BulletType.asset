@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 4.BulletType
   m_EditorClassIdentifier: 
-  id: bullettypes
-  displayName: Bullet Type
-  description: Class 3
+  id: trigger_10_hits
+  displayName: Rapid Activation
+  description: Triggers the effect after every 10 consecutive hits.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: cb99aa335ce4e1643b65b533f2081bdd, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 3
+  requiredPoints: 5
   effect: {fileID: 11400000, guid: 6fa8c2c72daf57746a87ce2f064651ec, type: 2}
