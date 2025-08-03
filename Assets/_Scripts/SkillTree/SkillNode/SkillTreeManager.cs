@@ -2,7 +2,7 @@
 
 public class SkillTreeManager : MonoBehaviour
 {
-    [SerializeField] private int currentSkillPoints;
+    [SerializeField] public int currentSkillPoints;
     public SkillTreeSystem Sts;
     private void Start()
     {

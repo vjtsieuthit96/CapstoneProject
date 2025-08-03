@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+
 [RequireComponent(typeof(SkillNodeButtonInfo))]
 public class SkillNodeButton : MonoBehaviour
 {
@@ -23,30 +24,51 @@ public class SkillNodeButton : MonoBehaviour
             OnButtonClick();
         });
     }
+    private void Update()
+    {
+        CheckUI();
+    }
     public bool IsUnlocked
     {
         get { return node.isUnlocked; }
     }
 
+    void CheckUI()
+    {
+        if (unlockedState) return;
+        else
+        {
+            UpdateUI(manager.currentSkillPoints);
+        }    
+    }    
+
     public void UpdateUI(int point)
     {
-        if (node == null) Debug.Log("Node doesn't exits");
-        if(node.isUnlocked)
+        if (node == null)
         {
-            unlockedImg.color = Color.blue;
             return;
         }
 
-        if (node.CanUnlock(point))
+        if (node.isUnlocked)
         {
-            unlockedImg.color = Color.cyan;
+            unlockedImg.color = Color.white;
+            button.interactable = true;
+        }
+        else if (node.CanUnlock(point))
+        {
+            unlockedImg.color = new Color(0.25f, 0.25f, 0.25f);
+            button.interactable = true;
         }
         else
         {
             unlockedImg.color = Color.black;
-            Debug.Log("Cannot unlock: " + node.displayName + " - Required Points: " + node.requiredPoints);
+            button.interactable = false;
         }
+
     }
+
+
+
 
     public void Unlock()
     {
