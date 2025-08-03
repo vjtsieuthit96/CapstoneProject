@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 3.BulletType
   m_EditorClassIdentifier: 
-  id: bullettypes
-  displayName: Bullet Type
-  description: Class 2
+  id: trigger_15_hits
+  displayName: Consistent Barrage
+  description: Triggers the effect after every 15 consecutive hits.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 4d318a86d050fd149812f9c4d8ab7eb5, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 4
   effect: {fileID: 11400000, guid: 4278a879ad78970419a1dec84c9334c0, type: 2}

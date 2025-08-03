@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 6.Strength_AirSpeed
   m_EditorClassIdentifier: 
-  id: 6StrengthAirSpeed
-  displayName: Air Speed
-  description: Air Speed
+  id: "midair_movement_speed_up\t"
+  displayName: "Aerial Agility\t"
+  description: 'Increase midair movement speed by 25%.  '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: adc602c04d58e8348bb6c4bab9fd53d3, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 5
   effect: {fileID: 11400000, guid: 59c52b377bd6fc6469b7466d58a1a1f9, type: 2}

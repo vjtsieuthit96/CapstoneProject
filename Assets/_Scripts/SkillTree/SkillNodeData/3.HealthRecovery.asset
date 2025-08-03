@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 3.HealthRecovery
   m_EditorClassIdentifier: 
-  id: class 3 Health Recovery
-  displayName: Health Recovery
-  description: Increase Health recovery speed
+  id: HP_003
+  displayName: "Vital Core II\t"
+  description: Increases maximum health by 10%.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 856660b451d28f1468e9b73cfac9c34c, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
-  effect: {fileID: 0}
+  requiredPoints: 2
+  effect: {fileID: 11400000, guid: 51ee5119d8746a94d93135de8bf3e49b, type: 2}

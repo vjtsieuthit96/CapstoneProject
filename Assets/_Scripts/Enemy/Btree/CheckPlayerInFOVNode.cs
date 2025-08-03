@@ -14,7 +14,7 @@ public class CheckPlayerInFOVNode : Node
     public void OnAttacked()
     {
         lastAttackedTime = Time.time; //  Cập nhật thời gian bị tấn công
-        Debug.Log("AI bị tấn công! Ghi nhớ kẻ địch.");
+        //Debug.Log("AI bị tấn công! Ghi nhớ kẻ địch.");
         AlertNearbyAllies();
     }
 
@@ -32,7 +32,7 @@ public class CheckPlayerInFOVNode : Node
             lastSeenTime = Time.time;
             monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
             monsterAI.SetInCombat(true); // Đặt AI vào trạng thái chiến đấu
-            Debug.Log("AI nhìn thấy người chơi! Đuổi theo.");
+            //Debug.Log("AI nhìn thấy người chơi! Đuổi theo.");
             return NodeState.SUCCESS;
         }
 
@@ -42,7 +42,7 @@ public class CheckPlayerInFOVNode : Node
             lastSeenTime = Time.time;
             monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true);
             monsterAI.SetInCombat(true); // Đặt AI vào trạng thái chiến đấu
-            Debug.Log("AI vẫn nhớ kẻ tấn công! Tiếp tục đuổi theo.");
+            //Debug.Log("AI vẫn nhớ kẻ tấn công! Tiếp tục đuổi theo.");
             return NodeState.SUCCESS;
         }
 
@@ -51,7 +51,7 @@ public class CheckPlayerInFOVNode : Node
         {
             monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, false);
             monsterAI.SetInCombat(false); // Đặt AI về trạng thái không chiến đấu
-            Debug.Log("Hoàn toàn mất dấu! Quay về tuần tra.");
+            //Debug.Log("Hoàn toàn mất dấu! Quay về tuần tra.");
             return NodeState.FAILURE;
         }
 
@@ -70,7 +70,7 @@ public class CheckPlayerInFOVNode : Node
            
             if (ally.transform != monsterAI.transform) // 🔥 Tránh cảnh báo chính nó
             {
-                Debug.Log(ally.name + " đang ở gần AI: " + monsterAI.name);
+                //Debug.Log(ally.name + " đang ở gần AI: " + monsterAI.name);
                 float distanceToAlly = Vector3.Distance(monsterAI.transform.position, ally.transform.position);
 
                 if (distanceToAlly <= alertRadius)
@@ -87,7 +87,7 @@ public class CheckPlayerInFOVNode : Node
                         {
                             allyFOVNode.lastSeenTime = Time.time; // Ghi nhớ vị trí Player
                             allyMonsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, true); // Chuyển sang trạng thái chiến đấu
-                            Debug.Log($"Đồng minh {ally.name} nhận cảnh báo! Bắt đầu truy đuổi Player.");
+                            //Debug.Log($"Đồng minh {ally.name} nhận cảnh báo! Bắt đầu truy đuổi Player.");
                         }
                     }
                 }

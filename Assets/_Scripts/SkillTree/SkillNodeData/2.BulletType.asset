@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 2.BulletType
   m_EditorClassIdentifier: 
-  id: bullettypes
-  displayName: Bullet Type
-  description: Class 1
+  id: trigger_20_hits
+  displayName: Steady Shot
+  description: Triggers the effect after every 20 consecutive hits.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 95dd891a9e7be6d47a056711c5cbadb6, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
-  effect: {fileID: 11400000, guid: 9f7df34a017a0114cb305dccee0d9e09, type: 2}
+  requiredPoints: 2
+  effect: {fileID: 11400000, guid: 4278a879ad78970419a1dec84c9334c0, type: 2}

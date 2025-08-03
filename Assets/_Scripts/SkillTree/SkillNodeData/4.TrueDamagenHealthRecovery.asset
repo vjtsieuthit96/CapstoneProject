@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 4.TrueDamagenHealthRecovery
   m_EditorClassIdentifier: 
-  id: Class 4 True Damage and Health Recovery
-  displayName: True Damagen Health Recovery
-  description: TrueDamagenHealthRecovery
+  id: DEF_004
+  displayName: "Resilient Recovery\t"
+  description: 'Reduces incoming damage by 7% and increases healing speed by 5%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 15e003a3aa8f7914e96e04d499683a2f, type: 2}
   - {fileID: 11400000, guid: 7fd5f5d7957b5ec4cb4c9f385ed16282, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 3
   effect: {fileID: 11400000, guid: 6bcb880282d94b04594a23481bfa3ea5, type: 2}

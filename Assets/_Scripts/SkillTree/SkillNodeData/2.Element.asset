@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 2.Element
   m_EditorClassIdentifier: 
-  id: element
-  displayName: Class 1 Element
-  description: "Nguy\xEAn T\u1ED1"
+  id: CC_Tier1
+  displayName: Minor Control Shot
+  description: 'Immobilize for 2s. Enemies hit suffer -20% move speed & damage for
+    5s. Damage splits into 3 parts, each dealing 20%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 95dd891a9e7be6d47a056711c5cbadb6, type: 2}
   unlockCondition: 0
-  isUnlocked: 0
+  isUnlocked: 1
   requiredPoints: 1
-  effect: {fileID: 11400000, guid: 0bdac9a170b31564480d7b23e8f58b22, type: 2}
+  effect: {fileID: 11400000, guid: 4e6152b02bcd8a74cb6857d90898aa86, type: 2}

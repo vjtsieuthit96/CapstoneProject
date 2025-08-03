@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 4.Attack_LongGun10%
   m_EditorClassIdentifier: 
-  id: 4LongGun10%
-  displayName: Long Gun + 10%
-  description: Long Gun + 10%
+  id: "gun_damage_long\t"
+  displayName: "Long Gun Expert\t"
+  description: Increase damage of long-range weapons
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 5140c553c2a23974a979321172a65fca, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 2
   effect: {fileID: 11400000, guid: 1dcdb0bddfa0b8c449efc2dad16981ee, type: 2}

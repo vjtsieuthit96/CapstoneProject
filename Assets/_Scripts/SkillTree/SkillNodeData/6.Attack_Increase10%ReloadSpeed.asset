@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 6.Attack_Increase10%ReloadSpeed
   m_EditorClassIdentifier: 
-  id: 6Increase10%ReloadSpeed
-  displayName: Increase 10% Reload Speed
-  description: Increase 10% Reload Speed
+  id: gun_reload_speed_up
+  displayName: "Tactical Reload\t"
+  description: 'Reload speed increased by 10%.  '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 01e3751b639004948af03c66d1553179, type: 2}
   - {fileID: 11400000, guid: bb93fc5e47d30824682c7e8d48b829d3, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 5
   effect: {fileID: 11400000, guid: d6120fe39ade95f49a262a01451c64d8, type: 2}

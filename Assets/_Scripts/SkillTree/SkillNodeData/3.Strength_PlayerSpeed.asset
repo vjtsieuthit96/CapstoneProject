@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 3.Strength_PlayerSpeed
   m_EditorClassIdentifier: 
-  id: 3.Strength_PlayerSpeed
-  displayName: PlayerSpeed
-  description: Player Speed Increase 10%
+  id: move_speed_up
+  displayName: "Swift Movement\t"
+  description: 'Increase movement speed by 10%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: b44c36751a3d04a4eb54ff9af15a2df5, type: 2}
