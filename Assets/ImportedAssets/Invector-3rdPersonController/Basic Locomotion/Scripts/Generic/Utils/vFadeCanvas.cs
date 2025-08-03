@@ -49,7 +49,7 @@ namespace Invector.Utils
             if (autoControlCanvasGroup && group)
             {
                 group.interactable = false;
-                group.blocksRaycasts = true;
+                group.blocksRaycasts = false;
             }
         }
 
