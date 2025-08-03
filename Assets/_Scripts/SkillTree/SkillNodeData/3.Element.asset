@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 3.Element
   m_EditorClassIdentifier: 
-  id: Element
-  displayName: 'Class 2 '
-  description: Class 2
+  id: CC_Tier2
+  displayName: Moderate Control Shot
+  description: Immobilize for 4s. Enemies hit suffer -40% move speed & damage for
+    5s. Damage splits into 3 parts, each 40%.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 86b384ac9f76b5b4c91dfe297a5158e9, type: 2}
   unlockCondition: 0
-  isUnlocked: 0
-  requiredPoints: 2
-  effect: {fileID: 0}
+  isUnlocked: 1
+  requiredPoints: 4
+  effect: {fileID: 11400000, guid: 006655843d5a3ef4c8a80653e8549aa4, type: 2}

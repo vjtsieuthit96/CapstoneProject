@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 4.HealthnAmour
   m_EditorClassIdentifier: 
-  id: class 4 Health and Amour
-  displayName: 'Health and Amour '
-  description: 'Health and Amour '
+  id: HP_004
+  displayName: "Battle Hardened\t"
+  description: Increases both armor and health by 10%.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 1ad38437a4e99ee429dcf36a6945e9cb, type: 2}

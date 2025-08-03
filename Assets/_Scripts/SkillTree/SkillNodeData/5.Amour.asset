@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 5.Amour
   m_EditorClassIdentifier: 
-  id: class 5 Amour
-  displayName: Amour
-  description: Amour
+  id: HP_006
+  displayName: "Max Iron Wall\t"
+  description: 'Increases both current and maximum armor by 15%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: acbb598fbc3c6de43a9b9ea06ab54b88, type: 2}

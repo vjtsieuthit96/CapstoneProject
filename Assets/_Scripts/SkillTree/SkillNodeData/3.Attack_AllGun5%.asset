@@ -15,7 +15,7 @@ MonoBehaviour:
   id: gun_damage_all
   displayName: Universal Gun Damage
   description: Increase damage of all gun types by 5%.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6fa0b50e26c16304bbece9050fb11d90, type: 3}
   prerequisites:
   - {fileID: 11400000, guid: 382aae0daa5b4a34cae8508e7d3ec03b, type: 2}
   unlockCondition: 0

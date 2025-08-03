@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 3.Health
   m_EditorClassIdentifier: 
-  id: class 3 Health
-  displayName: Max Health
-  description: 10% Max Health
+  id: HP_002
+  displayName: Accelerated Regeneration
+  description: 'Increases healing speed by 10%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 856660b451d28f1468e9b73cfac9c34c, type: 2}
