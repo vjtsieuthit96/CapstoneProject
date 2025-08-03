@@ -10,9 +10,9 @@ public class QuestTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (triggered || questData == null) return;
-        if (!other.CompareTag("Player")) return;
+        if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
 
-        var input = other.GetComponent<vThirdPersonInput>();
+        var input = other.GetComponentInParent<vThirdPersonInput>();
         if (input == null) return;
 
         triggered = true;
@@ -22,8 +22,10 @@ public class QuestTrigger : MonoBehaviour
         audioSource.Play();
 
         QuestManager.Instance.ReceiveQuest(questData);
+
         StartCoroutine(WaitAndUnlock(audioSource.clip.length, input));
     }
+
 
     private IEnumerator WaitAndUnlock(float delay, vThirdPersonInput input)
     {
