@@ -13,11 +13,12 @@ public class QuestTrigger : MonoBehaviour
         if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
 
         var input = other.GetComponentInParent<vThirdPersonInput>();
+        var Control = other.GetComponentInParent<vThirdPersonController>();
         if (input == null) return;
 
         triggered = true;
         input.SetLockAllInput(true);
-
+        Control.StopCharacter();
         audioSource.clip = questData.questAudio;
         audioSource.Play();
 
@@ -31,5 +32,6 @@ public class QuestTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         input.SetLockAllInput(false);
+        this.gameObject.SetActive(false);
     }
 }
