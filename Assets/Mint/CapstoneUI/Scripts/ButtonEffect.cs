@@ -105,4 +105,5 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
             img.color = new Color(1f, 1f, 1f, 0f); // Set the color to transparent
         }
     }
+
 }
