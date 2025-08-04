@@ -8,15 +8,15 @@ public class SkillNodeButton : MonoBehaviour
     //public Image icon;
     [SerializeField] private Button button;
     [SerializeField] private Image unlockedImg;
-    [SerializeField] private bool unlockedState;
+    [SerializeField] public bool unlockedState;
     [SerializeField] public SkillTreeManager manager;
     [SerializeField] private CharacterConfigurator cc;
-    //public GameObject lockedOverlay;
-    //public Text costText;
 
     [SerializeField] private SkillNode node;
+
     private void Start()
     {
+        unlockedState = node.isUnlocked;
         button = GetComponent<Button>();
         unlockedImg = GetComponentInChildren<Image>();
         button.onClick.AddListener(() =>
@@ -27,6 +27,10 @@ public class SkillNodeButton : MonoBehaviour
     private void Update()
     {
         CheckUI();
+        if (unlockedState != node.isUnlocked)
+        {
+            unlockedState = node.isUnlocked;
+        }
     }
     public bool IsUnlocked
     {
@@ -39,8 +43,9 @@ public class SkillNodeButton : MonoBehaviour
         else
         {
             UpdateUI(manager.currentSkillPoints);
-        }    
-    }    
+        }
+
+    }
 
     public void UpdateUI(int point)
     {
@@ -109,8 +114,8 @@ public class SkillNodeButton : MonoBehaviour
         sb.AppendLine(node.description);
         sb.AppendLine();
 
-        
-        if(!node.isUnlocked)
+
+        if (!node.isUnlocked)
         {
             sb.AppendLine($"Required Points: {node.requiredPoints}");
         }
