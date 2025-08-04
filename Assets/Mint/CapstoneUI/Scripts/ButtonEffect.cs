@@ -18,12 +18,25 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
 
     [SerializeField] private bool haveShowEffect;
     private Color currentColor;
+    [SerializeField] bool canChangeImage = false;
+    [SerializeField] private Sprite hoverImage;
+    [SerializeField] private Sprite normalImage;
+    private Image imageComponent;
+
     private void Awake()
     {
         currentScale = transform.localScale;
     }
     private void Start()
     {
+        if(canChangeImage)
+        {
+            imageComponent = GetComponent<Image>();
+            if (imageComponent != null && normalImage != null)
+            {
+                imageComponent.sprite = normalImage;
+            }
+        }
         Actived();
     }
     private void OnEnable()
@@ -39,6 +52,10 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
     public void OnPointerEnter(PointerEventData eventData)
     {
         gameObject.transform.localScale += Vector3.one * scaleFactor;
+        if(canChangeImage && imageComponent != null && hoverImage != null)
+        {
+            imageComponent.sprite = hoverImage;
+        }
         if (hoverBorder)
         {
             hoverBorder.SetActive(true);
@@ -59,6 +76,8 @@ public class ButtonEffect : MonoBehaviour , IPointerEnterHandler , IPointerExitH
 
     private void Actived()
     {
+        if(canChangeImage && normalImage)
+            imageComponent.sprite = normalImage;
         if (hoverBorder && hoverBorder.activeSelf)
         {
             hoverBorder.SetActive(false);

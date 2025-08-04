@@ -39,7 +39,8 @@ public class OptionBoardController : MonoBehaviour
     void Start()
     {
         // Add listener to the button 
-        settingBtn.onClick.AddListener(() => FadeIn(PanelType.Setting));
+        if(settingBtn)
+            settingBtn.onClick.AddListener(() => FadeIn(PanelType.Setting));
         foreach (var btn in backToOptionBtns)
         {
             btn.onClick.AddListener(() => FadeIn(PanelType.Option)); // Add listener to each button to go back to the Option panel
@@ -71,6 +72,12 @@ public class OptionBoardController : MonoBehaviour
         currentPanelType = panelType; // Update the current panel type
         isPanelChildActing = false;
     }
+
+    public void OptionFadeIn()
+    { 
+
+    }
+
     public void FadeOut(PanelType panelType)
     {
         if(panelDictionary.ContainsKey(panelType))
