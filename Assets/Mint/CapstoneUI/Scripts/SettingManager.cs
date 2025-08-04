@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class SettingManager : MonoBehaviour
 {
+    [SerializeField] GameObject settingPanel;
     [SerializeField] private AudioClip clickSound;
     [Header("Quit")]
     [SerializeField] private Button quitBtn;
@@ -128,5 +129,15 @@ public class SettingManager : MonoBehaviour
         }
         AudioPanel.SetActive(true);
         SoundMixerManager.Instance.PlaySFXAudio(clickSound);
+    }
+
+    public void TurnOff()
+    {
+        settingPanel.SetActive(false);
+    }
+    public void TurnOn()
+    {
+        settingPanel.SetActive(true);
+        EnableUI();
     }
 }

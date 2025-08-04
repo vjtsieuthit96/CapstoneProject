@@ -5,8 +5,20 @@ public class SoundMixerManager : MonoBehaviour
     [SerializeField] public AudioMixer audioMixer;
 
     [SerializeField] private AudioSource musicSource;
+    public AudioSource MusicSource
+    {
+        get { return musicSource; }
+    }
     [SerializeField] private AudioSource sfxSource;
+    public AudioSource SFXSource
+    {
+        get { return sfxSource; }
+    }
     [SerializeField] private AudioSource voiceSource;
+    public AudioSource VoiceSource
+    {
+        get { return voiceSource; }
+    }
     public static SoundMixerManager Instance { get; private set; }
     private void Awake()
     {

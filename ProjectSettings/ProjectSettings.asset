@@ -817,6 +817,7 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
+    Android: INVECTOR_BASIC;INVECTOR_MELEE;INVECTOR_SHOOTER
     Standalone: INVECTOR_BASIC;INVECTOR_MELEE;INVECTOR_SHOOTER
   additionalCompilerArguments: {}
   platformArchitecture: {}
