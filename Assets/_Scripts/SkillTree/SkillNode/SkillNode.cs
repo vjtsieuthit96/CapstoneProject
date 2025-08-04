@@ -42,6 +42,7 @@ public class SkillNode : ScriptableObject
         {
             Unlock(configurator);
         } 
+<<<<<<< Updated upstream
     }
    
 
@@ -51,7 +52,10 @@ public class SkillNode : ScriptableObject
         {
             Unlock(configurator);
         }
+=======
+>>>>>>> Stashed changes
     }
+   
 
     public void Unlock(CharacterConfigurator configurator)
     {

@@ -9,11 +9,17 @@ public class SkillNodeButton : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private Image unlockedImg;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     [SerializeField] private bool unlockedState;
     [SerializeField] public SkillTreeManager manager;
     [SerializeField] private CharacterConfigurator cc;
     //public GameObject lockedOverlay;
     //public Text costText;
+=======
+    [SerializeField] public bool unlockedState;
+    [SerializeField] public SkillTreeManager manager;
+    [SerializeField] private CharacterConfigurator cc;
+>>>>>>> Stashed changes
 =======
     [SerializeField] public bool unlockedState;
     [SerializeField] public SkillTreeManager manager;
@@ -36,11 +42,17 @@ public class SkillNodeButton : MonoBehaviour
     {
         CheckUI();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
         if(unlockedState != node.isUnlocked)
         {
             unlockedState = node.isUnlocked;
         }    
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
     public bool IsUnlocked
@@ -55,7 +67,12 @@ public class SkillNodeButton : MonoBehaviour
         {
             UpdateUI(manager.currentSkillPoints);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         }    
+=======
+        }
+        
+>>>>>>> Stashed changes
 =======
         }
         
