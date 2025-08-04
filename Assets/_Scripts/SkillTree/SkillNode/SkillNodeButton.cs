@@ -8,7 +8,7 @@ public class SkillNodeButton : MonoBehaviour
     //public Image icon;
     [SerializeField] private Button button;
     [SerializeField] private Image unlockedImg;
-    [SerializeField] private bool unlockedState;
+    [SerializeField] public bool unlockedState;
     [SerializeField] public SkillTreeManager manager;
     [SerializeField] private CharacterConfigurator cc;
     //public GameObject lockedOverlay;
