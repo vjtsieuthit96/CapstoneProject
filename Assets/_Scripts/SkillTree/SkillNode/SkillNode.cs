@@ -34,7 +34,16 @@ public class SkillNode : ScriptableObject
         }
 
         return false;
+    }  
+
+    public void TryAutoUnlock(CharacterConfigurator configurator)
+    {
+        if (!isUnlocked && (prerequisites == null || prerequisites.Count == 0))
+        {
+            Unlock(configurator);
+        } 
     }
+   
 
     public void TryAutoUnlock(CharacterConfigurator configurator)
     {
