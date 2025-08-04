@@ -65,7 +65,7 @@ public class MonsterAudio : MonoBehaviour
             monsterAudio.PlayOneShot(atkSound[index]);
         }
     }
-    public void PlayAttackSoundSelected()
+    public void PlayRandomAttackSound()
     {
         if (monsterAudio && atkSound.Length > 0)
         {

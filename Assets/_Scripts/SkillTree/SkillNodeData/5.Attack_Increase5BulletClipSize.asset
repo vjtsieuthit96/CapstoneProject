@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 5.Attack_Increase5BulletClipSize
   m_EditorClassIdentifier: 
-  id: 5LongGunClipSize5Bullet
-  displayName: Long Gun Increase 5 Bullet Clip Size
-  description: Long Gun Increase 5 Bullet Clip Size
+  id: "gun_magazine_size\t"
+  displayName: "Extended Magazine\t"
+  description: 'Increase magazine capacity by 10 rounds. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 85f14eb7098965f468fa319e547bafc1, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 3
   effect: {fileID: 11400000, guid: c26dbe83baeb65248a869788b03ec814, type: 2}

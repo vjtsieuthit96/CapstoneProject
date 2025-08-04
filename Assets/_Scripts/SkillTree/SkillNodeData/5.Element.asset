@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 5.Element
   m_EditorClassIdentifier: 
-  id: Element
-  displayName: Class 4
-  description: Class 4
+  id: CC_Tier3
+  displayName: Severe Control Shot
+  description: 'Immobilize for 6s. Enemies hit suffer -60% move speed & damage for
+    8s. Damage splits into 4 hits, each 60%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 35cdd865b0c43b947976b8228b49689b, type: 2}
   unlockCondition: 0
-  isUnlocked: 0
-  requiredPoints: 1
-  effect: {fileID: 11400000, guid: 903740f0be98f3249844d6d1ef2750e3, type: 2}
+  isUnlocked: 1
+  requiredPoints: 8
+  effect: {fileID: 11400000, guid: 0d98446f24ecfda4eb652956d6d474f4, type: 2}

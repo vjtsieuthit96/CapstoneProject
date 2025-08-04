@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 5.BulletType
   m_EditorClassIdentifier: 
-  id: bullettypes
-  displayName: Bullet Type
-  description: Class 4
+  id: triple_trigger_10_hits
+  displayName: Burst Barrage
+  description: Triggers the effect 3 times after every 10 consecutive hits.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: e59d5ecc58f0f7e4993aecc247976bbf, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 8
   effect: {fileID: 11400000, guid: 2e88df9a27bcfd849a3622265857002b, type: 2}

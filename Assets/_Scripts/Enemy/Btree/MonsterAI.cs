@@ -35,6 +35,7 @@ public abstract class MonsterAI : MonoBehaviour
 
     protected Node behaviorTree;
     private Vector3 _patrolCenter;
+    private ItemDropper itemDropper;
 
     private bool hasRetreat = false;
     protected bool isDead = false;
@@ -51,7 +52,8 @@ public abstract class MonsterAI : MonoBehaviour
         baseSpeed = monsterAgent.speed;
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
-        
+        itemDropper = GetComponent<ItemDropper>();
+
     }
     protected virtual void Update()
     {
@@ -65,6 +67,7 @@ public abstract class MonsterAI : MonoBehaviour
         {
             isDead = true;
             monsterAgent.isStopped = true;
+            itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
             float totalDamage = 0f;

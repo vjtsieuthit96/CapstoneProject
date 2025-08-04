@@ -24,7 +24,7 @@ public class SliderManager : MonoBehaviour
 
     private void UpdateValueText(float value)
     {
-        float valueToDisplay = value * 100;
+        float valueToDisplay = (value/slider.maxValue) * 100;
         if (valueText != null)
         {
             valueText.text = $"{Mathf.Round(valueToDisplay)}";

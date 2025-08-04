@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 4.Element
   m_EditorClassIdentifier: 
-  id: Element
-  displayName: Class 3
-  description: Class 3
+  id: EffectBurst
+  displayName: Effect Burst Trigger
+  description: Every 8 consecutive hits triggers 3 enhanced effect bullets.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: a2dc488efe8b3414b9fa56a5d1faf746, type: 2}
   unlockCondition: 0
-  isUnlocked: 0
-  requiredPoints: 1
-  effect: {fileID: 11400000, guid: 006655843d5a3ef4c8a80653e8549aa4, type: 2}
+  isUnlocked: 1
+  requiredPoints: 5
+  effect: {fileID: 11400000, guid: 903740f0be98f3249844d6d1ef2750e3, type: 2}

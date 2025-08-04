@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 5.Health
   m_EditorClassIdentifier: 
-  id: Class 5 Health
-  displayName: Health
-  description: Health
+  id: HP_005
+  displayName: "Vital Core III\t"
+  description: Increases maximum health by 20%.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: acbb598fbc3c6de43a9b9ea06ab54b88, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
-  effect: {fileID: 11400000, guid: dfe7dba85daac344bb614a407e7d9cc6, type: 2}
+  requiredPoints: 5
+  effect: {fileID: 11400000, guid: addca2ae6df501749be1f996e51ff43f, type: 2}

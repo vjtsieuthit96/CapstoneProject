@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 4.Attack_ShortGun10%
   m_EditorClassIdentifier: 
-  id: 4ShortGun10%
-  displayName: Short Gun 10%
-  description: Short Gun 10%
+  id: gun_damage_short
+  displayName: "Short Gun Expert\t"
+  description: Increase damage of short-range weapons.
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 5140c553c2a23974a979321172a65fca, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 2
   effect: {fileID: 11400000, guid: 896aa757e52fa874d9037a6318a7e1ca, type: 2}

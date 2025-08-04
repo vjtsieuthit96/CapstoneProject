@@ -8,6 +8,7 @@ public class AmourSkillTree : SkillEffect
     public float AmourPercent = 0.1f;
     public override void ApplyEffect(CharacterConfigurator configurator)
     {
+        Debug.Log("Apply Effect");
         configurator.PlayerMaxAmour += configurator.PlayerMaxAmour * AmourPercent;
     }
 }

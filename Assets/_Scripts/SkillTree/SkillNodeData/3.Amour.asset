@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598d66226add04844b78e534dda60071, type: 3}
   m_Name: 3.Amour
   m_EditorClassIdentifier: 
-  id: 'class 3 Amour '
-  displayName: Amour
-  description: increase 5% amour
+  id: DEF_002
+  displayName: "Minor Damage Resistance\t"
+  description: 'Reduces incoming damage by 3%. '
   icon: {fileID: 0}
   prerequisites:
   - {fileID: 11400000, guid: 3631d147808cc3649bfe8d2a23e07f06, type: 2}
   unlockCondition: 0
   isUnlocked: 0
-  requiredPoints: 1
+  requiredPoints: 2
   effect: {fileID: 11400000, guid: ed44af2bd7933aa43801d1d158f713d4, type: 2}

@@ -4,9 +4,25 @@ using UnityEngine;
 public class ItemEffectApplier : MonoBehaviour
 {
     public CharacterConfigurator stats;
+    //Effect 
+    [SerializeField] private ParticleSystem[] EffectParticle;
+    [SerializeField] private Color survivalColor = Color.green;
+    [SerializeField] private Color dopingColor = Color.blue;
+    [SerializeField] private Color adrenalineColor = Color.yellow;
+    [SerializeField] private Color berserkColor = Color.red;
     private void Awake()
     {
         stats = GetComponent<CharacterConfigurator>();
+    }
+
+    private void PlayerEffect(Color color)
+    {
+        foreach (var ps in EffectParticle)
+        {
+            var main = ps.main;
+            main.startColor = color;
+            ps.Play();
+        }
     }
 
     public void ApplyEffect(ItemEffect effect, string PlayerName = "")
@@ -21,9 +37,11 @@ public class ItemEffectApplier : MonoBehaviour
         switch (effect.effectType)
         {
             case ItemEffectType.SurvivalMode:
+                PlayerEffect(survivalColor);
                 stats.HealthRecoveryPerTime *= 1f + effect.value;
                 break;
             case ItemEffectType.AdrenalineRush:
+                PlayerEffect(adrenalineColor);
                 stats.walkSpeed *= 1f + effect.value;
                 stats.runSpeed *= 1f + effect.value;
                 stats.sprintSpeed *= 1f + effect.value;
@@ -37,6 +55,7 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.freeMovementAnimatorSpeed *= 1f + effect.value;
                 break;
             case ItemEffectType.Doping:
+                PlayerEffect(dopingColor);
                 stats.maxStamina *= 1f + effect.value;
                 stats.staminaRecovery *= 1f + effect.value;
                 stats.sprintStamina *= 1f - effect.value;
@@ -44,6 +63,7 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.rollStamina *= 1f - effect.value;
                 break;
             case ItemEffectType.BerserkState:
+                PlayerEffect(berserkColor);
                 stats.DamageRatio /= 1f + effect.value;
                 stats.PlayerShootingSpeed /= 1f + effect.value;
                 stats.ReloadSpeed *= 1f + effect.value;
