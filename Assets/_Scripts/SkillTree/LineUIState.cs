@@ -17,11 +17,14 @@ public class LineUIState : MonoBehaviour
     [SerializeField] private bool autoFindButton = true;
 
     private SkillNodeButton skillNodeButton;
-    private bool isFilling = false;
-    private bool hasFinishedFill = false;
+    [SerializeField] private bool isFilling = false;
+    [SerializeField] private bool hasFinishedFill = false;
 
     private void Awake()
     {
+        hasFinishedFill = false;
+        isFilling = false;
+        ResetLines();
         if (autoFindButton)
             skillNodeButton = GetComponentInParent<SkillNodeButton>();
     }
@@ -29,6 +32,11 @@ public class LineUIState : MonoBehaviour
     private void OnEnable()
     {
         ResetLines();
+        if (skillNodeButton != null && skillNodeButton.unlockedState)
+        {
+            hasFinishedFill = false;
+            StartCoroutine(AnimateFill());
+        }
     }
 
     private void Update()
@@ -41,6 +49,7 @@ public class LineUIState : MonoBehaviour
 
     private void ResetLines()
     {
+        hasFinishedFill = false;
         foreach (var line in lineImages)
         {
             if (line != null)
