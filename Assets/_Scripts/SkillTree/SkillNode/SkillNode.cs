@@ -34,7 +34,17 @@ public class SkillNode : ScriptableObject
         }
 
         return false;
+    }  
+
+    public void TryAutoUnlock(CharacterConfigurator configurator)
+    {
+        if (!isUnlocked && (prerequisites == null || prerequisites.Count == 0))
+        {
+            Unlock(configurator);
+        } 
+<<<<<<< Updated upstream
     }
+   
 
     public void TryAutoUnlock(CharacterConfigurator configurator)
     {
@@ -42,7 +52,10 @@ public class SkillNode : ScriptableObject
         {
             Unlock(configurator);
         }
+=======
+>>>>>>> Stashed changes
     }
+   
 
     public void Unlock(CharacterConfigurator configurator)
     {

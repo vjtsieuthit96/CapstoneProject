@@ -20,6 +20,13 @@ public class SkillTreeSystem : MonoBehaviour
     public delegate void OnSkillPointsChanged();
     public event OnSkillPointsChanged onSkillPointsChanged;
 
+    private void Awake()
+    {
+        foreach (var n in skillTree.allNodes)
+        {
+            n.isUnlocked = false;
+        }
+    }
     private void Start()
     {
         RefreshOnStart();
