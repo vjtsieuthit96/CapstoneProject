@@ -93,6 +93,15 @@ public abstract class MonsterAI : MonoBehaviour
             {
                 Debug.Log("Enemy died with unknown killer.");
             }
+            var instance = GetComponent<EnemyInstance>();
+            if (instance != null)
+            {
+                instance.Die();
+            }
+            else
+            {
+                Debug.LogWarning("EnemyInstance component not found!");
+            }
         }
     }
     public void RegisterDamage(GameObject attacker, float damage)
