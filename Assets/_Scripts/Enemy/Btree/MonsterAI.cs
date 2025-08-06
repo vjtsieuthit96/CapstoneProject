@@ -60,6 +60,18 @@ public abstract class MonsterAI : MonoBehaviour
         GroundLocomotion();
         Die();
     }
+    private void OnEnable()
+    {
+        isDead = false;
+        isHit = false;
+        isFreeze = false;
+        isSlowDown = false;
+        isShocked = false;
+        monsterAgent.isStopped = false;
+        monsterAnimator.speed = 1f;
+        damageLog.Clear();
+        lastAttacker = null;
+    }
 
     public void Die()
     {
