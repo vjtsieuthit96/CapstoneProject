@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 1568520819312927798}
   - component: {fileID: 3027906811202869841}
   - component: {fileID: 9061345723568198594}
+  - component: {fileID: -3639361419938174325}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Enemy
@@ -938,6 +939,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: 7fa3e5550b8dc884c9e943ded9df6bf2, type: 2}
+--- !u!114 &-3639361419938174325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2277023041870629272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28401666bb5742444a32fae68f5f1db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolKey: 
 --- !u!1 &2469267080579021218
 GameObject:
   m_ObjectHideFlags: 0

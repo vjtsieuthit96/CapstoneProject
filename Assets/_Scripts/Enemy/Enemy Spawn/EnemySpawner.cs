@@ -16,6 +16,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Runtime State")]
     public int currentLevel = 1;
 
+    [Header("Parent Object")]
+    public Transform enemyParent;
+
     private List<EnemyInstance> activeEnemies = new List<EnemyInstance>();
     private int currentPoints = 0;
 
@@ -32,31 +35,42 @@ public class EnemySpawner : MonoBehaviour
     {
         var config = levelConfigs.FirstOrDefault(l => l.level == currentLevel);
         if (config == null) return;
-
         activeEnemies.RemoveAll(e => e == null || !e.gameObject.activeInHierarchy);
         int currentCount = activeEnemies.Count;
         int remainingCount = config.maxEnemyCount - currentCount;
         int remainingPoints = config.totalPoints - currentPoints;
 
-        if (remainingCount <= 0 || remainingPoints <= 0) return;
+        if (remainingCount <= 0 || remainingPoints <= 0)
+            return;
 
         var validEnemies = enemyDataList
             .Where(e => e.point <= remainingPoints)
-            .OrderBy(_ => Random.value)
+            .OrderBy(e => e.point)
             .ToList();
+
+        if (validEnemies.Count == 0)
+            return;
 
         foreach (var enemy in validEnemies)
         {
-            if (remainingCount <= 0 || remainingPoints < enemy.point)
-                break;
-
-            if (SpawnEnemy(enemy))
+            while (remainingCount > 0 && remainingPoints >= enemy.point)
             {
-                remainingCount--;
-                remainingPoints -= enemy.point;
+                if (SpawnEnemy(enemy))
+                {
+                    remainingCount--;
+                    remainingPoints -= enemy.point;
+                }
+                else
+                {
+                    break;
+                }
             }
+
+            if (remainingCount <= 0 || remainingPoints <= 0)
+                break;
         }
     }
+
 
     private bool SpawnEnemy(EnemyData data)
     {
@@ -64,6 +78,7 @@ public class EnemySpawner : MonoBehaviour
         if (point == null) return false;
 
         GameObject enemyGO = GameObjectPoolManager.Instance.GetObject(data.id, point.transform.position, Quaternion.identity);
+        enemyGO.transform.SetParent(enemyParent);
         if (enemyGO == null) return false;
 
         var instance = enemyGO.GetComponent<EnemyInstance>();
