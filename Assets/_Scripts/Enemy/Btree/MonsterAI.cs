@@ -71,6 +71,8 @@ public abstract class MonsterAI : MonoBehaviour
         monsterAnimator.speed = 1f;
         damageLog.Clear();
         lastAttacker = null;
+        isInCombat = false;
+        hasRetreat = false;
     }
 
     public void Die()
