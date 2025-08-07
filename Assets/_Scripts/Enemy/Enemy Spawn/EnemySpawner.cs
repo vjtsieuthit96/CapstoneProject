@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,63 +24,51 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        MonsterFactory.Instance.Init(enemyDataList);
         foreach (var data in enemyDataList)
         {
             GameObjectPoolManager.Instance.CreatePool(data.id, data.prefab, data.initialPoolSize);
         }
-        InvokeRepeating(nameof(SpawnCheck), 0f, 1f);
+
+        
     }
 
+    private void Update()
+    {
+        SpawnCheck();
+    }
     private void SpawnCheck()
     {
         var config = levelConfigs.FirstOrDefault(l => l.level == currentLevel);
         if (config == null) return;
+
         activeEnemies.RemoveAll(e => e == null || !e.gameObject.activeInHierarchy);
+
         int currentCount = activeEnemies.Count;
         int remainingCount = config.maxEnemyCount - currentCount;
         int remainingPoints = config.totalPoints - currentPoints;
 
-        if (remainingCount <= 0 || remainingPoints <= 0)
-            return;
+        if (remainingCount <= 0 || remainingPoints <= 0) return;
 
-        var validEnemies = enemyDataList
-            .Where(e => e.point <= remainingPoints)
-            .OrderBy(e => e.point)
-            .ToList();
-
-        if (validEnemies.Count == 0)
-            return;
-
-        foreach (var enemy in validEnemies)
+        var spawnPlan = EnemySpawnOption.GetOptimalCombination(enemyDataList, remainingCount, remainingPoints);
+        foreach (var plan in spawnPlan)
         {
-            while (remainingCount > 0 && remainingPoints >= enemy.point)
+            for (int i = 0; i < plan.count; i++)
             {
-                if (SpawnEnemy(enemy))
-                {
-                    remainingCount--;
-                    remainingPoints -= enemy.point;
-                }
-                else
-                {
-                    break;
-                }
+                SpawnEnemy(plan.data);
             }
-
-            if (remainingCount <= 0 || remainingPoints <= 0)
-                break;
         }
     }
-
 
     private bool SpawnEnemy(EnemyData data)
     {
         var point = GetRandomActiveSpawnPoint();
         if (point == null) return false;
 
-        GameObject enemyGO = GameObjectPoolManager.Instance.GetObject(data.id, point.transform.position, Quaternion.identity);
-        enemyGO.transform.SetParent(enemyParent);
+        GameObject enemyGO = MonsterFactory.Instance.SpawnEnemy(data, point.transform.position, Quaternion.identity);
         if (enemyGO == null) return false;
 
+        enemyGO.transform.SetParent(enemyParent);
         var instance = enemyGO.GetComponent<EnemyInstance>();
         if (instance == null)
             instance = enemyGO.AddComponent<EnemyInstance>();
@@ -88,11 +76,18 @@ public class EnemySpawner : MonoBehaviour
         instance.poolKey = data.id;
         instance.onDeath = OnEnemyDeath;
 
+        var ai = enemyGO.GetComponent<MonsterAI>();
+        if (ai != null)
+        {
+            ai.enemyData = data;
+            ai.isDead = false;
+        }
         activeEnemies.Add(instance);
         currentPoints += data.point;
 
         return true;
     }
+
 
     private void OnEnemyDeath(EnemyInstance instance)
     {
@@ -109,3 +104,5 @@ public class EnemySpawner : MonoBehaviour
         return active[Random.Range(0, active.Count)];
     }
 }
+
+

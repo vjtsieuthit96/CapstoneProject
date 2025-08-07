@@ -4,6 +4,10 @@ public class MonsterStats : MonoBehaviour
 {
     [SerializeField] private MonsterStatsSO statsSO;
 
+    public float baseHealth;
+    public float baseDefense;
+    public float baseDamage;
+
     [SerializeField]private float _currentHealth;
     [SerializeField]private float _currentDefense;
     [SerializeField]private float _currentDamage;
@@ -15,7 +19,10 @@ public class MonsterStats : MonoBehaviour
     private void Start()
     {
         SetDefaultStats();
-        _currentHealth = statsSO.GetMaxHealth();      
+        _currentHealth = statsSO.GetMaxHealth(); 
+        baseHealth = _currentHealth;
+        baseDefense = _currentDefense;
+        baseDamage = _currentDamage;
     }
    
     public float GetCurrentHealth() => _currentHealth;
@@ -25,7 +32,14 @@ public class MonsterStats : MonoBehaviour
     public void AddDefensePercent(float percent) => _currentDefense += percent/100 * _currentDefense;   
     public void AddDamagePercent(float percent) => _currentDamage += percent/100 * _currentDamage;
 
-    
+    public void ResetStatsToInitial()
+    {
+        _currentHealth = baseHealth;
+        _currentDefense = baseDefense;
+        _currentDamage = baseDamage;
+    }
+
+
     public void SetDefaultStats()
     {
         _currentDefense = statsSO.GetDefense();
