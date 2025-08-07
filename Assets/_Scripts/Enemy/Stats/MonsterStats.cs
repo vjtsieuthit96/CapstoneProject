@@ -31,6 +31,11 @@ public class MonsterStats : MonoBehaviour
     public float GetCurrentDefense() => _currentDefense;
     public void AddDefensePercent(float percent) => _currentDefense += percent/100 * _currentDefense;   
     public void AddDamagePercent(float percent) => _currentDamage += percent/100 * _currentDamage;
+    
+    public void UpdateHealth(float value)
+    {
+        _currentHealth = value;
+    }
 
     public void ResetStatsToInitial()
     {
