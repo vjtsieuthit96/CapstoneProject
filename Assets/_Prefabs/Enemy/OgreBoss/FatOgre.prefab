@@ -1571,6 +1571,9 @@ MonoBehaviour:
   skillManager: {fileID: 3770755493544155352}
   monsterAudio: {fileID: 866160836189269294}
   enemyType: FatOgre
+  isDead: 0
+  returnToPoolDelay: 6
+  enemyData: {fileID: 11400000, guid: 91fe585a942b3a94a80404a185dad65d, type: 2}
 --- !u!114 &6380886350549213172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,6 +1587,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsSO: {fileID: 11400000, guid: 205d93fd7f3edc14da4e904c0eea1fa6, type: 2}
+  baseHealth: 0
+  baseDefense: 0
+  baseDamage: 0
   _currentHealth: 0
   _currentDefense: 0
   _currentDamage: 0
@@ -1855,6 +1861,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolKey: 
+  monsterAI: {fileID: 0}
+  stats: {fileID: 0}
 --- !u!1 &4319387390764636497
 GameObject:
   m_ObjectHideFlags: 0
