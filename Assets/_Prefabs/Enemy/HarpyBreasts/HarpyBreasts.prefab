@@ -474,6 +474,9 @@ MonoBehaviour:
   skillManager: {fileID: 4177331161201610049}
   monsterAudio: {fileID: 7973936021140199648}
   enemyType: Harpy
+  isDead: 0
+  returnToPoolDelay: 6
+  enemyData: {fileID: 11400000, guid: 6d912300e3bbf814d92612813ca61fcb, type: 2}
   player: {fileID: 0}
   catchPoint: {fileID: 7068927139581022095}
   catchRadius: 3.5
@@ -493,6 +496,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsSO: {fileID: 11400000, guid: 7f148b131c390094b8dfb304a8f9355c, type: 2}
+  baseHealth: 0
+  baseDefense: 0
+  baseDamage: 0
   _currentHealth: 0
   _currentDefense: 0
   _currentDamage: 0
@@ -779,6 +785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolKey: 
+  monsterAI: {fileID: 0}
+  stats: {fileID: 0}
 --- !u!1 &1634105921796645190
 GameObject:
   m_ObjectHideFlags: 0

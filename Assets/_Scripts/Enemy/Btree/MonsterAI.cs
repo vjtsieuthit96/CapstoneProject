@@ -57,7 +57,7 @@ public abstract class MonsterAI : MonoBehaviour
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
         itemDropper = GetComponent<ItemDropper>();
-        enemyData = GetComponent<EnemyData>();
+        //enemyData = GetComponent<EnemyData>();
 
     }
     protected virtual void Update()
