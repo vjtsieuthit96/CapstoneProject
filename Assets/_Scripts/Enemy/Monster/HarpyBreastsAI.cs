@@ -30,7 +30,7 @@ public class HarpyBreastsAI : MonsterAI
     protected override void Start()
     {
         base.Start();
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>();    
         Audio = GetComponent<MonsterAudio>();
         RepeatEvaluateBehaviorTree(0f, 1f);
         player = GameObject.FindGameObjectWithTag("Player");
@@ -48,8 +48,9 @@ public class HarpyBreastsAI : MonsterAI
         Landing();
         AdjustFlyHeight();
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         rb.isKinematic = false;
     }
 

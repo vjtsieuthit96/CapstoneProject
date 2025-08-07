@@ -65,7 +65,7 @@ public abstract class MonsterAI : MonoBehaviour
         GroundLocomotion();
         Die();
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         isDead = false;
         isHit = false;
@@ -78,6 +78,7 @@ public abstract class MonsterAI : MonoBehaviour
         lastAttacker = null;
         isInCombat = false;
         hasRetreat = false;
+        monsterStats.ResetStatsToInitial();
     }
 
     public void Die()
