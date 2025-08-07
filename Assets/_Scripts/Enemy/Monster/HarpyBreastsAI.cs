@@ -23,6 +23,9 @@ public class HarpyBreastsAI : MonsterAI
     private float monsterHeight;   
     private float riseVelocity = 0f;
     private float fallVelocity = 0f;
+    private float maxCatchDuration;
+    private float catchTimer;
+    public float CatchTimer => catchTimer;
     private Rigidbody rb;
     private MonsterAudio Audio;
 
@@ -47,6 +50,7 @@ public class HarpyBreastsAI : MonsterAI
         else {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false); }      
         Landing();
         AdjustFlyHeight();
+        StartCatchTimer();
     }
     protected override void OnEnable()
     {
@@ -60,13 +64,23 @@ public class HarpyBreastsAI : MonsterAI
         {
         new CatchPreyNode(this, monsterAgent), 
 
-        new Sequence(new List<Node>
-        {
-            new CheckPlayerInFOVNode(this),            
-        }),
+            new Sequence(new List<Node>
+            {
+                new CheckPlayerInFOVNode(this),
+                new CatchPreyNode(this, monsterAgent)
+            }),
         new PatrolNode(this, monsterAgent)
         });
-    }    
+    }
+
+    private void StartCatchTimer()
+    {
+        if (isCatch)
+        {
+            catchTimer -= Time.deltaTime;
+            Debug.Log($"Catch Timer: {catchTimer}");
+        }        
+    }
 
     private void AdjustFlyHeight()
     {
@@ -125,8 +139,9 @@ public class HarpyBreastsAI : MonsterAI
         {
             if (hit.CompareTag("Player"))
             {
-                isCatch = true;
-
+                isCatch = true;       
+                maxCatchDuration = Random.Range(15f, 20f);
+                catchTimer = maxCatchDuration;
                 // Di chuyển player đến điểm bắt
                 hit.transform.position = catchPoint.position;
 
@@ -148,6 +163,7 @@ public class HarpyBreastsAI : MonsterAI
         {            
             Destroy(joint);            
             isCatch = false;
+            catchTimer = 0f;
             SetAnimatorParameter(MonsterAnimatorHash.CatchedHash,false);
         }    
     }   

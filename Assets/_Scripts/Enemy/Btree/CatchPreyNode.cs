@@ -27,6 +27,7 @@ public class CatchPreyNode : Node
         this.agent = agent;    
     }
 
+
     public override NodeState Evaluate()
     {
         if (!monster.IsInCombat())
@@ -65,7 +66,7 @@ public class CatchPreyNode : Node
                 }
                 return NodeState.RUNNING;
 
-            case CatchState.Catching:
+            case CatchState.Catching:     
                 if (monster.IsCatch())
                 {
                    retreatTarget = GetRandomRetreatPosition();
@@ -86,10 +87,9 @@ public class CatchPreyNode : Node
             case CatchState.Retreating:
                 agent.SetDestination(retreatTarget);
                 Vector3 retreatPosXZ = new Vector3(retreatTarget.x, 0f, retreatTarget.z);
-                float distanceToRetreat = Vector3.Distance(monsterPosXZ, retreatPosXZ);
-
-                if (distanceToRetreat < retreatTargetReachThreshold)
-                {                    
+                float distanceToRetreat = Vector3.Distance(monsterPosXZ, retreatPosXZ);           
+                if (distanceToRetreat < retreatTargetReachThreshold || monster.CatchTimer <=0)
+                {
                     monster.SetAnimatorParameter(MonsterAnimatorHash.ReleaseHash, null);
                     currentState = CatchState.Hovering;
                     hoverTime = Random.Range(0, 0.2f);
