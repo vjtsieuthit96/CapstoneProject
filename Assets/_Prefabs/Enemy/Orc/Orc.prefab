@@ -699,6 +699,9 @@ MonoBehaviour:
   skillManager: {fileID: 7296942623870602421}
   monsterAudio: {fileID: 680867627703430608}
   enemyType: Orc
+  isDead: 0
+  returnToPoolDelay: 6
+  enemyData: {fileID: 11400000, guid: 07359254e37658749bc5b997654593ed, type: 2}
 --- !u!114 &5622012270302772746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,6 +715,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsSO: {fileID: 11400000, guid: e1970c4982b569a468883cff98f11274, type: 2}
+  baseHealth: 0
+  baseDefense: 0
+  baseDamage: 0
   _currentHealth: 0
   _currentDefense: 0
   _currentDamage: 0
@@ -952,6 +958,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolKey: 
+  monsterAI: {fileID: 0}
+  stats: {fileID: 0}
 --- !u!1 &2469267080579021218
 GameObject:
   m_ObjectHideFlags: 0
