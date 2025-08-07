@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f14303f1d1d9247b71f26c270fd75f, type: 3}
   m_Name: ItemDropCollection
   m_EditorClassIdentifier: 
-  overallDropChance: 0.3
+  overallDropChance: 0.1
   possibleDrops:
   - itemPrefab: {fileID: 2012104641230161445, guid: b8e2211e71101ad4b89125c8c0e45367, type: 3}
-    dropRate: 0.15
+    dropRate: 0.1
   - itemPrefab: {fileID: 2012104641230161445, guid: e2130a3469928c342bbbd3231d3ff27e, type: 3}
-    dropRate: 0.08
+    dropRate: 0.03
   - itemPrefab: {fileID: 2012104641230161445, guid: bd994df077c1aca469b663aa6d678e76, type: 3}
-    dropRate: 0.3
+    dropRate: 0.1
   - itemPrefab: {fileID: 2012104641230161445, guid: 5f250d60b35ee9443804aba586613ac0, type: 3}
-    dropRate: 0.4
+    dropRate: 0.1
