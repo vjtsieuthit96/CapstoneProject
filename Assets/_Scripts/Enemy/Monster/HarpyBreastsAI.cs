@@ -77,8 +77,7 @@ public class HarpyBreastsAI : MonsterAI
     {
         if (isCatch)
         {
-            catchTimer -= Time.deltaTime;
-            Debug.Log($"Catch Timer: {catchTimer}");
+            catchTimer -= Time.deltaTime;        
         }        
     }
 
