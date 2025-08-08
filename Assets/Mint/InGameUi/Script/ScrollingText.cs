@@ -10,6 +10,11 @@ public class ScrollingText : MonoBehaviour
     [SerializeField] private float scrollSpeed = 0.0f;
     private int currentDisplayText = 0;
     private string[] textInfo;
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        textMeshPro.text = "";
+    }
     public void ActivateText(string text)
     {
         StopAllCoroutines();
