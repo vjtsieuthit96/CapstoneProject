@@ -4,11 +4,12 @@ using UnityEngine;
 public class CameraControler : MonoBehaviour
 {
     public vThirdPersonInput input;
+    public Animator animator;
 
     private void Awake()
     {
-        input.SetLockAllInput(true);
-        input.SetLockCameraInput(true);
+        //input.SetLockAllInput(true);
+        //input.SetLockCameraInput(true);
 
     }
 
@@ -16,6 +17,6 @@ public class CameraControler : MonoBehaviour
     {
         input.SetLockAllInput(false);
         input.SetLockCameraInput(false);
-        this.gameObject.SetActive(false);
+        animator.enabled = false;
     }    
 }

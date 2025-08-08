@@ -27,7 +27,6 @@ public class PatrolNode : Node
 
         if (monster.GetBoolAnimatorParameter(MonsterAnimatorHash.isBattleHash))
         {
-            Debug.Log("Dừng tuần tra! Chuyển sang trạng thái chiến đấu.");
             return NodeState.FAILURE;
         }
 
@@ -44,7 +43,6 @@ public class PatrolNode : Node
         // Kiểm tra nếu không có đường đi hợp lệ
         if (!agent.hasPath || agent.pathStatus != NavMeshPathStatus.PathComplete)
         {
-            Debug.Log("Không có đường đi hợp lệ, đổi mục tiêu tuần tra.");
             SetNewPatrolTarget();
         }
 
@@ -54,7 +52,6 @@ public class PatrolNode : Node
             stuckTimer += Time.deltaTime;
             if (stuckTimer > 3.5f)
             {
-                Debug.Log("Agent bị kẹt, đổi mục tiêu. " + stuckTimer);
                 SetNewPatrolTarget();
                 stuckTimer = 0f;
             }
