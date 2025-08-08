@@ -96,8 +96,15 @@ public class BossHealthBar : MonoBehaviour
         if (healthSlider)
         {
             healthSlider.minValue = 0;
-            healthSlider.maxValue = 1;
-            healthSlider.value = 0;
+            if (monsterStats)
+            {
+                healthSlider.maxValue = monsterStats.GetMaxHealth();
+            }
+            else
+            {
+                healthSlider.maxValue = 1;
+            }
+                healthSlider.value = 0;
         }    
        StartCoroutine(HealthBarSliderStart());
        StartCoroutine(HealthBarIconStart());
