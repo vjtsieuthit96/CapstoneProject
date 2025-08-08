@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     public Transform enemyParent;
 
     private List<EnemyInstance> activeEnemies = new List<EnemyInstance>();
-    private int currentPoints = 0;
+    public int currentPoints = 0;
 
     private void Start()
     {

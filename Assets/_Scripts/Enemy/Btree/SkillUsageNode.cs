@@ -30,12 +30,10 @@ public class SkillUsageNode : Node
             if (distanceToPlayer <= skillRange && skillManager.CanUseSkill(skill))
             {
                 skillManager.UseSkill(skill);
-                Debug.Log($"Dùng Skill {skill}");
                 return NodeState.RUNNING;
             }
         }
 
-        Debug.Log("Tất cả Skill đang hồi hoặc ngoài phạm vi.");
         return NodeState.FAILURE;
     }
 }

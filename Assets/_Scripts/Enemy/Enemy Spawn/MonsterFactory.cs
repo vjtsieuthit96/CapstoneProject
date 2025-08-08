@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class MonsterFactory : MonoBehaviour, IMonsterFactory
@@ -7,6 +7,7 @@ public class MonsterFactory : MonoBehaviour, IMonsterFactory
     public static MonsterFactory Instance { get; private set; }
 
     public Transform monsterContainer;
+    public EnemySpawner ES;
 
     private void Awake()
     {
@@ -34,7 +35,7 @@ public class MonsterFactory : MonoBehaviour, IMonsterFactory
             Debug.LogError($"Pool not found for enemy: {data.id}");
             return null;
         }
-
+        Debug.Log("Đã spawn ra enemy mới!");
         return _pools[data.id].Get(position, rotation);
     }
 
@@ -46,7 +47,8 @@ public class MonsterFactory : MonoBehaviour, IMonsterFactory
             Destroy(enemy);
             return;
         }
-
+        ES.currentPoints -= data.point;
+        Debug.Log("Enemy đã chết!");
         _pools[data.id].Return(enemy);
     }
 }
