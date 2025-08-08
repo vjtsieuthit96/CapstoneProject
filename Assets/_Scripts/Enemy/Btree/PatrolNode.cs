@@ -52,9 +52,9 @@ public class PatrolNode : Node
         if (Vector3.Distance(monster.transform.position, lastPosition) < 0.1f)
         {
             stuckTimer += Time.deltaTime;
-            if (stuckTimer > 2f)
+            if (stuckTimer > 3.5f)
             {
-                Debug.Log("Agent bị kẹt, đổi mục tiêu.");
+                Debug.Log("Agent bị kẹt, đổi mục tiêu. " + stuckTimer);
                 SetNewPatrolTarget();
                 stuckTimer = 0f;
             }
