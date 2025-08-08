@@ -38,12 +38,16 @@ public abstract class MonsterAI : MonoBehaviour
     private ItemDropper itemDropper;
 
     private bool hasRetreat = false;
-    protected bool isDead = false;
+    [SerializeField] public bool isDead = false;
     private bool isHit = false;
     private bool isFreeze = false;
     private bool isSlowDown = false;
     private bool isShocked = false;
     private bool isInCombat;
+
+    [SerializeField] private float returnToPoolDelay = 6f;
+
+    public EnemyData enemyData;
     protected virtual void Start()
     {
         enemyType = monsterStats.enemyType;
@@ -53,12 +57,28 @@ public abstract class MonsterAI : MonoBehaviour
         _patrolCenter = transform.position;
         behaviorTree = CreateBehaviorTree();
         itemDropper = GetComponent<ItemDropper>();
+        //enemyData = GetComponent<EnemyData>();
 
     }
     protected virtual void Update()
     {
         GroundLocomotion();
         Die();
+    }
+    protected virtual void OnEnable()
+    {
+        isDead = false;
+        isHit = false;
+        isFreeze = false;
+        isSlowDown = false;
+        isShocked = false;
+        monsterAgent.isStopped = false;
+        monsterAnimator.speed = 1f;
+        damageLog.Clear();
+        lastAttacker = null;
+        isInCombat = false;
+        hasRetreat = false;
+        monsterStats.ResetStatsToInitial();
     }
 
     public void Die()
@@ -93,8 +113,16 @@ public abstract class MonsterAI : MonoBehaviour
             {
                 Debug.Log("Enemy died with unknown killer.");
             }
+            StartCoroutine(ReturnToPoolAfterDelay());
         }
     }
+
+    private IEnumerator ReturnToPoolAfterDelay()
+    {
+        yield return new WaitForSeconds(returnToPoolDelay);
+        MonsterFactory.Instance.ReturnEnemy(enemyData, gameObject);
+    }
+
     public void RegisterDamage(GameObject attacker, float damage)
     {
         if (attacker == null || isDead) return;

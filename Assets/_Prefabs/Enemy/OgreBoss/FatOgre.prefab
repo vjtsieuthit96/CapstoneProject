@@ -1489,6 +1489,7 @@ GameObject:
   - component: {fileID: 7564074496278537202}
   - component: {fileID: 4081185204654997941}
   - component: {fileID: 6118022797313840957}
+  - component: {fileID: -4371610440102964639}
   m_Layer: 0
   m_Name: FatOgre
   m_TagString: Enemy
@@ -1570,6 +1571,9 @@ MonoBehaviour:
   skillManager: {fileID: 3770755493544155352}
   monsterAudio: {fileID: 866160836189269294}
   enemyType: FatOgre
+  isDead: 0
+  returnToPoolDelay: 6
+  enemyData: {fileID: 11400000, guid: 91fe585a942b3a94a80404a185dad65d, type: 2}
 --- !u!114 &6380886350549213172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1583,6 +1587,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsSO: {fileID: 11400000, guid: 205d93fd7f3edc14da4e904c0eea1fa6, type: 2}
+  baseHealth: 0
+  baseDefense: 0
+  baseDamage: 0
   _currentHealth: 0
   _currentDefense: 0
   _currentDamage: 0
@@ -1841,6 +1848,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropTable: {fileID: 11400000, guid: 7fa3e5550b8dc884c9e943ded9df6bf2, type: 2}
+--- !u!114 &-4371610440102964639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259175055369822327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28401666bb5742444a32fae68f5f1db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolKey: 
+  monsterAI: {fileID: 0}
+  stats: {fileID: 0}
 --- !u!1 &4319387390764636497
 GameObject:
   m_ObjectHideFlags: 0

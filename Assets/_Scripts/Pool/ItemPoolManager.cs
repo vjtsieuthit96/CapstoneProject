@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemPoolManager : MonoBehaviour
 {
     public static ItemPoolManager Instance;
-
+    public Transform ObjectParent;
     [System.Serializable]
     public class Pool
     {
@@ -20,12 +20,18 @@ public class ItemPoolManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
+        if (ObjectParent == null)
+        {
+            GameObject containerGO = new GameObject("ItemPoolContainer");
+            ObjectParent = containerGO.transform;
+        }
+
         foreach (var pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, ObjectParent);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

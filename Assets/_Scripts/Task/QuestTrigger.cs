@@ -19,12 +19,19 @@ public class QuestTrigger : MonoBehaviour
         triggered = true;
         input.SetLockAllInput(true);
         Control.StopCharacter();
-        audioSource.clip = questData.questAudio;
-        audioSource.Play();
+
+        float delay = 0f;
+
+        if (questData.questAudio != null && audioSource != null)
+        {
+            audioSource.clip = questData.questAudio;
+            audioSource.Play();
+            delay = questData.questAudio.length;
+        }
 
         QuestManager.Instance.ReceiveQuest(questData);
 
-        StartCoroutine(WaitAndUnlock(audioSource.clip.length, input));
+        StartCoroutine(WaitAndUnlock(delay, input));
     }
 
 

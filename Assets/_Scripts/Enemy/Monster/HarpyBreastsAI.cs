@@ -23,6 +23,9 @@ public class HarpyBreastsAI : MonsterAI
     private float monsterHeight;   
     private float riseVelocity = 0f;
     private float fallVelocity = 0f;
+    private float maxCatchDuration;
+    private float catchTimer;
+    public float CatchTimer => catchTimer;
     private Rigidbody rb;
     private MonsterAudio Audio;
 
@@ -30,7 +33,7 @@ public class HarpyBreastsAI : MonsterAI
     protected override void Start()
     {
         base.Start();
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>();    
         Audio = GetComponent<MonsterAudio>();
         RepeatEvaluateBehaviorTree(0f, 1f);
         player = GameObject.FindGameObjectWithTag("Player");
@@ -47,9 +50,11 @@ public class HarpyBreastsAI : MonsterAI
         else {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false); }      
         Landing();
         AdjustFlyHeight();
+        StartCatchTimer();
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         rb.isKinematic = false;
     }
 
@@ -59,13 +64,22 @@ public class HarpyBreastsAI : MonsterAI
         {
         new CatchPreyNode(this, monsterAgent), 
 
-        new Sequence(new List<Node>
-        {
-            new CheckPlayerInFOVNode(this),            
-        }),
+            new Sequence(new List<Node>
+            {
+                new CheckPlayerInFOVNode(this),
+                new CatchPreyNode(this, monsterAgent)
+            }),
         new PatrolNode(this, monsterAgent)
         });
-    }    
+    }
+
+    private void StartCatchTimer()
+    {
+        if (isCatch)
+        {
+            catchTimer -= Time.deltaTime;        
+        }        
+    }
 
     private void AdjustFlyHeight()
     {
@@ -124,8 +138,9 @@ public class HarpyBreastsAI : MonsterAI
         {
             if (hit.CompareTag("Player"))
             {
-                isCatch = true;
-
+                isCatch = true;       
+                maxCatchDuration = Random.Range(15f, 20f);
+                catchTimer = maxCatchDuration;
                 // Di chuyển player đến điểm bắt
                 hit.transform.position = catchPoint.position;
 
@@ -147,6 +162,7 @@ public class HarpyBreastsAI : MonsterAI
         {            
             Destroy(joint);            
             isCatch = false;
+            catchTimer = 0f;
             SetAnimatorParameter(MonsterAnimatorHash.CatchedHash,false);
         }    
     }   
