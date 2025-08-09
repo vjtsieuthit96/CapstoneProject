@@ -82,16 +82,25 @@ public class ItemEffectApplier : MonoBehaviour
                 break;
             case ItemEffectType.ChangeToIce:
                 stats.ChangeToIce();
+                stats.TurnOnElement();
                 PlayerEffect(ChangeToIce);
                 break;
             case ItemEffectType.ChangeToPoison:
                 stats.ChangeToPoison();
+                stats.TurnOnElement();
                 PlayerEffect(ChangeToPoison);
                 break;
             case ItemEffectType.ChangeToEletric:
                 stats.ChangeToEletric();
+                stats.TurnOnElement();
                 PlayerEffect(ChangeToEletric);
                 break;
+            case ItemEffectType.Explosion:
+                stats.ChangeToExplosion();
+                PlayerEffect(berserkColor);
+                break;
+
+
         }
 
         yield return new WaitForSeconds(effect.duration);
@@ -127,6 +136,18 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.PlayerShootingSpeed *= 1f + effect.value;
                 stats.ReloadSpeed /= 1f + effect.value;
                 stats.updateFireRate(1/(1f + effect.value));
+                break;
+            case ItemEffectType.Explosion:
+                stats.ChangeToNone();
+                break;
+            case ItemEffectType.ChangeToIce:;
+                stats.TurnOffElement();
+                break;
+            case ItemEffectType.ChangeToPoison:
+                stats.TurnOffElement();
+                break;
+            case ItemEffectType.ChangeToEletric:
+                stats.TurnOffElement();
                 break;
         }
 

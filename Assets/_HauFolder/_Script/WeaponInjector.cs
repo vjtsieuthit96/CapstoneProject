@@ -55,6 +55,8 @@ public class WeaponInjector : MonoBehaviour
             characterConfigurator.CurrentBullet = weapon.ammoCount;
             characterConfigurator.CurrentGunClipSize = weapon.clipSize;
             weapon.GunElement = characterConfigurator.CurrentElement;
+            weapon.BulletType = characterConfigurator.Shottype;
+          
 
             weapon.PlayerDamageMultiplier = (weapon.GunType == GunType.ShortGun)
                 ? characterConfigurator.PlayerDamageMultiplierShortgun
