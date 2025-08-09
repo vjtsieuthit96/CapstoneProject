@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f14303f1d1d9247b71f26c270fd75f, type: 3}
   m_Name: ItemDropCollection
   m_EditorClassIdentifier: 
-  overallDropChance: 0.4
+  overallDropChance: 0.5
   possibleDrops:
   - itemPrefab: {fileID: 2012104641230161445, guid: b8e2211e71101ad4b89125c8c0e45367, type: 3}
     dropRate: 0.1
@@ -26,3 +26,5 @@ MonoBehaviour:
     dropRate: 0.5
   - itemPrefab: {fileID: 2012104641230161445, guid: 5f1d7a36b1e7a4343a8265fbb5d96414, type: 3}
     dropRate: 0.25
+  - itemPrefab: {fileID: 2012104641230161445, guid: 03ab7b66d9d61bd479439eef1c429e1a, type: 3}
+    dropRate: 0.3
