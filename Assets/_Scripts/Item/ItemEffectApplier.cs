@@ -7,6 +7,8 @@ public class ItemEffectApplier : MonoBehaviour
     //Effect 
     [SerializeField] private ParticleSystem[] EffectParticle;
     [SerializeField] private Color survivalColor = Color.green;
+    [SerializeField] private Color PlusHealth = Color.green;
+
     [SerializeField] private Color dopingColor = Color.blue;
     [SerializeField] private Color adrenalineColor = Color.yellow;
     [SerializeField] private Color berserkColor = Color.red;
@@ -68,6 +70,10 @@ public class ItemEffectApplier : MonoBehaviour
                 stats.PlayerShootingSpeed /= 1f + effect.value;
                 stats.ReloadSpeed *= 1f + effect.value;
                 stats.updateFireRate(1f + effect.value);
+                break;
+            case ItemEffectType.PlusHealth:
+                stats.controller.AddHealth(effect.value * 100);
+                PlayerEffect(PlusHealth);
                 break;
         }
 

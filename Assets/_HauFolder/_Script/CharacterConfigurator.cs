@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterConfigurator : MonoBehaviour
 {
     public CharacterStats stats;
-    private vThirdPersonController controller;
+    public vThirdPersonController controller;
     private Animator animator;
     public vHUDController hudController;
     public WeaponInjector weaponInjector;
@@ -269,6 +269,7 @@ public class CharacterConfigurator : MonoBehaviour
         controller.maxHealth = PlayerMaxHealth;
         controller.maxShield = PlayerMaxAmour;
         controller.healthRecovery = HealthRecovery;
+        PlayerCurrentHealth = controller.currentHealth;
 
         // Animator
         if (animator != null)

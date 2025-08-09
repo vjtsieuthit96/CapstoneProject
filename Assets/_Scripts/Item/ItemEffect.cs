@@ -15,5 +15,6 @@ public enum ItemEffectType
     SurvivalMode,
     AdrenalineRush,
     Doping,
-    BerserkState
+    BerserkState,
+    PlusHealth
 }
