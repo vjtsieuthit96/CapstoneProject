@@ -16,5 +16,8 @@ public enum ItemEffectType
     AdrenalineRush,
     Doping,
     BerserkState,
-    PlusHealth
+    PlusHealth,
+    ChangeToPoison,
+    ChangeToIce,
+    ChangeToEletric,
 }

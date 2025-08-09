@@ -12,6 +12,11 @@ public class ItemEffectApplier : MonoBehaviour
     [SerializeField] private Color dopingColor = Color.blue;
     [SerializeField] private Color adrenalineColor = Color.yellow;
     [SerializeField] private Color berserkColor = Color.red;
+
+    [SerializeField] private Color ChangeToIce = Color.blue;
+    [SerializeField] private Color ChangeToPoison = Color.green;
+    [SerializeField] private Color ChangeToEletric = Color.blue;
+
     private void Awake()
     {
         stats = GetComponent<CharacterConfigurator>();
@@ -74,6 +79,18 @@ public class ItemEffectApplier : MonoBehaviour
             case ItemEffectType.PlusHealth:
                 stats.controller.AddHealth(effect.value * 100);
                 PlayerEffect(PlusHealth);
+                break;
+            case ItemEffectType.ChangeToIce:
+                stats.ChangeToIce();
+                PlayerEffect(ChangeToIce);
+                break;
+            case ItemEffectType.ChangeToPoison:
+                stats.ChangeToPoison();
+                PlayerEffect(ChangeToPoison);
+                break;
+            case ItemEffectType.ChangeToEletric:
+                stats.ChangeToEletric();
+                PlayerEffect(ChangeToEletric);
                 break;
         }
 
