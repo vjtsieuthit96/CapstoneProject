@@ -166,6 +166,10 @@ public abstract class MonsterAI : MonoBehaviour
         monsterStats.TakeDamage(amount);
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
+    public void ApplyAttackTarget()
+    {
+        GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
+    }
     public void FreezyEnemy(float duration)
     {
         if (!isFreeze && !isDead)
