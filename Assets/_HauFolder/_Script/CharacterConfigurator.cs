@@ -5,11 +5,12 @@ using UnityEngine;
 public class CharacterConfigurator : MonoBehaviour
 {
     public CharacterStats stats;
-    private vThirdPersonController controller;
+    public vThirdPersonController controller;
     private Animator animator;
     public vHUDController hudController;
     public WeaponInjector weaponInjector;
     public vShooterMeleeInput MeleeInput;
+    public Element CurrentElement;
 
     #region Dữ Liệu Clone Từ Character Stats ra dữ liệu RunTime
     [Header("Movement Speeds")]
@@ -144,6 +145,20 @@ public class CharacterConfigurator : MonoBehaviour
         //    SkillTreePanel.SetActive(isOn);
         //}
     }
+
+    public void ChangeToIce()
+    {
+        CurrentElement = Element.Frozen;
+    }    
+    public void ChangeToPoison()
+    {
+        CurrentElement = Element.Poison;
+    }    
+
+    public void ChangeToEletric()
+    {
+        CurrentElement = Element.Electric;
+    }    
     #endregion
     public void TakeDamage(float damageValue)
     {
@@ -169,6 +184,7 @@ public class CharacterConfigurator : MonoBehaviour
             controller.TakeDamage(new vDamage(TrueDamage));
         }
     }
+
     #region Clone Dữ Liệu ra
     public void CopyFrom(CharacterStats other)
     {
@@ -269,6 +285,7 @@ public class CharacterConfigurator : MonoBehaviour
         controller.maxHealth = PlayerMaxHealth;
         controller.maxShield = PlayerMaxAmour;
         controller.healthRecovery = HealthRecovery;
+        PlayerCurrentHealth = controller.currentHealth;
 
         // Animator
         if (animator != null)
@@ -291,4 +308,5 @@ public class CharacterConfigurator : MonoBehaviour
         weaponInjector.addBullet(bullet);
     }
 }
+
 

@@ -44,6 +44,7 @@ public class WeaponInjector : MonoBehaviour
             weapon.PlayerElementClass = characterConfigurator.PlayerElementClass;
             weapon.reloadTime = characterConfigurator.ReloadSpeed;
             weapon.shootFrequency *= characterConfigurator.PlayerFireRate;
+            
 
             if (weapon.GunType == GunType.LongGun)
                 weapon.clipSize = characterConfigurator.LongGunClipSize;
@@ -53,6 +54,7 @@ public class WeaponInjector : MonoBehaviour
             characterConfigurator.GunType = weapon.GunType;
             characterConfigurator.CurrentBullet = weapon.ammoCount;
             characterConfigurator.CurrentGunClipSize = weapon.clipSize;
+            weapon.GunElement = characterConfigurator.CurrentElement;
 
             weapon.PlayerDamageMultiplier = (weapon.GunType == GunType.ShortGun)
                 ? characterConfigurator.PlayerDamageMultiplierShortgun
