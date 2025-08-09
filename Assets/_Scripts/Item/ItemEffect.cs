@@ -20,4 +20,5 @@ public enum ItemEffectType
     ChangeToPoison,
     ChangeToIce,
     ChangeToEletric,
+    Explosion
 }

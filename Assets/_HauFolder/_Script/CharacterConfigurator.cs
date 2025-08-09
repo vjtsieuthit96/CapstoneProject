@@ -11,6 +11,7 @@ public class CharacterConfigurator : MonoBehaviour
     public WeaponInjector weaponInjector;
     public vShooterMeleeInput MeleeInput;
     public Element CurrentElement;
+    public BulletType Shottype;
 
     #region Dữ Liệu Clone Từ Character Stats ra dữ liệu RunTime
     [Header("Movement Speeds")]
@@ -101,7 +102,7 @@ public class CharacterConfigurator : MonoBehaviour
         }
         controller.currentShield = controller.maxShield;
         MeleeInput = GetComponent<vShooterMeleeInput>();
-
+        Shottype = BulletType.None;
     }
     int A = 0;
     
@@ -159,6 +160,25 @@ public class CharacterConfigurator : MonoBehaviour
     {
         CurrentElement = Element.Electric;
     }    
+
+    public void ChangeToExplosion()
+    {
+        Shottype = BulletType.Explosion;
+        isExplosive = true;
+    }
+    public void TurnOnElement()
+    {
+        isEffectMode = true;
+    }
+    public void TurnOffElement()
+    {
+        isEffectMode = false;
+    }
+    public void ChangeToNone()
+    {
+        Shottype = BulletType.None;
+        isExplosive = false;
+    }
     #endregion
     public void TakeDamage(float damageValue)
     {
