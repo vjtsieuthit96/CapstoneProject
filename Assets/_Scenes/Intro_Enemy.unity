@@ -726,6 +726,8 @@ PlayableDirector:
     value: {fileID: 1931659656}
   - key: {fileID: 6757937512004707323, guid: dd65a4acdfcaabf4ca2e40be5559bbf4, type: 2}
     value: {fileID: 1645139097}
+  - key: {fileID: -1603221835471836110, guid: dd65a4acdfcaabf4ca2e40be5559bbf4, type: 2}
+    value: {fileID: 1390881211}
   m_ExposedReferences:
     m_References: []
 --- !u!1001 &463597862
@@ -5411,6 +5413,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3778034857689852168, guid: c68c3760a7f483e4a8a945fca9ee9b5a, type: 3}
   m_PrefabInstance: {fileID: 1382209630}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1390881208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1390881209}
+  - component: {fileID: 1390881210}
+  - component: {fileID: 1390881211}
+  m_Layer: 0
+  m_Name: ChangeScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1390881209
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390881208}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.8, y: 0.9, z: 65.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1390881210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390881208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739408b4a4b2cf84bbe812c258a31b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneIndex: 1
+  isChangeMusic: 1
+--- !u!114 &1390881211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390881208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: bc6f2fd884f7ed34eb00cf91e82a2a87, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1390881210}
+          m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+          m_MethodName: LoadScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &1531302484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8304,3 +8383,4 @@ SceneRoots:
   - {fileID: 1957148661}
   - {fileID: 1642501094}
   - {fileID: 1915379412}
+  - {fileID: 1390881209}
