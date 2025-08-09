@@ -47,17 +47,21 @@ public class HarpyBreastsAI : MonsterAI
     {
         base.Update();        
         if (isFlying) {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, true);}
-        else {SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false); }      
+        else
+        {
+            SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false); 
+        }      
         Landing();
         AdjustFlyHeight();
         StartCatchTimer();
+        Debug.Log(isFalling);
     }
     protected override void OnEnable()
     {
         base.OnEnable();     
-        isFlying = false;
-        isCatch = false;     
-        isFalling = false;
+        isCatch = false;    
+        rb.isKinematic = false;
+        
         GetBehaviorNode<CatchPreyNode>().OnRestart();
     }
 
@@ -113,6 +117,7 @@ public class HarpyBreastsAI : MonsterAI
     {
         monsterAgent.baseOffset = 0f;
         rb.isKinematic = true;
+        isFlying = false;
     }
 
     public void SetIsFalling()
