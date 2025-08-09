@@ -17,6 +17,13 @@ public class CheckPlayerInFOVNode : Node
         //Debug.Log("AI bị tấn công! Ghi nhớ kẻ địch.");
         AlertNearbyAllies();
     }
+    public void OnRestart()
+    {
+        lastSeenTime = float.MinValue; //  Reset thời gian thấy người chơi
+        lastAttackedTime = float.MinValue; //  Reset thời gian bị tấn công    
+        monsterAI.SetInCombat(false); //  Đặt AI về trạng thái không chiến đấu
+        monsterAI.SetAnimatorParameter(MonsterAnimatorHash.isBattleHash, false); //  Đặt Animator về trạng thái không chiến đấu
+    }
 
     public override NodeState Evaluate()
     {
