@@ -7,12 +7,19 @@ public class ScrollingText : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip typingSound;
+    [SerializeField] private float scrollSpeed = 0.0f;
     private int currentDisplayText = 0;
     private string[] textInfo;
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        textMeshPro.text = "";
+    }
     public void ActivateText(string text)
     {
         StopAllCoroutines();
-        audioSource.Stop();
+        if(audioSource)
+            audioSource.Stop();
         textMeshPro.text = "";
         StartCoroutine(AnimatedText(text));
     }
@@ -24,14 +31,27 @@ public class ScrollingText : MonoBehaviour
 
         int totalChars = textMeshPro.textInfo.characterCount;
         textMeshPro.maxVisibleCharacters = 0;
-        audioSource.clip = typingSound;
-        audioSource.Play();
+        if (audioSource && typingSound)
+        {
+            
+            audioSource.clip = typingSound;
+            audioSource.Play();
+        }
+       
         for (int i = 1; i <= totalChars; i++)
         {
             textMeshPro.maxVisibleCharacters = i;
-            yield return null;
+            if(scrollSpeed > 0.0f)
+            {
+                yield return new WaitForSeconds(scrollSpeed);
+            }
+            else
+            {
+                yield return null;
+            }
         }
-        audioSource.Stop();
+        if (audioSource)
+            audioSource.Stop();
     }
 
 }
