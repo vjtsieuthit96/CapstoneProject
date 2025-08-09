@@ -26,6 +26,11 @@ public class CatchPreyNode : Node
         this.player = monster.GetTarget();
         this.agent = agent;    
     }
+    public void OnRestart()
+    {
+        currentState = CatchState.Idle;
+        hoverTimer = 0f;        
+    }
 
 
     public override NodeState Evaluate()

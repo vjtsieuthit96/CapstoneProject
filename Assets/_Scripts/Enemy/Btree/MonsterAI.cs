@@ -79,6 +79,7 @@ public abstract class MonsterAI : MonoBehaviour
         isInCombat = false;
         hasRetreat = false;
         monsterStats.ResetStatsToInitial();
+        ApplyRestart();
     }
 
     public void Die()
@@ -165,6 +166,10 @@ public abstract class MonsterAI : MonoBehaviour
     {
         monsterStats.TakeDamage(amount);
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
+    }
+    public void ApplyRestart()
+    {
+        GetBehaviorNode<CheckPlayerInFOVNode>()?.OnRestart();
     }
     public void FreezyEnemy(float duration)
     {
