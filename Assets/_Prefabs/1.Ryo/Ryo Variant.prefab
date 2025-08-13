@@ -466,6 +466,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 101334065291044688, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 170569943872900580, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: unlockedState
       value: 0
@@ -557,6 +561,10 @@ PrefabInstance:
     - target: {fileID: 829249074381756724, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 1058969705323756149, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1070154055062073514, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_AnchorMax.y
@@ -882,6 +890,10 @@ PrefabInstance:
       propertyPath: boneSnappingList.Array.data[19].bone
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5861729287055466538, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6026366827869457021, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -964,7 +976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6414793314047791622, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: unlockedState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6672525632110962774, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1040,7 +1052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7530358280729337094, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7684378752896914159, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: unlockedState

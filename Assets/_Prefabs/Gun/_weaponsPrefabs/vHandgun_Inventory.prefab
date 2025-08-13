@@ -5479,6 +5479,10 @@ MonoBehaviour:
   - {fileID: 198134370209081628}
   - {fileID: 198768485228016028}
   - {fileID: 3697027677472478305}
+  electricColor: {r: 0, g: 0.4, b: 1, a: 1}
+  frozenColor: {r: 0.5, g: 0.8, b: 1, a: 1}
+  poisonColor: {r: 0, g: 0.6, b: 0.3, a: 1}
+  electricParticle: {fileID: 0}
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
@@ -5526,6 +5530,7 @@ MonoBehaviour:
   EletricDuration: 0
   PoisonDamagePercent: 0
   PoisonDuration: 0
+  Gunowner: {fileID: 0}
   isLeftWeapon: 0
   chargeWeapon: 0
   autoShotOnFinishCharge: 0
@@ -18925,13 +18930,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 192188}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5855285, y: 0.7736806, z: 0.1855272, w: -0.15541671}
-  m_LocalPosition: {x: -0.089, y: 0.002, z: -0.094}
+  m_LocalRotation: {x: 0.5146018, y: 0.44490838, z: 0.50609416, w: -0.5301984}
+  m_LocalPosition: {x: -0.095, y: -0.004, z: 0.042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 443350}
-  m_LocalEulerAnglesHint: {x: -152.025, y: 361.50702, z: -466.138}
+  m_LocalEulerAnglesHint: {x: -95.118, y: 213.39, z: -298.009}
 --- !u!1 &197910
 GameObject:
   m_ObjectHideFlags: 0
