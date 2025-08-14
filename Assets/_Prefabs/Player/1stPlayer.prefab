@@ -3027,6 +3027,8 @@ MonoBehaviour:
   - {fileID: 7602545313366606485}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &497883775953795559
 GameObject:
   m_ObjectHideFlags: 0
@@ -4645,6 +4647,8 @@ MonoBehaviour:
   - {fileID: 5669117600216456629}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &664253245706139508
 GameObject:
   m_ObjectHideFlags: 0
@@ -4817,6 +4821,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &683794555757229204
 GameObject:
   m_ObjectHideFlags: 0
@@ -5109,7 +5115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: 4d318a86d050fd149812f9c4d8ab7eb5, type: 2}
@@ -5142,6 +5148,8 @@ MonoBehaviour:
   - {fileID: 43070966235331343}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &747669849626347643
 GameObject:
   m_ObjectHideFlags: 0
@@ -10563,6 +10571,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &1381495085287317726
 GameObject:
   m_ObjectHideFlags: 0
@@ -11226,6 +11236,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &1480730074880605284
 GameObject:
   m_ObjectHideFlags: 0
@@ -13827,7 +13839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: e59d5ecc58f0f7e4993aecc247976bbf, type: 2}
@@ -13860,6 +13872,8 @@ MonoBehaviour:
   - {fileID: 6493205728579917107}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &1798949052215546155
 GameObject:
   m_ObjectHideFlags: 0
@@ -14210,9 +14224,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: a937d780589d0ae4dbcd5fe7d848662d, type: 2}
+  controller: {fileID: 0}
   hudController: {fileID: 5729956873097703344}
   weaponInjector: {fileID: 3151075227525451049}
   MeleeInput: {fileID: 8305026052352428771}
+  CurrentElement: 0
+  Shottype: 0
   walkSpeed: 0
   runSpeed: 0
   sprintSpeed: 0
@@ -15879,9 +15896,13 @@ MonoBehaviour:
   - {fileID: 3088251137679133696}
   - {fileID: 2612745289996918204}
   survivalColor: {r: 0, g: 1, b: 0.12941177, a: 1}
+  PlusHealth: {r: 0, g: 1, b: 0, a: 1}
   dopingColor: {r: 0, g: 0.7294118, b: 1, a: 1}
   adrenalineColor: {r: 1, g: 0.84313726, b: 0, a: 1}
   berserkColor: {r: 1, g: 0, b: 0.12156863, a: 1}
+  ChangeToIce: {r: 0, g: 0, b: 1, a: 1}
+  ChangeToPoison: {r: 0, g: 1, b: 0, a: 1}
+  ChangeToEletric: {r: 0, g: 0, b: 1, a: 1}
 --- !u!1 &1840727238878433245
 GameObject:
   m_ObjectHideFlags: 0
@@ -16847,6 +16868,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &1957839115102304785
 GameObject:
   m_ObjectHideFlags: 0
@@ -17018,6 +17041,8 @@ MonoBehaviour:
   - {fileID: 8175898762729212546}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &1960423146075804957
 GameObject:
   m_ObjectHideFlags: 0
@@ -20169,7 +20194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: cb99aa335ce4e1643b65b533f2081bdd, type: 2}
@@ -20202,6 +20227,8 @@ MonoBehaviour:
   - {fileID: 1130383574869252906}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &2345517849152683239
 GameObject:
   m_ObjectHideFlags: 0
@@ -24238,7 +24265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: 86b384ac9f76b5b4c91dfe297a5158e9, type: 2}
@@ -24271,6 +24298,8 @@ MonoBehaviour:
   - {fileID: 2627651045090063296}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &2817450192206022077
 GameObject:
   m_ObjectHideFlags: 0
@@ -31910,7 +31939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: 35cdd865b0c43b947976b8228b49689b, type: 2}
@@ -31943,6 +31972,8 @@ MonoBehaviour:
   - {fileID: 2572853625833222193}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &3970724539093657489
 GameObject:
   m_ObjectHideFlags: 0
@@ -35683,6 +35714,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &4460348032930776851
 GameObject:
   m_ObjectHideFlags: 0
@@ -36905,6 +36938,8 @@ MonoBehaviour:
   - {fileID: 120254189209799004}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &4593948773074359870
 GameObject:
   m_ObjectHideFlags: 0
@@ -40241,6 +40276,8 @@ MonoBehaviour:
   - {fileID: 439080731301602574}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &5000007736124790244
 GameObject:
   m_ObjectHideFlags: 0
@@ -43550,6 +43587,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &5351249238737534472
 GameObject:
   m_ObjectHideFlags: 0
@@ -44510,6 +44549,8 @@ MonoBehaviour:
   - {fileID: 8249588538933374286}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &5456209570077928892
 GameObject:
   m_ObjectHideFlags: 0
@@ -47269,6 +47310,8 @@ MonoBehaviour:
   - {fileID: 5356267461810211463}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &5695127026489641816
 GameObject:
   m_ObjectHideFlags: 0
@@ -50769,6 +50812,8 @@ MonoBehaviour:
   - {fileID: 4883644246429792921}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &6002349328381113125
 GameObject:
   m_ObjectHideFlags: 0
@@ -52577,6 +52622,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &6259760174875715075
 GameObject:
   m_ObjectHideFlags: 0
@@ -52822,6 +52869,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &6269262102843829355
 GameObject:
   m_ObjectHideFlags: 0
@@ -53215,6 +53264,8 @@ MonoBehaviour:
   - {fileID: 8187626052721048797}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &6348287991887706784
 GameObject:
   m_ObjectHideFlags: 0
@@ -55701,7 +55752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: a2dc488efe8b3414b9fa56a5d1faf746, type: 2}
@@ -55734,6 +55785,8 @@ MonoBehaviour:
   - {fileID: 6504397343199551812}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &6675374909372582616
 GameObject:
   m_ObjectHideFlags: 0
@@ -58951,6 +59004,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &7146882040303905256
 GameObject:
   m_ObjectHideFlags: 0
@@ -59122,6 +59177,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &7147252576396367649
 GameObject:
   m_ObjectHideFlags: 0
@@ -59580,6 +59637,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &7207020783358835435
 GameObject:
   m_ObjectHideFlags: 0
@@ -62940,7 +62999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: d3dccc6d2c578b949b1aaa5901800c19, type: 2}
@@ -62972,6 +63031,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &7687822012464363514
 GameObject:
   m_ObjectHideFlags: 0
@@ -64340,6 +64401,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &7811557027816394544
 GameObject:
   m_ObjectHideFlags: 0
@@ -69254,7 +69317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: cc90fd2cf519f164d82769463c680769, type: 2}
@@ -69286,6 +69349,8 @@ MonoBehaviour:
   lineImages: []
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &8604485941537512344
 GameObject:
   m_ObjectHideFlags: 0
@@ -73424,6 +73489,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &9163673126074873832
 GameObject:
   m_ObjectHideFlags: 0
@@ -74711,7 +74778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: 382aae0daa5b4a34cae8508e7d3ec03b, type: 2}
@@ -74734,7 +74801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: 12a26aaa70ff5124dbad56767cb48cc0, type: 2}
@@ -74762,7 +74829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 7404855805508288429}
   node: {fileID: 11400000, guid: 95dd891a9e7be6d47a056711c5cbadb6, type: 2}
@@ -74902,6 +74969,8 @@ MonoBehaviour:
   - {fileID: 0}
   fillDuration: 0.5
   autoFindButton: 1
+  isFilling: 0
+  hasFinishedFill: 0
 --- !u!1 &8604180220132383292 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7911813213293823012, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
