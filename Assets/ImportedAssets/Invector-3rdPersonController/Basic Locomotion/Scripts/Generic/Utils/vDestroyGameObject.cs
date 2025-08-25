@@ -8,12 +8,11 @@ namespace Invector
     {
         public float delay;
         public UnityEngine.Events.UnityEvent onDestroy;
-        public float Damage;
         IEnumerator Start()
         {
             yield return new WaitForSeconds(delay);
             onDestroy.Invoke();
-            this.gameObject.SetActive(false);
-        }        
+            Destroy(gameObject);
+        }
     }
 }
