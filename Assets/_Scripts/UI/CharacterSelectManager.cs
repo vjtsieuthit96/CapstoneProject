@@ -25,6 +25,21 @@ public class CharacterSelectManager : MonoBehaviour
     public Animator Ryo;
     public Animator Dane;
 
+    [Header("Character Info")]
+    public GameObject Kai_Info;
+    public GameObject Ryo_Info;
+    public GameObject Dane_Info;
+
+    [Header("Character Stats")]
+    public GameObject Kai_Stats;
+    public GameObject Ryo_Stats;
+    public GameObject Dane_Stats;
+
+    [Header("Panels")]
+    public GameObject InfoPanel;
+    public GameObject StatsPanel;
+
+
     [SerializeField] private int currentIndex = 0;
 
     void Start()
@@ -33,6 +48,8 @@ public class CharacterSelectManager : MonoBehaviour
         leftButton.onClick.AddListener(OnLeftButton);
         rightButton.onClick.AddListener(OnRightButton);
         Select.onClick.AddListener(OnSelectCharacter);
+        InfoPanel.SetActive(true);
+        StatsPanel.SetActive(true);
     }
 
     void Update()
@@ -45,6 +62,15 @@ public class CharacterSelectManager : MonoBehaviour
         Kai.SetBool("On", isKai);
         Ryo.SetBool("On", isRyo);
         Dane.SetBool("On", isDane);
+        //Kai
+        Kai_Info.SetActive(isKai);
+        Kai_Stats.SetActive(isKai);
+        //Ryo
+        Ryo_Info.SetActive(isRyo);
+        Ryo_Stats.SetActive(isRyo);
+        //Dane
+        Dane_Info.SetActive(isDane);
+        Dane_Stats.SetActive(isDane);
     }
 
     public void OnSelectCharacter()
@@ -63,6 +89,11 @@ public class CharacterSelectManager : MonoBehaviour
         }
         leftButton.interactable = false;
         rightButton.interactable = false;
+        leftButton.gameObject.SetActive(false);
+        rightButton.gameObject.SetActive(false);
+        InfoPanel.SetActive(false);
+        StatsPanel.SetActive(false);
+        Select.gameObject.SetActive(false);
     }    
 
     public void OnLeftButton()
