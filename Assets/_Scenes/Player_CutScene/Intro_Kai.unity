@@ -363,6 +363,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6208869370037218744, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: m_Name
       value: SmokeEffect (9)
@@ -413,6 +417,51 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+--- !u!1 &97968898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97968899}
+  - component: {fileID: 97968900}
+  m_Layer: 0
+  m_Name: PlayerIndex
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &97968899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97968898}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 41, y: 41, z: 41}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97968900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97968898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1bdc4a469da96340b95346def59e63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedIndex: 0
 --- !u!1001 &127162603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -524,6 +573,10 @@ PrefabInstance:
     - target: {fileID: 7456653264461808309, guid: f591e82632c01de4b8c68fa90aef21ff, type: 3}
       propertyPath: m_Name
       value: Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7456653264461808309, guid: f591e82632c01de4b8c68fa90aef21ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9116127696782213761, guid: f591e82632c01de4b8c68fa90aef21ff, type: 3}
       propertyPath: m_LocalScale.x
@@ -1129,6 +1182,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6208869370037218744, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: m_Name
       value: SmokeEffect (3)
@@ -1334,6 +1391,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 10
@@ -1741,6 +1802,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 10
@@ -2251,6 +2316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6208869370037218744, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: m_Name
       value: SmokeEffect
@@ -2309,6 +2378,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6208869370037218744, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: m_Name
       value: SmokeEffect (1)
@@ -2963,7 +3036,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7046009291111955864, guid: 8b84865516be02e4bb815615bd98f388, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7819438805154070159, guid: 8b84865516be02e4bb815615bd98f388, type: 3}
       propertyPath: m_Resource
@@ -2986,6 +3059,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6208869370037218744, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: m_Name
       value: SmokeEffect (2)
@@ -3870,7 +3947,7 @@ Transform:
   m_GameObject: {fileID: 1152431308}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06179928, y: 0.016134258, z: -0.0014622242, w: 0.9979571}
-  m_LocalPosition: {x: -7.5, y: 6.18, z: -128.17}
+  m_LocalPosition: {x: -7.5, y: 2.5, z: -128.6}
   m_LocalScale: {x: 1.7044, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4771,6 +4848,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6208869370037218744, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: m_Name
       value: SmokeEffect (8)
@@ -5701,6 +5782,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 10
       objectReference: {fileID: 0}
@@ -6429,6 +6514,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6094318556964606224, guid: ad3d5d741cac45b49bdbb61d5a7ffe3a, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 10
@@ -9034,6 +9123,7 @@ SceneRoots:
   - {fileID: 424980735}
   - {fileID: 1629211753}
   - {fileID: 553463911}
+  - {fileID: 97968899}
   - {fileID: 175898522}
   - {fileID: 718548451}
   - {fileID: 1090332324}
