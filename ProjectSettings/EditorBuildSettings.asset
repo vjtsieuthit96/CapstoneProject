@@ -6,20 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/PlayScene/Intro_Enemy.unity
-    guid: b92f1341ef7a7cc41a717274a7cdb956
+    path: Assets/_Scenes/Studio_Intro.unity
+    guid: 586ea316bc3ded344a7dc7051bc45e7f
+  - enabled: 1
+    path: Assets/_Scenes/Opening_Cutscene.unity
+    guid: b4546c9f343ec2b4284ee62920fb29c3
   - enabled: 1
     path: Assets/_Scenes/MenuScene.unity
     guid: 98a3a834b7e2b594db15222f59c321eb
-  - enabled: 1
-    path: Assets/_Scenes/IntroByMint.unity
-    guid: b319a504a76fcc5439d776b624e75ee1
-  - enabled: 1
-    path: Assets/_Scenes/Player_CutScene/Kai_CutScene.unity
-    guid: d6393d6d5bf5faf4286788dd38217f61
-  - enabled: 1
-    path: Assets/_Scenes/PlayScene/MapSceneTest.unity
-    guid: 8dfe9dce36ebf5c42b905cff88771629
   - enabled: 1
     path: Assets/_Scenes/Select_Character.unity
     guid: b2cbe9fdc9cd5b34a93ac4135aadf7ed
@@ -33,8 +27,8 @@ EditorBuildSettings:
     path: Assets/_Scenes/Player_CutScene/Intro_Dane.unity
     guid: 95479fefd35acd846b60dd62649a7e1a
   - enabled: 1
-    path: Assets/_Scenes/Opening_Cutscene.unity
-    guid: b4546c9f343ec2b4284ee62920fb29c3
+    path: Assets/_Scenes/PlayScene/MapSceneTest.unity
+    guid: 8dfe9dce36ebf5c42b905cff88771629
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
