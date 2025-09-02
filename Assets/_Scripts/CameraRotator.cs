@@ -14,6 +14,7 @@ public class CameraRotator : MonoBehaviour
     public Button Btt_Setting2Main;
     public Button Btt_Main2Quit;
     public Button Btt_No;
+    public Button Btt_Yes;
 
     private void Awake()
     {
@@ -37,6 +38,7 @@ public class CameraRotator : MonoBehaviour
         {
             RotateTo(0f, 150f);
         });
+        Btt_Yes.onClick.AddListener(Exit);
     }
     void Update()
     {
@@ -54,6 +56,14 @@ public class CameraRotator : MonoBehaviour
                 isRotating = false;
             }
         }
+    }
+    public void Exit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     public void RotateTo(float rotationX, float rotationY)
