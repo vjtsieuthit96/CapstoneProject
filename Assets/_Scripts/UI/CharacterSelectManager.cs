@@ -40,6 +40,7 @@ public class CharacterSelectManager : MonoBehaviour
     public GameObject StatsPanel;
 
     public GameObject SettingPanel2D;
+    public GameObject MainPanel;
     private bool isOn = false;
 
     [SerializeField] private int currentIndex = 0;
@@ -47,6 +48,7 @@ public class CharacterSelectManager : MonoBehaviour
     void Start()
     {
         isOn = false;
+        MainPanel.SetActive(true);
         UpdateSelection();
         leftButton.onClick.AddListener(OnLeftButton);
         rightButton.onClick.AddListener(OnRightButton);
@@ -62,6 +64,10 @@ public class CharacterSelectManager : MonoBehaviour
             isOn = !isOn;
         }
         SettingPanel2D.SetActive(isOn);
+        
+        Select.gameObject.SetActive(!isOn);
+        StatsPanel.SetActive(!isOn);
+        InfoPanel.SetActive(!isOn);
         cameraTransform.position = Vector3.Lerp(
             cameraTransform.position,
             points[currentIndex].position,
