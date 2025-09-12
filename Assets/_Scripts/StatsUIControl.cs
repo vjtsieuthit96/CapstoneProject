@@ -14,10 +14,7 @@ public class StatsUIControl : MonoBehaviour
 
     void Awake()
     {
-        // Tự động lấy tất cả Image con (theo thứ tự xuất hiện trong Hierarchy)
         childImages = GetComponentsInChildren<Image>();
-
-        // Nếu cha cũng có Image thì loại bỏ nó đi
         if (childImages.Length > 0 && childImages[0].gameObject == this.gameObject)
         {
             childImages = childImages.Skip(1).ToArray();
