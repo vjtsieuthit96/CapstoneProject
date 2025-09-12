@@ -18,7 +18,7 @@ public class ScaleFactorApplyToMaterial : MonoBehaviour
 
     void Update()
     {
-        m_changedFactor = VariousEffectsScene.m_gaph_scenesizefactor; //Please change this in your actual project
+        //m_changedFactor = VariousEffectsScene.m_gaph_scenesizefactor; //Please change this in your actual project
 
         if(m_scaleFactor != m_changedFactor && m_changedFactor <= 1)
         {
