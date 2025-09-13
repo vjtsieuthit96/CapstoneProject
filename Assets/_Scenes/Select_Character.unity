@@ -1254,8 +1254,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 4
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0.4245283, g: 0.21878935, b: 0.13817194, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &111590279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1610,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &150349233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2734,7 +2736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2973,6 +2975,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &202830401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3177,6 +3180,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &225056516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3230,6 +3234,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &225056519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3764,8 +3769,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 3
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0, g: 0.63529414, b: 0.97647065, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1001 &285161661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3888,7 +3894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3977,8 +3983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 6
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0.4245283, g: 0.21878935, b: 0.13817194, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &322016044
 GameObject:
   m_ObjectHideFlags: 0
@@ -4107,6 +4114,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &325390687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4198,7 +4206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4759,6 +4767,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &367268372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5375,6 +5384,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &402246837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5700,7 +5710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6509,8 +6519,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 3
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0.4245283, g: 0.21878935, b: 0.13817194, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &535543166
 GameObject:
   m_ObjectHideFlags: 0
@@ -6720,8 +6731,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 6
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0, g: 0.63529414, b: 0.97647065, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &566642730
 GameObject:
   m_ObjectHideFlags: 0
@@ -6775,6 +6787,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &566642733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8417,8 +8430,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 3
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 1, g: 0.7532816, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &773751142
 GameObject:
   m_ObjectHideFlags: 0
@@ -11269,8 +11283,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0.4245283, g: 0.21878935, b: 0.13817194, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &935677013
 GameObject:
   m_ObjectHideFlags: 0
@@ -12890,6 +12905,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1106469694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13141,8 +13157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0, g: 0.63529414, b: 0.97647065, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1173629617
 GameObject:
   m_ObjectHideFlags: 0
@@ -13253,8 +13270,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 8, y: 43.782}
-  m_SizeDelta: {x: 85.1634, y: 87.5633}
+  m_AnchoredPosition: {x: -0.0000038147, y: 43.782}
+  m_SizeDelta: {x: 103.0698, y: 87.5633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174227471
 MonoBehaviour:
@@ -13277,7 +13294,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 5f23d53d088ee2041b3a1d7e9b82f887, type: 3}
+    m_Font: {fileID: 12800000, guid: 8ce8cbc92fed76d43b8b59d476fcd814, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
@@ -13392,7 +13409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14332,8 +14349,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 9
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0.4245283, g: 0.21878935, b: 0.13817194, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1282118728
 GameObject:
   m_ObjectHideFlags: 0
@@ -14393,8 +14411,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 6
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 1, g: 0.7532816, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1312834034
 GameObject:
   m_ObjectHideFlags: 0
@@ -14529,8 +14548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0, g: 0.63529414, b: 0.97647065, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1327590346
 GameObject:
   m_ObjectHideFlags: 0
@@ -14740,8 +14760,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 1, g: 0.7532816, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1333924499 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 19fce41e4bbcf1d4387967748aa6071d, type: 3}
@@ -15038,6 +15059,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1347245088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15354,6 +15376,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1354647505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15451,8 +15474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 1, g: 0.7532816, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1367297452
 GameObject:
   m_ObjectHideFlags: 0
@@ -16112,8 +16136,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 9
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 1, g: 0.7532816, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1409878033
 GameObject:
   m_ObjectHideFlags: 0
@@ -16923,6 +16948,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1494002654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17545,8 +17571,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 4
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0, g: 0.63529414, b: 0.97647065, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1589885683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18015,8 +18042,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0.4245283, g: 0.21878935, b: 0.13817194, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1001 &1661084063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19011,6 +19039,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1695420645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19099,7 +19128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -19269,8 +19298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 1, g: 0.7532816, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1737417602
 GameObject:
   m_ObjectHideFlags: 0
@@ -19399,6 +19429,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1745057546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20021,8 +20052,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 9
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0, g: 0.63529414, b: 0.97647065, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1833478803
 GameObject:
   m_ObjectHideFlags: 0
@@ -20526,6 +20558,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1883940915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20926,6 +20959,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1915889078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21023,8 +21057,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0, g: 0.63529414, b: 0.97647065, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1921445985
 GameObject:
   m_ObjectHideFlags: 0
@@ -21084,8 +21119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 4
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 1, g: 0.7532816, b: 0, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &1928382913
 GameObject:
   m_ObjectHideFlags: 0
@@ -21214,6 +21250,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1928946501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21269,7 +21306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1930633345
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21309,7 +21346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21912,6 +21949,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &1992947918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22530,7 +22568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22914,8 +22952,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeCount: 7
-  activeColor: {r: 0, g: 0.14366055, b: 1, a: 1}
+  activeColor: {r: 0.4245283, g: 0.21878935, b: 0.13817194, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!1 &2069977804
 GameObject:
   m_ObjectHideFlags: 0
@@ -23230,6 +23269,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &2079169193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23321,6 +23361,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &2098881688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23637,6 +23678,7 @@ MonoBehaviour:
   activeCount: 5
   activeColor: {r: 0.7, g: 0.85, b: 1, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  fillDuration: 0.8
 --- !u!114 &2123898371
 MonoBehaviour:
   m_ObjectHideFlags: 0

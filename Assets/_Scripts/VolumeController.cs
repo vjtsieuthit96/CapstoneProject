@@ -26,8 +26,13 @@ public class VolumeController : MonoBehaviour
     public int musicIndex = 5;
     public int sfxIndex = 5;
 
-    private Color activeColor = Color.green;
+    private Color activeColor;
     private Color inactiveColor = Color.white;
+
+    private void Awake()
+    {
+        ColorUtility.TryParseHtmlString("#00A6FF", out activeColor);
+    }
 
     private void Start()
     {
