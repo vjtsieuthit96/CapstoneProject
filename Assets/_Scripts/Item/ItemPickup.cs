@@ -1,5 +1,4 @@
-﻿// DropData/Logic
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {

@@ -7,7 +7,6 @@ public class QuestData : ScriptableObject
     public string questName;
     [TextArea] public string description;
     public AudioClip questAudio;
-
     public TaskType taskType;
     public TaskID taskID;
 

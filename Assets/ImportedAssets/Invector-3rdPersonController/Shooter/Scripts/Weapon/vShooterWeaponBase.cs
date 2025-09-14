@@ -664,7 +664,7 @@ namespace Invector.vShooter
                 var renderer = ps.GetComponent<Renderer>();
                 if (ps != null && renderer != null && renderer.material != null)
                 {
-                    defaultParticleColors[ps] = renderer.material.color;
+                    //defaultParticleColors[ps] = renderer.material.color;
                 }
             }
         }
