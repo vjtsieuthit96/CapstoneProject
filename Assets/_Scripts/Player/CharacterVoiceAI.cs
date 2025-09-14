@@ -32,13 +32,12 @@ public class CharacterVoiceAI : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-        audioSource.playOnAwake = false; // tắt để không tự phát
-        audioSource.loop = false;        // tắt loop vì dùng PlayOneShot
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
     }
 
     void Start()
     {
-        // Luôn khởi động routine ngay khi bắt đầu
         if (playRoutine != null)
             StopCoroutine(playRoutine);
 
@@ -62,7 +61,6 @@ public class CharacterVoiceAI : MonoBehaviour
     {
         Debug.Log("VoiceRoutine started for state: " + currentState);
 
-        // Lần đầu chờ ngắn để test (2–5 giây)
         float firstDelay = Random.Range(2f, 5f);
         yield return new WaitForSeconds(firstDelay);
 

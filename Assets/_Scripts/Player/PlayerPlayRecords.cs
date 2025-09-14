@@ -11,14 +11,19 @@ public class PlayerPlayRecords : MonoBehaviour
     [Header("Tổng số Enemy tiêu diệt")]
     [SerializeField] 
     private int totalKills = 0;
-
+    private EmotionSystem Emotion;
     [Header("Các loại Enemy tiêu diệt")]
     [SerializeField]
     private List<EnemyKillEntry> enemyKillList = new List<EnemyKillEntry>();
 
+    private void Awake()
+    {
+        Emotion = GetComponent<EmotionSystem>();
+    }
     public void RegisterKill(string enemyType)
     {
         totalKills++;
+        Emotion.OnKillEnemy(1f);
 
         var entry = enemyKillList.Find(e => e.enemyType == enemyType);
         if (entry != null)

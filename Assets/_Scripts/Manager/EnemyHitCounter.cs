@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -5,15 +6,17 @@ public class EnemyHitCounter : MonoBehaviour
 {
     public static EnemyHitCounter Instance;
 
-    private int enemyHitCount = 0;
-    private int enemyHitCountForElement = 0;
-    private int Element = 0;
-    private int Explosive = 0;
-    private bool CountElement = false;
-    private bool isElementCount = false;
-    private bool isExplosive = false;
-    private bool isCount = true;
-    private int PlayerKill = 0;
+    public int enemyHitCount = 0;
+    public int enemyHitCountForElement = 0;
+    public int Element = 0;
+    public int Explosive = 0;
+    public bool CountElement = false;
+    public bool isElementCount = false;
+    public bool isExplosive = false;
+    public bool isCount = true;
+    public int PlayerKill = 0;
+
+    public List<EmotionSystem> Emotions;
 
     private void Awake()
     {
@@ -25,8 +28,24 @@ public class EnemyHitCounter : MonoBehaviour
     // Normal Shot
     public void RegisterEnemyHit()
     {
+        foreach (EmotionSystem system in Emotions)
+        {
+            if (system != null)
+            {
+                system.OnHitEnemy(0.2f);
+            }
+        }
         if (isCount)
-        { enemyHitCount++; }
+        { 
+            //foreach(EmotionSystem system in Emotions)
+            //{
+            //    if(system != null)
+            //    {
+            //        system.OnHitEnemy(0.2f);
+            //    }    
+            //}    
+            enemyHitCount++; 
+        }
     }
     public void StartCount() => isCount = true;
     public void StopCount() => isCount = false;

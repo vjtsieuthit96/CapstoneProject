@@ -11,6 +11,8 @@ public class QuestManager : MonoBehaviour
     private QuestData currentMainTask;
     private QuestData currentSubTask;
 
+    public List<EmotionSystem> Emotions;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -38,6 +40,13 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteTask(TaskID taskID)
     {
+        foreach(EmotionSystem emotionSystem in Emotions)
+        {
+            if(emotionSystem != null)
+            {
+                emotionSystem.OnFinishMission(2f);
+            }    
+        }    
         QuestData task = FindTaskByID(taskID);
         if (task != null)
         {
