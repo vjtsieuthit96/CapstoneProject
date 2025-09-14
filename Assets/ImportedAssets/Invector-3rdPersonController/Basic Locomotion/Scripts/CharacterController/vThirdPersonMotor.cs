@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using System;
 
 namespace Invector.vCharacterController
 {
@@ -40,7 +40,7 @@ namespace Invector.vCharacterController
         public virtual float maxStamina { get { return _maxStamina; } set { _maxStamina = value; } }
         [SerializeField] protected float _staminaRecovery = 1.2f;
         public virtual float staminaRecovery { get { return _staminaRecovery; } set { _staminaRecovery = value; } }
-        internal float currentStamina;
+        public float currentStamina;
         internal float currentStaminaRecoveryDelay;
         [SerializeField] protected float _sprintStamina = 30f;
         public virtual float sprintStamina { get { return _sprintStamina; } set { _sprintStamina = value; } }
@@ -576,6 +576,7 @@ namespace Invector.vCharacterController
 
         protected virtual void Awake()
         {
+            Emotion = GetComponent<EmotionSystem>();
             defaultSpeedMultiplier = 1;
             jumpMultiplier = 1;
             heightReached = transform.position.y;
@@ -687,9 +688,10 @@ namespace Invector.vCharacterController
         }
 
         #region Health & Stamina
-
+        public EmotionSystem Emotion;
         public override void TakeDamage(vDamage damage)
         {
+            //Emotion.OnHitByEnemy(0.5f);
             // don't apply damage if the character is rolling, you can add more conditions here
             if (currentHealth <= 0 || IgnoreDamageRolling())
             {

@@ -17,9 +17,12 @@ public class ItemEffectApplier : MonoBehaviour
     [SerializeField] private Color ChangeToPoison = Color.green;
     [SerializeField] private Color ChangeToEletric = Color.blue;
 
+    private EmotionSystem Emotion;
+
     private void Awake()
     {
         stats = GetComponent<CharacterConfigurator>();
+        Emotion = GetComponent<EmotionSystem>();
     }
 
     private void PlayerEffect(Color color)
@@ -34,6 +37,7 @@ public class ItemEffectApplier : MonoBehaviour
 
     public void ApplyEffect(ItemEffect effect, string PlayerName = "")
     {
+        Emotion.OnCollectItem(0.5f);
         StartCoroutine(HandleEffect(effect,PlayerName));
     }
 
