@@ -5,11 +5,11 @@ public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; }
 
-    private List<QuestData> mainTasks = new List<QuestData>();
-    private List<QuestData> subTasks = new List<QuestData>();
+    [SerializeField] private List<QuestData> mainTasks = new List<QuestData>();
+    [SerializeField] private List<QuestData> subTasks = new List<QuestData>();
 
-    private QuestData currentMainTask;
-    private QuestData currentSubTask;
+    [SerializeField] private QuestData currentMainTask;
+    [SerializeField] private QuestData currentSubTask;
 
     public List<EmotionSystem> Emotions;
 

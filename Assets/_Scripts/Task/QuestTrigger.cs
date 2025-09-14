@@ -1,44 +1,58 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Invector.vCharacterController;
 using System.Collections;
+
 public class QuestTrigger : MonoBehaviour
 {
     public QuestData questData;
+    public Transform QuestTransform;
     public AudioSource audioSource;
+
     private bool triggered = false;
+    [SerializeField] public CameraTargetSwitcher cameraSwitcher;
+    private Transform previousTarget;
+
+    private void Start()
+    {
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (triggered || questData == null) return;
         if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-
-        var input = other.GetComponentInParent<vThirdPersonInput>();
-        var Control = other.GetComponentInParent<vThirdPersonController>();
+        if (cameraSwitcher.targets.Count == 0)
+        {
+            cameraSwitcher.targets.Add(QuestTransform);
+        }
+        else if(cameraSwitcher.targets.Count > 0)
+        {
+            cameraSwitcher.targets.RemoveAt(1);
+        }    
+            var input = other.GetComponentInParent<vThirdPersonInput>();
+        var control = other.GetComponentInParent<vThirdPersonController>();
         if (input == null) return;
 
         triggered = true;
         input.SetLockAllInput(true);
-        Control.StopCharacter();
-
-        float delay = 0f;
-
-        if (questData.questAudio != null && audioSource != null)
-        {
-            audioSource.clip = questData.questAudio;
-            audioSource.Play();
-            delay = questData.questAudio.length;
-        }
-
+        control.StopCharacter();
         QuestManager.Instance.ReceiveQuest(questData);
-
-        StartCoroutine(WaitAndUnlock(delay, input));
+        StartCoroutine(WaitAndRestore(5f, input));
+        StartCoroutine(SwitchToTarget(5f));
     }
 
 
-    private IEnumerator WaitAndUnlock(float delay, vThirdPersonInput input)
+    private IEnumerator SwitchToTarget(float delay)
+    {
+        Transform previousTarget = cameraSwitcher.targets[cameraSwitcher.currentIndex];
+        cameraSwitcher.SwitchTargetToTransform(QuestTransform);
+        yield return new WaitForSeconds(delay);
+        cameraSwitcher.SwitchTargetToTransform(previousTarget);
+    }
+
+    private IEnumerator WaitAndRestore(float delay, vThirdPersonInput input)
     {
         yield return new WaitForSeconds(delay);
         input.SetLockAllInput(false);
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }
