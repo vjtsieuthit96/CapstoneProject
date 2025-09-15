@@ -298228,6 +298228,22 @@ PrefabInstance:
       propertyPath: PlayerObject
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 72633771622213025, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: playerObjects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 72633771622213025, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: 'playerObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2289875668362304212}
+    - target: {fileID: 72633771622213025, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: 'playerObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3367382608745418468}
+    - target: {fileID: 72633771622213025, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: 'playerObjects.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3586447811048559334}
     - target: {fileID: 789345568328588756, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: Emotions.Array.size
       value: 3
@@ -543031,6 +543047,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6725183042051093829, guid: 18c02b67f08f7b74cbc237df5bc7f46e, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833251302554995914, guid: 18c02b67f08f7b74cbc237df5bc7f46e, type: 3}
+      propertyPath: m_SelectedEditorRenderState
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6890496089521832780, guid: 18c02b67f08f7b74cbc237df5bc7f46e, type: 3}

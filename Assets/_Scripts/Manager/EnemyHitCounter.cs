@@ -32,7 +32,7 @@ public class EnemyHitCounter : MonoBehaviour
         {
             if (system != null)
             {
-                system.OnHitEnemy(0.2f);
+                system.OnHitEnemy(0.02f);
             }
         }
         if (isCount)
