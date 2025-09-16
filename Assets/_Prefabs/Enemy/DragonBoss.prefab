@@ -105,6 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4724126928836054802}
+  - component: {fileID: 3290497790020965696}
   m_Layer: 0
   m_Name: MountainDragon_ L Thigh
   m_TagString: Untagged
@@ -128,6 +129,29 @@ Transform:
   - {fileID: 69435151451306036}
   m_Father: {fileID: 5668379685075600257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3290497790020965696
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512747508216144516}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: -0.64, y: 0, z: 0}
 --- !u!1 &639108421811619953
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6362234699933170046}
+  - component: {fileID: 2074200350410323633}
   m_Layer: 0
   m_Name: MountainDragon_ L Forearm
   m_TagString: Untagged
@@ -385,6 +410,29 @@ Transform:
   - {fileID: 8560101625750664573}
   m_Father: {fileID: 9150199234606675657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2074200350410323633
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344397455002983028}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: -0.99, y: 0, z: 0}
 --- !u!1 &1388280650659231235
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +478,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6676215174818551906}
   - component: {fileID: 7935886305941096916}
+  - component: {fileID: 2402956823289643076}
+  - component: {fileID: 4742895262121481969}
+  - component: {fileID: 4625695199545059556}
+  - component: {fileID: 960933392390650194}
+  - component: {fileID: 5523848658300396337}
+  - component: {fileID: 8660097992776228119}
+  - component: {fileID: 1872898364665665008}
+  - component: {fileID: 7721387891046255008}
   m_Layer: 0
   m_Name: DragonBoss
   m_TagString: Untagged
@@ -447,7 +503,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1362.9268, y: 508.17, z: -1952.4}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5095748079943370186}
@@ -464,7 +520,7 @@ Animator:
   m_GameObject: {fileID: 1402265501843095355}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e0080c37f479acb49b6389201658bbf1, type: 3}
-  m_Controller: {fileID: 9100000, guid: d6fa7ae44974f644f89bd7457084721b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8b0bb965c0f538842b19be0cd939f713, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -476,6 +532,268 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2402956823289643076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50ca495bb54c404a8058c0495713dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speedMultiplier: 1.75
+  viewRadius: 15
+  viewAngle: 105
+  alertRadius: 10
+  attackRange: 0
+  patrolRadius: 0
+  baseSpeed: 0
+  frozenEffect: {fileID: 0}
+  ElectricEffect: {fileID: 0}
+  bloodEffect: {fileID: 3392999217821159849, guid: 6d3629f845b40e24fb51d381e84bbc77, type: 3}
+  monsterStats: {fileID: 0}
+  monsterAnimator: {fileID: 0}
+  monsterAgent: {fileID: 0}
+  skillManager: {fileID: 0}
+  monsterAudio: {fileID: 0}
+  enemyType: DragonBoss
+  isDead: 0
+  returnToPoolDelay: 6
+  enemyData: {fileID: 11400000, guid: c883f299fe03f504e9e2542eeb763b68, type: 2}
+--- !u!114 &4742895262121481969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cce55edca66fb842a284165619f9988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsSO: {fileID: 11400000, guid: e028c2f45aa44e24f878e4cb77907d49, type: 2}
+  baseHealth: 0
+  baseDefense: 0
+  baseDamage: 0
+  _currentHealth: 0
+  _currentDefense: 0
+  _currentDamage: 0
+  enemyType: 
+--- !u!114 &4625695199545059556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bffaac69d5031b745b2d81891d483882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponColliders:
+  - {fileID: 5201278645622694284}
+  - {fileID: 356762092525790166}
+  monsterAudio: {fileID: 8660097992776228119}
+  monsterAI: {fileID: 2402956823289643076}
+--- !u!114 &960933392390650194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b3b94fbbe157e4b874a4b3e8d54adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 2402956823289643076}
+  skill1Cooldown: 0
+  skill2Cooldown: 0
+  skill3Cooldown: 0
+  skill1Range: 0
+  skill2Range: 0
+  skill3Range: 0
+--- !u!114 &5523848658300396337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a901093ce2b414d857c6d6a85b36cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterAi: {fileID: 2402956823289643076}
+  headCollider: {fileID: 1113825175762967372}
+  headshotMultiplier: 2
+  colliders:
+  - {fileID: 4141838281684677467}
+  - {fileID: 7710319238508429606}
+  - {fileID: 2074200350410323633}
+  - {fileID: 8662506042890331183}
+  - {fileID: 4045719044957786938}
+  - {fileID: 435999274610341251}
+  - {fileID: 3411591356814916131}
+  - {fileID: 2056986492079770223}
+  - {fileID: 2073765080958431235}
+  - {fileID: 8133244980937066365}
+  - {fileID: 3290497790020965696}
+  - {fileID: 7922358191461966504}
+  - {fileID: 376973658890944569}
+  - {fileID: 4628413096058252797}
+  - {fileID: 2236456555237779635}
+  - {fileID: 6432019048572567407}
+  - {fileID: 5044095626285469052}
+  - {fileID: 1198971934428693027}
+  - {fileID: 6158701031248233287}
+  - {fileID: 752273896577947322}
+--- !u!114 &8660097992776228119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6955deacfb800134280cca0c2d670c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterAudio: {fileID: 7721387891046255008}
+  footstepSounds: []
+  wingsSounds: []
+  roarSounds: []
+  atkSound: []
+  getHitSounds: []
+  otherSounds: []
+--- !u!195 &1872898364665665008
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!82 &7721387891046255008
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -6496145734116381860, guid: 6e1b6ad2bd0cf5742acb5809d4116487, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1588610350685875010
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4560726229233672226}
+  - component: {fileID: 4141838281684677467}
   m_Layer: 0
   m_Name: MountainDragon_ Neck2
   m_TagString: Untagged
@@ -638,6 +957,29 @@ Transform:
   - {fileID: 6339568694250324046}
   m_Father: {fileID: 804949235783772806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4141838281684677467
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781829723546753857}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 2.75
+  m_Direction: 0
+  m_Center: {x: 0.4, y: 0, z: 0}
 --- !u!1 &1916300323148106055
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +1084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1591728526728987079}
+  - component: {fileID: 376973658890944569}
   m_Layer: 0
   m_Name: MountainDragon_ L HorseLink
   m_TagString: Untagged
@@ -765,6 +1108,29 @@ Transform:
   - {fileID: 7485334193779248456}
   m_Father: {fileID: 69435151451306036}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &376973658890944569
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2247699258681780140}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: -0.36, y: 0.04, z: 0}
 --- !u!1 &2508873331643506046
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +1203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8790657357963044063}
+  - component: {fileID: 6432019048572567407}
   m_Layer: 0
   m_Name: MountainDragon_ R Calf
   m_TagString: Untagged
@@ -860,6 +1227,29 @@ Transform:
   - {fileID: 6967789348425922283}
   m_Father: {fileID: 1926042650688116962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6432019048572567407
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657616991483292941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: -0.67, y: -0.03, z: 0}
 --- !u!1 &2765077465871003182
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +1291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7226768490418822882}
+  - component: {fileID: 4045719044957786938}
   m_Layer: 0
   m_Name: MountainDragon_ R Forearm
   m_TagString: Untagged
@@ -924,6 +1315,29 @@ Transform:
   - {fileID: 4000224064391704523}
   m_Father: {fileID: 8173449366886375628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4045719044957786938
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868844216541145812}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: -1, y: 0, z: 0}
 --- !u!1 &2912660619993602294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,6 +1570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4557344305535636386}
+  - component: {fileID: 1198971934428693027}
   m_Layer: 0
   m_Name: MountainDragon_ R Foot
   m_TagString: Untagged
@@ -1182,6 +1597,27 @@ Transform:
   - {fileID: 2531674577337494707}
   m_Father: {fileID: 6967789348425922283}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1198971934428693027
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985412142194184161}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: -0.15, y: 0.44, z: 0}
 --- !u!1 &4028189325885740409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2105526869027481500}
+  - component: {fileID: 3411591356814916131}
   m_Layer: 0
   m_Name: MountainDragon_WingL_Hand
   m_TagString: Untagged
@@ -1500,6 +1937,27 @@ Transform:
   - {fileID: 8780417726104260070}
   m_Father: {fileID: 3323374530885529070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3411591356814916131
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4913139427506878552}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.5, y: 4, z: 0.45}
+  m_Center: {x: -1.96, y: 1.13, z: 0}
 --- !u!1 &5061645708550115853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,6 +1998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9150199234606675657}
+  - component: {fileID: 7710319238508429606}
   m_Layer: 0
   m_Name: MountainDragon_ L UpperArm
   m_TagString: Untagged
@@ -1563,6 +2022,29 @@ Transform:
   - {fileID: 6362234699933170046}
   m_Father: {fileID: 5378415812775532687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7710319238508429606
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246710175260207855}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: -0.45, y: 0, z: 0}
 --- !u!1 &5423496874364202780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +2054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2990939726187051503}
+  - component: {fileID: 2056986492079770223}
   m_Layer: 0
   m_Name: MountainDragon_WingR_ForeArm
   m_TagString: Untagged
@@ -1595,6 +2078,27 @@ Transform:
   - {fileID: 1780597071901820322}
   m_Father: {fileID: 7952055757434562437}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2056986492079770223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5423496874364202780}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 0.45}
+  m_Center: {x: 0, y: -0.32, z: 0.09}
 --- !u!1 &5442570473058405430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +2140,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6302526534334365783}
+  - component: {fileID: 356762092525790166}
+  - component: {fileID: 3468988413316260776}
   m_Layer: 0
   m_Name: MountainDragon_ R Finger1
   m_TagString: Untagged
@@ -1659,6 +2165,41 @@ Transform:
   - {fileID: 2108081875545422156}
   m_Father: {fileID: 4000224064391704523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &356762092525790166
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539455580854264333}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.55
+  m_Center: {x: -0.25, y: 0, z: -0.15}
+--- !u!114 &3468988413316260776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539455580854264333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 4742895262121481969}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &5593596202257825806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +2336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926042650688116962}
+  - component: {fileID: 2236456555237779635}
   m_Layer: 0
   m_Name: MountainDragon_ R Thigh
   m_TagString: Untagged
@@ -1818,6 +2360,29 @@ Transform:
   - {fileID: 8790657357963044063}
   m_Father: {fileID: 5668379685075600257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2236456555237779635
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5822190782416244158}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: -0.64, y: 0, z: 0}
 --- !u!1 &5861281777117552586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,6 +2454,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6313702632846211710}
+  - component: {fileID: 6158701031248233287}
   m_Layer: 0
   m_Name: MountainDragon_ Tail1
   m_TagString: Untagged
@@ -1912,6 +2478,29 @@ Transform:
   - {fileID: 8408349221609889075}
   m_Father: {fileID: 8908169399381316051}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &6158701031248233287
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6006886923164106936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 4
+  m_Direction: 0
+  m_Center: {x: -0.6, y: 0, z: 0}
 --- !u!1 &6189477319505241101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6967789348425922283}
+  - component: {fileID: 5044095626285469052}
   m_Layer: 0
   m_Name: MountainDragon_ R HorseLink
   m_TagString: Untagged
@@ -2102,6 +2692,29 @@ Transform:
   - {fileID: 4557344305535636386}
   m_Father: {fileID: 8790657357963044063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5044095626285469052
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007610281962643020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: -0.36, y: 0.04, z: 0}
 --- !u!1 &7025597651391403518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,6 +2724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 69435151451306036}
+  - component: {fileID: 7922358191461966504}
   m_Layer: 0
   m_Name: MountainDragon_ L Calf
   m_TagString: Untagged
@@ -2134,6 +2748,29 @@ Transform:
   - {fileID: 1591728526728987079}
   m_Father: {fileID: 4724126928836054802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7922358191461966504
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025597651391403518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: -0.67, y: -0.03, z: 0}
 --- !u!1 &7049159970659549544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,6 +2812,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5197120988350013092}
+  - component: {fileID: 5201278645622694284}
+  - component: {fileID: 3919889971079774314}
   m_Layer: 0
   m_Name: MountainDragon_ L Finger1
   m_TagString: Untagged
@@ -2198,6 +2837,41 @@ Transform:
   - {fileID: 6709497637940373748}
   m_Father: {fileID: 8560101625750664573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5201278645622694284
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163521812413694260}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.55
+  m_Center: {x: -0.25, y: 0, z: 0.15}
+--- !u!114 &3919889971079774314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7163521812413694260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 4742895262121481969}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &7282332771657240509
 GameObject:
   m_ObjectHideFlags: 0
@@ -2207,6 +2881,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3323374530885529070}
+  - component: {fileID: 435999274610341251}
   m_Layer: 0
   m_Name: MountainDragon_WingL_ForeArm
   m_TagString: Untagged
@@ -2230,6 +2905,27 @@ Transform:
   - {fileID: 2105526869027481500}
   m_Father: {fileID: 1682083630576152063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &435999274610341251
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282332771657240509}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 0.45}
+  m_Center: {x: 0, y: 0.32, z: 0.09}
 --- !u!1 &7458265693933819475
 GameObject:
   m_ObjectHideFlags: 0
@@ -2397,6 +3093,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8173449366886375628}
+  - component: {fileID: 8662506042890331183}
   m_Layer: 0
   m_Name: MountainDragon_ R UpperArm
   m_TagString: Untagged
@@ -2420,6 +3117,29 @@ Transform:
   - {fileID: 7226768490418822882}
   m_Father: {fileID: 9102977131372465946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8662506042890331183
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7680728889954276256}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: -0.45, y: 0, z: 0}
 --- !u!1 &7742515837526080201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +3401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7485334193779248456}
+  - component: {fileID: 4628413096058252797}
   m_Layer: 0
   m_Name: MountainDragon_ L Foot
   m_TagString: Untagged
@@ -2707,6 +3428,27 @@ Transform:
   - {fileID: 4192791121276335507}
   m_Father: {fileID: 1591728526728987079}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &4628413096058252797
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239386515758852097}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: -0.15, y: 0.44, z: 0}
 --- !u!1 &8433362444710573096
 GameObject:
   m_ObjectHideFlags: 0
@@ -2716,6 +3458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4502399951571790683}
+  - component: {fileID: 1113825175762967372}
   m_Layer: 0
   m_Name: MountainDragon_ Ponytail1
   m_TagString: Untagged
@@ -2738,6 +3481,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6798592759421908909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1113825175762967372
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8433362444710573096}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 0
+  m_Center: {x: -0.3, y: -0.25, z: 0}
 --- !u!1 &8507607140438824874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,6 +3576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2676214499940999536}
+  - component: {fileID: 752273896577947322}
   m_Layer: 0
   m_Name: MountainDragon_ Tail6
   m_TagString: Untagged
@@ -2833,6 +3600,29 @@ Transform:
   - {fileID: 1042988723224440873}
   m_Father: {fileID: 3664090238414057829}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &752273896577947322
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8540822368366789616}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 4.5
+  m_Direction: 0
+  m_Center: {x: -1.08, y: 0, z: 0}
 --- !u!1 &8549440790916391075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2874,6 +3664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8134729474737971814}
+  - component: {fileID: 8133244980937066365}
   m_Layer: 0
   m_Name: MountainDragon_ Spine1
   m_TagString: Untagged
@@ -2901,6 +3692,29 @@ Transform:
   - {fileID: 7952055757434562437}
   m_Father: {fileID: 4104287944770246769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8133244980937066365
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684036420867850608}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Height: 3.5
+  m_Direction: 0
+  m_Center: {x: 0.68, y: -0.12, z: 0}
 --- !u!1 &8726165651501535311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,6 +3756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1780597071901820322}
+  - component: {fileID: 2073765080958431235}
   m_Layer: 0
   m_Name: MountainDragon_WingR_Hand
   m_TagString: Untagged
@@ -2967,6 +3782,27 @@ Transform:
   - {fileID: 7601232936947248137}
   m_Father: {fileID: 2990939726187051503}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2073765080958431235
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8743918434855465157}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.5, y: 4, z: 0.45}
+  m_Center: {x: -1.96, y: -1.13, z: 0}
 --- !u!1 &8844016328080843779
 GameObject:
   m_ObjectHideFlags: 0
