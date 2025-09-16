@@ -14,6 +14,7 @@ public class EnemyHitHandler : MonoBehaviour
     }
     public void ApplyHit(float bulletDamage, GameObject Player = null)
     {
+        EnemyHitCounter.Instance.RegisterEnemyHit();
         float finalDamage = bulletDamage * damageMultiplier;
 
         if (Player != null)
@@ -31,10 +32,12 @@ public class EnemyHitHandler : MonoBehaviour
     }
     public void ApplyPoisonDamage(float damage, float duration, GameObject player = null)
     {
+        EnemyHitCounter.Instance.RegisterEnemyHit();
         StartCoroutine(DamageOverTimeCoroutine(damage, duration, player));
     }
     private IEnumerator DamageOverTimeCoroutine(float damage, float duration, GameObject Player = null)
     {
+        EnemyHitCounter.Instance.RegisterEnemyHit();
         float elapsed = 0f;
 
         while (elapsed < duration)
@@ -47,18 +50,22 @@ public class EnemyHitHandler : MonoBehaviour
     }
     public void ApplyFreeze(float duration)
     {
+        EnemyHitCounter.Instance.RegisterEnemyHit();
         monsterAi.FreezyEnemy(duration);
     }
     public void ApplySlowDown(float percent, float duration)
     {
+        EnemyHitCounter.Instance.RegisterEnemyHit();
         monsterAi.SlowDown(percent, duration);
     }
     public void ApplyShock(float duration)
     {
+        EnemyHitCounter.Instance.RegisterEnemyHit();
         monsterAi.ShockEffect(duration);
     }
     public void ApplyBleed(Vector3 position)
     {
+        EnemyHitCounter.Instance.RegisterEnemyHit();
         monsterAi.BleedEffect(position);
     }
 }

@@ -1,10 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using Invector;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     [SerializeField] private vExplosive ExplosionPrefab;
     [SerializeField] private vExplosive ExplosionIcePrefab;
     [SerializeField] private vExplosive ExplosionElectricPrefab;
@@ -13,9 +12,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject IceCube;
     [SerializeField] private int explosionPoolSize = 5;
     [SerializeField] public bool isPause = false;
-    [SerializeField] private GameObject PlayerObject;
-    [SerializeField] private Animator anim;
+
+    [Header("Danh sách Player Prefab/Instance trong scene (size = 3)")]
+    [SerializeField] private GameObject[] playerObjects;
+
+    private GameObject activePlayer;
+    private Animator anim;
+
     public static GameManager Instance { get; private set; }
+
     private void Awake()
     {
         if (!Instance)
@@ -28,19 +33,36 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start()
+
+    private void Start()
     {
-        anim = PlayerObject.GetComponent<Animator>();
+        int index = SceneIndexManager.Instance.SelectedIndex;
+        for (int i = 0; i < playerObjects.Length; i++)
+        {
+            if (i == index)
+            {
+                activePlayer = playerObjects[i];
+                anim = activePlayer.GetComponent<Animator>();
+            }
+            else
+            {
+                Destroy(playerObjects[i]);
+            }
+        }
+
+        // Tạo các pool
         PoolManager.Instance.CreatePool("Explosion", ExplosionPrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("IceExplosion", ExplosionIcePrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("ElectricExplosion", ExplosionElectricPrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("PoisonExplosion", ExplosionPoisonPrefab, explosionPoolSize);
         GameObjectPoolManager.Instance.CreatePool("IcePlane", IcePlanePrefab, explosionPoolSize * 2);
         GameObjectPoolManager.Instance.CreatePool("IceCube", IceCube, explosionPoolSize * 2);
-
     }
+
     private void Update()
     {
+        if (anim == null) return;
+
         if (isPause)
         {
             Time.timeScale = 0f;
