@@ -57,6 +57,7 @@ public class CharacterConfigurator : MonoBehaviour
     public float PlayerMaxHealth;
     public float DamageRatio;
     public float PlayerCurrentHealth;
+    public float PlayerCurrentStamina;
     public float PlayerMaxAmour;
     public float HealthRecovery;
     public float HealthRecoveryPerTime;
@@ -85,6 +86,14 @@ public class CharacterConfigurator : MonoBehaviour
     public GameObject SkillTreePanel;
     private bool isOn = false;
 
+
+    // Emotion
+    private EmotionSystem Emotion;
+    private bool hasTriggeredLowHealth = false;
+    private bool hasTriggeredHealthRecovery = false;
+    private bool hasTriggeredLowStamina = false;
+    private bool hasTriggeredStaminaRecovery = false;
+
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -95,6 +104,7 @@ public class CharacterConfigurator : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        Emotion = GetComponent<EmotionSystem>();
         controller = GetComponent<vThirdPersonController>();
         if (stats != null && controller != null)
         {
@@ -134,6 +144,10 @@ public class CharacterConfigurator : MonoBehaviour
             }
         }
         ApplyStats();
+        CheckLowHealth();
+        CheckHealthRecovery();
+        CheckLowStamina();
+        CheckStaminaRecovery();
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //{
         //    TakeDamage(100f);
@@ -145,6 +159,54 @@ public class CharacterConfigurator : MonoBehaviour
         //    isOn = !isOn;
         //    SkillTreePanel.SetActive(isOn);
         //}
+    }
+    public void CheckLowHealth()
+    {
+        if (PlayerCurrentHealth < PlayerMaxHealth * 0.15f)
+        {
+            if (!hasTriggeredLowHealth)
+            {
+                Emotion.OnLowHealthOnce(1f);
+                hasTriggeredLowHealth = true;
+                hasTriggeredHealthRecovery = false;
+            }
+        }
+    }
+    public void CheckHealthRecovery()
+    {
+        if (PlayerCurrentHealth > PlayerMaxHealth * 0.15f)
+        {
+            if (!hasTriggeredHealthRecovery)
+            {
+                Emotion.OnHealthRecovery();
+                hasTriggeredHealthRecovery = true;
+                hasTriggeredLowHealth = false;
+            }
+        }
+    }
+    public void CheckLowStamina()
+    {
+        if (PlayerCurrentStamina < maxStamina * 0.25f)
+        {
+            if (!hasTriggeredLowStamina)
+            {
+                Emotion.OnLowStaminaOnce(1f);
+                hasTriggeredLowStamina = true;
+                hasTriggeredStaminaRecovery = false;
+            }
+        }
+    }
+    public void CheckStaminaRecovery()
+    {
+        if (PlayerCurrentStamina > maxStamina * 0.25f)
+        {
+            if (!hasTriggeredStaminaRecovery)
+            {
+                Emotion.OnStaminaRecovery();
+                hasTriggeredStaminaRecovery = true;
+                hasTriggeredLowStamina = false;
+            }
+        }
     }
 
     public void ChangeToIce()
@@ -182,6 +244,7 @@ public class CharacterConfigurator : MonoBehaviour
     #endregion
     public void TakeDamage(float damageValue)
     {
+        Emotion.OnHitByEnemy(0.35f);
         float TrueDamage = damageValue * DamageRatio;
         if (TrueDamage <= 0 || controller == null) return;
 
@@ -306,6 +369,7 @@ public class CharacterConfigurator : MonoBehaviour
         controller.maxShield = PlayerMaxAmour;
         controller.healthRecovery = HealthRecovery;
         PlayerCurrentHealth = controller.currentHealth;
+        PlayerCurrentStamina = controller.currentStamina;
 
         // Animator
         if (animator != null)

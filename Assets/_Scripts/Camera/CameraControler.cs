@@ -5,12 +5,11 @@ public class CameraControler : MonoBehaviour
 {
     public vThirdPersonInput input;
     public Animator animator;
-
-    private void Awake()
+    public Camera mycamera;
+    private void Start()
     {
-        //input.SetLockAllInput(true);
-        //input.SetLockCameraInput(true);
-
+        input.SetLockAllInput(true);
+        input.SetLockCameraInput(true);
     }
 
     private void ShutDownCamera()
@@ -18,5 +17,6 @@ public class CameraControler : MonoBehaviour
         input.SetLockAllInput(false);
         input.SetLockCameraInput(false);
         animator.enabled = false;
+        mycamera.enabled = false;
     }    
 }

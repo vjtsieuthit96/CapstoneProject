@@ -1,11 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Invector.vCharacterController;
 using System.Collections;
+
 public class QuestTrigger : MonoBehaviour
 {
     public QuestData questData;
+    public Transform QuestTransform;
     public AudioSource audioSource;
+
     private bool triggered = false;
+    [SerializeField] public CameraTargetSwitcher cameraSwitcher;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,32 +17,63 @@ public class QuestTrigger : MonoBehaviour
         if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
 
         var input = other.GetComponentInParent<vThirdPersonInput>();
-        var Control = other.GetComponentInParent<vThirdPersonController>();
+        var control = other.GetComponentInParent<vThirdPersonController>();
         if (input == null) return;
 
         triggered = true;
-        input.SetLockAllInput(true);
-        Control.StopCharacter();
 
-        float delay = 0f;
-
-        if (questData.questAudio != null && audioSource != null)
-        {
-            audioSource.clip = questData.questAudio;
-            audioSource.Play();
-            delay = questData.questAudio.length;
-        }
-
+        // Luôn nhận quest trước
         QuestManager.Instance.ReceiveQuest(questData);
 
-        StartCoroutine(WaitAndUnlock(delay, input));
+        // Nếu là MainTask thì chạy cutscene + delay rồi destroy
+        if (questData.taskType == TaskType.MainTask && QuestTransform != null)
+        {
+            if (cameraSwitcher != null)
+            {
+                if (cameraSwitcher.targets.Count == 0)
+                {
+                    cameraSwitcher.targets.Add(QuestTransform);
+                }
+                else if (cameraSwitcher.targets.Count > 1)
+                {
+                    cameraSwitcher.targets.RemoveAt(1);
+                }
+            }
+
+            input.SetLockAllInput(true);
+            control.StopCharacter();
+
+            StartCoroutine(WaitAndRestore(5f, input));       // unlock input + destroy sau 5s
+            StartCoroutine(SwitchToTarget(5f));              // đổi camera qua lại
+        }
+        else
+        {
+            // SubTask: không cần cutscene, destroy ngay
+            gameObject.SetActive(false);
+        }
     }
 
+    private IEnumerator SwitchToTarget(float delay)
+    {
+        if (cameraSwitcher == null || QuestTransform == null) yield break;
+        if (cameraSwitcher.currentIndex < 0 || cameraSwitcher.currentIndex >= cameraSwitcher.targets.Count) yield break;
 
-    private IEnumerator WaitAndUnlock(float delay, vThirdPersonInput input)
+        Transform previousTarget = cameraSwitcher.targets[cameraSwitcher.currentIndex];
+        cameraSwitcher.SwitchTargetToTransform(QuestTransform);
+
+        yield return new WaitForSeconds(delay);
+
+        if (previousTarget != null)
+            cameraSwitcher.SwitchTargetToTransform(previousTarget);
+    }
+
+    private IEnumerator WaitAndRestore(float delay, vThirdPersonInput input)
     {
         yield return new WaitForSeconds(delay);
-        input.SetLockAllInput(false);
-        this.gameObject.SetActive(false);
+
+        if (input != null)
+            input.SetLockAllInput(false);
+
+        gameObject.SetActive(false); // destroy sau khi cutscene xong
     }
 }

@@ -397,6 +397,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuitPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 536605173341470321, guid: 2c27549ab6e755140beb3775af31040a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3012911364477842215, guid: 2c27549ab6e755140beb3775af31040a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -644,6 +648,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2638616177055632624, guid: 573c1d154972b4947ac5ddd451ff28af, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2828123022440474747, guid: 573c1d154972b4947ac5ddd451ff28af, type: 3}
       propertyPath: m_Value
       value: 1
@@ -831,6 +839,10 @@ PrefabInstance:
     - target: {fileID: 5583782976146241539, guid: 573c1d154972b4947ac5ddd451ff28af, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070843385584258688, guid: 573c1d154972b4947ac5ddd451ff28af, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6276717922909134643, guid: 573c1d154972b4947ac5ddd451ff28af, type: 3}
       propertyPath: m_AnchorMax.x
