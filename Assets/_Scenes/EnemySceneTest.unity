@@ -240,6 +240,43 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &340506674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4233463180876574482, guid: d07bf9147d0a4f049812c5bdd4ef0c4c, type: 3}
+  m_PrefabInstance: {fileID: 1191297797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &340506676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340506674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 3.3333333
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 71834def16ca02f418e06ebcbb703c70, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &489332952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,6 +346,49 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+--- !u!195 &618015875 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+  m_PrefabInstance: {fileID: 1770849726957510087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &618015876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8660097992776228119, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+  m_PrefabInstance: {fileID: 1770849726957510087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6955deacfb800134280cca0c2d670c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &618015878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+  m_PrefabInstance: {fileID: 1770849726957510087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b3b94fbbe157e4b874a4b3e8d54adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &618015880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4742895262121481969, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+  m_PrefabInstance: {fileID: 1770849726957510087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cce55edca66fb842a284165619f9988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &618015882 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7935886305941096916, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+  m_PrefabInstance: {fileID: 1770849726957510087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1191297797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,7 +452,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4233463180876574482, guid: d07bf9147d0a4f049812c5bdd4ef0c4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 340506676}
   m_SourcePrefab: {fileID: 100100000, guid: d07bf9147d0a4f049812c5bdd4ef0c4c, type: 3}
 --- !u!1001 &1299218583
 PrefabInstance:
@@ -433,6 +516,14 @@ PrefabInstance:
     - target: {fileID: 4365239549844515469, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365239549844515469, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: m_VoxelSize
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365239549844515469, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: m_AgentTypeID
+      value: -1372625422
       objectReference: {fileID: 0}
     - target: {fileID: 4365239549844515469, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_NavMeshData
@@ -1313,17 +1404,81 @@ PrefabInstance:
       propertyPath: m_Name
       value: DragonBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_Speed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_Height
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_BaseOffset
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_AgentTypeID
+      value: -334000983
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1604401822}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: maxFlyTime
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: attackRange
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: maxHoverTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: monsterAgent
+      value: 
+      objectReference: {fileID: 618015875}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: monsterAudio
+      value: 
+      objectReference: {fileID: 618015876}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: monsterStats
+      value: 
+      objectReference: {fileID: 618015880}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: patrolRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skillManager
+      value: 
+      objectReference: {fileID: 618015878}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: flyHoverRadius
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: monsterAnimator
+      value: 
+      objectReference: {fileID: 618015882}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: speedMultiplier
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6676215174818551906, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1362.9268
       objectReference: {fileID: 0}
     - target: {fileID: 6676215174818551906, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 530.4
+      value: 537.5
       objectReference: {fileID: 0}
     - target: {fileID: 6676215174818551906, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: m_LocalPosition.z
