@@ -17,6 +17,7 @@ public class SkillNodeButton : MonoBehaviour
     private void Start()
     {
         unlockedState = node.isUnlocked;
+        manager = FindObjectOfType<SkillTreeManager>();
         button = GetComponent<Button>();
         unlockedImg = GetComponentInChildren<Image>();
         button.onClick.AddListener(() =>

@@ -24,6 +24,10 @@ public class RespawnPlayer : MonoBehaviour
     public float respawnDelay = 1f;
     public bool destroyBodyAfterDead = true;
 
+    [Header("Spawn Settings")]
+    [Tooltip("Spawnpoint ban đầu (nếu chưa có checkpoint)")]
+    public Transform initialSpawnPoint;
+
     public static RespawnPlayer Instance;
 
     private GameObject currentPlayer;
@@ -77,12 +81,13 @@ public class RespawnPlayer : MonoBehaviour
 
         if (pendingCutsceneIndex >= 0)
         {
-            // Load sang cutscene
+            // Load scene cutscene
             SceneManager.LoadScene(pendingCutsceneIndex);
 
-            // Chờ cutsceneDuration giây rồi quay lại scene gameplay cũ
+            // Chờ cho cutscene chạy hết
             yield return new WaitForSeconds(pendingCutsceneDuration);
 
+            // Load lại gameplay scene
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
@@ -93,7 +98,7 @@ public class RespawnPlayer : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Nếu vừa quay lại scene gameplay sau cutscene
+        // Khi quay lại gameplay scene thì respawn player dựa theo SceneIndexManager
         if (scene.buildIndex == lastGameplaySceneIndex)
         {
             StartCoroutine(RespawnAfterCutscene());
@@ -110,6 +115,7 @@ public class RespawnPlayer : MonoBehaviour
             else DestroyPlayerComponents(oldPlayer);
         }
 
+        // Luôn lấy nhân vật theo SceneIndexManager
         SpawnPlayerAtCheckpoint();
     }
 
@@ -118,8 +124,24 @@ public class RespawnPlayer : MonoBehaviour
         int index = Mathf.Clamp(SceneIndexManager.Instance.selectedIndex, 0, playerOptions.Length - 1);
         var option = playerOptions[index];
 
-        Vector3 spawnPos = hasCheckpoint ? checkpointPos : Vector3.zero;
-        Quaternion spawnRot = hasCheckpoint ? checkpointRot : Quaternion.identity;
+        Vector3 spawnPos;
+        Quaternion spawnRot;
+
+        if (hasCheckpoint)
+        {
+            spawnPos = checkpointPos;
+            spawnRot = checkpointRot;
+        }
+        else if (initialSpawnPoint != null)
+        {
+            spawnPos = initialSpawnPoint.position;
+            spawnRot = initialSpawnPoint.rotation;
+        }
+        else
+        {
+            spawnPos = Vector3.zero;
+            spawnRot = Quaternion.identity;
+        }
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();

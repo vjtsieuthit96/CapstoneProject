@@ -41,7 +41,7 @@ public class SkillTreeUIManager : MonoBehaviour
     private void Start()
     {
         uiPanel = GetComponent<UIPanel>();
-
+        skillSystem = FindObjectOfType<SkillTreeSystem>();
         rectTransformOffencePos = offenceBtnCanvas.GetComponent<RectTransform>().anchoredPosition;
         rectTransformDefencePos = defenceBtnCanvas.GetComponent<RectTransform>().anchoredPosition;
         rectShieldVietnegryPos = vietnegyfadeCanvas.GetComponent<RectTransform>().anchoredPosition;
