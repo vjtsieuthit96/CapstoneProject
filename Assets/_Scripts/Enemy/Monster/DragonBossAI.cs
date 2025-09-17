@@ -18,7 +18,6 @@ public class DragonBossAI : MonsterAI
     {
         base.Start();
         RepeatEvaluateBehaviorTree(0f, 1f);
-
     }
     protected override void Update()
     {
