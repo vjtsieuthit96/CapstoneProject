@@ -22,6 +22,7 @@ public class SkillTreeSystem : MonoBehaviour
 
     private void Start()
     {
+        characterConfigurator = FindObjectOfType<CharacterConfigurator>();
         RefreshOnStart();
         UpdateButtonsUI();
         foreach(var n in skillTree.allNodes)

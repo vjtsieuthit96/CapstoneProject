@@ -11,12 +11,17 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private QuestData currentMainTask;
     [SerializeField] private QuestData currentSubTask;
 
-    public List<EmotionSystem> Emotions;
+    public EmotionSystem Emotions;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        Emotions = FindObjectOfType<EmotionSystem>();
+
+    }
+    private void Start()
+    {
     }
 
     public void ReceiveQuest(QuestData questData)
@@ -40,13 +45,7 @@ public class QuestManager : MonoBehaviour
 
     public void CompleteTask(TaskID taskID)
     {
-        foreach(EmotionSystem emotionSystem in Emotions)
-        {
-            if(emotionSystem != null)
-            {
-                emotionSystem.OnFinishMission(2f);
-            }    
-        }    
+        Emotions.OnFinishMission(2f);
         QuestData task = FindTaskByID(taskID);
         if (task != null)
         {

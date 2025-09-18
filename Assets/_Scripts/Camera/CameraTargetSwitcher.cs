@@ -1,5 +1,6 @@
 ﻿using Invector;
 using Invector.vCamera;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,18 +14,34 @@ public class CameraTargetSwitcher : MonoBehaviour
 
     void Start()
     {
-        if (tpsCamera == null)
-            tpsCamera = FindObjectOfType<vThirdPersonCamera>();
+        //if (tpsCamera == null)
+        //    tpsCamera = FindObjectOfType<vThirdPersonCamera>();
 
-        if (tpsCamera != null && tpsCamera.mainTarget != null)
-        {
-            if (!targets.Contains(tpsCamera.mainTarget))
-            {
-                targets.Insert(0, tpsCamera.mainTarget);
-            }
-        }
+        //if (tpsCamera != null && tpsCamera.mainTarget != null)
+        //{
+        //    if (!targets.Contains(tpsCamera.mainTarget))
+        //    {
+        //        targets.Insert(0, tpsCamera.mainTarget);
+        //    }
+        //}
+        StartCoroutine(AfterStart());
     }
-
+    IEnumerator AfterStart()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (tpsCamera == null)
+        {
+            tpsCamera = FindObjectOfType<vThirdPersonCamera>();
+            if (tpsCamera != null && tpsCamera.mainTarget != null)
+            {
+                if (!targets.Contains(tpsCamera.mainTarget))
+                {
+                    targets.Insert(0, tpsCamera.mainTarget);
+                }
+            }
+        }    
+           
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) SwitchTarget(0);
