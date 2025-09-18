@@ -115,6 +115,7 @@ public class RespawnPlayer : MonoBehaviour
 
     private void SpawnPlayerAtCheckpoint()
     {
+        
         int index = Mathf.Clamp(SceneIndexManager.Instance.selectedIndex, 0, playerOptions.Length - 1);
         var option = playerOptions[index];
 
@@ -139,6 +140,7 @@ public class RespawnPlayer : MonoBehaviour
         {
             currentController.onDead.AddListener(OnCharacterDead);
         }
+        SceneIndexManager.Instance.isNewGame = false;
     }
 
 

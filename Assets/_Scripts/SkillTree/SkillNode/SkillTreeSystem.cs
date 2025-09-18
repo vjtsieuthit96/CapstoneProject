@@ -19,6 +19,7 @@ public class SkillTreeSystem : MonoBehaviour
     [SerializeField] private SkillTreeListInfo vietnegryList;
     public delegate void OnSkillPointsChanged();
     public event OnSkillPointsChanged onSkillPointsChanged;
+    private float saveTimer;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class SkillTreeSystem : MonoBehaviour
         defenceList = FindListInfoByName("Defence");
         vietnegryList = FindListInfoByName("Vietnegy");
         RefreshOnStart();
+        ApplySkillTreeState();
         UpdateButtonsUI();
         foreach(var n in skillTree.allNodes)
         {
@@ -68,9 +70,7 @@ public class SkillTreeSystem : MonoBehaviour
     {
         if (node.CanUnlock(availableSkillPoints))
         {
-            //node.Unlock(characterConfigurator);
-            //availableSkillPoints -= node.requiredPoints;
-            Debug.Log("Unlocked: " + node.displayName + " - Remaining Points: " + availableSkillPoints);
+            ApplySkillTreeState();
         }
         else { Debug.Log("Cannot unlock: " + node.displayName + " - Required Points: " + node.requiredPoints); return; }
 
@@ -91,6 +91,16 @@ public class SkillTreeSystem : MonoBehaviour
 
 
     }
+    private void LateUpdate()
+    {
+        saveTimer += Time.deltaTime;
+        if (saveTimer >= 3f)
+        {
+            saveTimer = 0f;
+            CaptureSkillTreeState();
+        }
+    }
+
     // neu thoa dieu kien, tu dong tra cong ki nang ?
     public bool TryUnlock(SkillNode node)
     {
@@ -137,10 +147,41 @@ public class SkillTreeSystem : MonoBehaviour
             node.isUnlocked = false;
         }    
     }
-    private void LoadFromData()
-    {
 
-    }    
+    private void CaptureSkillTreeState()
+    {
+        if (skillTree == null || PlayerRealTimeData.Instance == null) return;
+
+        PlayerRealTimeData.Instance.currentSkillTreeState.nodeStates.Clear();
+
+        foreach (var node in skillTree.allNodes)
+        {
+            SkillNodeState state = new SkillNodeState
+            {
+                nodeId = node.id,
+                isUnlocked = node.isUnlocked
+            };
+            PlayerRealTimeData.Instance.currentSkillTreeState.nodeStates.Add(state);
+        }
+
+    }
+    public void ApplySkillTreeState()
+    {
+        if (skillTree == null || PlayerRealTimeData.Instance == null) return;
+
+        var savedStates = PlayerRealTimeData.Instance.currentSkillTreeState.nodeStates;
+
+        foreach (var node in skillTree.allNodes)
+        {
+            var saved = savedStates.Find(s => s.nodeId == node.id);
+            if (saved != null)
+            {
+                node.isUnlocked = saved.isUnlocked;
+            }
+        }
+
+        UpdateButtonsUI();
+    }
 
     public int GetPoints() => availableSkillPoints;
 

@@ -4,6 +4,8 @@ public class PlayerRealTimeData : MonoBehaviour
 {
     public static PlayerRealTimeData Instance { get; private set; }
 
+    public SkillTreeState currentSkillTreeState = new SkillTreeState();
+
     private void Awake()
     {
         if (Instance == null)
@@ -15,15 +17,5 @@ public class PlayerRealTimeData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
     }
 }
