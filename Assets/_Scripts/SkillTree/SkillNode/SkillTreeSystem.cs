@@ -22,6 +22,10 @@ public class SkillTreeSystem : MonoBehaviour
 
     private void Start()
     {
+        characterConfigurator = FindObjectOfType<CharacterConfigurator>();
+        offenceList = FindListInfoByName("Offence");
+        defenceList = FindListInfoByName("Defence");
+        vietnegryList = FindListInfoByName("Vietnegy");
         RefreshOnStart();
         UpdateButtonsUI();
         foreach(var n in skillTree.allNodes)
@@ -29,6 +33,18 @@ public class SkillTreeSystem : MonoBehaviour
             n.TryAutoUnlock(characterConfigurator);
         }    
 
+    }
+    public SkillTreeListInfo FindListInfoByName(string objectName)
+    {
+        SkillTreeListInfo[] allLists = FindObjectsOfType<SkillTreeListInfo>(true);
+        foreach (var list in allLists)
+        {
+            if (list.gameObject.name == objectName)
+            {
+                return list;
+            }
+        }
+        return null;
     }
     private void OnEnable()
     {
