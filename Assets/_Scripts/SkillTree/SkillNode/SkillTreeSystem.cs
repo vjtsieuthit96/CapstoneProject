@@ -137,6 +137,10 @@ public class SkillTreeSystem : MonoBehaviour
             node.isUnlocked = false;
         }    
     }
+    private void LoadFromData()
+    {
+
+    }    
 
     public int GetPoints() => availableSkillPoints;
 
