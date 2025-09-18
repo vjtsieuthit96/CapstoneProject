@@ -26,7 +26,8 @@ public class RespawnPlayer : MonoBehaviour
 
     [Header("Spawn Settings")]
     [Tooltip("Spawnpoint ban đầu (nếu chưa có checkpoint)")]
-    public Transform initialSpawnPoint;
+    [SerializeField] private Vector3 initialSpawnPos = Vector3.zero;
+    [SerializeField] private Vector3 initialSpawnEuler = Vector3.zero;
 
     public static RespawnPlayer Instance;
 
@@ -34,7 +35,7 @@ public class RespawnPlayer : MonoBehaviour
     private vThirdPersonController currentController;
     private GameObject oldPlayer;
 
-    private Vector3 checkpointPos = Vector3.zero;
+    [SerializeField] private Vector3 checkpointPos = Vector3.zero;
     private Quaternion checkpointRot = Quaternion.identity;
     private bool hasCheckpoint = false;
 
@@ -81,24 +82,18 @@ public class RespawnPlayer : MonoBehaviour
 
         if (pendingCutsceneIndex >= 0)
         {
-            // Load scene cutscene
             SceneManager.LoadScene(pendingCutsceneIndex);
-
-            // Chờ cho cutscene chạy hết
             yield return new WaitForSeconds(pendingCutsceneDuration);
-
-            // Load lại gameplay scene
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
         {
-            Debug.LogWarning("⚠ Không có Cutscene Death cho nhân vật này!");
+            Debug.LogWarning("Không có Cutscene Death cho nhân vật này!");
         }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Khi quay lại gameplay scene thì respawn player dựa theo SceneIndexManager
         if (scene.buildIndex == lastGameplaySceneIndex)
         {
             StartCoroutine(RespawnAfterCutscene());
@@ -115,7 +110,6 @@ public class RespawnPlayer : MonoBehaviour
             else DestroyPlayerComponents(oldPlayer);
         }
 
-        // Luôn lấy nhân vật theo SceneIndexManager
         SpawnPlayerAtCheckpoint();
     }
 
@@ -132,15 +126,10 @@ public class RespawnPlayer : MonoBehaviour
             spawnPos = checkpointPos;
             spawnRot = checkpointRot;
         }
-        else if (initialSpawnPoint != null)
-        {
-            spawnPos = initialSpawnPoint.position;
-            spawnRot = initialSpawnPoint.rotation;
-        }
         else
         {
-            spawnPos = Vector3.zero;
-            spawnRot = Quaternion.identity;
+            spawnPos = initialSpawnPos;
+            spawnRot = Quaternion.Euler(initialSpawnEuler);
         }
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
@@ -152,10 +141,12 @@ public class RespawnPlayer : MonoBehaviour
         }
     }
 
-    public void SetCheckpoint(Transform checkpoint)
+
+
+    public void SetCheckpoint(Vector3 position, Quaternion rotation)
     {
-        checkpointPos = checkpoint.position;
-        checkpointRot = checkpoint.rotation;
+        checkpointPos = position;
+        checkpointRot = rotation;
         hasCheckpoint = true;
     }
 
