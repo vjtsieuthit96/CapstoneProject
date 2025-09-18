@@ -18594,8 +18594,8 @@ MonoBehaviour:
   extraGravity: -10
   limitFallVelocity: -15
   fallMinHeight: 7
-  fallMinVerticalVelocity: 9
-  fallDamage: 10
+  fallMinVerticalVelocity: -10
+  fallDamage: 7
   rollSpeed: 1.1
   rollRotationSpeed: 20
   rollExtraGravity: -10
@@ -18614,10 +18614,10 @@ MonoBehaviour:
   isImortal: 0
   PlayerDamageMultiplierLonggun: 1.6
   PlayerDamageMultiplierShortgun: 1.4
-  PlayerShootingSpeed: 0.9
-  PlayerFireRate: 0.9
-  LongGunClipSize: 0
-  GunRecoil: 1.1
+  PlayerShootingSpeed: 1
+  PlayerFireRate: 1
+  LongGunClipSize: 30
+  GunRecoil: 1
   CurrentBullet: 0
   CurrentGunClipSize: 0
   GunType: 0

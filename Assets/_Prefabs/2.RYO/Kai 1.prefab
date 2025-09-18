@@ -36580,7 +36580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f66cb09571dae4bbb35366cc05cbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: a937d780589d0ae4dbcd5fe7d848662d, type: 2}
+  stats: {fileID: 11400000, guid: ffe6ab5b9723a23479ff5d0008170fea, type: 2}
   controller: {fileID: 0}
   hudController: {fileID: 226770683764216813}
   weaponInjector: {fileID: 2479403403057628609}
@@ -36624,10 +36624,10 @@ MonoBehaviour:
   isImortal: 0
   PlayerDamageMultiplierLonggun: 0.9
   PlayerDamageMultiplierShortgun: 1
-  PlayerShootingSpeed: 1.4
-  PlayerFireRate: 1.5
+  PlayerShootingSpeed: 1
+  PlayerFireRate: 1
   LongGunClipSize: 30
-  GunRecoil: 0.7
+  GunRecoil: 1
   CurrentBullet: 0
   CurrentGunClipSize: 0
   GunType: 0

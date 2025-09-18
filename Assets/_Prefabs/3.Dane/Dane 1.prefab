@@ -41119,7 +41119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f66cb09571dae4bbb35366cc05cbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: a937d780589d0ae4dbcd5fe7d848662d, type: 2}
+  stats: {fileID: 11400000, guid: e9efd90baec3e994387ac894a60b9e2a, type: 2}
   controller: {fileID: 0}
   hudController: {fileID: 523490271425403096}
   weaponInjector: {fileID: 806787970239714898}
@@ -41127,9 +41127,9 @@ MonoBehaviour:
   CurrentElement: 0
   Shottype: 0
   walkSpeed: 2
-  runSpeed: 4
-  sprintSpeed: 6
-  crouchSpeed: 2
+  runSpeed: 3.5
+  sprintSpeed: 5.5
+  crouchSpeed: 1.8
   maxStamina: 180
   staminaRecovery: 1.1
   sprintStamina: 28
@@ -41163,10 +41163,10 @@ MonoBehaviour:
   isImortal: 0
   PlayerDamageMultiplierLonggun: 0.8
   PlayerDamageMultiplierShortgun: 0.8
-  PlayerShootingSpeed: 1.2
-  PlayerFireRate: 1.2
+  PlayerShootingSpeed: 1
+  PlayerFireRate: 1
   LongGunClipSize: 30
-  GunRecoil: 0.9
+  GunRecoil: 1
   CurrentBullet: 0
   CurrentGunClipSize: 0
   GunType: 0
