@@ -18594,8 +18594,8 @@ MonoBehaviour:
   extraGravity: -10
   limitFallVelocity: -15
   fallMinHeight: 7
-  fallMinVerticalVelocity: 9
-  fallDamage: 10
+  fallMinVerticalVelocity: -10
+  fallDamage: 7
   rollSpeed: 1.1
   rollRotationSpeed: 20
   rollExtraGravity: -10
@@ -18614,10 +18614,10 @@ MonoBehaviour:
   isImortal: 0
   PlayerDamageMultiplierLonggun: 1.6
   PlayerDamageMultiplierShortgun: 1.4
-  PlayerShootingSpeed: 0.9
-  PlayerFireRate: 0.9
-  LongGunClipSize: 0
-  GunRecoil: 1.1
+  PlayerShootingSpeed: 1
+  PlayerFireRate: 1
+  LongGunClipSize: 30
+  GunRecoil: 1
   CurrentBullet: 0
   CurrentGunClipSize: 0
   GunType: 0
@@ -61517,7 +61517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 2668425209753857488}
   node: {fileID: 11400000, guid: 4d318a86d050fd149812f9c4d8ab7eb5, type: 2}
@@ -66409,7 +66409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 2668425209753857488}
   node: {fileID: 11400000, guid: 86b384ac9f76b5b4c91dfe297a5158e9, type: 2}
@@ -75605,7 +75605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 2668425209753857488}
   node: {fileID: 11400000, guid: 95dd891a9e7be6d47a056711c5cbadb6, type: 2}

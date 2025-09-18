@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 672b24b782b18484899e083ee9d87033, type: 3}
-  m_Name: Player_Stats
+  m_Name: Kai_Stats
   m_EditorClassIdentifier: 
-  walkSpeed: 2
-  runSpeed: 4
-  sprintSpeed: 6
+  walkSpeed: 2.2
+  runSpeed: 4.5
+  sprintSpeed: 6.5
   crouchSpeed: 2
-  maxStamina: 200
-  staminaRecovery: 1.2
-  sprintStamina: 30
-  jumpStamina: 30
-  rollStamina: 25
+  maxStamina: 240
+  staminaRecovery: 1.3
+  sprintStamina: 32
+  jumpStamina: 32
+  rollStamina: 28
   jumpHeight: 4
   jumpTimer: 0.3
   jumpStandingDelay: 0.25
@@ -28,23 +28,23 @@ MonoBehaviour:
   airSmooth: 6
   extraGravity: -10
   limitFallVelocity: -15
-  fallMinHeight: 6
+  fallMinHeight: 7
   fallMinVerticalVelocity: -10
-  fallDamage: 10
-  rollSpeed: 1
+  fallDamage: 7
+  rollSpeed: 1.1
   rollRotationSpeed: 20
   rollExtraGravity: -10
-  timeToRollAgain: 0.75
+  timeToRollAgain: 0.78
   noDamageWhileRolling: 1
   noActiveRagdollWhileRolling: 1
   freeMovementAnimatorSpeed: 1
   ReloadSpeed: 1
-  PlayerMaxHealth: 100
-  PlayerMaxAmour: 100
+  PlayerMaxHealth: 180
+  PlayerMaxAmour: 130
   PlayerCurrentHealth: 0
   DamageRatio: 1
-  HealthRecovery: 0.1
-  HealthRecoveryPerTime: 0.1
+  HealthRecovery: 0.18
+  HealthRecoveryPerTime: 0.18
   isImortal: 1
   PlayerDamageMultiplierLonggun: 1
   PlayerDamageMultiplierShortgun: 1

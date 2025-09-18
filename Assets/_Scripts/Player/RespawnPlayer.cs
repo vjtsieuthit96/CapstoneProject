@@ -6,10 +6,11 @@ using Invector.vCharacterController;
 [System.Serializable]
 public class PlayerRespawnOption
 {
+    [Header("Prefab nhân vật để respawn")]
     public GameObject playerPrefab;
 
-    [Tooltip("Index của scene cutscene trong Build Settings")]
-    public int cutsceneDeathSceneIndex;
+    [Tooltip("Index của scene cutscene trong Build Settings (nếu không có thì = -1)")]
+    public int cutsceneDeathSceneIndex = -1;
 
     [Tooltip("Thời gian cutscene chạy (giây) trước khi quay lại gameplay")]
     public float cutsceneDuration = 3f;
@@ -21,7 +22,9 @@ public class RespawnPlayer : MonoBehaviour
     public PlayerRespawnOption[] playerOptions;
 
     [Header("Respawn Settings")]
+    [Tooltip("Thời gian chờ trước khi load cutscene sau khi chết")]
     public float respawnDelay = 1f;
+    [Tooltip("Xóa hẳn xác nhân vật sau khi chết (nếu false thì chỉ xóa các component)")]
     public bool destroyBodyAfterDead = true;
 
     [Header("Spawn Settings")]
@@ -35,7 +38,7 @@ public class RespawnPlayer : MonoBehaviour
     private vThirdPersonController currentController;
     private GameObject oldPlayer;
 
-    [SerializeField] private Vector3 checkpointPos = Vector3.zero;
+    private Vector3 checkpointPos = Vector3.zero;
     private Quaternion checkpointRot = Quaternion.identity;
     private bool hasCheckpoint = false;
 
@@ -45,18 +48,17 @@ public class RespawnPlayer : MonoBehaviour
 
     private void Awake()
     {
+        // Singleton
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
-            return;
         }
-
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void Start()
@@ -64,6 +66,9 @@ public class RespawnPlayer : MonoBehaviour
         SpawnPlayerAtCheckpoint();
     }
 
+    /// <summary>
+    /// Gọi khi nhân vật chết
+    /// </summary>
     private void OnCharacterDead(GameObject deadObj)
     {
         oldPlayer = deadObj;
@@ -76,22 +81,34 @@ public class RespawnPlayer : MonoBehaviour
         StartCoroutine(DeathSequence());
     }
 
+    /// <summary>
+    /// Chuỗi xử lý sau khi nhân vật chết
+    /// </summary>
     private IEnumerator DeathSequence()
     {
         yield return new WaitForSeconds(respawnDelay);
 
         if (pendingCutsceneIndex >= 0)
         {
+            // Load cutscene
             SceneManager.LoadScene(pendingCutsceneIndex);
+
+            // Chờ cutscene chạy xong
             yield return new WaitForSeconds(pendingCutsceneDuration);
+
+            // Quay lại gameplay
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
         {
-            Debug.LogWarning("Không có Cutscene Death cho nhân vật này!");
+            Debug.LogWarning("Không có Cutscene Death cho nhân vật này! Respawn ngay trong scene.");
+            StartCoroutine(RespawnAfterCutscene());
         }
     }
 
+    /// <summary>
+    /// Gọi khi scene load xong
+    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == lastGameplaySceneIndex)
@@ -100,6 +117,9 @@ public class RespawnPlayer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Respawn nhân vật sau cutscene hoặc trong scene hiện tại
+    /// </summary>
     private IEnumerator RespawnAfterCutscene()
     {
         yield return new WaitForEndOfFrame();
@@ -108,41 +128,47 @@ public class RespawnPlayer : MonoBehaviour
         {
             if (destroyBodyAfterDead) Destroy(oldPlayer);
             else DestroyPlayerComponents(oldPlayer);
+            oldPlayer = null;
         }
 
         SpawnPlayerAtCheckpoint();
     }
 
+    /// <summary>
+    /// Spawn nhân vật tại checkpoint hoặc vị trí khởi đầu
+    /// </summary>
     private void SpawnPlayerAtCheckpoint()
     {
         int index = Mathf.Clamp(SceneIndexManager.Instance.selectedIndex, 0, playerOptions.Length - 1);
         var option = playerOptions[index];
 
-        Vector3 spawnPos;
-        Quaternion spawnRot;
+        if (option.playerPrefab == null)
+        {
+            Debug.LogError($"PlayerRespawnOption[{index}] chưa có playerPrefab!");
+            return;
+        }
 
-        if (hasCheckpoint)
-        {
-            spawnPos = checkpointPos;
-            spawnRot = checkpointRot;
-        }
-        else
-        {
-            spawnPos = initialSpawnPos;
-            spawnRot = Quaternion.Euler(initialSpawnEuler);
-        }
+        Vector3 spawnPos = hasCheckpoint ? checkpointPos : initialSpawnPos;
+        Quaternion spawnRot = hasCheckpoint ? checkpointRot : Quaternion.Euler(initialSpawnEuler);
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();
 
         if (currentController != null)
         {
+            // Hủy đăng ký cũ nếu có
+            currentController.onDead.RemoveListener(OnCharacterDead);
+            // Đăng ký mới
             currentController.onDead.AddListener(OnCharacterDead);
         }
+
+        // Sau khi respawn thì chắc chắn không phải new game nữa
+        SceneIndexManager.Instance.isNewGame = false;
     }
 
-
-
+    /// <summary>
+    /// Đặt checkpoint để lần respawn sau quay lại đúng chỗ
+    /// </summary>
     public void SetCheckpoint(Vector3 position, Quaternion rotation)
     {
         checkpointPos = position;
@@ -150,23 +176,18 @@ public class RespawnPlayer : MonoBehaviour
         hasCheckpoint = true;
     }
 
+    /// <summary>
+    /// Xóa component trên player chết (giữ xác lại để làm hiệu ứng)
+    /// </summary>
     private void DestroyPlayerComponents(GameObject target)
     {
         if (!target) return;
 
-        var comps = target.GetComponentsInChildren<MonoBehaviour>();
-        foreach (var comp in comps)
-        {
+        foreach (var comp in target.GetComponentsInChildren<MonoBehaviour>())
             Destroy(comp);
-        }
 
-        var coll = target.GetComponent<Collider>();
-        if (coll) Destroy(coll);
-
-        var rb = target.GetComponent<Rigidbody>();
-        if (rb) Destroy(rb);
-
-        var anim = target.GetComponent<Animator>();
-        if (anim) Destroy(anim);
+        if (target.TryGetComponent(out Collider coll)) Destroy(coll);
+        if (target.TryGetComponent(out Rigidbody rb)) Destroy(rb);
+        if (target.TryGetComponent(out Animator anim)) Destroy(anim);
     }
 }
