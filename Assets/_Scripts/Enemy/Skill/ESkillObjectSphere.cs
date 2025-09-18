@@ -14,8 +14,8 @@ public abstract class ESkillObjectSphere : MonoBehaviour
 
     private void OnEnable()
     {
-        hasHit = false;
-        
+        CancelInvoke();
+        hasHit = false;        
         Invoke(nameof(ReturnObject), DestroyTime); // trả về pool sau khoảng thời gian tồn tại
     }
     void Update()
@@ -35,6 +35,7 @@ public abstract class ESkillObjectSphere : MonoBehaviour
                 if (player != null)
                 {
                     float damage = monsterStats.GetCurrentDamage() * damageMultiplier;
+                    Debug.Log("Damage dealt: " + damage);
                     player.TakeDamage(damage);
 
                     // Gọi HitObj với thông tin va chạm tối thiểu

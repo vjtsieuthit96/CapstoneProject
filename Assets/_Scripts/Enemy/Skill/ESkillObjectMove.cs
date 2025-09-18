@@ -15,6 +15,7 @@ public abstract class ESkillObjectMove : MonoBehaviour
 
     private void OnEnable()
     {
+        CancelInvoke();
         Invoke(nameof(ReturnObject), DestroyTime);
         hasHit = false; // Reset trạng thái
     }

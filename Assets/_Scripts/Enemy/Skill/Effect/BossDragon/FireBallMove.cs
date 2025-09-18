@@ -12,6 +12,7 @@ public class FireBallMove : MonoBehaviour
     
     private void OnEnable()
     {
+        CancelInvoke();
         Invoke(nameof(ReturnObject), DestroyTime);       
     }
     private void Update()
@@ -28,20 +29,21 @@ public class FireBallMove : MonoBehaviour
             {
                 Vector3 hitPoint = other.ClosestPoint(transform.position);
                 HitObj(hitPoint);
-                float damage = monsterStats.GetCurrentDamage() * damageMultiplier;
-                //player.TakeDamage(damage);
+                //float damage = monsterStats.GetCurrentDamage() * damageMultiplier;
+                ////player.TakeDamage(damage);
                 PoolManager.Instance.GetObject<BloodEffect4>("BloodEF4", hitPoint, Quaternion.identity);
                 ReturnObject();
             }
         }
-        else if (other.CompareTag("Ground"))
+        if (other.CompareTag("Ground"))
         {
-            Debug.Log("Hit Ground");
-            PoolManager.Instance.GetObject<FireBallHit>("FireBallHit", transform.position, Quaternion.identity);
+            Vector3 hitPoint = other.ClosestPoint(transform.position);
+            HitObj(hitPoint);
             ReturnObject();
         }
     }
    
+
     private void HitObj(Vector3 hit)
     {        
         FireBallHit fireBallHit = PoolManager.Instance.GetObject<FireBallHit>("FireBallHit", hit, Quaternion.LookRotation(hit));     
@@ -56,7 +58,7 @@ public class FireBallMove : MonoBehaviour
     {
         Vector3 direction = (playerTarget - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);        
-        float tiltAngle = 30f; // Độ nghiêng mong muốn
+        float tiltAngle = 45f; // Độ nghiêng mong muốn
         Quaternion tiltRotation = Quaternion.Euler(tiltAngle, lookRotation.eulerAngles.y, lookRotation.eulerAngles.z);
         transform.rotation = tiltRotation;
         transform.position = Vector3.MoveTowards(transform.position, playerTarget, MoveSpeed * Time.deltaTime);

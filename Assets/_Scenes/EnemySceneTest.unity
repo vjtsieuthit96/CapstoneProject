@@ -5519,7 +5519,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4853434874264225099, guid: d07bf9147d0a4f049812c5bdd4ef0c4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1371227860}
   m_SourcePrefab: {fileID: 100100000, guid: d07bf9147d0a4f049812c5bdd4ef0c4c, type: 3}
 --- !u!1001 &1299218583
 PrefabInstance:
@@ -5739,6 +5742,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1371227856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4853434874264225099, guid: d07bf9147d0a4f049812c5bdd4ef0c4c, type: 3}
+  m_PrefabInstance: {fileID: 1191297797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!154 &1371227860
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371227856}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 15600000, guid: 772cfd1f5c40b684fb78fd93b0f73560, type: 2}
+  m_EnableTreeColliders: 1
 --- !u!1001 &1530830122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5834,6 +5862,10 @@ PrefabInstance:
     - target: {fileID: 1138045021076635767, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219852544657721200, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.000153
       objectReference: {fileID: 0}
     - target: {fileID: 1408078187000254391, guid: 92c67b576d612ef45bd2a71f576a8ba6, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6486,6 +6518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireBallPrefab: {fileID: -6490512024648885703, guid: f30bf0e4ce2cead42b0f51881d947f27, type: 3}
   hitPrefabs: {fileID: -2215050492815546647, guid: 060f4f5cabbcc4641bd60a6d0214b725, type: 3}
+  impactPrefab: {fileID: -8651259210673682097, guid: 9d5990708057009459117ecb8fbd709e, type: 3}
   fireBallSpawnPos: {fileID: 1917529878}
   monsterStats: {fileID: 618015880}
   monsterAI: {fileID: 1874472361}

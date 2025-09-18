@@ -110,7 +110,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7865905442410673762}
   - component: {fileID: 474621701138830632}
-  - component: {fileID: 929664354434736918}
   m_Layer: 0
   m_Name: Terrain_0_0-20250915 - 162210
   m_TagString: Untagged
@@ -174,26 +173,6 @@ Terrain:
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
   m_TreeMotionVectorModeOverride: 3
---- !u!154 &929664354434736918
-TerrainCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4853434874264225099}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_TerrainData: {fileID: 15600000, guid: 772cfd1f5c40b684fb78fd93b0f73560, type: 2}
-  m_EnableTreeColliders: 1
 --- !u!1 &5917535232938049594
 GameObject:
   m_ObjectHideFlags: 0
