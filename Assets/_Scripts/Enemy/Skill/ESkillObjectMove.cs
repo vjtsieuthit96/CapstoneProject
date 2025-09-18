@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public abstract class ESkillObjectMove : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public abstract class ESkillObjectMove : MonoBehaviour
     [SerializeField] protected float MaxLength;
     [SerializeField] protected float DestroyTime;
     [SerializeField] private float damageMultiplier = 1.0f;
-    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask playerLayer;    
 
     protected MonsterStats monsterStats;
     private bool hasHit = false;   
@@ -20,7 +21,7 @@ public abstract class ESkillObjectMove : MonoBehaviour
 
     protected virtual void Update()
     {
-        transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
+        MovingStyle();
 
         if (hasHit) return; // Nếu đã trúng, không cần kiểm tra nữa
 
@@ -42,6 +43,7 @@ public abstract class ESkillObjectMove : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("Player"))
                     {
+                        Debug.Log("Hit player: " + hit.collider.name);
                         hasHit = true; // Đánh dấu đã trúng
 
                         CharacterConfigurator player = hit.collider.GetComponent<CharacterConfigurator>();
@@ -51,24 +53,35 @@ public abstract class ESkillObjectMove : MonoBehaviour
                             float damage = monsterStats.GetCurrentDamage() * damageMultiplier;
                             player.TakeDamage(damage);
                             PoolManager.Instance.GetObject<BloodEffect4>("BloodEF4", hit.point, Quaternion.identity);
+                            ReturnObjectWhenHit();
                             break;
                         }
                     }
-                }
+                    else if (hit.collider.CompareTag("Ground"))
+                    {
+                        hasHit = true; // Đánh dấu đã trúng
+                        HitObjOtherTag(hit);
+                        ReturnObjectWhenHit();
+                        break;
+                    }                   
+                }               
             }
         }
     }
 
     protected abstract void HitObj(RaycastHit hit);
+    protected abstract void HitObjOtherTag(RaycastHit hit);
     protected abstract void ReturnObject();
+    protected abstract void ReturnObjectWhenHit();
+    protected abstract void MovingStyle();
 
     public void SetStats(MonsterStats stats)
     { 
-        this.monsterStats = stats;      
+        this.monsterStats = stats;
     }
 
     public void SetTarget(Transform target)
-    {
+    {       
         if (target != null)
         {
             Vector3 direction = (target.position - transform.position).normalized;
@@ -77,5 +90,6 @@ public abstract class ESkillObjectMove : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(0, lookRotation.eulerAngles.y, 0);
         }
-    }
+    }    
+
 }
