@@ -26,7 +26,7 @@ public class ObjectMoveDestroy : MonoBehaviour
 
     private void Start()
     {
-        //m_scalefactor = VariousEffectsScene.m_gaph_scenesizefactor;//transform.parent.localScale.x;
+        m_scalefactor = transform.parent.localScale.x;
         time = Time.time;
     }
 
@@ -76,14 +76,7 @@ public class ObjectMoveDestroy : MonoBehaviour
         ishit = true;
         if(m_gameObjectTail)
             m_gameObjectTail.transform.parent = null;
-        MakeHitObject(hit);
-
-        if (isShieldActive)
-        {
-            //ShieldActivate m_sc = hit.transform.GetComponent<ShieldActivate>();
-            //if(m_sc)
-            //    m_sc.AddHitObject(hit.point);
-        }
+        MakeHitObject(hit);      
 
         Destroy(this.gameObject);
         Destroy(m_gameObjectTail, TailDestroyTime);
