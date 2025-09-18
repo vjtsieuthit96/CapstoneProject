@@ -106,9 +106,18 @@ public class CharacterConfigurator : MonoBehaviour
         animator = GetComponent<Animator>();
         Emotion = GetComponent<EmotionSystem>();
         controller = GetComponent<vThirdPersonController>();
-        if (stats != null && controller != null)
+        if (SceneIndexManager.Instance.isNewGame)
         {
-            CopyFrom(stats);
+            if (stats != null && controller != null)
+            {
+                CopyFrom(stats);
+            }
+
+            SaveToRealTimeData();
+        }
+        else
+        {
+            LoadFromRealTimeData();
         }
         controller.currentShield = controller.maxShield;
         MeleeInput = GetComponent<vShooterMeleeInput>();
@@ -148,6 +157,7 @@ public class CharacterConfigurator : MonoBehaviour
         CheckHealthRecovery();
         CheckLowStamina();
         CheckStaminaRecovery();
+        SaveToRealTimeData();
         //if (Input.GetKeyDown(KeyCode.Alpha1))
         //{
         //    TakeDamage(100f);
@@ -320,6 +330,95 @@ public class CharacterConfigurator : MonoBehaviour
         GunRecoil = other.GunRecoil;
     }
     #endregion
+
+    #region Clone Dữ liệu vào realtime Data 
+    public void SaveToRealTimeData()
+    {
+        if (PlayerRealTimeData.Instance == null) return;
+
+        var data = PlayerRealTimeData.Instance;
+
+        data.walkSpeed = walkSpeed;
+        data.runSpeed = runSpeed;
+        data.sprintSpeed = sprintSpeed;
+        data.crouchSpeed = crouchSpeed;
+
+        data.maxStamina = maxStamina;
+        data.staminaRecovery = staminaRecovery;
+        data.sprintStamina = sprintStamina;
+        data.jumpStamina = jumpStamina;
+        data.rollStamina = rollStamina;
+
+        data.jumpHeight = jumpHeight;
+        data.jumpTimer = jumpTimer;
+        data.jumpStandingDelay = jumpStandingDelay;
+        data.airSpeed = airSpeed;
+        data.airSmooth = airSmooth;
+
+        data.fallMinHeight = fallMinHeight;
+        data.fallDamage = fallDamage;
+
+        data.rollSpeed = rollSpeed;
+        data.rollRotationSpeed = rollRotationSpeed;
+        data.timeToRollAgain = timeToRollAgain;
+
+        data.freeMovementAnimatorSpeed = freeMovementAnimatorSpeed;
+        data.ReloadSpeed = ReloadSpeed;
+
+        data.PlayerMaxHealth = PlayerMaxHealth;
+        data.PlayerMaxAmour = PlayerMaxAmour;
+        data.HealthRecovery = HealthRecovery;
+        data.HealthRecoveryPerTime = HealthRecoveryPerTime;
+
+        data.PlayerDamageMultiplierLonggun = PlayerDamageMultiplierLonggun;
+        data.PlayerDamageMultiplierShortgun = PlayerDamageMultiplierShortgun;
+    }
+    #endregion
+    #region Load dữ liệu từ realtime Data
+    public void LoadFromRealTimeData()
+    {
+        if (PlayerRealTimeData.Instance == null) return;
+
+        var data = PlayerRealTimeData.Instance;
+
+        walkSpeed = data.walkSpeed;
+        runSpeed = data.runSpeed;
+        sprintSpeed = data.sprintSpeed;
+        crouchSpeed = data.crouchSpeed;
+
+        maxStamina = data.maxStamina;
+        staminaRecovery = data.staminaRecovery;
+        sprintStamina = data.sprintStamina;
+        jumpStamina = data.jumpStamina;
+        rollStamina = data.rollStamina;
+
+        jumpHeight = data.jumpHeight;
+        jumpTimer = data.jumpTimer;
+        jumpStandingDelay = data.jumpStandingDelay;
+        airSpeed = data.airSpeed;
+        airSmooth = data.airSmooth;
+
+        fallMinHeight = data.fallMinHeight;
+        fallDamage = data.fallDamage;
+
+        rollSpeed = data.rollSpeed;
+        rollRotationSpeed = data.rollRotationSpeed;
+        timeToRollAgain = data.timeToRollAgain;
+
+        freeMovementAnimatorSpeed = data.freeMovementAnimatorSpeed;
+        ReloadSpeed = data.ReloadSpeed;
+
+        PlayerMaxHealth = data.PlayerMaxHealth;
+        PlayerMaxAmour = data.PlayerMaxAmour;
+        HealthRecovery = data.HealthRecovery;
+        HealthRecoveryPerTime = data.HealthRecoveryPerTime;
+
+        PlayerDamageMultiplierLonggun = data.PlayerDamageMultiplierLonggun;
+        PlayerDamageMultiplierShortgun = data.PlayerDamageMultiplierShortgun;
+        ApplyStats();
+    }    
+    #endregion
+
     #region Apply dữ liệu realtime
     public void ApplyStats()
     {
