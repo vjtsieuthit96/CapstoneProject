@@ -1,5 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using static ItemPoolManager;
 
 public class DragonBossEffectManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class DragonBossEffectManager : MonoBehaviour
     [Header("-----GroundScatter-----")]
     [SerializeField] private GroundScatter groundScatter;
     [SerializeField] private Transform[] handSpawnPos;
+    [Header("-----DangerClose-----")]
+    [SerializeField] private  DangerCloseManager dangerClose;   
     [Header("-----Component-----")]
     [SerializeField] private MonsterStats monsterStats;
     [SerializeField] private MonsterAI monsterAI;
@@ -25,6 +28,7 @@ public class DragonBossEffectManager : MonoBehaviour
         PoolManager.Instance.CreatePool<FireBallImpact>("FireBallImpact", impactPrefab, 5);
         PoolManager.Instance.CreatePool<FlameBreathManager>("FlameBreath", flameBreath, 2);
         PoolManager.Instance.CreatePool<GroundScatter>("GroundScatter", groundScatter, 2);
+        PoolManager.Instance.CreatePool<DangerCloseManager>("DangerClose", dangerClose, 2);
     }
 
     public void SpawnFireBall()
@@ -35,9 +39,16 @@ public class DragonBossEffectManager : MonoBehaviour
         fireBall.SetStats(monsterStats);
         fireBall.GetTarget(monsterAI.GetTarget());        
     }
+    public void SpawnDangerClose()
+    {       
+        LookAtTarget();
+        PoolManager.Instance.GetObject<FireBallImpact>("FireBallImpact", mountSpawnPos.position, Quaternion.identity);
+        DangerCloseManager danger = PoolManager.Instance.GetObject<DangerCloseManager>("DangerClose", monsterAI.GetTarget().position, Quaternion.identity);
+        DangerCloseCollision collision = danger.GetComponentInChildren<DangerCloseCollision>();
+        collision.SetStats(monsterStats);
+    }
     public void SpawnFlameBreath()
-    {
-        Debug.Log("FlameBreath");
+    {     
         LookAtTarget();
         Vector3 direction = (monsterAI.GetTarget().position - mountSpawnPos.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(direction);

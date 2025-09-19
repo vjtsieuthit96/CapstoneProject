@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FlameBreathCollision : MonoBehaviour
+public class DangerCloseCollision : MonoBehaviour
 {
     [SerializeField] private ParticleSystem ps;
     private MonsterStats monsterStats;
@@ -9,21 +9,18 @@ public class FlameBreathCollision : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         if (other.CompareTag("Player") && !isDamaging)
-        {
-            isDamaging = true;            
+        {           
+            isDamaging = true;
             CharacterConfigurator player = other.GetComponent<CharacterConfigurator>();
             if (player != null)
             {
-                player.TakeDamage(monsterStats.GetCurrentDamage()*0.01f); 
+                player.TakeDamage(monsterStats.GetCurrentDamage() * 0.02f);
                 isDamaging = false;
             }
         }
-    }    
+    }
     public void SetStats(MonsterStats stats)
     {
         monsterStats = stats;
     }
 }
-
-
-

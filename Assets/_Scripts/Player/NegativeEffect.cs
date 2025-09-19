@@ -13,10 +13,7 @@ public class NegativeEffect : MonoBehaviour
     {
         character = GetComponent<CharacterConfigurator>();
     }
-    private void Update()
-    {
-        Debug.Log(isBurning);
-    }
+    
     public void ApplyBurn(float damagePerSecond, float duration)
     {
         if (isBurning) return;
