@@ -11,5 +11,5 @@ public class FireBallHit : ESkillObjectSphere
     protected override void ReturnObject()
     {
         PoolManager.Instance.ReturnObject("FireBallHit", this);
-    }
+    } 
 }

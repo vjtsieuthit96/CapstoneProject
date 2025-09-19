@@ -74,6 +74,7 @@ public class DragonChaseNode : Node
         }
         if (monster.IsLanding())
         {
+            Debug.Log(distanceToPlayer);
             // Nếu đang đi bộ
             agent.SetDestination(player.position);
             agent.speed = monster.GetBaseSpeed() * monster.GetSpeedMultiplier();

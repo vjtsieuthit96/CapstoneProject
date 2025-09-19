@@ -30,7 +30,7 @@ public class FireBallMove : MonoBehaviour
                 Vector3 hitPoint = other.ClosestPoint(transform.position);
                 HitObj(hitPoint);
                 //float damage = monsterStats.GetCurrentDamage() * damageMultiplier;
-                ////player.TakeDamage(damage);
+                //player.TakeDamage(damage);
                 PoolManager.Instance.GetObject<BloodEffect4>("BloodEF4", hitPoint, Quaternion.identity);
                 ReturnObject();
             }
