@@ -13,6 +13,9 @@ public class CameraRotator : MonoBehaviour
     public Button Btt_Setting;
     public Button Btt_Setting2Main;
     public Button Btt_Main2Quit;
+    public Button Btt_LoadGame;
+    public Button Btt_LoadGame2Main;
+
     public Button Btt_No;
     public Button Btt_Yes;
 
@@ -20,8 +23,10 @@ public class CameraRotator : MonoBehaviour
     public Button Btt_2dSetting;
     public Button Btt_2dSetting2Main;
     public Button Btt_2dMain2Quit;
+    public Button Btt_2dLoadGame;
     public Button Btt_2dNo;
     public Button Btt_2dYes;
+    public Button Btt_2dBack2main;
 
     [Header("Mode")]
     public GameObject Mode3d;
@@ -33,6 +38,7 @@ public class CameraRotator : MonoBehaviour
     public GameObject Main2d;
     public GameObject Setting2d;
     public GameObject Confirm2d;
+    public GameObject LoadGame;
 
 
     private void Awake()
@@ -50,9 +56,17 @@ public class CameraRotator : MonoBehaviour
         {
             RotateTo(0f, 150f);
         });
+        Btt_LoadGame2Main.onClick.AddListener(() =>
+        {
+            RotateTo(0f, 150f);
+        });
         Btt_Main2Quit.onClick.AddListener(() =>
         {
             RotateTo(-50f, 150f);
+        });
+        Btt_LoadGame.onClick.AddListener(() =>
+        {
+            RotateTo(0f, 235f);
         });
         Btt_No.onClick.AddListener(() =>
         {
@@ -84,6 +98,14 @@ public class CameraRotator : MonoBehaviour
         Btt_2dNo.onClick.AddListener(() =>
         {
             SwitchForm2D(Confirm2d, Setting2d, Main2d);
+        });
+        Btt_2dBack2main.onClick.AddListener(() =>
+        {
+            Back2Main();
+        });
+        Btt_2dLoadGame.onClick.AddListener(() =>
+        {
+            ToLoadGame2D();
         });
     }
     void Update()
@@ -130,4 +152,16 @@ public class CameraRotator : MonoBehaviour
         UnescessaryForm.SetActive(false);
         FormSwitch.SetActive(true);
     }    
+
+    public void Back2Main()
+    {
+        LoadGame.SetActive(false);
+        Main2d.SetActive(true );
+    }
+
+    public void ToLoadGame2D()
+    {
+        LoadGame.SetActive(true);
+        Main2d.SetActive(false);
+    }
 }

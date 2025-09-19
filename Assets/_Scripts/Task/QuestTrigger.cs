@@ -11,6 +11,11 @@ public class QuestTrigger : MonoBehaviour
     private bool triggered = false;
     [SerializeField] public CameraTargetSwitcher cameraSwitcher;
 
+    private void Awake()
+    {
+        questData.isCompleted = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (triggered || questData == null) return;
@@ -22,12 +27,11 @@ public class QuestTrigger : MonoBehaviour
 
         triggered = true;
 
-        // Luôn nhận quest trước
         QuestManager.Instance.ReceiveQuest(questData);
 
-        // Nếu là MainTask thì chạy cutscene + delay rồi destroy
         if (questData.taskType == TaskType.MainTask && QuestTransform != null)
         {
+            RespawnPlayer.Instance.SetCheckpoint(transform.position, transform.rotation);
             if (cameraSwitcher != null)
             {
                 if (cameraSwitcher.targets.Count == 0)
@@ -43,12 +47,11 @@ public class QuestTrigger : MonoBehaviour
             input.SetLockAllInput(true);
             control.StopCharacter();
 
-            StartCoroutine(WaitAndRestore(5f, input));       // unlock input + destroy sau 5s
-            StartCoroutine(SwitchToTarget(5f));              // đổi camera qua lại
+            StartCoroutine(WaitAndRestore(5f, input));
+            StartCoroutine(SwitchToTarget(5f));
         }
         else
         {
-            // SubTask: không cần cutscene, destroy ngay
             gameObject.SetActive(false);
         }
     }
@@ -74,6 +77,6 @@ public class QuestTrigger : MonoBehaviour
         if (input != null)
             input.SetLockAllInput(false);
 
-        gameObject.SetActive(false); // destroy sau khi cutscene xong
+        gameObject.SetActive(false);
     }
 }

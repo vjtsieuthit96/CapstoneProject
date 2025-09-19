@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -10,11 +11,14 @@ public class QuestData : ScriptableObject
     public TaskType taskType;
     public TaskID taskID;
 
-    [HideInInspector] public bool isCompleted = false;
+    [Header("Subtask: Kill Requirements")]
+    public List<KillRequirement> killRequirements = new List<KillRequirement>();
+
+    [SerializeField] public bool isCompleted = false;
 }
 public enum TaskType
 {
-    MainTask,
+    MainTask,   
     SubTask
 }
 public enum TaskID
@@ -51,3 +55,12 @@ public enum TaskID
     SubTask19,
     SubTask20
 }
+
+[System.Serializable]
+public class KillRequirement
+{
+    public string enemyType;
+    public int requiredAmount;
+    [HideInInspector] public int currentAmount;
+}
+

@@ -11,13 +11,24 @@ public class DimensionCutter : ESkillObjectMove
     {
         base.Update();
     }
+    protected override void ReturnObjectWhenHit()
+    {
+        return;
+    }
     protected override void HitObj(RaycastHit hit)
     {
        PoolManager.Instance.GetObject<DimensionHit>("DMHit", hit.point, Quaternion.LookRotation(hit.normal));      
     }
-
+    protected override void HitObjOtherTag(RaycastHit hit)
+    {
+        PoolManager.Instance.ReturnObject("DMCutter", this);
+    }
     protected override void ReturnObject()
     {
         PoolManager.Instance.ReturnObject("DMCutter", this);
+    }
+    protected override void MovingStyle()
+    {
+        transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime);
     }
 }

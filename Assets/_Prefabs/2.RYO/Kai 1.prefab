@@ -9456,7 +9456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: 35cdd865b0c43b947976b8228b49689b, type: 2}
@@ -36449,6 +36449,9 @@ GameObject:
   - component: {fileID: 135142607602267489}
   - component: {fileID: 7948496981858083100}
   - component: {fileID: 6697008923470542048}
+  - component: {fileID: 7652790578955120784}
+  - component: {fileID: 2654777066771655970}
+  - component: {fileID: 9069036110170609809}
   m_Layer: 8
   m_Name: Kai 1
   m_TagString: Player
@@ -36577,53 +36580,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f66cb09571dae4bbb35366cc05cbec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: a937d780589d0ae4dbcd5fe7d848662d, type: 2}
+  stats: {fileID: 11400000, guid: ffe6ab5b9723a23479ff5d0008170fea, type: 2}
   controller: {fileID: 0}
   hudController: {fileID: 226770683764216813}
   weaponInjector: {fileID: 2479403403057628609}
   MeleeInput: {fileID: 5189772077005458430}
   CurrentElement: 0
   Shottype: 0
-  walkSpeed: 0
-  runSpeed: 0
-  sprintSpeed: 0
-  crouchSpeed: 0
-  maxStamina: 0
-  staminaRecovery: 0
-  sprintStamina: 0
-  jumpStamina: 0
-  rollStamina: 0
-  jumpHeight: 0
-  jumpTimer: 0
-  jumpStandingDelay: 0
-  airSpeed: 0
-  airSmooth: 0
-  extraGravity: 0
-  limitFallVelocity: 0
-  fallMinHeight: 0
-  fallMinVerticalVelocity: 0
-  fallDamage: 0
-  rollSpeed: 0
-  rollRotationSpeed: 0
-  rollExtraGravity: 0
-  timeToRollAgain: 0
-  noDamageWhileRolling: 0
-  noActiveRagdollWhileRolling: 0
-  freeMovementAnimatorSpeed: 0
-  ReloadSpeed: 0
-  PlayerMaxHealth: 0
+  walkSpeed: 2.5
+  runSpeed: 5
+  sprintSpeed: 7.5
+  crouchSpeed: 2.2
+  maxStamina: 220
+  staminaRecovery: 1.25
+  sprintStamina: 28
+  jumpStamina: 28
+  rollStamina: 27
+  jumpHeight: 4.5
+  jumpTimer: 0.3
+  jumpStandingDelay: 0.25
+  airSpeed: 6
+  airSmooth: 6
+  extraGravity: -10
+  limitFallVelocity: -15
+  fallMinHeight: 6
+  fallMinVerticalVelocity: -10
+  fallDamage: 11
+  rollSpeed: 1.3
+  rollRotationSpeed: 22
+  rollExtraGravity: -10
+  timeToRollAgain: 0.75
+  noDamageWhileRolling: 1
+  noActiveRagdollWhileRolling: 1
+  freeMovementAnimatorSpeed: 1
+  ReloadSpeed: 1
+  PlayerMaxHealth: 110
   DamageRatio: 0
-  PlayerCurrentHealth: 0
-  PlayerMaxAmour: 0
-  HealthRecovery: 0
-  HealthRecoveryPerTime: 0
+  PlayerCurrentHealth: 110
+  PlayerCurrentStamina: 0
+  PlayerMaxAmour: 90
+  HealthRecovery: 0.11
+  HealthRecoveryPerTime: 0.11
   isImortal: 0
-  PlayerDamageMultiplierLonggun: 0
-  PlayerDamageMultiplierShortgun: 0
-  PlayerShootingSpeed: 0
-  PlayerFireRate: 0
-  LongGunClipSize: 0
-  GunRecoil: 0
+  PlayerDamageMultiplierLonggun: 0.9
+  PlayerDamageMultiplierShortgun: 1
+  PlayerShootingSpeed: 1
+  PlayerFireRate: 1
+  LongGunClipSize: 30
+  GunRecoil: 1
   CurrentBullet: 0
   CurrentGunClipSize: 0
   GunType: 0
@@ -36647,14 +36651,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCloseEvents: 1
   openCloseWindow: 1
-  selectedToolbar: 3
+  selectedToolbar: 0
   _isDead: 1
-  _currentHealth: 100
+  _currentHealth: 110
   isImmortal: 0
   fillHealthOnStart: 1
-  _maxHealth: 100
-  _healthRecovery: 0.1
-  _healthRecoveryDelay: 0.8
+  _maxHealth: 110
+  _healthRecovery: 0.11
+  _healthRecoveryDelay: 0.9
   checkHealthEvents: []
   _onStartReceiveDamage:
     m_PersistentCalls:
@@ -36683,7 +36687,7 @@ MonoBehaviour:
   onResetHealth:
     m_PersistentCalls:
       m_Calls: []
-  deathBy: 0
+  deathBy: 1
   removeComponentsAfterDie: 0
   debugActionListener: 0
   _ragdolled: 0
@@ -36709,11 +36713,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _modelTransform: {fileID: 0}
-  _maxStamina: 200
-  _staminaRecovery: 1.2
-  _sprintStamina: 30
-  _jumpStamina: 30
-  _rollStamina: 25
+  _maxStamina: 220
+  _staminaRecovery: 1.3
+  currentStamina: 0
+  _sprintStamina: 28
+  _jumpStamina: 28
+  _rollStamina: 20
   OnExitGround:
     m_PersistentCalls:
       m_Calls: []
@@ -36759,10 +36764,10 @@ MonoBehaviour:
     rotationSpeed: 10
     walkByDefault: 0
     rotateWithCamera: 0
-    walkSpeed: 2
-    runningSpeed: 4
-    sprintSpeed: 6
-    crouchSpeed: 2
+    walkSpeed: 2.5
+    runningSpeed: 4.5
+    sprintSpeed: 7.5
+    crouchSpeed: 3
   strafeSpeed:
     movementSmooth: 6
     animationSmooth: 0.2
@@ -36787,22 +36792,22 @@ MonoBehaviour:
   jumpAndRotate: 1
   jumpTimer: 0.3
   jumpStandingDelay: 0.25
-  _jumpHeight: 4
-  _airSpeed: 5
+  _jumpHeight: 5
+  _airSpeed: 6
   _airSmooth: 6
   _extraGravity: -10
   _limitFallVelocity: -15
   _ragdollVelocity: -15
   _fallMinHeight: 6
   _fallMinVerticalVelocity: -10
-  _fallDamage: 10
+  _fallDamage: 11
   useRollRootMotion: 1
   rollTransition: 0.25
   capsuleHeightReductionRolling: 0.5
   capsuleRadiusReductionRolling: 0
   rollControl: 1
-  _rollSpeed: 0
-  _rollRotationSpeed: 20
+  _rollSpeed: 1.3
+  _rollRotationSpeed: 22
   _rollUseGravityTime: 0
   _timeToRollAgain: 0.75
   _noDamageWhileRolling: 1
@@ -36853,6 +36858,7 @@ MonoBehaviour:
     debug: 0
     animator: {fileID: 0}
     stateInfos: []
+  Emotion: {fileID: 0}
   randomIdleCount: 0
 --- !u!114 &5189772077005458430
 MonoBehaviour:
@@ -38256,6 +38262,196 @@ MonoBehaviour:
   ChangeToIce: {r: 0, g: 0, b: 1, a: 1}
   ChangeToPoison: {r: 0, g: 1, b: 0, a: 1}
   ChangeToEletric: {r: 0, g: 0, b: 1, a: 1}
+--- !u!82 &7652790578955120784
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522511219689005321}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2654777066771655970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522511219689005321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29dd2d0c85ad31249aae1703f213edf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalClips:
+  - {fileID: 8300000, guid: d8dde70c931fb464a98f073471f41b1d, type: 3}
+  - {fileID: 8300000, guid: f81afb6ce9849e24097466e5a7631140, type: 3}
+  - {fileID: 8300000, guid: e9c8d660bb7469a4b96643fa1c754a77, type: 3}
+  - {fileID: 8300000, guid: 3e5d439359e051249bdc985dd07af7c2, type: 3}
+  - {fileID: 8300000, guid: e429e24f3ab64024aab4a599394bf77b, type: 3}
+  - {fileID: 8300000, guid: a8549d26863e7124da6aeb007e96246c, type: 3}
+  - {fileID: 8300000, guid: 8d5a4b7ab5269eb4d9445c9846a6291a, type: 3}
+  - {fileID: 8300000, guid: b578c873812ebb24291742a6b2bd9984, type: 3}
+  - {fileID: 8300000, guid: 2076950199abf304fb375d283868520b, type: 3}
+  - {fileID: 8300000, guid: 4fde3b6a2f1e8c94e8f6b0653127cb91, type: 3}
+  - {fileID: 8300000, guid: 15290cd27697aac40816a8899908ad59, type: 3}
+  - {fileID: 8300000, guid: ca942a74d9917b846a83f82b552f21d7, type: 3}
+  - {fileID: 8300000, guid: 46f4e51252b91c94fbda25c1f4588524, type: 3}
+  - {fileID: 8300000, guid: 837c3cd1d6dc34b43b9ddcdd924c4dbf, type: 3}
+  - {fileID: 8300000, guid: 4cd181ca6f2feb9449c2cee9599a59fb, type: 3}
+  - {fileID: 8300000, guid: fa064345000989741bb6d5f2628f0754, type: 3}
+  - {fileID: 8300000, guid: a2c22abf5a522fe4bbe40884758bf79a, type: 3}
+  - {fileID: 8300000, guid: f4513c7c83c56d140a83ec791bbbd80c, type: 3}
+  - {fileID: 8300000, guid: c45454844b337c1429ba8e364625580c, type: 3}
+  - {fileID: 8300000, guid: f127392a38c50a548b134bc47c2fdd0f, type: 3}
+  excitedClips:
+  - {fileID: 8300000, guid: 56f3bcc12220010478c32ff6f389c3ca, type: 3}
+  - {fileID: 8300000, guid: 1497ac06256e19b41b09c003fec8da71, type: 3}
+  - {fileID: 8300000, guid: 38d374e46a6e19f46b1ce58b8ad332c0, type: 3}
+  - {fileID: 8300000, guid: 07c821c29ed3f8b4abe7e1695f8f4f45, type: 3}
+  - {fileID: 8300000, guid: 908a163d8f9fbcf43be4c471a4f04262, type: 3}
+  - {fileID: 8300000, guid: 90db04b9158d3a54e91baf11332d4d76, type: 3}
+  - {fileID: 8300000, guid: 7160f8b63fbdd1043844afc4faef031b, type: 3}
+  - {fileID: 8300000, guid: 4bf5f406788210a4dbf3f3a11b872208, type: 3}
+  - {fileID: 8300000, guid: 15d5c4b9e00942d4b929ffcaf15a6a15, type: 3}
+  - {fileID: 8300000, guid: 52f789fd36b138f49b78286fdabd26e9, type: 3}
+  - {fileID: 8300000, guid: a7a0ccaebd2da6841a1ca1a3cef23931, type: 3}
+  - {fileID: 8300000, guid: 3741fcf0542312041b5d1feb6d278909, type: 3}
+  - {fileID: 8300000, guid: 34d6ba6f188928e45886149ef3efa429, type: 3}
+  - {fileID: 8300000, guid: 9b43ef7953af97847b8f03e1fc726118, type: 3}
+  - {fileID: 8300000, guid: 1144efed82157d74394f7357799b5fad, type: 3}
+  - {fileID: 8300000, guid: 78176ecee39e8e94e9bd5290af962e98, type: 3}
+  - {fileID: 8300000, guid: 5c0ec056e7195df41b9a8e3bffc38a5c, type: 3}
+  - {fileID: 8300000, guid: 9ed376b5fd373744bb5c2b8a27ab7e72, type: 3}
+  - {fileID: 8300000, guid: 91be332e1274df54587869af7ce009c9, type: 3}
+  frustratedClips:
+  - {fileID: 8300000, guid: 9292f10529df33640b5363e56daa0034, type: 3}
+  - {fileID: 8300000, guid: 5800e21be47fa5948acef59b40648002, type: 3}
+  - {fileID: 8300000, guid: 0310893072b10654480554012609882a, type: 3}
+  - {fileID: 8300000, guid: 1bcd7eddacd745f4eaba2ac7095d0f7b, type: 3}
+  - {fileID: 8300000, guid: 42c04a18d8b012e488f7a0d84b9da3ed, type: 3}
+  - {fileID: 8300000, guid: 121390431eb2f7b45a0344fd537c19bb, type: 3}
+  - {fileID: 8300000, guid: 0abe720017d2ba44895e16e8258bc635, type: 3}
+  - {fileID: 8300000, guid: 6832aa4cfa9608442aa54fca543cbf61, type: 3}
+  - {fileID: 8300000, guid: 8510d6ba76d5ba14ebdaae4f714e46fd, type: 3}
+  - {fileID: 8300000, guid: 5fb5f625e11f5704ea2db9c15c2fd91a, type: 3}
+  - {fileID: 8300000, guid: 311130d000aa82d4c9fc61566133749f, type: 3}
+  - {fileID: 8300000, guid: 2ec647940e8d7f24284067a7b11722ce, type: 3}
+  - {fileID: 8300000, guid: 537967080c3158642970c0c467871346, type: 3}
+  - {fileID: 8300000, guid: 51d7db7cffa1a334daf92c0427f1c092, type: 3}
+  - {fileID: 8300000, guid: 0edb170ec9c3e1a4b89ab844867cb890, type: 3}
+  - {fileID: 8300000, guid: e4d20b0cd39384a4bbbda26bd2f22a83, type: 3}
+  - {fileID: 8300000, guid: b6e482799801d3f4f9c880a905687e4e, type: 3}
+  - {fileID: 8300000, guid: e9009f028a57b734b8fab95e09919aac, type: 3}
+  - {fileID: 8300000, guid: f433fca037a679d429b9a613afaba756, type: 3}
+  - {fileID: 8300000, guid: b65a1bdd57ec83149bc417ac6da120c6, type: 3}
+  minDelay: 10
+  maxDelay: 15
+  currentState: 0
+--- !u!114 &9069036110170609809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4522511219689005321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a50e6d5a8fddee468ba341b0a6586cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emotion: 5
+  decayRate: 0.03
+  minValue: 1
+  maxValue: 10
 --- !u!1 &4528354397409241872
 GameObject:
   m_ObjectHideFlags: 0
@@ -41891,7 +42087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: 86b384ac9f76b5b4c91dfe297a5158e9, type: 2}
@@ -43108,7 +43304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: a2dc488efe8b3414b9fa56a5d1faf746, type: 2}
@@ -68633,7 +68829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: d3dccc6d2c578b949b1aaa5901800c19, type: 2}
@@ -72941,7 +73137,7 @@ GameObject:
   - component: {fileID: 5098256655145389871}
   m_Layer: 8
   m_Name: vThirdPersonCamera
-  m_TagString: Untagged
+  m_TagString: camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75793,7 +75989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 603406518304537513, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 661509929710932399, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_AnchorMax.x
@@ -76029,7 +76225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3494689994672675877, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590737243709312007, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_Name
@@ -76253,7 +76449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6705045931282339134, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7066909316120721946, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_AnchorMax.y
@@ -76765,7 +76961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: 382aae0daa5b4a34cae8508e7d3ec03b, type: 2}

@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] public bool isPause = false;
 
     [Header("Danh sách Player Prefab/Instance trong scene (size = 3)")]
-    [SerializeField] private GameObject[] playerObjects;
 
     private GameObject activePlayer;
     private Animator anim;
@@ -36,20 +35,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        int index = SceneIndexManager.Instance.SelectedIndex;
-        for (int i = 0; i < playerObjects.Length; i++)
-        {
-            if (i == index)
-            {
-                activePlayer = playerObjects[i];
-                anim = activePlayer.GetComponent<Animator>();
-            }
-            else
-            {
-                Destroy(playerObjects[i]);
-            }
-        }
-
         // Tạo các pool
         PoolManager.Instance.CreatePool("Explosion", ExplosionPrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("IceExplosion", ExplosionIcePrefab, explosionPoolSize);

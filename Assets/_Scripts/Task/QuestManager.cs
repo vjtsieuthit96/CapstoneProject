@@ -11,12 +11,24 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private QuestData currentMainTask;
     [SerializeField] private QuestData currentSubTask;
 
-    public List<EmotionSystem> Emotions;
+    public EmotionSystem Emotions;
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        Emotions = FindObjectOfType<EmotionSystem>();
+
+    }
+    private void Update()
+    {
+        if (Emotions == null)
+        {
+            Emotions = FindObjectOfType<EmotionSystem>();
+        }
+    }
+    private void Start()
+    {
     }
 
     public void ReceiveQuest(QuestData questData)
@@ -34,19 +46,18 @@ public class QuestManager : MonoBehaviour
         {
             subTasks.Add(questData);
             currentSubTask = questData;
+            var playerRecords = FindObjectOfType<PlayerPlayRecords>();
+            if (playerRecords != null)
+                playerRecords.ResetRecords();
+
             QuestUIManager.Instance.ShowTask(currentSubTask);
         }
     }
 
+
     public void CompleteTask(TaskID taskID)
     {
-        foreach(EmotionSystem emotionSystem in Emotions)
-        {
-            if(emotionSystem != null)
-            {
-                emotionSystem.OnFinishMission(2f);
-            }    
-        }    
+        Emotions.OnFinishMission(2f);
         QuestData task = FindTaskByID(taskID);
         if (task != null)
         {
@@ -61,6 +72,7 @@ public class QuestManager : MonoBehaviour
             }
             else if (task.taskType == TaskType.SubTask && task == currentSubTask)
             {
+                SkillTreeSystem.Instance.availableSkillPoints += 2;
                 currentSubTask = null;
             }
         }
@@ -86,5 +98,29 @@ public class QuestManager : MonoBehaviour
             if (next != null) return next;
         }
         return null;
+    }
+    public void OnEnemyKilled(string enemyType)
+    {
+        if (currentSubTask != null && !currentSubTask.isCompleted)
+        {
+            bool allDone = true;
+
+            foreach (var req in currentSubTask.killRequirements)
+            {
+                if (req.enemyType == enemyType && req.currentAmount < req.requiredAmount)
+                {
+                    req.currentAmount++;
+                }
+
+                if (req.currentAmount < req.requiredAmount)
+                    allDone = false;
+            }
+
+            if (allDone)
+            {
+                CompleteTask(currentSubTask.taskID);
+                currentSubTask = null;
+            }
+        }
     }
 }
