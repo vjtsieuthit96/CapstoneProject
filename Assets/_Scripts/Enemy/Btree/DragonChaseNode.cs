@@ -30,12 +30,15 @@ public class DragonChaseNode : Node
 
         // Kiểm tra trạng thái bay
         if (monster.IsFlying())
-        {            
+        {
 
             // Nếu bay quá thời gian quy định thì chuyển sang đi bộ
             if (monster.flyTimer >= monster.maxFlyTime)
             {
-                //monster.SetFlying(false);
+                monster.SetFlying(false);
+                monster.SetLanding(true);
+                monster.SetAnimatorParameter(MonsterAnimatorHash.isLandingHash, true);
+                monster.SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false);
                 agent.enabled = true;
                 agent.speed = monster.GetBaseSpeed();
                 monster.hasHoverTarget = false;
@@ -55,9 +58,9 @@ public class DragonChaseNode : Node
                 monster.hasHoverTarget = true;
                 monster.hoverTimer = 0f;
             }
-            agent.SetDestination(monster.currenHoverPos);      
+            agent.SetDestination(monster.currenHoverPos);
             agent.speed = monster.GetBaseSpeed() * monster.GetSpeedMultiplier();
-            
+
             if (flatDistance <= agent.stoppingDistance)
             {
                 monster.hasHoverTarget = false;
@@ -65,19 +68,25 @@ public class DragonChaseNode : Node
             }
             return NodeState.RUNNING;
         }
-
-        // Nếu đang đi bộ
-        agent.SetDestination(player.position);
-        agent.speed = monster.GetBaseSpeed() * monster.GetSpeedMultiplier();
-        if (distanceToPlayer <= agent.stoppingDistance)
-        {            
-            return NodeState.SUCCESS;
-        }
-
-        if (agent.remainingDistance > agent.stoppingDistance)
+        else
         {
-            Debug.Log("Rồng đang đi bộ đuổi theo mục tiêu.");
-            return NodeState.RUNNING;
+            monster.hasHoverTarget = false;            
+        }
+        if (monster.IsLanding())
+        {
+            // Nếu đang đi bộ
+            agent.SetDestination(player.position);
+            agent.speed = monster.GetBaseSpeed() * monster.GetSpeedMultiplier();
+            if (distanceToPlayer <= agent.stoppingDistance)
+            {
+                return NodeState.SUCCESS;
+            }
+
+            if (agent.remainingDistance > agent.stoppingDistance)
+            {
+                Debug.Log("Rồng đang đi bộ đuổi theo mục tiêu.");
+                return NodeState.RUNNING;
+            }
         }
 
         agent.speed = monster.GetBaseSpeed();

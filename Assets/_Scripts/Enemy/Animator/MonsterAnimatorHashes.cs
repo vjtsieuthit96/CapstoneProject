@@ -18,7 +18,14 @@ public static class MonsterAnimatorHash
     public static readonly int CatchHash = Animator.StringToHash("catch");
     public static readonly int ReleaseHash = Animator.StringToHash("release");
     public static readonly int isFlyingHash = Animator.StringToHash("isFlying");
+    public static readonly int isLandingHash = Animator.StringToHash("isLanding");
     public static readonly int landHash = Animator.StringToHash("land");
     public static readonly int CatchedHash = Animator.StringToHash("isCaught");
 
+    public static readonly int LandHash_1 = Animator.StringToHash("FlyStationary Landing_1");
+    public static readonly int LandHash_2 = Animator.StringToHash("FlyStationary Landing_2");
+    public static readonly int LandHash_3 = Animator.StringToHash("GlideToLanding");
+    public static readonly int TakeoffHash_1 = Animator.StringToHash("TakeOffToGlide");
+    public static readonly int TakeoffHash_2 = Animator.StringToHash("FlyStationary TakeOff_1");
+    public static readonly int TakeoffHash_3 = Animator.StringToHash("FlyStationary TakeOff_2");
 }
