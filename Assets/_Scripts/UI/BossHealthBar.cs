@@ -77,6 +77,7 @@ public class BossHealthBar : MonoBehaviour
         {
             UpdateSlider();
         }    
+        // Use for testing
         if(Input.GetKeyDown(KeyCode.M) && !isActive)
         {
             HealthBarOn();
