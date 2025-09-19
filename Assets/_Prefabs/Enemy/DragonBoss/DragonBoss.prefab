@@ -566,9 +566,9 @@ MonoBehaviour:
   returnToPoolDelay: 6
   enemyData: {fileID: 11400000, guid: c883f299fe03f504e9e2542eeb763b68, type: 2}
   flyTimer: 0
-  maxFlyTime: 360
+  maxFlyTime: 10
   walkTimer: 0
-  maxWalkTimer: 60
+  maxWalkTimer: 120
   flyHoverRadius: 45
   hoverTimer: 0
   maxHoverTime: 15
@@ -652,6 +652,7 @@ MonoBehaviour:
   handSpawnPos:
   - {fileID: 5197120988350013092}
   - {fileID: 6302526534334365783}
+  dangerClose: {fileID: 4050583822872690765, guid: 0bde9f2c10d5e2c4db18d46ff1fb4fed, type: 3}
   monsterStats: {fileID: 4742895262121481969}
   monsterAI: {fileID: 2402956823289643076}
 --- !u!114 &5523848658300396337
@@ -723,7 +724,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 7
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

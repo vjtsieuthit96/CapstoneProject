@@ -12,9 +12,11 @@ public class FlameBreathCollision : MonoBehaviour
         {
             isDamaging = true;            
             CharacterConfigurator player = other.GetComponent<CharacterConfigurator>();
+            NegativeEffect negativeEffect = other.GetComponent<NegativeEffect>();
             if (player != null)
             {
                 player.TakeDamage(monsterStats.GetCurrentDamage()*0.01f); 
+                negativeEffect.ApplyBurn(player.PlayerMaxHealth*0.01f, 5f);
                 isDamaging = false;
             }
         }
