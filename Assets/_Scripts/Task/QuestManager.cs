@@ -72,6 +72,7 @@ public class QuestManager : MonoBehaviour
             }
             else if (task.taskType == TaskType.SubTask && task == currentSubTask)
             {
+                SkillTreeSystem.Instance.availableSkillPoints += 2;
                 currentSubTask = null;
             }
         }
