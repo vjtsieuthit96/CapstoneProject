@@ -5509,15 +5509,15 @@ PrefabInstance:
       objectReference: {fileID: 1604401782}
     - target: {fileID: 2010697482000845711, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1311.9119
       objectReference: {fileID: 0}
     - target: {fileID: 2010697482000845711, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 533
       objectReference: {fileID: 0}
     - target: {fileID: 2010697482000845711, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2050
       objectReference: {fileID: 0}
     - target: {fileID: 2010697482000845711, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6666,6 +6666,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill2Cooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill3Cooldown
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1402265501843095355, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: m_Name
       value: DragonBoss
@@ -6679,9 +6687,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1604401822}
     - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: maxFlyTime
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: frozenEffect
       value: 
       objectReference: {fileID: 1708780824}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: maxWalkTimer
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: ElectricEffect
       value: 
@@ -6889,10 +6905,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 308261306}
   - {fileID: 1302549707}
-  - {fileID: 1299218583}
   - {fileID: 1530830122}
   - {fileID: 1770849726957510087}
   - {fileID: 489332952}
   - {fileID: 1847865762}
   - {fileID: 4706263944873545544}
+  - {fileID: 1299218583}
   - {fileID: 1191297797}
