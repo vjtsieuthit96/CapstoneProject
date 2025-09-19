@@ -24,7 +24,7 @@ public class PlayerPlayRecords : MonoBehaviour
     {
         totalKills++;
         Emotion.OnKillEnemy(1f);
-
+        QuestManager.Instance.OnEnemyKilled(enemyType);
         var entry = enemyKillList.Find(e => e.enemyType == enemyType);
         if (entry != null)
         {
@@ -40,6 +40,12 @@ public class PlayerPlayRecords : MonoBehaviour
         }
 
         Debug.Log($"[Kill] {enemyType} => {GetKillCount(enemyType)} (Total: {totalKills})");
+    }
+    public void ResetRecords()
+    {
+        totalKills = 0;
+        enemyKillList.Clear();
+        Debug.Log("[PlayerPlayRecords] Reset all records for new subtask.");
     }
     public int GetTotalKills() => totalKills;
 
