@@ -11,6 +11,11 @@ public class QuestTrigger : MonoBehaviour
     private bool triggered = false;
     [SerializeField] public CameraTargetSwitcher cameraSwitcher;
 
+    private void Awake()
+    {
+        questData.isCompleted = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (triggered || questData == null) return;

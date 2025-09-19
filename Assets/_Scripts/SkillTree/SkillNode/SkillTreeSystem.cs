@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SkillTreeSystem : MonoBehaviour
 {
+    public static SkillTreeSystem Instance { get; private set; }
     public SkillTree skillTree;
     public int availableSkillPoints = 6;
 
@@ -20,6 +21,16 @@ public class SkillTreeSystem : MonoBehaviour
 
     private float saveTimer;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
     private void Start()
     {
         // Khởi tạo reference lần đầu

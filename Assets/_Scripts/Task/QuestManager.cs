@@ -20,6 +20,13 @@ public class QuestManager : MonoBehaviour
         Emotions = FindObjectOfType<EmotionSystem>();
 
     }
+    private void Update()
+    {
+        if (Emotions == null)
+        {
+            Emotions = FindObjectOfType<EmotionSystem>();
+        }
+    }
     private void Start()
     {
     }
@@ -39,9 +46,14 @@ public class QuestManager : MonoBehaviour
         {
             subTasks.Add(questData);
             currentSubTask = questData;
+            var playerRecords = FindObjectOfType<PlayerPlayRecords>();
+            if (playerRecords != null)
+                playerRecords.ResetRecords();
+
             QuestUIManager.Instance.ShowTask(currentSubTask);
         }
     }
+
 
     public void CompleteTask(TaskID taskID)
     {
@@ -60,6 +72,7 @@ public class QuestManager : MonoBehaviour
             }
             else if (task.taskType == TaskType.SubTask && task == currentSubTask)
             {
+                SkillTreeSystem.Instance.availableSkillPoints += 2;
                 currentSubTask = null;
             }
         }
@@ -85,5 +98,29 @@ public class QuestManager : MonoBehaviour
             if (next != null) return next;
         }
         return null;
+    }
+    public void OnEnemyKilled(string enemyType)
+    {
+        if (currentSubTask != null && !currentSubTask.isCompleted)
+        {
+            bool allDone = true;
+
+            foreach (var req in currentSubTask.killRequirements)
+            {
+                if (req.enemyType == enemyType && req.currentAmount < req.requiredAmount)
+                {
+                    req.currentAmount++;
+                }
+
+                if (req.currentAmount < req.requiredAmount)
+                    allDone = false;
+            }
+
+            if (allDone)
+            {
+                CompleteTask(currentSubTask.taskID);
+                currentSubTask = null;
+            }
+        }
     }
 }
