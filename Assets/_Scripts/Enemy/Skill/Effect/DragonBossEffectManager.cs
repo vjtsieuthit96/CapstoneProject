@@ -42,8 +42,9 @@ public class DragonBossEffectManager : MonoBehaviour
     public void SpawnDangerClose()
     {       
         LookAtTarget();
+        Quaternion rotation = Quaternion.Euler(180f,0f,0f);
         PoolManager.Instance.GetObject<FireBallImpact>("FireBallImpact", mountSpawnPos.position, Quaternion.identity);
-        DangerCloseManager danger = PoolManager.Instance.GetObject<DangerCloseManager>("DangerClose", monsterAI.GetTarget().position, Quaternion.identity);
+        DangerCloseManager danger = PoolManager.Instance.GetObject<DangerCloseManager>("DangerClose", monsterAI.GetTarget().position,rotation);
         DangerCloseCollision collision = danger.GetComponentInChildren<DangerCloseCollision>();
         collision.SetStats(monsterStats);
     }
