@@ -482,13 +482,14 @@ GameObject:
   - component: {fileID: 4742895262121481969}
   - component: {fileID: 4625695199545059556}
   - component: {fileID: 960933392390650194}
+  - component: {fileID: 576601642227659633}
   - component: {fileID: 5523848658300396337}
   - component: {fileID: 8660097992776228119}
   - component: {fileID: 1872898364665665008}
   - component: {fileID: 7721387891046255008}
   m_Layer: 0
   m_Name: DragonBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,25 +546,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speedMultiplier: 1.75
-  viewRadius: 15
-  viewAngle: 105
-  alertRadius: 10
-  attackRange: 0
-  patrolRadius: 0
+  speedMultiplier: 1.25
+  viewRadius: 0
+  viewAngle: 0
+  alertRadius: 0
+  attackRange: 200
+  patrolRadius: 10
   baseSpeed: 0
   frozenEffect: {fileID: 0}
   ElectricEffect: {fileID: 0}
   bloodEffect: {fileID: 3392999217821159849, guid: 6d3629f845b40e24fb51d381e84bbc77, type: 3}
-  monsterStats: {fileID: 0}
-  monsterAnimator: {fileID: 0}
-  monsterAgent: {fileID: 0}
-  skillManager: {fileID: 0}
-  monsterAudio: {fileID: 0}
+  monsterStats: {fileID: 4742895262121481969}
+  monsterAnimator: {fileID: 7935886305941096916}
+  monsterAgent: {fileID: 1872898364665665008}
+  skillManager: {fileID: 960933392390650194}
+  monsterAudio: {fileID: 8660097992776228119}
   enemyType: DragonBoss
   isDead: 0
   returnToPoolDelay: 6
   enemyData: {fileID: 11400000, guid: c883f299fe03f504e9e2542eeb763b68, type: 2}
+  flyTimer: 0
+  maxFlyTime: 1000
+  walkTimer: 0
+  maxWalkTimer: 60
+  flyHoverRadius: 150
+  hoverTimer: 0
+  maxHoverTime: 15
+  currenHoverPos: {x: 0, y: 0, z: 0}
+  hasHoverTarget: 0
 --- !u!114 &4742895262121481969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +630,24 @@ MonoBehaviour:
   skill1Range: 0
   skill2Range: 0
   skill3Range: 0
+--- !u!114 &576601642227659633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0eb10d14f241644a4caa0a08d1194d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireBallPrefab: {fileID: -6490512024648885703, guid: f30bf0e4ce2cead42b0f51881d947f27, type: 3}
+  hitPrefabs: {fileID: -2215050492815546647, guid: 060f4f5cabbcc4641bd60a6d0214b725, type: 3}
+  impactPrefab: {fileID: -8651259210673682097, guid: 9d5990708057009459117ecb8fbd709e, type: 3}
+  fireBallSpawnPos: {fileID: 4502399951571790683}
+  monsterStats: {fileID: 4742895262121481969}
+  monsterAI: {fileID: 2402956823289643076}
 --- !u!114 &5523848658300396337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,18 +711,18 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402265501843095355}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: -334000983
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 30
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
+  m_Height: 14
+  m_BaseOffset: 10
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!82 &7721387891046255008
