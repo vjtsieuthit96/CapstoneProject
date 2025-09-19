@@ -9,7 +9,10 @@ public class DragonBossEffectManager : MonoBehaviour
     [SerializeField] private FireBallImpact impactPrefab;
     [SerializeField] private Transform mountSpawnPos;
     [Header("-----FlameBreath-----")]
-    [SerializeField] private FlameBreathManager flameBreath;  
+    [SerializeField] private FlameBreathManager flameBreath;
+    [Header("-----GroundScatter-----")]
+    [SerializeField] private GroundScatter groundScatter;
+    [SerializeField] private Transform[] handSpawnPos;
     [Header("-----Component-----")]
     [SerializeField] private MonsterStats monsterStats;
     [SerializeField] private MonsterAI monsterAI;
@@ -21,6 +24,7 @@ public class DragonBossEffectManager : MonoBehaviour
         PoolManager.Instance.CreatePool<FireBallHit>("FireBallHit", hitPrefabs, 5);
         PoolManager.Instance.CreatePool<FireBallImpact>("FireBallImpact", impactPrefab, 5);
         PoolManager.Instance.CreatePool<FlameBreathManager>("FlameBreath", flameBreath, 2);
+        PoolManager.Instance.CreatePool<GroundScatter>("GroundScatter", groundScatter, 2);
     }
 
     public void SpawnFireBall()
@@ -40,6 +44,19 @@ public class DragonBossEffectManager : MonoBehaviour
         FlameBreathManager flame = PoolManager.Instance.GetObject<FlameBreathManager>("FlameBreath", mountSpawnPos.position, lookRotation);
         FlameBreathCollision flameBreathCollision = flame.GetComponentInChildren<FlameBreathCollision>();
         flameBreathCollision.SetStats(monsterStats);
+    }
+
+    public void SpawnGroundScatter()
+    {       
+        GroundScatter scatter = PoolManager.Instance.GetObject<GroundScatter>("GroundScatter",monsterAI.GetTarget().position, Quaternion.identity);
+        scatter.SetStats(monsterStats);
+    }
+    public void SpawnHandEffect()
+    {
+        foreach (Transform hand in handSpawnPos)
+        {
+            PoolManager.Instance.GetObject<FireBallImpact>("FireBallImpact", mountSpawnPos.position, Quaternion.identity);
+        }
     }
 
     private void LookAtTarget()

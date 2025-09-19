@@ -566,10 +566,10 @@ MonoBehaviour:
   returnToPoolDelay: 6
   enemyData: {fileID: 11400000, guid: c883f299fe03f504e9e2542eeb763b68, type: 2}
   flyTimer: 0
-  maxFlyTime: 1000
+  maxFlyTime: 360
   walkTimer: 0
   maxWalkTimer: 60
-  flyHoverRadius: 150
+  flyHoverRadius: 45
   hoverTimer: 0
   maxHoverTime: 15
   currenHoverPos: {x: 0, y: 0, z: 0}
@@ -609,6 +609,7 @@ MonoBehaviour:
   weaponColliders:
   - {fileID: 5201278645622694284}
   - {fileID: 356762092525790166}
+  - {fileID: 6010065048685645179}
   monsterAudio: {fileID: 8660097992776228119}
   monsterAI: {fileID: 2402956823289643076}
 --- !u!114 &960933392390650194
@@ -624,12 +625,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 2402956823289643076}
-  skill1Cooldown: 0
-  skill2Cooldown: 0
-  skill3Cooldown: 0
-  skill1Range: 0
-  skill2Range: 0
-  skill3Range: 0
+  skill1Cooldown: 30
+  skill2Cooldown: 45
+  skill3Cooldown: 25
+  skill1Range: 22.5
+  skill2Range: 45
+  skill3Range: 45
 --- !u!114 &576601642227659633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,7 +646,12 @@ MonoBehaviour:
   fireBallPrefab: {fileID: -6490512024648885703, guid: f30bf0e4ce2cead42b0f51881d947f27, type: 3}
   hitPrefabs: {fileID: -2215050492815546647, guid: 060f4f5cabbcc4641bd60a6d0214b725, type: 3}
   impactPrefab: {fileID: -8651259210673682097, guid: 9d5990708057009459117ecb8fbd709e, type: 3}
-  fireBallSpawnPos: {fileID: 4502399951571790683}
+  mountSpawnPos: {fileID: 4502399951571790683}
+  flameBreath: {fileID: 1917028911324443048, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+  groundScatter: {fileID: 5962343794507457658, guid: 193a29f8a5d1da5429f8a50224f76108, type: 3}
+  handSpawnPos:
+  - {fileID: 5197120988350013092}
+  - {fileID: 6302526534334365783}
   monsterStats: {fileID: 4742895262121481969}
   monsterAI: {fileID: 2402956823289643076}
 --- !u!114 &5523848658300396337
@@ -717,12 +723,12 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 7
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 14
-  m_BaseOffset: 10
+  m_Height: 10
+  m_BaseOffset: 8
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!82 &7721387891046255008
@@ -1535,6 +1541,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6798592759421908909}
+  - component: {fileID: 6010065048685645179}
+  - component: {fileID: 861610569597069240}
   m_Layer: 0
   m_Name: MountainDragon_ Head
   m_TagString: Untagged
@@ -1558,6 +1566,41 @@ Transform:
   - {fileID: 4502399951571790683}
   m_Father: {fileID: 6339568694250324046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6010065048685645179
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3687169372939374615}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: -0.75, y: 0.75, z: 0}
+--- !u!114 &861610569597069240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3687169372939374615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2715b2f14eaa43e4f899d32d9afa4028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterStats: {fileID: 4742895262121481969}
+  bloodPrefabs: {fileID: 4599699046344080498, guid: bb596cd440832554089a7125852e836f, type: 3}
 --- !u!1 &3784038570118749706
 GameObject:
   m_ObjectHideFlags: 0
@@ -2208,7 +2251,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2880,7 +2923,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
