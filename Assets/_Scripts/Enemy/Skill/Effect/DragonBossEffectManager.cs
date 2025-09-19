@@ -7,7 +7,9 @@ public class DragonBossEffectManager : MonoBehaviour
     [SerializeField] private FireBallMove fireBallPrefab;
     [SerializeField] private FireBallHit hitPrefabs;
     [SerializeField] private FireBallImpact impactPrefab;
-    [SerializeField] private Transform fireBallSpawnPos;    
+    [SerializeField] private Transform mountSpawnPos;
+    [Header("-----FlameBreath-----")]
+    [SerializeField] private FlameBreathManager flameBreath;  
     [Header("-----Component-----")]
     [SerializeField] private MonsterStats monsterStats;
     [SerializeField] private MonsterAI monsterAI;
@@ -18,15 +20,26 @@ public class DragonBossEffectManager : MonoBehaviour
         PoolManager.Instance.CreatePool<FireBallMove>("FireBall", fireBallPrefab, 5);
         PoolManager.Instance.CreatePool<FireBallHit>("FireBallHit", hitPrefabs, 5);
         PoolManager.Instance.CreatePool<FireBallImpact>("FireBallImpact", impactPrefab, 5);
+        PoolManager.Instance.CreatePool<FlameBreathManager>("FlameBreath", flameBreath, 2);
     }
 
     public void SpawnFireBall()
     {
         LookAtTarget();
-        PoolManager.Instance.GetObject<FireBallImpact>("FireBallImpact", fireBallSpawnPos.position, Quaternion.identity);
-        FireBallMove fireBall = PoolManager.Instance.GetObject<FireBallMove>("FireBall", fireBallSpawnPos.position,Quaternion.identity);
+        PoolManager.Instance.GetObject<FireBallImpact>("FireBallImpact", mountSpawnPos.position, Quaternion.identity);
+        FireBallMove fireBall = PoolManager.Instance.GetObject<FireBallMove>("FireBall", mountSpawnPos.position,Quaternion.identity);
         fireBall.SetStats(monsterStats);
-        fireBall.GetTarget(monsterAI.GetTarget());
+        fireBall.GetTarget(monsterAI.GetTarget());        
+    }
+    public void SpawnFlameBreath()
+    {
+        Debug.Log("FlameBreath");
+        LookAtTarget();
+        Vector3 direction = (monsterAI.GetTarget().position - mountSpawnPos.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        FlameBreathManager flame = PoolManager.Instance.GetObject<FlameBreathManager>("FlameBreath", mountSpawnPos.position, lookRotation);
+        FlameBreathCollision flameBreathCollision = flame.GetComponentInChildren<FlameBreathCollision>();
+        flameBreathCollision.SetStats(monsterStats);
     }
 
     private void LookAtTarget()

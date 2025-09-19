@@ -64,6 +64,10 @@ public abstract class MonsterAI : MonoBehaviour
     {
         GroundLocomotion();
         Die();
+        if(GetBoolAnimatorParameter(MonsterAnimatorHash.isDeadHash) == true)
+        {
+            monsterAgent.isStopped = true;
+        }    
     }
     protected virtual void OnEnable()
     {

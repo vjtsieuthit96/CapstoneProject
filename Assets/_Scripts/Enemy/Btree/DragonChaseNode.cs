@@ -72,19 +72,21 @@ public class DragonChaseNode : Node
         {
             monster.hasHoverTarget = false;            
         }
-
-        // Nếu đang đi bộ
-        agent.SetDestination(player.position);
-        agent.speed = monster.GetBaseSpeed() * monster.GetSpeedMultiplier();
-        if (distanceToPlayer <= agent.stoppingDistance)
-        {            
-            return NodeState.SUCCESS;
-        }
-
-        if (agent.remainingDistance > agent.stoppingDistance)
+        if (monster.IsLanding())
         {
-            Debug.Log("Rồng đang đi bộ đuổi theo mục tiêu.");
-            return NodeState.RUNNING;
+            // Nếu đang đi bộ
+            agent.SetDestination(player.position);
+            agent.speed = monster.GetBaseSpeed() * monster.GetSpeedMultiplier();
+            if (distanceToPlayer <= agent.stoppingDistance)
+            {
+                return NodeState.SUCCESS;
+            }
+
+            if (agent.remainingDistance > agent.stoppingDistance)
+            {
+                Debug.Log("Rồng đang đi bộ đuổi theo mục tiêu.");
+                return NodeState.RUNNING;
+            }
         }
 
         agent.speed = monster.GetBaseSpeed();

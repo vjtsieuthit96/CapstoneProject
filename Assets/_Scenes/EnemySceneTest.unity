@@ -240,6 +240,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!4 &451794522 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+  m_PrefabInstance: {fileID: 823666902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &489332952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,6 +314,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+--- !u!1001 &823666902
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1388.8259
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 506.68997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1976.2418
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412823775881685646, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917028911324443048, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: transform1
+      value: 
+      objectReference: {fileID: 451794522}
+    - target: {fileID: 1917028911324443048, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: transform2
+      value: 
+      objectReference: {fileID: 1604401822}
+    - target: {fileID: 8102708349584291431, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+      propertyPath: m_Name
+      value: Effect_19_FlameBreath
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
 --- !u!1001 &1191297797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6445,6 +6515,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cb347afd8607c6488545685ca88f5cb, type: 3}
+--- !u!4 &1917529878 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4502399951571790683, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+  m_PrefabInstance: {fileID: 1770849726957510087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1770849726957510087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6453,9 +6528,53 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 576601642227659633, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: flameBreath
+      value: 
+      objectReference: {fileID: 1917028911324443048, guid: ca261972d9e084d4c83e80655d5df298, type: 3}
+    - target: {fileID: 576601642227659633, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: mountSpawnPos
+      value: 
+      objectReference: {fileID: 1917529878}
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill1Range
+      value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill2Range
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill3Range
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill1Cooldown
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill2Cooldown
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 960933392390650194, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: skill3Cooldown
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1402265501843095355, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: m_Name
       value: DragonBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_Height
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_BaseOffset
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872898364665665008, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: target
@@ -6464,6 +6583,14 @@ PrefabInstance:
     - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: maxFlyTime
       value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: maxWalkTimer
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: flyHoverRadius
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6676215174818551906, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6584,3 +6711,4 @@ SceneRoots:
   - {fileID: 1847865762}
   - {fileID: 4706263944873545544}
   - {fileID: 1191297797}
+  - {fileID: 823666902}

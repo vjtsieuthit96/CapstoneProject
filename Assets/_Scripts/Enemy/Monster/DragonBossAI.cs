@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DragonBossAI : MonsterAI
@@ -25,6 +26,10 @@ public class DragonBossAI : MonsterAI
     public float maxHoverTime = 15f;
     public Vector3 currenHoverPos;
     public bool hasHoverTarget = false;
+    private bool landing;
+    private bool takeoff;
+   
+
     protected override void Start()
     {
         base.Start();
@@ -55,6 +60,26 @@ public class DragonBossAI : MonsterAI
             SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, true);
             SetAnimatorParameter(MonsterAnimatorHash.isLandingHash, false);
         }
+        AnimatorStateInfo stateInfo = monsterAnimator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.shortNameHash == MonsterAnimatorHash.LandHash_3)
+        {
+            landing = true;
+        }
+        if (stateInfo.shortNameHash == MonsterAnimatorHash.TakeoffHash_1)
+        {
+            takeoff = true;
+        }
+        if (landing)
+        {
+            StartOffsetLerp(0f, 1.5f);
+            landing = false;
+        }
+        if(takeoff)
+        {
+            StartOffsetLerp(8f, 1.5f);
+            takeoff = false;
+        }        
+
     }
 
     protected override Node CreateBehaviorTree()
@@ -66,12 +91,38 @@ public class DragonBossAI : MonsterAI
             new CheckPlayerInRange(this),
             new Selector(new List<Node>
             {
-                //new SkillUsageNode(this, skillManager),
-                new DragonChaseNode(this, monsterAgent)
-                // new AttackMelee();
+                new SkillUsageNode(this, skillManager),
+                new DragonChaseNode(this, monsterAgent),
+                new MeleeAttackNode(this)
             }),
          }),
         new PatrolNode(this, monsterAgent) //  Nếu mất dấu Player hoàn toàn, AI tuần tra lại
     });
     }
+    public void StartOffsetLerp(float targetOffset, float duration)
+    {
+        StartCoroutine(LerpBaseOffset(targetOffset, duration));
+    }
+    public void DeadOffsetLerp()
+    {
+        StartCoroutine(LerpBaseOffset(0,1f));
+    }
+
+    private IEnumerator LerpBaseOffset(float targetOffset, float duration)
+    {
+        float startOffset = monsterAgent.baseOffset;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            monsterAgent.baseOffset = Mathf.Lerp(startOffset, targetOffset, t);
+            yield return null;
+        }
+        monsterAgent.baseOffset = targetOffset; 
+    }
+
+
+
 }

@@ -17,8 +17,7 @@ public class SkillUsageNode : Node
         Transform player = monster.GetTarget();
         if (player == null) return NodeState.FAILURE;
 
-        float distanceToPlayer = Vector3.Distance(monster.transform.position, player.position);
-        monster.transform.LookAt(new Vector3(player.position.x, monster.transform.position.y, player.position.z));
+        float distanceToPlayer = Vector3.Distance(monster.transform.position, player.position);        
 
         //Lấy danh sách skill từ `SkillManager`, sắp xếp theo khoảng cách giảm dần
         List<int> skillPriority = skillManager.GetSkillListSortedByPriority();
