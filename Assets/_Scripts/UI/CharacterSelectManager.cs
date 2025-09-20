@@ -92,14 +92,17 @@ public class CharacterSelectManager : MonoBehaviour
         if (isKai && !isRyo && !isDane)
         {
             Kai.SetBool("Select", isKai);
+            PlayerRealTimeData.Instance.PlayerIndex = 0;
         }
         else if (!isKai && isRyo && !isDane)
         {
             Ryo.SetBool("Select", isRyo);
-        }   
+            PlayerRealTimeData.Instance.PlayerIndex = 1;
+        }
         else if (!isKai && !isRyo && isDane)
         {
             Dane.SetBool("Select", isDane);
+            PlayerRealTimeData.Instance.PlayerIndex = 2;
         }
         leftButton.interactable = false;
         rightButton.interactable = false;

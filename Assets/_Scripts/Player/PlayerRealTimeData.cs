@@ -1,5 +1,6 @@
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 public class PlayerRealTimeData : MonoBehaviour
 {
@@ -50,6 +51,23 @@ public class PlayerRealTimeData : MonoBehaviour
     public float PlayerDamageMultiplierLonggun;
     public float PlayerDamageMultiplierShortgun;
 
+    [Header("Player Data")]
+    public int PlayerIndex;
+    public bool isNewGame = true;
+
+    [Header("Spawn Settings (Default nhập từ Inspector)")]
+    [SerializeField] private Vector3 defaultSpawnPos = Vector3.zero;
+    [SerializeField] private Vector3 defaultSpawnEuler = Vector3.zero;
+
+    [Header("Runtime Spawn (cập nhật khi checkpoint)")]
+    public Vector3 spawnPos = Vector3.zero;
+    public Quaternion spawnRot = Quaternion.identity;
+
+    [Header("Quest Tracking")]
+    public List<TaskID> completedMainTasks = new List<TaskID>();
+
+    // ✅ Quest main cuối cùng đã hoàn thành
+    public TaskID lastCompletedMainTask;
 
     private void Awake()
     {
@@ -57,10 +75,47 @@ public class PlayerRealTimeData : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            if (isNewGame || spawnPos == Vector3.zero)
+            {
+                spawnPos = defaultSpawnPos;
+                spawnRot = Quaternion.Euler(defaultSpawnEuler);
+            }
+
+            UpdateLastCompleted();
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void SetCheckpoint(Vector3 pos, Quaternion rot)
+    {
+        spawnPos = pos;
+        spawnRot = rot;
+    }
+
+    // ✅ Thêm quest vào danh sách và cập nhật lastCompleted
+    public void AddCompletedMainTask(TaskID task)
+    {
+        if (!completedMainTasks.Contains(task))
+        {
+            completedMainTasks.Add(task);
+            UpdateLastCompleted();
+        }
+    }
+
+    // ✅ Luôn đồng bộ biến lastCompleted theo list
+    private void UpdateLastCompleted()
+    {
+        if (completedMainTasks.Count > 0)
+        {
+            lastCompletedMainTask = completedMainTasks[completedMainTasks.Count - 1];
+        }
+        else
+        {
+            lastCompletedMainTask = TaskID.None;
         }
     }
 
@@ -73,6 +128,8 @@ public class PlayerRealTimeData : MonoBehaviour
     private class SaveWrapper
     {
         public SkillTreeState currentSkillTreeState;
+        public List<TaskID> completedMainTasks;
+        public TaskID lastCompletedMainTask;
 
         public float walkSpeed, runSpeed, sprintSpeed, crouchSpeed;
         public float maxStamina, staminaRecovery, sprintStamina, jumpStamina, rollStamina;
@@ -82,6 +139,11 @@ public class PlayerRealTimeData : MonoBehaviour
         public float freeMovementAnimatorSpeed, ReloadSpeed;
         public float PlayerMaxHealth, PlayerMaxAmour, HealthRecovery, HealthRecoveryPerTime;
         public float PlayerDamageMultiplierLonggun, PlayerDamageMultiplierShortgun;
+
+        public Vector3 spawnPos;
+        public Quaternion spawnRot;
+        public int PlayerIndex;
+        public bool isNewGame;
     }
 
     public void SaveToJson()
@@ -89,6 +151,9 @@ public class PlayerRealTimeData : MonoBehaviour
         SaveWrapper wrapper = new SaveWrapper
         {
             currentSkillTreeState = currentSkillTreeState,
+            completedMainTasks = completedMainTasks,
+            lastCompletedMainTask = lastCompletedMainTask,
+
             walkSpeed = walkSpeed,
             runSpeed = runSpeed,
             sprintSpeed = sprintSpeed,
@@ -122,7 +187,12 @@ public class PlayerRealTimeData : MonoBehaviour
             HealthRecoveryPerTime = HealthRecoveryPerTime,
 
             PlayerDamageMultiplierLonggun = PlayerDamageMultiplierLonggun,
-            PlayerDamageMultiplierShortgun = PlayerDamageMultiplierShortgun
+            PlayerDamageMultiplierShortgun = PlayerDamageMultiplierShortgun,
+
+            spawnPos = spawnPos,
+            spawnRot = spawnRot,
+            PlayerIndex = PlayerIndex,
+            isNewGame = isNewGame
         };
 
         string json = JsonUtility.ToJson(wrapper, true);
@@ -142,6 +212,12 @@ public class PlayerRealTimeData : MonoBehaviour
         SaveWrapper wrapper = JsonUtility.FromJson<SaveWrapper>(json);
 
         currentSkillTreeState = wrapper.currentSkillTreeState;
+        completedMainTasks = wrapper.completedMainTasks ?? new List<TaskID>();
+        lastCompletedMainTask = wrapper.lastCompletedMainTask;
+
+        // Trường hợp file cũ chưa có lastCompleted → đồng bộ lại
+        if (lastCompletedMainTask == null)
+            UpdateLastCompleted();
 
         walkSpeed = wrapper.walkSpeed;
         runSpeed = wrapper.runSpeed;
@@ -177,5 +253,10 @@ public class PlayerRealTimeData : MonoBehaviour
 
         PlayerDamageMultiplierLonggun = wrapper.PlayerDamageMultiplierLonggun;
         PlayerDamageMultiplierShortgun = wrapper.PlayerDamageMultiplierShortgun;
+
+        spawnPos = wrapper.spawnPos;
+        spawnRot = wrapper.spawnRot;
+        PlayerIndex = wrapper.PlayerIndex;
+        isNewGame = wrapper.isNewGame;
     }
 }
