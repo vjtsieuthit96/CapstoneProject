@@ -1,6 +1,9 @@
-﻿using UnityEngine;
-using Invector.vCharacterController;
+﻿using Invector.vCharacterController;
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
+using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class QuestTrigger : MonoBehaviour
 {
@@ -10,6 +13,8 @@ public class QuestTrigger : MonoBehaviour
 
     private bool triggered = false;
     [SerializeField] public CameraTargetSwitcher cameraSwitcher;
+
+    public QuestData Taskcomplete;
     private void Awake()
     {
         if(!PlayerRealTimeData.Instance.isNewGame)
@@ -26,6 +31,7 @@ public class QuestTrigger : MonoBehaviour
         else questData.isCompleted = false;
 
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,6 +49,7 @@ public class QuestTrigger : MonoBehaviour
         if (questData.taskType == TaskType.MainTask && QuestTransform != null)
         {
             PlayerRealTimeData.Instance.SetCheckpoint(transform.position, transform.rotation);
+            CompleteLastTask(Taskcomplete);
             if (cameraSwitcher != null)
             {
                 if (cameraSwitcher.targets.Count == 0)
@@ -72,6 +79,15 @@ public class QuestTrigger : MonoBehaviour
         {
             gameObject.SetActive(false);
         }    
+    }
+
+    public void CompleteLastTask(QuestData LastTask)
+    {
+        if(LastTask != null)
+        {
+            LastTask.isCompleted = true;
+            PlayerRealTimeData.Instance.AddCompletedMainTask(LastTask.taskID);
+        }
     }
 
     private IEnumerator SwitchToTarget(float delay)
