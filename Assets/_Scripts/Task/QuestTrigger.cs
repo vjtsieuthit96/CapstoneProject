@@ -31,7 +31,7 @@ public class QuestTrigger : MonoBehaviour
 
         if (questData.taskType == TaskType.MainTask && QuestTransform != null)
         {
-            RespawnPlayer.Instance.SetCheckpoint(transform.position, transform.rotation);
+            PlayerRealTimeData.Instance.SetCheckpoint(transform.position, transform.rotation);
             if (cameraSwitcher != null)
             {
                 if (cameraSwitcher.targets.Count == 0)

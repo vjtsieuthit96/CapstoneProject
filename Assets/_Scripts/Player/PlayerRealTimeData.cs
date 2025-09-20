@@ -1,6 +1,5 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
-using JetBrains.Annotations;
 
 public class PlayerRealTimeData : MonoBehaviour
 {
@@ -55,19 +54,38 @@ public class PlayerRealTimeData : MonoBehaviour
     public int PlayerIndex;
     public bool isNewGame = true;
 
+    [Header("Spawn Settings (Default nhập từ Inspector)")]
+    [SerializeField] private Vector3 defaultSpawnPos = Vector3.zero;
+    [SerializeField] private Vector3 defaultSpawnEuler = Vector3.zero;
+
+    [Header("Runtime Spawn (cập nhật khi checkpoint)")]
+    public Vector3 spawnPos = Vector3.zero;
+    public Quaternion spawnRot = Quaternion.identity;
 
     private void Awake()
     {
-        isNewGame = true;
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            if (isNewGame || spawnPos == Vector3.zero)
+            {
+                spawnPos = defaultSpawnPos;
+                spawnRot = Quaternion.Euler(defaultSpawnEuler);
+            }
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
+    }
+
+    /// <summary> Cập nhật checkpoint mới. </summary>
+    public void SetCheckpoint(Vector3 pos, Quaternion rot)
+    {
+        spawnPos = pos;
+        spawnRot = rot;
     }
 
     private string GetSavePath()
@@ -88,6 +106,12 @@ public class PlayerRealTimeData : MonoBehaviour
         public float freeMovementAnimatorSpeed, ReloadSpeed;
         public float PlayerMaxHealth, PlayerMaxAmour, HealthRecovery, HealthRecoveryPerTime;
         public float PlayerDamageMultiplierLonggun, PlayerDamageMultiplierShortgun;
+
+        // Spawn
+        public Vector3 spawnPos;
+        public Quaternion spawnRot;
+        public int PlayerIndex;
+        public bool isNewGame;
     }
 
     public void SaveToJson()
@@ -95,6 +119,7 @@ public class PlayerRealTimeData : MonoBehaviour
         SaveWrapper wrapper = new SaveWrapper
         {
             currentSkillTreeState = currentSkillTreeState,
+
             walkSpeed = walkSpeed,
             runSpeed = runSpeed,
             sprintSpeed = sprintSpeed,
@@ -128,7 +153,12 @@ public class PlayerRealTimeData : MonoBehaviour
             HealthRecoveryPerTime = HealthRecoveryPerTime,
 
             PlayerDamageMultiplierLonggun = PlayerDamageMultiplierLonggun,
-            PlayerDamageMultiplierShortgun = PlayerDamageMultiplierShortgun
+            PlayerDamageMultiplierShortgun = PlayerDamageMultiplierShortgun,
+
+            spawnPos = spawnPos,
+            spawnRot = spawnRot,
+            PlayerIndex = PlayerIndex,
+            isNewGame = isNewGame
         };
 
         string json = JsonUtility.ToJson(wrapper, true);
@@ -183,5 +213,10 @@ public class PlayerRealTimeData : MonoBehaviour
 
         PlayerDamageMultiplierLonggun = wrapper.PlayerDamageMultiplierLonggun;
         PlayerDamageMultiplierShortgun = wrapper.PlayerDamageMultiplierShortgun;
+
+        spawnPos = wrapper.spawnPos;
+        spawnRot = wrapper.spawnRot;
+        PlayerIndex = wrapper.PlayerIndex;
+        isNewGame = wrapper.isNewGame;
     }
 }

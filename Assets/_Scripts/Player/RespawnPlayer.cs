@@ -18,29 +18,18 @@ public class PlayerRespawnOption
 
 public class RespawnPlayer : MonoBehaviour
 {
+    public static RespawnPlayer Instance;
+
     [Header("Cấu hình Respawn cho từng nhân vật (theo Index chọn ở SceneIndexManager)")]
     public PlayerRespawnOption[] playerOptions;
 
     [Header("Respawn Settings")]
-    [Tooltip("Thời gian chờ trước khi load cutscene sau khi chết")]
     public float respawnDelay = 1f;
-    [Tooltip("Xóa hẳn xác nhân vật sau khi chết (nếu false thì chỉ xóa các component)")]
     public bool destroyBodyAfterDead = true;
-
-    [Header("Spawn Settings")]
-    [Tooltip("Spawnpoint ban đầu (nếu chưa có checkpoint)")]
-    [SerializeField] private Vector3 initialSpawnPos = Vector3.zero;
-    [SerializeField] private Vector3 initialSpawnEuler = Vector3.zero;
-
-    public static RespawnPlayer Instance;
 
     private GameObject currentPlayer;
     private vThirdPersonController currentController;
     private GameObject oldPlayer;
-
-    private Vector3 checkpointPos = Vector3.zero;
-    private Quaternion checkpointRot = Quaternion.identity;
-    private bool hasCheckpoint = false;
 
     private int lastGameplaySceneIndex;
     private int pendingCutsceneIndex = -1;
@@ -62,7 +51,7 @@ public class RespawnPlayer : MonoBehaviour
 
     private void Start()
     {
-        SpawnPlayerAtCheckpoint();
+        SpawnPlayer();
     }
 
     private void OnCharacterDead(GameObject deadObj)
@@ -77,7 +66,6 @@ public class RespawnPlayer : MonoBehaviour
         StartCoroutine(DeathSequence());
     }
 
-
     private IEnumerator DeathSequence()
     {
         yield return new WaitForSeconds(respawnDelay);
@@ -85,9 +73,7 @@ public class RespawnPlayer : MonoBehaviour
         if (pendingCutsceneIndex >= 0)
         {
             SceneManager.LoadScene(pendingCutsceneIndex);
-
             yield return new WaitForSeconds(pendingCutsceneDuration);
-
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
@@ -116,11 +102,10 @@ public class RespawnPlayer : MonoBehaviour
             oldPlayer = null;
         }
 
-        SpawnPlayerAtCheckpoint();
+        SpawnPlayer();
     }
 
-
-    private void SpawnPlayerAtCheckpoint()
+    private void SpawnPlayer()
     {
         int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
         var option = playerOptions[index];
@@ -131,8 +116,8 @@ public class RespawnPlayer : MonoBehaviour
             return;
         }
 
-        Vector3 spawnPos = hasCheckpoint ? checkpointPos : initialSpawnPos;
-        Quaternion spawnRot = hasCheckpoint ? checkpointRot : Quaternion.Euler(initialSpawnEuler);
+        Vector3 spawnPos = PlayerRealTimeData.Instance.spawnPos;
+        Quaternion spawnRot = PlayerRealTimeData.Instance.spawnRot;
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();
@@ -144,13 +129,6 @@ public class RespawnPlayer : MonoBehaviour
         }
 
         PlayerRealTimeData.Instance.isNewGame = false;
-    }
-
-    public void SetCheckpoint(Vector3 position, Quaternion rotation)
-    {
-        checkpointPos = position;
-        checkpointRot = rotation;
-        hasCheckpoint = true;
     }
 
     private void DestroyPlayerComponents(GameObject target)
