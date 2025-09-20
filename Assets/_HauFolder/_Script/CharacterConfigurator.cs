@@ -141,6 +141,14 @@ public class CharacterConfigurator : MonoBehaviour
         {
             isExplosive = !isExplosive;
         }
+        if(isExplosive)
+        {
+            ChangeToExplosion();
+        }
+        else if(!isExplosive)
+        {
+            ChangeToNone();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             if (PlayerElementClass <= 5)
