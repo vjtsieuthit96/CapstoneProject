@@ -477015,6 +477015,7 @@ MonoBehaviour:
   defaultSpawnEuler: {x: 0, y: -180, z: 0}
   spawnPos: {x: 0, y: 0, z: 0}
   spawnRot: {x: 0, y: 0, z: 0, w: 1}
+  completedMainTasks: 0100000002000000
 --- !u!1001 &1905277360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -486022,8 +486023,6 @@ MonoBehaviour:
     cutsceneDuration: 45.2
   respawnDelay: 1
   destroyBodyAfterDead: 1
-  initialSpawnPos: {x: 0, y: 0, z: 0}
-  initialSpawnEuler: {x: 0, y: 0, z: 0}
 --- !u!1001 &1967372224
 PrefabInstance:
   m_ObjectHideFlags: 0

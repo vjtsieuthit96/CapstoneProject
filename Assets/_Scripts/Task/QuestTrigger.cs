@@ -10,10 +10,21 @@ public class QuestTrigger : MonoBehaviour
 
     private bool triggered = false;
     [SerializeField] public CameraTargetSwitcher cameraSwitcher;
-
     private void Awake()
     {
-        questData.isCompleted = false;
+        if(!PlayerRealTimeData.Instance.isNewGame)
+        {
+            if (questData != null)
+            {
+                if (PlayerRealTimeData.Instance.completedMainTasks.Contains(questData.taskID))
+                {
+                    questData.isCompleted = true;
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        else questData.isCompleted = false;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,6 +65,13 @@ public class QuestTrigger : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+    }
+    private void Update()
+    {
+        if(questData.isCompleted)
+        {
+            gameObject.SetActive(false);
+        }    
     }
 
     private IEnumerator SwitchToTarget(float delay)

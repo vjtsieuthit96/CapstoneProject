@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 
 public class PlayerRealTimeData : MonoBehaviour
 {
@@ -62,6 +63,9 @@ public class PlayerRealTimeData : MonoBehaviour
     public Vector3 spawnPos = Vector3.zero;
     public Quaternion spawnRot = Quaternion.identity;
 
+    [Header("Quest Tracking")]
+    public List<TaskID> completedMainTasks = new List<TaskID>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -81,7 +85,6 @@ public class PlayerRealTimeData : MonoBehaviour
         }
     }
 
-    /// <summary> Cập nhật checkpoint mới. </summary>
     public void SetCheckpoint(Vector3 pos, Quaternion rot)
     {
         spawnPos = pos;
@@ -98,6 +101,8 @@ public class PlayerRealTimeData : MonoBehaviour
     {
         public SkillTreeState currentSkillTreeState;
 
+        public List<TaskID> completedMainTasks;
+
         public float walkSpeed, runSpeed, sprintSpeed, crouchSpeed;
         public float maxStamina, staminaRecovery, sprintStamina, jumpStamina, rollStamina;
         public float jumpHeight, jumpTimer, jumpStandingDelay, airSpeed, airSmooth;
@@ -107,7 +112,6 @@ public class PlayerRealTimeData : MonoBehaviour
         public float PlayerMaxHealth, PlayerMaxAmour, HealthRecovery, HealthRecoveryPerTime;
         public float PlayerDamageMultiplierLonggun, PlayerDamageMultiplierShortgun;
 
-        // Spawn
         public Vector3 spawnPos;
         public Quaternion spawnRot;
         public int PlayerIndex;
@@ -119,6 +123,7 @@ public class PlayerRealTimeData : MonoBehaviour
         SaveWrapper wrapper = new SaveWrapper
         {
             currentSkillTreeState = currentSkillTreeState,
+            completedMainTasks = completedMainTasks,
 
             walkSpeed = walkSpeed,
             runSpeed = runSpeed,
@@ -178,6 +183,7 @@ public class PlayerRealTimeData : MonoBehaviour
         SaveWrapper wrapper = JsonUtility.FromJson<SaveWrapper>(json);
 
         currentSkillTreeState = wrapper.currentSkillTreeState;
+        completedMainTasks = wrapper.completedMainTasks ?? new List<TaskID>();
 
         walkSpeed = wrapper.walkSpeed;
         runSpeed = wrapper.runSpeed;
