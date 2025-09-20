@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 6235331583755428966}
   - component: {fileID: 6746374413610230984}
   - component: {fileID: 1824499269220785203}
+  - component: {fileID: 7126091993349021757}
   m_Layer: 5
   m_Name: Prefab_Load_Slot
   m_TagString: Untagged
@@ -621,3 +622,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7126091993349021757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5305994266247231386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75dab968e8014364aadc6099003031eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotNameText: {fileID: 7428520385712487424}
+  loadButton: {fileID: 4517259484015763741}
+  deleteButton: {fileID: 5201238905105020709}
