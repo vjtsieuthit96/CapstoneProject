@@ -28,8 +28,8 @@ public class SaveLoadUIManager : MonoBehaviour
             currentSlots.Add(slotGO);
         }
     }
-
     private void OnSaveButtonClicked()
+
     {
         SaveManager.Instance.SaveGame();
 
