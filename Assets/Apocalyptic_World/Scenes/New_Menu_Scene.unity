@@ -2306,8 +2306,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 243155019}
   m_HandleRect: {fileID: 243155018}
   m_Direction: 2
-  m_Value: -0.028846154
-  m_Size: 0.9999902
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3667,6 +3667,7 @@ GameObject:
   m_Component:
   - component: {fileID: 352792720}
   - component: {fileID: 352792722}
+  - component: {fileID: 352792723}
   m_Layer: 0
   m_Name: Database Game
   m_TagString: Untagged
@@ -3731,7 +3732,25 @@ MonoBehaviour:
   PlayerDamageMultiplierLonggun: 0
   PlayerDamageMultiplierShortgun: 0
   PlayerIndex: 0
-  isNewGame: 0
+  isNewGame: 1
+  defaultSpawnPos: {x: 7.88, y: -0.08000004, z: 64.53}
+  defaultSpawnEuler: {x: 0, y: -180, z: 0}
+  spawnPos: {x: 0, y: 0, z: 0}
+  spawnRot: {x: 0, y: 0, z: 0, w: 1}
+  completedMainTasks: 
+  lastCompletedMainTask: 0
+--- !u!114 &352792723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352792719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704164a9d5e9311418b177f7b8b08609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &366771344 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7480324519664870856, guid: f67c07699af09204dae286ad921692cf, type: 3}
@@ -4124,7 +4143,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401462257}
   m_LocalRotation: {x: -0, y: 0.7880742, z: -0, w: -0.6155802}
-  m_LocalPosition: {x: 0, y: 0, z: 23.83}
+  m_LocalPosition: {x: 0, y: 0, z: 22.5663}
   m_LocalScale: {x: 0.6, y: 0.17, z: 0.0598}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4136,8 +4155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 255.988, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.98, y: -15.15}
-  m_SizeDelta: {x: 11.9128, y: 21.5716}
+  m_AnchoredPosition: {x: -5.5092, y: -14.5332}
+  m_SizeDelta: {x: 13.1622, y: 32.9776}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &401462259
 MonoBehaviour:
@@ -6508,7 +6527,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 640787521}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00000057624}
   m_LocalScale: {x: 0.38333336, y: 0.62235296, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6516,8 +6535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.02, y: -7.1}
-  m_SizeDelta: {x: -0.00049972534, y: -11.5798}
+  m_AnchoredPosition: {x: -0.0002503395, y: -11.322}
+  m_SizeDelta: {x: -0.0005, y: -19.362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &640787523
 MonoBehaviour:
@@ -6610,8 +6629,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.8
-  m_fontSizeBase: 1.8
+  m_fontSize: 3
+  m_fontSizeBase: 3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9405,6 +9424,7 @@ GameObject:
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
   - component: {fileID: 963194232}
+  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9598,6 +9618,20 @@ MonoBehaviour:
   Setting2d: {fileID: 1324680323}
   Confirm2d: {fileID: 351114611}
   LoadGame: {fileID: 945184521}
+--- !u!114 &963194233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02eb6f81b38175a4ba59130169f87e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contentParent: {fileID: 1009655807}
+  slotPrefab: {fileID: 5305994266247231386, guid: 206d31f01770caa4a979019a57c0b5ef, type: 3}
 --- !u!1001 &1003558667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9709,7 +9743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000834465, y: 0.0029602689}
+  m_AnchoredPosition: {x: -0.0000834465, y: 0.00013016722}
   m_SizeDelta: {x: 0, y: 325.24}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1009655808
@@ -11067,7 +11101,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134243103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -11078,8 +11112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0757, y: -0.436}
-  m_SizeDelta: {x: 221.8831, y: 332.237}
+  m_AnchoredPosition: {x: 0.0665, y: 0.394}
+  m_SizeDelta: {x: 245.8559, y: 498.156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1134243105
 MonoBehaviour:
@@ -12369,7 +12403,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232176153}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000041116}
   m_LocalScale: {x: 0.38333333, y: 0.62235296, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12377,8 +12411,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.02, y: 9.48}
-  m_SizeDelta: {x: -0.00049972534, y: -16.4459}
+  m_AnchoredPosition: {x: 0.00003528595, y: 15}
+  m_SizeDelta: {x: 21.174, y: -16.446}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1232176155
 MonoBehaviour:
@@ -12471,8 +12505,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2.27
-  m_fontSizeBase: 2.27
+  m_fontSize: 3
+  m_fontSizeBase: 3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13574,7 +13608,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1745148135}
   m_HandleRect: {fileID: 1745148134}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
