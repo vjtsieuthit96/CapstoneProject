@@ -66,7 +66,6 @@ public class PlayerRealTimeData : MonoBehaviour
     [Header("Quest Tracking")]
     public List<TaskID> completedMainTasks = new List<TaskID>();
 
-    // ✅ Quest main cuối cùng đã hoàn thành
     public TaskID lastCompletedMainTask;
 
     private void Awake()
@@ -96,7 +95,6 @@ public class PlayerRealTimeData : MonoBehaviour
         spawnRot = rot;
     }
 
-    // ✅ Thêm quest vào danh sách và cập nhật lastCompleted
     public void AddCompletedMainTask(TaskID task)
     {
         if (!completedMainTasks.Contains(task))
@@ -106,7 +104,6 @@ public class PlayerRealTimeData : MonoBehaviour
         }
     }
 
-    // ✅ Luôn đồng bộ biến lastCompleted theo list
     private void UpdateLastCompleted()
     {
         if (completedMainTasks.Count > 0)
@@ -215,7 +212,6 @@ public class PlayerRealTimeData : MonoBehaviour
         completedMainTasks = wrapper.completedMainTasks ?? new List<TaskID>();
         lastCompletedMainTask = wrapper.lastCompletedMainTask;
 
-        // Trường hợp file cũ chưa có lastCompleted → đồng bộ lại
         if (lastCompletedMainTask == null)
             UpdateLastCompleted();
 

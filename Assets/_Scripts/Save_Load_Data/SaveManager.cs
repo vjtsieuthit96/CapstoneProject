@@ -85,7 +85,6 @@ public class SaveManager : MonoBehaviour
 
         PlayerRealTimeData.Instance.SaveToJson();
 
-        // Copy file ra slot
         string src = Path.Combine(Application.persistentDataPath, "PlayerRealTimeData.json");
         string dest = GetSavePath(currentSlotId);
         File.Copy(src, dest, true);
@@ -127,7 +126,7 @@ public class SaveManager : MonoBehaviour
 
         currentSlotId = slotId;
         Debug.Log("Game loaded: " + slotId);
-        SceneManager.LoadScene(7);
+        SceneManager.LoadScene(11);
     }
 
     public void DeleteSlot(string slotId)
