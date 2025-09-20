@@ -66,6 +66,9 @@ public class PlayerRealTimeData : MonoBehaviour
     [Header("Quest Tracking")]
     public List<TaskID> completedMainTasks = new List<TaskID>();
 
+    // ✅ Quest main cuối cùng đã hoàn thành
+    public TaskID lastCompletedMainTask;
+
     private void Awake()
     {
         if (Instance == null)
@@ -78,6 +81,8 @@ public class PlayerRealTimeData : MonoBehaviour
                 spawnPos = defaultSpawnPos;
                 spawnRot = Quaternion.Euler(defaultSpawnEuler);
             }
+
+            UpdateLastCompleted();
         }
         else if (Instance != this)
         {
@@ -91,6 +96,29 @@ public class PlayerRealTimeData : MonoBehaviour
         spawnRot = rot;
     }
 
+    // ✅ Thêm quest vào danh sách và cập nhật lastCompleted
+    public void AddCompletedMainTask(TaskID task)
+    {
+        if (!completedMainTasks.Contains(task))
+        {
+            completedMainTasks.Add(task);
+            UpdateLastCompleted();
+        }
+    }
+
+    // ✅ Luôn đồng bộ biến lastCompleted theo list
+    private void UpdateLastCompleted()
+    {
+        if (completedMainTasks.Count > 0)
+        {
+            lastCompletedMainTask = completedMainTasks[completedMainTasks.Count - 1];
+        }
+        else
+        {
+            lastCompletedMainTask = TaskID.None;
+        }
+    }
+
     private string GetSavePath()
     {
         return Path.Combine(Application.persistentDataPath, "PlayerRealTimeData.json");
@@ -100,8 +128,8 @@ public class PlayerRealTimeData : MonoBehaviour
     private class SaveWrapper
     {
         public SkillTreeState currentSkillTreeState;
-
         public List<TaskID> completedMainTasks;
+        public TaskID lastCompletedMainTask;
 
         public float walkSpeed, runSpeed, sprintSpeed, crouchSpeed;
         public float maxStamina, staminaRecovery, sprintStamina, jumpStamina, rollStamina;
@@ -124,6 +152,7 @@ public class PlayerRealTimeData : MonoBehaviour
         {
             currentSkillTreeState = currentSkillTreeState,
             completedMainTasks = completedMainTasks,
+            lastCompletedMainTask = lastCompletedMainTask,
 
             walkSpeed = walkSpeed,
             runSpeed = runSpeed,
@@ -184,6 +213,11 @@ public class PlayerRealTimeData : MonoBehaviour
 
         currentSkillTreeState = wrapper.currentSkillTreeState;
         completedMainTasks = wrapper.completedMainTasks ?? new List<TaskID>();
+        lastCompletedMainTask = wrapper.lastCompletedMainTask;
+
+        // Trường hợp file cũ chưa có lastCompleted → đồng bộ lại
+        if (lastCompletedMainTask == null)
+            UpdateLastCompleted();
 
         walkSpeed = wrapper.walkSpeed;
         runSpeed = wrapper.runSpeed;
