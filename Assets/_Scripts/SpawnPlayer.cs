@@ -10,7 +10,7 @@ public class SpawnPlayer : MonoBehaviour
     private void Awake()
     {
         Index = FindAnyObjectByType<SceneIndexManager>();
-        PlayerIndex = Index.SelectedIndex;
+        //PlayerIndex = Index.SelectedIndex;
         SpawnIndexPlayer();
     }
 

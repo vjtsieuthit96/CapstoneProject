@@ -106,7 +106,7 @@ public class CharacterConfigurator : MonoBehaviour
         animator = GetComponent<Animator>();
         Emotion = GetComponent<EmotionSystem>();
         controller = GetComponent<vThirdPersonController>();
-        if (SceneIndexManager.Instance.isNewGame)
+        if (PlayerRealTimeData.Instance.isNewGame)
         {
             if (stats != null && controller != null)
             {

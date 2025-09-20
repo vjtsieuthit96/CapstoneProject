@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.IO;
+using JetBrains.Annotations;
 
 public class PlayerRealTimeData : MonoBehaviour
 {
@@ -50,9 +51,14 @@ public class PlayerRealTimeData : MonoBehaviour
     public float PlayerDamageMultiplierLonggun;
     public float PlayerDamageMultiplierShortgun;
 
+    [Header("Player Data")]
+    public int PlayerIndex;
+    public bool isNewGame = true;
+
 
     private void Awake()
     {
+        isNewGame = true;
         if (Instance == null)
         {
             Instance = this;

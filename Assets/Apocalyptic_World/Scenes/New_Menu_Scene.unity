@@ -2306,8 +2306,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 243155019}
   m_HandleRect: {fileID: 243155018}
   m_Direction: 2
-  m_Value: 0.114285715
-  m_Size: 0.99999017
+  m_Value: -0.028846154
+  m_Size: 0.9999902
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3666,7 +3666,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 352792720}
-  - component: {fileID: 352792721}
   - component: {fileID: 352792722}
   m_Layer: 0
   m_Name: Database Game
@@ -3690,20 +3689,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &352792721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352792719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1bdc4a469da96340b95346def59e63d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedIndex: 0
-  isNewGame: 1
 --- !u!114 &352792722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3745,6 +3730,8 @@ MonoBehaviour:
   HealthRecoveryPerTime: 0
   PlayerDamageMultiplierLonggun: 0
   PlayerDamageMultiplierShortgun: 0
+  PlayerIndex: 0
+  isNewGame: 0
 --- !u!114 &366771344 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7480324519664870856, guid: f67c07699af09204dae286ad921692cf, type: 3}
@@ -9722,7 +9709,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000834465, y: 0.002617046}
+  m_AnchoredPosition: {x: -0.0000834465, y: 0.0029602689}
   m_SizeDelta: {x: 0, y: 325.24}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1009655808

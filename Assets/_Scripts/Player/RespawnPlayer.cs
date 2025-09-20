@@ -48,7 +48,6 @@ public class RespawnPlayer : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton
         if (Instance == null)
         {
             Instance = this;
@@ -66,37 +65,29 @@ public class RespawnPlayer : MonoBehaviour
         SpawnPlayerAtCheckpoint();
     }
 
-    /// <summary>
-    /// Gọi khi nhân vật chết
-    /// </summary>
     private void OnCharacterDead(GameObject deadObj)
     {
         oldPlayer = deadObj;
         lastGameplaySceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        int index = Mathf.Clamp(SceneIndexManager.Instance.selectedIndex, 0, playerOptions.Length - 1);
+        int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
         pendingCutsceneIndex = playerOptions[index].cutsceneDeathSceneIndex;
         pendingCutsceneDuration = playerOptions[index].cutsceneDuration;
 
         StartCoroutine(DeathSequence());
     }
 
-    /// <summary>
-    /// Chuỗi xử lý sau khi nhân vật chết
-    /// </summary>
+
     private IEnumerator DeathSequence()
     {
         yield return new WaitForSeconds(respawnDelay);
 
         if (pendingCutsceneIndex >= 0)
         {
-            // Load cutscene
             SceneManager.LoadScene(pendingCutsceneIndex);
 
-            // Chờ cutscene chạy xong
             yield return new WaitForSeconds(pendingCutsceneDuration);
 
-            // Quay lại gameplay
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
@@ -106,9 +97,6 @@ public class RespawnPlayer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Gọi khi scene load xong
-    /// </summary>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == lastGameplaySceneIndex)
@@ -117,9 +105,6 @@ public class RespawnPlayer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Respawn nhân vật sau cutscene hoặc trong scene hiện tại
-    /// </summary>
     private IEnumerator RespawnAfterCutscene()
     {
         yield return new WaitForEndOfFrame();
@@ -134,12 +119,10 @@ public class RespawnPlayer : MonoBehaviour
         SpawnPlayerAtCheckpoint();
     }
 
-    /// <summary>
-    /// Spawn nhân vật tại checkpoint hoặc vị trí khởi đầu
-    /// </summary>
+
     private void SpawnPlayerAtCheckpoint()
     {
-        int index = Mathf.Clamp(SceneIndexManager.Instance.selectedIndex, 0, playerOptions.Length - 1);
+        int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
         var option = playerOptions[index];
 
         if (option.playerPrefab == null)
@@ -156,19 +139,13 @@ public class RespawnPlayer : MonoBehaviour
 
         if (currentController != null)
         {
-            // Hủy đăng ký cũ nếu có
             currentController.onDead.RemoveListener(OnCharacterDead);
-            // Đăng ký mới
             currentController.onDead.AddListener(OnCharacterDead);
         }
 
-        // Sau khi respawn thì chắc chắn không phải new game nữa
-        SceneIndexManager.Instance.isNewGame = false;
+        PlayerRealTimeData.Instance.isNewGame = false;
     }
 
-    /// <summary>
-    /// Đặt checkpoint để lần respawn sau quay lại đúng chỗ
-    /// </summary>
     public void SetCheckpoint(Vector3 position, Quaternion rotation)
     {
         checkpointPos = position;
@@ -176,9 +153,6 @@ public class RespawnPlayer : MonoBehaviour
         hasCheckpoint = true;
     }
 
-    /// <summary>
-    /// Xóa component trên player chết (giữ xác lại để làm hiệu ứng)
-    /// </summary>
     private void DestroyPlayerComponents(GameObject target)
     {
         if (!target) return;
