@@ -16,7 +16,7 @@ public class NewMaterialChange : MonoBehaviour
     float m_cutOutFactor;
     public float m_upFactor;
     float upFactor;
-    bool isupfactor = true;       
+    bool isupfactor = true;
 
     void Awake()
     {
@@ -58,7 +58,5 @@ public class NewMaterialChange : MonoBehaviour
             if (upFactor >= 1)
                 isupfactor = false;
         }
-        
-    }   
-
+    }
 }
