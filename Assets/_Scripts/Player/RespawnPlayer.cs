@@ -35,6 +35,8 @@ public class RespawnPlayer : MonoBehaviour
     private int pendingCutsceneIndex = -1;
     private float pendingCutsceneDuration = 0f;
 
+    private bool isRespawning = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -56,6 +58,9 @@ public class RespawnPlayer : MonoBehaviour
 
     private void OnCharacterDead(GameObject deadObj)
     {
+        if (isRespawning) return;
+        isRespawning = true;
+
         oldPlayer = deadObj;
         lastGameplaySceneIndex = SceneManager.GetActiveScene().buildIndex;
 
@@ -74,6 +79,7 @@ public class RespawnPlayer : MonoBehaviour
         {
             SceneManager.LoadScene(pendingCutsceneIndex);
             yield return new WaitForSeconds(pendingCutsceneDuration);
+
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
@@ -103,6 +109,7 @@ public class RespawnPlayer : MonoBehaviour
         }
 
         SpawnPlayer();
+        isRespawning = false;
     }
 
     private void SpawnPlayer()
@@ -117,7 +124,12 @@ public class RespawnPlayer : MonoBehaviour
         }
 
         Vector3 spawnPos = PlayerRealTimeData.Instance.spawnPos;
+        if (spawnPos == Vector3.zero)
+            spawnPos = new Vector3(0, 2f, 0);
+
         Quaternion spawnRot = PlayerRealTimeData.Instance.spawnRot;
+        if (spawnRot == Quaternion.identity)
+            spawnRot = Quaternion.identity;
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();

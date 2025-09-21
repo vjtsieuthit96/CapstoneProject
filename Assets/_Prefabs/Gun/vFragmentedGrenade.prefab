@@ -46,7 +46,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170736}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 898a490f854251046a69c0ef94cc452b, type: 3}
   m_Name: 
@@ -150,6 +150,13 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+  DetentionTime: 0
+  ReductEnemySpeedPercent: 0
+  ElectricDamagePercent: 0
+  EletricDuration: 0
+  PoisonDamagePercent: 0
+  PoisonDuration: 0
+  Owner: {fileID: 0}
 --- !u!54 &5446364
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24182,7 +24189,6 @@ MonoBehaviour:
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
-  Damage: 0
 --- !u!82 &1645694906081355812
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33930,7 +33936,6 @@ MonoBehaviour:
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
-  Damage: 0
 --- !u!114 &5715070547519680141
 MonoBehaviour:
   m_ObjectHideFlags: 0
