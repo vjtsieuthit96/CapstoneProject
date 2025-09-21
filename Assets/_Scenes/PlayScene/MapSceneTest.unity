@@ -468240,6 +468240,9 @@ MonoBehaviour:
     levelType: 3
   currentLevel: 1
   enemyParent: {fileID: 1850126577}
+  spawnerEnabled: 1
+  player: {fileID: 0}
+  spawnRadius: 40
   currentPoints: 0
 --- !u!1001 &1850506451
 PrefabInstance:
@@ -544430,7 +544433,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1007596536948881994, guid: dc8731d3aad2e5f448de5eeb6152b915, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.12
+      value: 23.6
       objectReference: {fileID: 0}
     - target: {fileID: 1007596536948881994, guid: dc8731d3aad2e5f448de5eeb6152b915, type: 3}
       propertyPath: m_LocalPosition.y
@@ -544438,7 +544441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1007596536948881994, guid: dc8731d3aad2e5f448de5eeb6152b915, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.14
+      value: 49.5
       objectReference: {fileID: 0}
     - target: {fileID: 1007596536948881994, guid: dc8731d3aad2e5f448de5eeb6152b915, type: 3}
       propertyPath: m_LocalRotation.w
