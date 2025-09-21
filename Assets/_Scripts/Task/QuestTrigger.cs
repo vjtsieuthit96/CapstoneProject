@@ -27,6 +27,11 @@ public class QuestTrigger : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
+            if(QuestManager.Instance.currentSubTask == questData)
+            {
+                this.gameObject.SetActive(false);
+            }
+
         }
         else questData.isCompleted = false;
 

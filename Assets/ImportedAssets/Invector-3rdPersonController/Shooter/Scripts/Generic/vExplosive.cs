@@ -63,6 +63,10 @@ namespace Invector
             Gizmos.color = new Color(0, 1, 0, 0.2f);
             Gizmos.DrawSphere(transform.position, maxExplosionRadius);
         }
+        private void OnDisable()
+        {
+            Owner = null;
+        }
 
         public void SetOverrideDamageSender(Transform target) => overrideDamageSender = target;
 

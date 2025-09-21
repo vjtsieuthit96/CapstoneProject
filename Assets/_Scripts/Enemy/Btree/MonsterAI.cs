@@ -161,7 +161,6 @@ public abstract class MonsterAI : MonoBehaviour
       
         float locomotionValue = Vector3.Dot(monsterAgent.velocity.normalized, transform.forward) * normalizedSpeed;
 
-        //Điều chỉnh giá trị về khoảng -1 -> 1
         locomotionValue = Mathf.Lerp(-1f, 1f, Mathf.Clamp01((locomotionValue + 1) / 2));
        
         SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);

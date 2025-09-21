@@ -531,6 +531,7 @@ namespace Invector.vShooter
                             explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
                             explosive.Explode();
                         }
+                        else Debug.LogWarning("null ở đây");
 
                     }
                     else

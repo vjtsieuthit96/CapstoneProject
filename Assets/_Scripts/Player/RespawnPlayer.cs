@@ -109,6 +109,14 @@ public class RespawnPlayer : MonoBehaviour
         }
 
         SpawnPlayer();
+        if(QuestManager.Instance.currentMainTask != null)
+        {
+            QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentMainTask);
+        }
+        if(QuestManager.Instance.currentSubTask != null)
+        {
+            QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentSubTask);
+        }
         isRespawning = false;
     }
 

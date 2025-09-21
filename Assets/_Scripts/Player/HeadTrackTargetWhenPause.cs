@@ -8,16 +8,16 @@ public class HeadTrackTargetWhenPause : MonoBehaviour
 
     private void OnEnable()
     {
-        if (!GameManager.Instance.isPause)
-            gameObject.SetActive(false);
+        //if (!GameManager.Instance.isPause)
+        //    gameObject.SetActive(false);
     }
     private void Update()
     {
-        if (!GameManager.Instance.isPause)
-        {
-            gameObject.SetActive(false);
-            return;
-        }
+        //if (!GameManager.Instance.isPause)
+        //{
+        //    gameObject.SetActive(false);
+        //    return;
+        //}
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane plane = new Plane(Vector3.up, transform.position);

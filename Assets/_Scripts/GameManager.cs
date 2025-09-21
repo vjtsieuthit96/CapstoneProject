@@ -11,42 +11,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject IcePlanePrefab;
     [SerializeField] private GameObject IceCube;
     [SerializeField] private int explosionPoolSize = 5;
-    [SerializeField] public bool isPause = false;
+    [SerializeField] private bool isPause = false;
 
-    [Header("Danh sách Player Prefab/Instance trong scene (size = 3)")]
-
-    private GameObject activePlayer;
     private Animator anim;
-
-    public static GameManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void Start()
     {
-        // Tạo các pool
         PoolManager.Instance.CreatePool("Explosion", ExplosionPrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("IceExplosion", ExplosionIcePrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("ElectricExplosion", ExplosionElectricPrefab, explosionPoolSize);
         PoolManager.Instance.CreatePool("PoisonExplosion", ExplosionPoisonPrefab, explosionPoolSize);
+
         GameObjectPoolManager.Instance.CreatePool("IcePlane", IcePlanePrefab, explosionPoolSize * 2);
         GameObjectPoolManager.Instance.CreatePool("IceCube", IceCube, explosionPoolSize * 2);
     }
 
     private void Update()
     {
-        if (anim == null) return;
+        if (!anim) return;
 
         if (isPause)
         {
@@ -55,7 +37,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1.0f;
+            Time.timeScale = 1f;
             anim.updateMode = AnimatorUpdateMode.Fixed;
         }
     }

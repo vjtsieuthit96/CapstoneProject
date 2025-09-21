@@ -8,8 +8,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private List<QuestData> mainTasks = new List<QuestData>();
     [SerializeField] private List<QuestData> subTasks = new List<QuestData>();
 
-    [SerializeField] private QuestData currentMainTask;
-    [SerializeField] private QuestData currentSubTask;
+    [SerializeField] public QuestData currentMainTask;
+    [SerializeField] public QuestData currentSubTask;
 
     public EmotionSystem Emotions;
 
