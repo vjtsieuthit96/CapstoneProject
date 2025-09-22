@@ -56,7 +56,6 @@ public class EnemySpawner : MonoBehaviour
             if (playerObj != null)
             {
                 player = playerObj.transform;
-                Debug.Log("Player found: " + player.name);
                 yield break;
             }
 

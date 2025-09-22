@@ -54,7 +54,6 @@ public class HarpyBreastsAI : MonsterAI
         Landing();
         AdjustFlyHeight();
         StartCatchTimer();
-        Debug.Log(isFalling);
     }
     protected override void OnEnable()
     {

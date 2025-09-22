@@ -32,10 +32,8 @@ public class MonsterFactory : MonoBehaviour, IMonsterFactory
     {
         if (!_pools.ContainsKey(data.id))
         {
-            Debug.LogError($"Pool not found for enemy: {data.id}");
             return null;
         }
-        Debug.Log("Đã spawn ra enemy mới!");
         return _pools[data.id].Get(position, rotation);
     }
 
@@ -43,12 +41,10 @@ public class MonsterFactory : MonoBehaviour, IMonsterFactory
     {
         if (!_pools.ContainsKey(data.id))
         {
-            Debug.LogWarning($"Trying to return enemy that doesn't have a pool: {data.id}");
             Destroy(enemy);
             return;
         }
         ES.currentPoints -= data.point;
-        Debug.Log("Enemy đã chết!");
         _pools[data.id].Return(enemy);
     }
 }
