@@ -34,16 +34,15 @@ public class PoolManager : MonoBehaviour
         return null;
     }
 
-    // trả object về pool
     public void ReturnObject<T>(string key, T obj) where T : MonoBehaviour
     {
-        if (string.IsNullOrEmpty(key)) //  Kiểm tra nếu `key` bị null hoặc rỗng
+        if (string.IsNullOrEmpty(key))
         {
             Debug.LogError("Key truyền vào `ReturnObject()` bị null hoặc rỗng!");
             return;
         }
 
-        if (!pool.ContainsKey(key)) //  Kiểm tra xem `key` có tồn tại trong pool không
+        if (!pool.ContainsKey(key))
         {
             Debug.LogError($"Pool `{key}` không tồn tại! Đối tượng không thể trả về.");
             return;
