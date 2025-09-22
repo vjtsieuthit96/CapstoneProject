@@ -317,31 +317,32 @@ public abstract class MonsterAI : MonoBehaviour
     }
     public bool GetBoolAnimatorParameter(int hash)
     {
-        return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
+        return monsterAnimator.GetBool(hash);
     }
     public float GetFloatAnimatorParameter(int hash)
     {
         return monsterAnimator.GetFloat(hash);
     }
-    #endregion    
+    #endregion
 
     #region DRAW FOV
     private void OnDrawGizmos()
     {
+#if UNITY_EDITOR
         Handles.color = Color.red;
 
-        // Vẽ cung tròn thể hiện góc nhìn từ hai điểm cuối
         Handles.DrawWireArc(transform.position, Vector3.up,
                             DirectionFromAngle(transform.eulerAngles.y, -viewAngle / 2),
                             viewAngle, viewRadius);
 
-        // Vẽ hai đường chỉ hướng góc nhìn
         Vector3 viewAngleA = DirectionFromAngle(transform.eulerAngles.y, -viewAngle / 2);
         Vector3 viewAngleB = DirectionFromAngle(transform.eulerAngles.y, viewAngle / 2);
 
         Handles.DrawLine(transform.position, transform.position + viewAngleA * viewRadius);
         Handles.DrawLine(transform.position, transform.position + viewAngleB * viewRadius);
+#endif
     }
+
 
     private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)
     {
