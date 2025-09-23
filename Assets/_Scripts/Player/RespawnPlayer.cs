@@ -20,7 +20,7 @@ public class RespawnPlayer : MonoBehaviour
 {
     public static RespawnPlayer Instance;
 
-    [Header("Cấu hình Respawn cho từng nhân vật (theo Index chọn ở SceneIndexManager)")]
+    [Header("Cấu hình Respawn cho từng nhân vật")]
     public PlayerRespawnOption[] playerOptions;
 
     [Header("Respawn Settings")]
@@ -77,15 +77,19 @@ public class RespawnPlayer : MonoBehaviour
 
         if (pendingCutsceneIndex >= 0)
         {
+            // Load cutscene
             SceneManager.LoadScene(pendingCutsceneIndex);
+
+            // Chờ cutscene chạy
             yield return new WaitForSeconds(pendingCutsceneDuration);
 
+            // Load lại gameplay scene
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
         {
-            Debug.LogWarning("Không có Cutscene Death cho nhân vật này! Respawn ngay trong scene.");
-            StartCoroutine(RespawnAfterCutscene());
+            // Nếu không có cutscene → quay lại gameplay luôn
+            SceneManager.LoadScene(lastGameplaySceneIndex);
         }
     }
 
@@ -93,14 +97,17 @@ public class RespawnPlayer : MonoBehaviour
     {
         if (scene.buildIndex == lastGameplaySceneIndex)
         {
-            StartCoroutine(RespawnAfterCutscene());
+            StartCoroutine(RespawnAfterSceneReady());
         }
     }
 
-    private IEnumerator RespawnAfterCutscene()
+    private IEnumerator RespawnAfterSceneReady()
     {
+        // Chờ 1–2 frame để scene load xong hẳn
+        yield return null;
         yield return new WaitForEndOfFrame();
 
+        // Dọn xác cũ
         if (oldPlayer != null)
         {
             if (destroyBodyAfterDead) Destroy(oldPlayer);
@@ -108,15 +115,15 @@ public class RespawnPlayer : MonoBehaviour
             oldPlayer = null;
         }
 
+        // Spawn player mới
         SpawnPlayer();
-        if(QuestManager.Instance.currentMainTask != null)
-        {
+
+        // Hiện nhiệm vụ lại
+        if (QuestManager.Instance.currentMainTask != null)
             QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentMainTask);
-        }
-        if(QuestManager.Instance.currentSubTask != null)
-        {
+        if (QuestManager.Instance.currentSubTask != null)
             QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentSubTask);
-        }
+
         isRespawning = false;
     }
 
@@ -134,6 +141,12 @@ public class RespawnPlayer : MonoBehaviour
         Vector3 spawnPos = PlayerRealTimeData.Instance.spawnPos;
         if (spawnPos == Vector3.zero)
             spawnPos = new Vector3(0, 2f, 0);
+
+        // Đảm bảo player spawn trên NavMesh
+        if (UnityEngine.AI.NavMesh.SamplePosition(spawnPos, out var hit, 5f, UnityEngine.AI.NavMesh.AllAreas))
+        {
+            spawnPos = hit.position;
+        }
 
         Quaternion spawnRot = PlayerRealTimeData.Instance.spawnRot;
         if (spawnRot == Quaternion.identity)

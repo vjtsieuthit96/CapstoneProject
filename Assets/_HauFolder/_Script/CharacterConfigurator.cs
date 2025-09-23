@@ -94,6 +94,8 @@ public class CharacterConfigurator : MonoBehaviour
     private bool hasTriggeredLowStamina = false;
     private bool hasTriggeredStaminaRecovery = false;
 
+    public bool isDead;
+
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
     public float CurrentAmour
@@ -160,6 +162,7 @@ public class CharacterConfigurator : MonoBehaviour
                 PlayerElementClass = 0;
             }
         }
+        isDead = controller.isDead;
         ApplyStats();
         CheckLowHealth();
         CheckHealthRecovery();

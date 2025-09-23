@@ -37,16 +37,13 @@ public class EnemySpawner : MonoBehaviour
             GameObjectPoolManager.Instance.CreatePool(data.id, data.prefab, data.initialPoolSize);
         }
         StartCoroutine(FindPlayerByTag("Player"));
-
+        StartCoroutine(CheckSpawnRoutine(2f));
     }
 
     private void Update()
     {
         if (!spawnerEnabled || player == null) return;
-
         UpdateSpawnPointsByDistance(spawnRadius);
-
-        SpawnCheck();
     }
     private IEnumerator FindPlayerByTag(string tag)
     {
@@ -66,6 +63,15 @@ public class EnemySpawner : MonoBehaviour
     public Transform GetPlayerTransform()
     {
         return player;
+    }
+
+    IEnumerator CheckSpawnRoutine(float interval)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(interval);
+            SpawnCheck();
+        }
     }
 
     private void SpawnCheck()
