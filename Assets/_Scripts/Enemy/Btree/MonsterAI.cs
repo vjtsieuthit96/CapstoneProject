@@ -10,8 +10,8 @@ public abstract class MonsterAI : MonoBehaviour
     [Header("-----Speed Multiplier-----")]
     [SerializeField] float speedMultiplier = 1.75f;
     [Header("-----FOV-----")]
-    [SerializeField] protected float viewRadius = 15f; // Tầm nhìn tối đa
-    [SerializeField] protected float viewAngle = 105f; // Góc nhìn của quái vật
+    [SerializeField] protected float viewRadius = 15f;
+    [SerializeField] protected float viewAngle = 105f;
     [SerializeField] protected float alertRadius = 10f;
     [Header("-----Attack & Patrol-----")]
     [SerializeField] protected float attackRange;
@@ -157,7 +157,7 @@ public abstract class MonsterAI : MonoBehaviour
         SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);
        
         float normalizedSpeed = Speed / monsterAgent.speed; 
-        normalizedSpeed = Mathf.Clamp(normalizedSpeed, 0f, 1f); // Giới hạn từ 0 -> 1
+        normalizedSpeed = Mathf.Clamp(normalizedSpeed, 0f, 1f);
       
         float locomotionValue = Vector3.Dot(monsterAgent.velocity.normalized, transform.forward) * normalizedSpeed;
 
@@ -317,31 +317,32 @@ public abstract class MonsterAI : MonoBehaviour
     }
     public bool GetBoolAnimatorParameter(int hash)
     {
-        return monsterAnimator.GetBool(hash); // Lấy giá trị từ Animator
+        return monsterAnimator.GetBool(hash);
     }
     public float GetFloatAnimatorParameter(int hash)
     {
         return monsterAnimator.GetFloat(hash);
     }
-    #endregion    
+    #endregion
 
     #region DRAW FOV
     private void OnDrawGizmos()
     {
+#if UNITY_EDITOR
         Handles.color = Color.red;
 
-        // Vẽ cung tròn thể hiện góc nhìn từ hai điểm cuối
         Handles.DrawWireArc(transform.position, Vector3.up,
                             DirectionFromAngle(transform.eulerAngles.y, -viewAngle / 2),
                             viewAngle, viewRadius);
 
-        // Vẽ hai đường chỉ hướng góc nhìn
         Vector3 viewAngleA = DirectionFromAngle(transform.eulerAngles.y, -viewAngle / 2);
         Vector3 viewAngleB = DirectionFromAngle(transform.eulerAngles.y, viewAngle / 2);
 
         Handles.DrawLine(transform.position, transform.position + viewAngleA * viewRadius);
         Handles.DrawLine(transform.position, transform.position + viewAngleB * viewRadius);
+#endif
     }
+
 
     private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)
     {

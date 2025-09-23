@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Invector.vItemManager;
-using static UnityEditor.Progress;
 
 public class WeaponInjector : MonoBehaviour
 {

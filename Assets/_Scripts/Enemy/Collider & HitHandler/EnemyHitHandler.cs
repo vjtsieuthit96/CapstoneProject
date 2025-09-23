@@ -5,7 +5,7 @@ using System.Collections;
 public class EnemyHitHandler : MonoBehaviour
 {
     private MonsterAI monsterAi;
-    private float damageMultiplier; // Nhân sát thương nếu trúng vị trí đặc biệt
+    private float damageMultiplier; 
 
     public void Initialize(MonsterAI monsterAi, float multiplier)
     {

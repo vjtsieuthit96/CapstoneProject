@@ -49,7 +49,6 @@ public class CharacterVoiceAI : MonoBehaviour
         if (currentState == newState) return;
 
         currentState = newState;
-        Debug.Log("Voice state changed to: " + currentState);
 
         if (playRoutine != null)
             StopCoroutine(playRoutine);
@@ -59,7 +58,6 @@ public class CharacterVoiceAI : MonoBehaviour
 
     private IEnumerator PlayVoiceRoutine()
     {
-        Debug.Log("VoiceRoutine started for state: " + currentState);
 
         float firstDelay = Random.Range(2f, 5f);
         yield return new WaitForSeconds(firstDelay);
@@ -69,12 +67,7 @@ public class CharacterVoiceAI : MonoBehaviour
             AudioClip clip = GetRandomClipForState(currentState);
             if (clip != null)
             {
-                Debug.Log("Playing voice: " + clip.name);
                 audioSource.PlayOneShot(clip);
-            }
-            else
-            {
-                Debug.LogWarning("No clips assigned for state: " + currentState);
             }
 
             float delay = Random.Range(minDelay, maxDelay);

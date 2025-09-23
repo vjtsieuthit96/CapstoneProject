@@ -1,9 +1,6 @@
 ﻿using Invector.vCharacterController;
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class QuestTrigger : MonoBehaviour
 {

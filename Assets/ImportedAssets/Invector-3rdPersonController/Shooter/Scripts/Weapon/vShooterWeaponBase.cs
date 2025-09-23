@@ -369,7 +369,6 @@ namespace Invector.vShooter
         {
             Debug.Log(damageMultiplier);
             var dir = endPoint - startPoint;
-            Debug.Log("Gun's Owner: " + Gunowner);
             Ray ray = new Ray(startPoint, dir.normalized);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
