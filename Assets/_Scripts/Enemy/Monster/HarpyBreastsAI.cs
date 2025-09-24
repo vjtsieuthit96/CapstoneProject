@@ -25,6 +25,7 @@ public class HarpyBreastsAI : MonsterAI
     private float fallVelocity = 0f;
     private float maxCatchDuration;
     private float catchTimer;
+    private bool timerRunning = false;  
     public float CatchTimer => catchTimer;
     private Rigidbody rb;
     private MonsterAudio Audio;
@@ -54,14 +55,24 @@ public class HarpyBreastsAI : MonsterAI
         Landing();
         AdjustFlyHeight();
         StartCatchTimer();
+        if (isCatch && catchTimer <=0)
+        {
+            ReleasePrey();            
+            isCatch = false;
+            timerRunning = false;
+        }
+        Debug.Log("Catch: "+catchTimer);
     }
     protected override void OnEnable()
     {
         base.OnEnable();     
         isCatch = false;    
-        rb.isKinematic = false;
-        
+        rb.isKinematic = false;        
         GetBehaviorNode<CatchPreyNode>().OnRestart();
+    }
+    private void OnDisable()
+    {
+        ReleasePrey();
     }
 
     protected override Node CreateBehaviorTree()
@@ -81,10 +92,15 @@ public class HarpyBreastsAI : MonsterAI
 
     private void StartCatchTimer()
     {
-        if (isCatch)
+        if (!timerRunning)
         {
+            catchTimer = maxCatchDuration;
+        }
+        if (isCatch)
+        {   
+            timerRunning = true;            
             catchTimer -= Time.deltaTime;        
-        }        
+        }      
     }
 
     private void AdjustFlyHeight()
@@ -170,6 +186,7 @@ public class HarpyBreastsAI : MonsterAI
             Destroy(joint);            
             isCatch = false;
             catchTimer = 0f;
+            timerRunning = false;
             SetAnimatorParameter(MonsterAnimatorHash.CatchedHash,false);
         }    
     }   
