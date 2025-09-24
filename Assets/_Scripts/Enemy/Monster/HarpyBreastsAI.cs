@@ -54,6 +54,10 @@ public class HarpyBreastsAI : MonsterAI
         Landing();
         AdjustFlyHeight();
         StartCatchTimer();
+        if (isCatch && catchTimer >= 20f)
+        {
+            ReleasePrey();
+        }
     }
     protected override void OnEnable()
     {
