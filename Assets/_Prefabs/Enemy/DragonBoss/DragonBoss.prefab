@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 8660097992776228119}
   - component: {fileID: 1872898364665665008}
   - component: {fileID: 7721387891046255008}
+  - component: {fileID: 1326833068984165472}
   m_Layer: 0
   m_Name: DragonBoss
   m_TagString: Enemy
@@ -852,6 +853,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1326833068984165472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265501843095355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd066d5393f6810488e727433080e19c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHealthBar: {fileID: 0}
 --- !u!1 &1588610350685875010
 GameObject:
   m_ObjectHideFlags: 0
