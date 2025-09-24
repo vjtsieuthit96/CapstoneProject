@@ -12,8 +12,16 @@ public class NegativeEffect : MonoBehaviour
     private void Awake()
     {
         character = GetComponent<CharacterConfigurator>();
+        burnEffect.SetActive(false);
     }
-    
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            ApplyBurn(5f, 10f);
+        }
+    }
+
     public void ApplyBurn(float damagePerSecond, float duration)
     {
         if (isBurning) return;
