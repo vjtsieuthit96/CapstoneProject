@@ -93,7 +93,7 @@ public class CatchPreyNode : Node
                 agent.SetDestination(retreatTarget);
                 Vector3 retreatPosXZ = new Vector3(retreatTarget.x, 0f, retreatTarget.z);
                 float distanceToRetreat = Vector3.Distance(monsterPosXZ, retreatPosXZ);           
-                if (distanceToRetreat < retreatTargetReachThreshold || monster.CatchTimer >=20f)
+                if (distanceToRetreat < retreatTargetReachThreshold || monster.CatchTimer <=0f)
                 {
                     monster.SetAnimatorParameter(MonsterAnimatorHash.ReleaseHash, null);
                     currentState = CatchState.Hovering;
