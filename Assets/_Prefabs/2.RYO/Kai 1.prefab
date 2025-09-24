@@ -9456,7 +9456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: 35cdd865b0c43b947976b8228b49689b, type: 2}
@@ -36624,8 +36624,8 @@ MonoBehaviour:
   HealthRecovery: 0.11
   HealthRecoveryPerTime: 0.11
   isImortal: 0
-  PlayerDamageMultiplierLonggun: 0.9
-  PlayerDamageMultiplierShortgun: 1
+  PlayerDamageMultiplierLonggun: 100
+  PlayerDamageMultiplierShortgun: 100
   PlayerShootingSpeed: 1
   PlayerFireRate: 1
   LongGunClipSize: 30
@@ -43321,7 +43321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: a2dc488efe8b3414b9fa56a5d1faf746, type: 2}
@@ -68846,7 +68846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: d3dccc6d2c578b949b1aaa5901800c19, type: 2}
@@ -77049,7 +77049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 5929168036934294575}
   node: {fileID: 11400000, guid: 382aae0daa5b4a34cae8508e7d3ec03b, type: 2}
