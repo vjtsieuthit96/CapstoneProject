@@ -28536,7 +28536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &137779185
 Transform:
   m_ObjectHideFlags: 0
@@ -76185,7 +76185,7 @@ GameObject:
   - component: {fileID: 290828971}
   - component: {fileID: 290828973}
   - component: {fileID: 290828972}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208057,7 +208057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -246258,7 +246258,7 @@ PrefabInstance:
     - target: {fileID: 4365239549844515469, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: b89a9c526ae1d5e4fae4d6630dc47a13, type: 2}
+      objectReference: {fileID: 23800000, guid: 82641c67617c15b41a0f94cf279fcfe8, type: 2}
     - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: ObjectParent
       value: 
