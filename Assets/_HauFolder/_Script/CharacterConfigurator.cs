@@ -135,11 +135,11 @@ public class CharacterConfigurator : MonoBehaviour
     #region Test Amour
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             isEffectMode = !isEffectMode;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             isExplosive = !isExplosive;
         }
@@ -151,7 +151,7 @@ public class CharacterConfigurator : MonoBehaviour
         {
             ChangeToNone();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             if (PlayerElementClass <= 5)
             {
@@ -169,17 +169,6 @@ public class CharacterConfigurator : MonoBehaviour
         CheckLowStamina();
         CheckStaminaRecovery();
         SaveToRealTimeData();
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    TakeDamage(100f);
-        //}
-
-        //bật tắt canvas, xây dựng tạm thời
-        //if (Input.GetKeyDown(KeyCode.I))
-        //{
-        //    isOn = !isOn;
-        //    SkillTreePanel.SetActive(isOn);
-        //}
     }
     public void CheckLowHealth()
     {
