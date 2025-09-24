@@ -41175,6 +41175,7 @@ MonoBehaviour:
   PlayerElementClass: 0
   ExplosiveClass: 0
   SkillTreePanel: {fileID: 0}
+  isDead: 0
   _currentAmour: 0
 --- !u!114 &509961274974953427
 MonoBehaviour:
@@ -49134,7 +49135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 3421953291031398780}
   node: {fileID: 11400000, guid: a2dc488efe8b3414b9fa56a5d1faf746, type: 2}
@@ -55394,7 +55395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 3421953291031398780}
   node: {fileID: 11400000, guid: 35cdd865b0c43b947976b8228b49689b, type: 2}
@@ -67185,7 +67186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 3421953291031398780}
   node: {fileID: 11400000, guid: d3dccc6d2c578b949b1aaa5901800c19, type: 2}
@@ -75834,7 +75835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 3421953291031398780}
   node: {fileID: 11400000, guid: 382aae0daa5b4a34cae8508e7d3ec03b, type: 2}
@@ -76031,6 +76032,10 @@ PrefabInstance:
     - target: {fileID: 3724278380108352879, guid: aab7af4601dc9dd42bca08e20875c667, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867704510322296224, guid: aab7af4601dc9dd42bca08e20875c667, type: 3}
+      propertyPath: m_SelectedEditorRenderState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4219290263093956646, guid: aab7af4601dc9dd42bca08e20875c667, type: 3}
       propertyPath: m_LocalRotation.w
