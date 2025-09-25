@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -36,16 +37,15 @@ public abstract class MonsterAI : MonoBehaviour
     protected Node behaviorTree;
     private Vector3 _patrolCenter;
     private ItemDropper itemDropper;
-
-    private EnemyColliderManager enemyColliderManager;
-
     private bool hasRetreat = false;
-    [SerializeField] public bool isDead = false;
+    public bool isDead = false;
     private bool isHit = false;
     private bool isFreeze = false;
     private bool isSlowDown = false;
     private bool isShocked = false;
     private bool isInCombat;
+
+    private EnemyColliderManager enemyColliderManager;
 
     [SerializeField] private float returnToPoolDelay = 6f;
 
@@ -74,13 +74,8 @@ public abstract class MonsterAI : MonoBehaviour
     }
     protected virtual void OnEnable()
     {
-<<<<<<< HEAD
-        isDead = false;        
-        enemyColliderManager.TurnOnCollider();
-        OnDeadStateChanged?.Invoke(isDead);
-=======
         isDead = false;
->>>>>>> parent of 13e7f913 (add logic disable collider)
+        enemyColliderManager.ColliderDeathStateChanged(true);
         isHit = false;
         isFreeze = false;
         isSlowDown = false;
@@ -99,8 +94,9 @@ public abstract class MonsterAI : MonoBehaviour
     {
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
-            isDead = true;
+            isDead = true;       
             monsterAgent.isStopped = true;
+            enemyColliderManager.ColliderDeathStateChanged(false);
             itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
@@ -175,12 +171,12 @@ public abstract class MonsterAI : MonoBehaviour
         SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);
     }
     public void ApplyDamage(float amount)
-    {        
+    {
+        monsterStats.TakeDamage(amount);
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
     public void ApplyRestart()
     {
-        enemyColliderManager.TurnOnCollider();
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnRestart();
     }
     public void FreezyEnemy(float duration)
@@ -269,7 +265,7 @@ public abstract class MonsterAI : MonoBehaviour
     public float GetStoppingDistance() => monsterAgent.stoppingDistance;
     public Vector3 GetRandomPatrolPoint()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
         randomDirection += _patrolCenter; // Giữ AI di chuyển quanh khu vực trung tâm
 
         NavMeshHit hit;
