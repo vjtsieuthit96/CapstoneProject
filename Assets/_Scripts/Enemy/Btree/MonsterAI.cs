@@ -264,7 +264,7 @@ public abstract class MonsterAI : MonoBehaviour
     public float GetStoppingDistance() => monsterAgent.stoppingDistance;
     public Vector3 GetRandomPatrolPoint()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
         randomDirection += _patrolCenter; // Giữ AI di chuyển quanh khu vực trung tâm
 
         NavMeshHit hit;
