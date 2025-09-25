@@ -28,27 +28,18 @@ public class EnemyColliderManager : MonoBehaviour
         {
             Debug.LogWarning("HeadCollider chưa được gán hoặc bị thiếu trong Inspector!");
         }
-    }
-    private void OnEnable()
-    {
-        monsterAi.OnDeadStateChanged += HandleDeathStateChanged;
-    }
+    }   
 
-    private void OnDisable()
-    {
-        monsterAi.OnDeadStateChanged -= HandleDeathStateChanged;
-    }
-
-    private void HandleDeathStateChanged(bool isDead)
+    public void ColliderDeathStateChanged(bool value)
     {
         foreach (Collider col in colliders)
         {
-            col.enabled = !isDead;
+            col.enabled = value;
         }
 
         if (headCollider != null)
         {
-            headCollider.enabled = !isDead;
+            headCollider.enabled = value;
         }
         else
         {

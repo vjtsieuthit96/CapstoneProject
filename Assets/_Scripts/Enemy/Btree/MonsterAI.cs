@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.AI;
 public abstract class MonsterAI : MonoBehaviour
 {
-    public event Action<bool> OnDeadStateChanged;   
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
     [Header("-----Speed Multiplier-----")]
@@ -38,7 +37,6 @@ public abstract class MonsterAI : MonoBehaviour
     protected Node behaviorTree;
     private Vector3 _patrolCenter;
     private ItemDropper itemDropper;
-
     private bool hasRetreat = false;
     public bool isDead = false;
     private bool isHit = false;
@@ -46,6 +44,8 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isSlowDown = false;
     private bool isShocked = false;
     private bool isInCombat;
+
+    private EnemyColliderManager enemyColliderManager;
 
     [SerializeField] private float returnToPoolDelay = 6f;
 
@@ -60,6 +60,7 @@ public abstract class MonsterAI : MonoBehaviour
         behaviorTree = CreateBehaviorTree();
         itemDropper = GetComponent<ItemDropper>();
         //enemyData = GetComponent<EnemyData>();
+        enemyColliderManager = GetComponent<EnemyColliderManager>();
 
     }
     protected virtual void Update()
@@ -74,7 +75,7 @@ public abstract class MonsterAI : MonoBehaviour
     protected virtual void OnEnable()
     {
         isDead = false;
-        OnDeadStateChanged?.Invoke(isDead);
+        enemyColliderManager.ColliderDeathStateChanged(true);
         isHit = false;
         isFreeze = false;
         isSlowDown = false;
@@ -93,9 +94,9 @@ public abstract class MonsterAI : MonoBehaviour
     {
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
-            isDead = true;
-            OnDeadStateChanged?.Invoke(isDead);
+            isDead = true;       
             monsterAgent.isStopped = true;
+            enemyColliderManager.ColliderDeathStateChanged(false);
             itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
@@ -264,7 +265,7 @@ public abstract class MonsterAI : MonoBehaviour
     public float GetStoppingDistance() => monsterAgent.stoppingDistance;
     public Vector3 GetRandomPatrolPoint()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
         randomDirection += _patrolCenter; // Giữ AI di chuyển quanh khu vực trung tâm
 
         NavMeshHit hit;
