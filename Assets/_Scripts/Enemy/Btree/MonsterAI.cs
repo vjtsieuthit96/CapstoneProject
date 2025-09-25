@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.AI;
 public abstract class MonsterAI : MonoBehaviour
 {
-    public event Action<bool> OnDeadStateChanged;   
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
     [Header("-----Speed Multiplier-----")]
@@ -38,9 +37,6 @@ public abstract class MonsterAI : MonoBehaviour
     protected Node behaviorTree;
     private Vector3 _patrolCenter;
     private ItemDropper itemDropper;
-
-    private EnemyColliderManager enemyColliderManager;
-
     private bool hasRetreat = false;
     public bool isDead = false;
     private bool isHit = false;
@@ -48,6 +44,8 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isSlowDown = false;
     private bool isShocked = false;
     private bool isInCombat;
+
+    private EnemyColliderManager enemyColliderManager;
 
     [SerializeField] private float returnToPoolDelay = 6f;
 
@@ -76,9 +74,8 @@ public abstract class MonsterAI : MonoBehaviour
     }
     protected virtual void OnEnable()
     {
-        isDead = false;        
-        enemyColliderManager.TurnOnCollider();
-        OnDeadStateChanged?.Invoke(isDead);
+        isDead = false;
+        enemyColliderManager.ColliderDeathStateChanged(true);
         isHit = false;
         isFreeze = false;
         isSlowDown = false;
@@ -97,9 +94,9 @@ public abstract class MonsterAI : MonoBehaviour
     {
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
-            isDead = true;
-            OnDeadStateChanged?.Invoke(isDead);
+            isDead = true;       
             monsterAgent.isStopped = true;
+            enemyColliderManager.ColliderDeathStateChanged(false);
             itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
             Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
@@ -174,12 +171,12 @@ public abstract class MonsterAI : MonoBehaviour
         SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);
     }
     public void ApplyDamage(float amount)
-    {        
+    {
+        monsterStats.TakeDamage(amount);
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
     public void ApplyRestart()
     {
-        enemyColliderManager.TurnOnCollider();
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnRestart();
     }
     public void FreezyEnemy(float duration)
