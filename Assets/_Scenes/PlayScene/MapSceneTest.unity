@@ -208198,6 +208198,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 290828971}
     m_Modifications:
+    - target: {fileID: 3501852433735634973, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3770755493544155352, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: skill1Cooldown
       value: 25
