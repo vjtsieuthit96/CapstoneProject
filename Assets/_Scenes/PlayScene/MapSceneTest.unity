@@ -225828,6 +225828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneIndex: 12
   SpawnPointNextScene: {x: -20.8, y: 78.5, z: 0}
+  tpsCamera: {fileID: 0}
 --- !u!1001 &1134844038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -365775,7 +365776,7 @@ MonoBehaviour:
   - {fileID: 430620165}
   - {fileID: 1863520166}
   player: {fileID: 0}
-  spawnerEnabled: 0
+  spawnerEnabled: 1
   spawnInterval: 15
   bulletPerSpawn: 2
 --- !u!114 &1732241900
@@ -398981,7 +398982,7 @@ MonoBehaviour:
   PlayerDamageMultiplierShortgun: 0
   PlayerIndex: 0
   isNewGame: 1
-  defaultSpawnPos: {x: 7.88, y: -0.08000004, z: 64.53}
+  defaultSpawnPos: {x: 65.6806, y: -0.08000004, z: 278.4658}
   defaultSpawnEuler: {x: 0, y: -180, z: 0}
   spawnPos: {x: 0, y: 0, z: 0}
   spawnRot: {x: 0, y: 0, z: 0, w: 1}
@@ -405927,6 +405928,7 @@ GameObject:
   - component: {fileID: 1966885839}
   - component: {fileID: 1966885840}
   - component: {fileID: 1966885841}
+  - component: {fileID: 1966885842}
   m_Layer: 0
   m_Name: Spawn Main Character
   m_TagString: Untagged
@@ -405990,6 +405992,18 @@ MonoBehaviour:
   currentMainTask: {fileID: 0}
   currentSubTask: {fileID: 0}
   Emotions: {fileID: 0}
+--- !u!114 &1966885842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966885837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7153ba7042ed42747a1a3bcaf99ca1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1967372224
 PrefabInstance:
   m_ObjectHideFlags: 0

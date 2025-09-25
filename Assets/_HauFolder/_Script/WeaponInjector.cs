@@ -42,14 +42,14 @@ public class WeaponInjector : MonoBehaviour
             weapon.isEffectMode = characterConfigurator.isEffectMode;
             weapon.PlayerElementClass = characterConfigurator.PlayerElementClass;
             weapon.reloadTime = characterConfigurator.ReloadSpeed;
-            weapon.shootFrequency *= characterConfigurator.PlayerFireRate;
+            //weapon.shootFrequency *= characterConfigurator.PlayerFireRate;
             
 
             if (weapon.GunType == GunType.LongGun)
-                weapon.clipSize = characterConfigurator.LongGunClipSize;
-            weapon.recoilLeft *= characterConfigurator.GunRecoil;
-            weapon.recoilRight *= characterConfigurator.GunRecoil;
-            weapon.recoilUp *= characterConfigurator.GunRecoil;
+            weapon.clipSize = characterConfigurator.LongGunClipSize;
+            //weapon.recoilLeft *= characterConfigurator.GunRecoil;
+            //weapon.recoilRight *= characterConfigurator.GunRecoil;
+            //weapon.recoilUp *= characterConfigurator.GunRecoil;
             characterConfigurator.GunType = weapon.GunType;
             characterConfigurator.CurrentBullet = weapon.ammoCount;
             characterConfigurator.CurrentGunClipSize = weapon.clipSize;
