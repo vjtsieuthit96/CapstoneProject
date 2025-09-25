@@ -61,7 +61,7 @@ public class HarpyBreastsAI : MonsterAI
             isCatch = false;
             timerRunning = false;
         }
-        Debug.Log("Catch: "+catchTimer);
+        //Debug.Log("Catch: "+catchTimer);
     }
     protected override void OnEnable()
     {
