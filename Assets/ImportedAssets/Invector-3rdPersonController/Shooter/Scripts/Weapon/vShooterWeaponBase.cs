@@ -365,12 +365,13 @@ namespace Invector.vShooter
         //    }
         //}
         protected virtual void TryCreateDecal(RaycastHit hit) { }
+
         protected virtual void ShootBullet(Vector3 startPoint, Vector3 endPoint)
         {
-            Debug.Log(damageMultiplier);
             var dir = endPoint - startPoint;
             Ray ray = new Ray(startPoint, dir.normalized);
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
@@ -379,7 +380,6 @@ namespace Invector.vShooter
                 {
                     EnemyHitCounter.Instance?.RegisterEnemyHit();
                     EnemyHitCounter.Instance?.RegisterElementHit();
-
                 }
 
                 if (isEffectMode)
@@ -390,15 +390,20 @@ namespace Invector.vShooter
                         if (isExplosive && BulletType == BulletType.Explosion)
                         {
                             vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
-                            explosive.Owner = Gunowner;
                             if (explosive != null)
                             {
-                                int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
+                                explosive.Owner = Gunowner;
+                                int raycastDamage = (int)(maxDamage * damageMultiplier * PlayerDamageMultiplier);
                                 explosive.SetOverrideDamageSender(transform);
-                                explosive.SetOverDataSender(DetentionTime,ReductEnemySpeedPercent,ElectricDamagePercent,EletricDuration,PoisonDamagePercent,PoisonDuration,raycastDamage);
+                                explosive.SetOverDataSender(
+                                    DetentionTime, ReductEnemySpeedPercent,
+                                    ElectricDamagePercent, EletricDuration,
+                                    PoisonDamagePercent, PoisonDuration,
+                                    raycastDamage
+                                );
                                 explosive.Explode();
                             }
-
+                            return;
                         }
                         else
                         {
@@ -407,7 +412,7 @@ namespace Invector.vShooter
                             {
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 eHithandler.ApplyBleed(hit.point);
-                                eHithandler.ApplyHit(raycastDamage,Gunowner);
+                                eHithandler.ApplyHit(raycastDamage, Gunowner);
                             }
                         }
                     }
@@ -431,7 +436,6 @@ namespace Invector.vShooter
                                 Random.Range(0f, 360f),
                                 Random.Range(0f, 360f)
                             );
-
                             GameObject iceCube = GameObjectPoolManager.Instance.GetObject("IcePlane", hit.point, randomRotation);
                         }
                         else
@@ -439,18 +443,15 @@ namespace Invector.vShooter
                             EnemyHitHandler eHithandler = hit.collider.GetComponent<EnemyHitHandler>();
                             if (eHithandler != null)
                             {
-                                // Đóng băng:
                                 int raycastDamage = (int)((maxDamage / Mathf.Max(1, projectilesPerShot)) * damageMultiplier * PlayerDamageMultiplier);
                                 eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent, Gunowner);
                                 eHithandler.ApplyFreeze(DetentionTime);
-
                             }
                             Quaternion randomRotation = Quaternion.Euler(
-                               Random.Range(0f, 360f),
-                               Random.Range(0f, 360f),
-                               Random.Range(0f, 360f)
-                           );
-
+                                Random.Range(0f, 360f),
+                                Random.Range(0f, 360f),
+                                Random.Range(0f, 360f)
+                            );
                             GameObject icePlane = GameObjectPoolManager.Instance.GetObject("IceCube", hit.point, randomRotation);
                         }
                     }
@@ -479,7 +480,6 @@ namespace Invector.vShooter
                                 eHithandler.ApplySlowDown(ReductEnemySpeedPercent, EletricDuration);
                                 eHithandler.ApplyHit(raycastDamage * ElectricDamagePercent, Gunowner);
                                 eHithandler.ApplyShock(1f);
-
                             }
                         }
                     }
@@ -530,8 +530,6 @@ namespace Invector.vShooter
                             explosive.SetOverDataSender(DetentionTime, ReductEnemySpeedPercent, ElectricDamagePercent, EletricDuration, PoisonDamagePercent, PoisonDuration, raycastDamage);
                             explosive.Explode();
                         }
-                        else Debug.LogWarning("null ở đây");
-
                     }
                     else
                     {
@@ -544,6 +542,7 @@ namespace Invector.vShooter
                             eHithandler.ApplyHit(raycastDamage, Gunowner);
                         }
                     }
+
                     if (!hit.collider.CompareTag("Enemy"))
                     {
                         TryCreateDecal(hit);
@@ -557,6 +556,7 @@ namespace Invector.vShooter
                 Debug.DrawRay(ray.origin, ray.direction * 300f, Color.black, 2f);
             }
         }
+
 
         protected virtual vProjectileControl CreateProjectileData(Vector3 aimPosition, float velocityChanged, Vector3 dispersionDir, vProjectileControl pCtrl)
         {

@@ -147,7 +147,7 @@ namespace Invector
         {
             onExplode.Invoke();
             var colliders = Physics.OverlapSphere(transform.position, maxExplosionRadius, applyDamageLayer);
-
+            Debug.Log($"[Explode] Found {colliders.Length} colliders at pos {transform.position}");
             if (collidersReached == null)
             {
                 collidersReached = new List<GameObject>();
@@ -155,6 +155,7 @@ namespace Invector
 
             for (int i = 0; i < colliders.Length; ++i)
             {
+                Debug.Log($"[Explode] Hit {colliders[i].name} Layer={LayerMask.LayerToName(colliders[i].gameObject.layer)}");
                 if (colliders[i] != null && colliders[i].gameObject != null && !collidersReached.Contains(colliders[i].gameObject))
                 {
                     collidersReached.Add(colliders[i].gameObject);
@@ -374,11 +375,24 @@ namespace Invector
 
         public void RemoveParentOfOther(Transform other)
         {
+            if (other == null)
+            {
+                Debug.LogWarning("[Explosive] RemoveParentOfOther called with null Transform");
+                return;
+            }
+
             originalParent = other.parent;
             other.parent = null;
 
-            float explosionDuration = explosionEffect.main.duration + explosionEffect.main.startLifetime.constantMax;
-            StartCoroutine(RestoreParentAfterDelay(other, 4f));
+            if (explosionEffect != null)
+            {
+                float explosionDuration = explosionEffect.main.duration + explosionEffect.main.startLifetime.constantMax;
+                StartCoroutine(RestoreParentAfterDelay(other, explosionDuration));
+            }
+            else
+            {
+                StartCoroutine(RestoreParentAfterDelay(other, 0.5f));
+            }
         }
         private IEnumerator RestoreParentAfterDelay(Transform other, float delay)
         {

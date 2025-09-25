@@ -232,7 +232,7 @@ public class CharacterConfigurator : MonoBehaviour
     public void ChangeToExplosion()
     {
         Shottype = BulletType.Explosion;
-        isExplosive = true;
+        //isExplosive = true;
     }
     public void TurnOnElement()
     {
