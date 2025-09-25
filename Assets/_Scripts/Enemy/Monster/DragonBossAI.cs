@@ -57,6 +57,7 @@ public class DragonBossAI : MonsterAI
         {
             isLanding = false;
             isFlying = true;
+            monsterAgent.height = 10f;
             SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, true);
             SetAnimatorParameter(MonsterAnimatorHash.isLandingHash, false);
         }
