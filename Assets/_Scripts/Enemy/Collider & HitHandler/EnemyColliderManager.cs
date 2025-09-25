@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Invector;
+using UnityEngine;
 
 public class EnemyColliderManager : MonoBehaviour
 {
@@ -40,6 +41,23 @@ public class EnemyColliderManager : MonoBehaviour
         if (headCollider != null)
         {
             headCollider.enabled = value;
+        }
+        else
+        {
+            Debug.LogWarning("HeadCollider chưa được gán hoặc bị thiếu trong Inspector!");
+        }
+    }
+
+    public void TurnOnCollider()
+    {
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
+
+        if (headCollider != null)
+        {
+            headCollider.enabled = true;
         }
         else
         {
