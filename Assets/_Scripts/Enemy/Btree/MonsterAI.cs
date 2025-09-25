@@ -39,6 +39,8 @@ public abstract class MonsterAI : MonoBehaviour
     private Vector3 _patrolCenter;
     private ItemDropper itemDropper;
 
+    private EnemyColliderManager enemyColliderManager;
+
     private bool hasRetreat = false;
     public bool isDead = false;
     private bool isHit = false;
@@ -60,6 +62,7 @@ public abstract class MonsterAI : MonoBehaviour
         behaviorTree = CreateBehaviorTree();
         itemDropper = GetComponent<ItemDropper>();
         //enemyData = GetComponent<EnemyData>();
+        enemyColliderManager = GetComponent<EnemyColliderManager>();
 
     }
     protected virtual void Update()
@@ -73,7 +76,8 @@ public abstract class MonsterAI : MonoBehaviour
     }
     protected virtual void OnEnable()
     {
-        isDead = false;
+        isDead = false;        
+        enemyColliderManager.TurnOnCollider();
         OnDeadStateChanged?.Invoke(isDead);
         isHit = false;
         isFreeze = false;
@@ -170,12 +174,12 @@ public abstract class MonsterAI : MonoBehaviour
         SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);
     }
     public void ApplyDamage(float amount)
-    {
-        monsterStats.TakeDamage(amount);
+    {        
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
     }
     public void ApplyRestart()
     {
+        enemyColliderManager.TurnOnCollider();
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnRestart();
     }
     public void FreezyEnemy(float duration)
