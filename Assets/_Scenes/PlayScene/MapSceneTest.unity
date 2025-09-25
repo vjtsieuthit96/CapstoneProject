@@ -76161,6 +76161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossHealthBar: {fileID: 326596541}
   bossCanvnas: {fileID: 1753417508}
+  bossOrgeAI: {fileID: 1013453707}
 --- !u!135 &290828973
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -208198,6 +208199,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 290828971}
     m_Modifications:
+    - target: {fileID: 3501852433735634973, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501852433735634973, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+      propertyPath: viewRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3770755493544155352, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
       propertyPath: skill1Cooldown
       value: 25
@@ -208264,6 +208273,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8369592721960931888, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
   m_PrefabInstance: {fileID: 1013453705}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1013453707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3501852433735634973, guid: 4e6398c936c79254bb1553981d8f2eb5, type: 3}
+  m_PrefabInstance: {fileID: 1013453705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f174180ec775144b97dd619585d33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1014079368
 GameObject:
   m_ObjectHideFlags: 0
