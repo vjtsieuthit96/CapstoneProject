@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 public abstract class MonsterAI : MonoBehaviour
 {
-    public event Action<bool> OnDeadStateChanged;   
     [Header("-----Target-----")]
     [SerializeField] protected Transform target;
     [Header("-----Speed Multiplier-----")]
@@ -42,7 +40,7 @@ public abstract class MonsterAI : MonoBehaviour
     private EnemyColliderManager enemyColliderManager;
 
     private bool hasRetreat = false;
-    public bool isDead = false;
+    [SerializeField] public bool isDead = false;
     private bool isHit = false;
     private bool isFreeze = false;
     private bool isSlowDown = false;
@@ -76,9 +74,13 @@ public abstract class MonsterAI : MonoBehaviour
     }
     protected virtual void OnEnable()
     {
+<<<<<<< HEAD
         isDead = false;        
         enemyColliderManager.TurnOnCollider();
         OnDeadStateChanged?.Invoke(isDead);
+=======
+        isDead = false;
+>>>>>>> parent of 13e7f913 (add logic disable collider)
         isHit = false;
         isFreeze = false;
         isSlowDown = false;
@@ -98,7 +100,6 @@ public abstract class MonsterAI : MonoBehaviour
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
             isDead = true;
-            OnDeadStateChanged?.Invoke(isDead);
             monsterAgent.isStopped = true;
             itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);

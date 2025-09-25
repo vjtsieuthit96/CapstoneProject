@@ -30,6 +30,7 @@ public class EnemyColliderManager : MonoBehaviour
             Debug.LogWarning("HeadCollider chưa được gán hoặc bị thiếu trong Inspector!");
         }
     }
+<<<<<<< HEAD
     private void OnEnable()
     {
         monsterAi.OnDeadStateChanged += HandleDeathStateChanged;
@@ -73,4 +74,6 @@ public class EnemyColliderManager : MonoBehaviour
             Debug.LogWarning("HeadCollider chưa được gán hoặc bị thiếu trong Inspector!");
         }
     }
+=======
+>>>>>>> parent of 13e7f913 (add logic disable collider)
 }
