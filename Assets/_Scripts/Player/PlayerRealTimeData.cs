@@ -68,6 +68,10 @@ public class PlayerRealTimeData : MonoBehaviour
 
     public TaskID lastCompletedMainTask;
 
+    [Header("ScenePLay")]
+    public bool Scene1 = false;
+    public bool Scene2 = false;
+
 
     public void ResetRuntimeData()
     {
@@ -144,6 +148,11 @@ public class PlayerRealTimeData : MonoBehaviour
         spawnPos = pos;
         spawnRot = rot;
     }
+    public void SetDefaultPoint(Vector3 pos, Quaternion rot)
+    {
+        defaultSpawnPos = pos;
+        defaultSpawnEuler = rot.eulerAngles;
+    }
 
     public void AddCompletedMainTask(TaskID task)
     {
@@ -191,6 +200,7 @@ public class PlayerRealTimeData : MonoBehaviour
         public Quaternion spawnRot;
         public int PlayerIndex;
         public bool isNewGame;
+        public bool Scene1, Scene2;
     }
 
     public void SaveToJson()
@@ -239,7 +249,10 @@ public class PlayerRealTimeData : MonoBehaviour
             spawnPos = spawnPos,
             spawnRot = spawnRot,
             PlayerIndex = PlayerIndex,
-            isNewGame = isNewGame
+            isNewGame = isNewGame,
+            Scene1 = Scene1,
+            Scene2 = Scene2
+            
         };
 
         string json = JsonUtility.ToJson(wrapper, true);
@@ -304,5 +317,7 @@ public class PlayerRealTimeData : MonoBehaviour
         spawnRot = wrapper.spawnRot;
         PlayerIndex = wrapper.PlayerIndex;
         isNewGame = wrapper.isNewGame;
+        Scene1 = wrapper.Scene1;
+        Scene2 = wrapper.Scene2;
     }
 }
