@@ -129,6 +129,7 @@ namespace Invector.vCharacterController
         protected virtual void Start()
         {
             cc = GetComponent<vThirdPersonController>();
+            RegisterPlayerEvents();
 
             if (cc != null)
             {
@@ -512,6 +513,19 @@ namespace Invector.vCharacterController
                 else
                     EventsManager.Instance.pressEvents.OnOptionButtonPress(optionBoardController.currentPanelType);
             }
+        }
+        private void RegisterPlayerEvents()
+        {
+            if (cc != null)
+            {
+                cc.onDead.RemoveListener(OnPlayerDead);
+                cc.onDead.AddListener(OnPlayerDead);
+            }
+        }
+        private void OnPlayerDead(GameObject deadObj)
+        {
+            LockCursor(true);
+            ShowCursor(true);
         }
         public void OptionsMenuOn()
         {

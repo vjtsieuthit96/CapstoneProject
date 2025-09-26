@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public abstract class MonsterAI : MonoBehaviour
 {
     [Header("-----Target-----")]
-    [SerializeField] protected Transform target;
+    [SerializeField] public Transform target;
     [Header("-----Speed Multiplier-----")]
     [SerializeField] float speedMultiplier = 1.75f;
     [Header("-----FOV-----")]
@@ -61,7 +61,22 @@ public abstract class MonsterAI : MonoBehaviour
         itemDropper = GetComponent<ItemDropper>();
         //enemyData = GetComponent<EnemyData>();
         enemyColliderManager = GetComponent<EnemyColliderManager>();
+        StartCoroutine(AfterStart());
 
+    }
+    IEnumerator AfterStart()
+    {
+        while (target == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                target = playerObj.transform;
+                Debug.Log("Đã tìm thấy Player!");
+                yield break;
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
     }
     protected virtual void Update()
     {

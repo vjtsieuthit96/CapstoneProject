@@ -9,11 +9,8 @@ public class PlayerRespawnOption
     [Header("Prefab nhân vật để respawn")]
     public GameObject playerPrefab;
 
-    [Tooltip("Index của scene cutscene trong Build Settings (nếu không có thì = -1)")]
-    public int cutsceneDeathSceneIndex = -1;
-
-    [Tooltip("Thời gian cutscene chạy (giây) trước khi quay lại gameplay")]
-    public float cutsceneDuration = 3f;
+    [Tooltip("Scene index sẽ load khi nhân vật này chết")]
+    public int respawnSceneIndex = -1;
 }
 
 public class RespawnPlayer : MonoBehaviour
@@ -31,10 +28,6 @@ public class RespawnPlayer : MonoBehaviour
     private vThirdPersonController currentController;
     private GameObject oldPlayer;
 
-    private int lastGameplaySceneIndex;
-    private int pendingCutsceneIndex = -1;
-    private float pendingCutsceneDuration = 0f;
-
     private bool isRespawning = false;
 
     private void Awake()
@@ -42,7 +35,6 @@ public class RespawnPlayer : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
@@ -62,63 +54,44 @@ public class RespawnPlayer : MonoBehaviour
         isRespawning = true;
 
         oldPlayer = deadObj;
-        lastGameplaySceneIndex = SceneManager.GetActiveScene().buildIndex;
 
         int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
-        pendingCutsceneIndex = playerOptions[index].cutsceneDeathSceneIndex;
-        pendingCutsceneDuration = playerOptions[index].cutsceneDuration;
+        int targetSceneIndex = playerOptions[index].respawnSceneIndex;
 
-        StartCoroutine(DeathSequence());
+        if (targetSceneIndex < 0)
+        {
+            Debug.LogError($"PlayerRespawnOption[{index}] chưa có respawnSceneIndex hợp lệ!");
+            return;
+        }
+
+        StartCoroutine(DeathSequence(targetSceneIndex));
     }
 
-    private IEnumerator DeathSequence()
+    private IEnumerator DeathSequence(int targetSceneIndex)
     {
         yield return new WaitForSeconds(respawnDelay);
-
-        if (pendingCutsceneIndex >= 0)
-        {
-            // Load cutscene
-            SceneManager.LoadScene(pendingCutsceneIndex);
-
-            // Chờ cutscene chạy
-            yield return new WaitForSeconds(pendingCutsceneDuration);
-
-            // Load lại gameplay scene
-            SceneManager.LoadScene(lastGameplaySceneIndex);
-        }
-        else
-        {
-            // Nếu không có cutscene → quay lại gameplay luôn
-            SceneManager.LoadScene(lastGameplaySceneIndex);
-        }
+        SceneManager.LoadScene(targetSceneIndex);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == lastGameplaySceneIndex)
-        {
-            StartCoroutine(RespawnAfterSceneReady());
-        }
+        StartCoroutine(RespawnAfterSceneReady());
     }
 
     private IEnumerator RespawnAfterSceneReady()
     {
-        // Chờ 1–2 frame để scene load xong hẳn
         yield return null;
         yield return new WaitForEndOfFrame();
 
-        // Dọn xác cũ
         if (oldPlayer != null)
         {
             if (destroyBodyAfterDead) Destroy(oldPlayer);
             else DestroyPlayerComponents(oldPlayer);
             oldPlayer = null;
         }
+        if (currentPlayer == null)
+            SpawnPlayer();
 
-        // Spawn player mới
-        SpawnPlayer();
-
-        // Hiện nhiệm vụ lại
         if (QuestManager.Instance.currentMainTask != null)
             QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentMainTask);
         if (QuestManager.Instance.currentSubTask != null)
@@ -138,19 +111,25 @@ public class RespawnPlayer : MonoBehaviour
             return;
         }
 
-        Vector3 spawnPos = PlayerRealTimeData.Instance.spawnPos;
-        if (spawnPos == Vector3.zero)
-            spawnPos = new Vector3(0, 2f, 0);
+        Vector3 spawnPos;
+        Quaternion spawnRot;
 
-        // Đảm bảo player spawn trên NavMesh
+        if (PlayerRealTimeData.Instance.isNewGame)
+        {
+            spawnPos = PlayerRealTimeData.Instance.defaultSpawnPos;
+            spawnRot = Quaternion.Euler(PlayerRealTimeData.Instance.defaultSpawnEuler);
+            PlayerRealTimeData.Instance.SetCheckpoint(spawnPos, spawnRot);
+        }
+        else
+        {
+            spawnPos = PlayerRealTimeData.Instance.spawnPos;
+            spawnRot = PlayerRealTimeData.Instance.spawnRot;
+        }
+
         if (UnityEngine.AI.NavMesh.SamplePosition(spawnPos, out var hit, 5f, UnityEngine.AI.NavMesh.AllAreas))
         {
             spawnPos = hit.position;
         }
-
-        Quaternion spawnRot = PlayerRealTimeData.Instance.spawnRot;
-        if (spawnRot == Quaternion.identity)
-            spawnRot = Quaternion.identity;
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();
