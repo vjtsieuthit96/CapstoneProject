@@ -39086,7 +39086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479687400508103659, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.92469674
       objectReference: {fileID: 0}
     - target: {fileID: 5479687400508103659, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -39094,7 +39094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479687400508103659, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.38070452
       objectReference: {fileID: 0}
     - target: {fileID: 5479687400508103659, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -39106,7 +39106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5479687400508103659, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 44.755
       objectReference: {fileID: 0}
     - target: {fileID: 5479687400508103659, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -39126,6 +39126,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4516958991384660959, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1134380048}
+    - targetCorrespondingSourceObject: {fileID: 4516958991384660959, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1134380049}
   m_SourcePrefab: {fileID: 100100000, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
 --- !u!1001 &183220940
 PrefabInstance:
@@ -225697,8 +225700,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 100.27134, y: 94.722565, z: 24.630432}
-  m_Center: {x: -0.5203285, y: 9.8853, z: -2.7007751}
+  m_Size: {x: 100.27134, y: 94.722565, z: 7.078039}
+  m_Center: {x: -0.5203285, y: 9.8853, z: 1.2604694}
 --- !u!114 &1134380048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225714,6 +225717,19 @@ MonoBehaviour:
   sceneIndex: 12
   SpawnPointNextScene: {x: -181.8, y: 88, z: 67.47872}
   tpsCamera: {fileID: 0}
+--- !u!114 &1134380049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134380045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16752234f686d144ad3083d669e1f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tpsCam: {fileID: 0}
 --- !u!1001 &1134844038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -398702,6 +398718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1904599552}
   - component: {fileID: 1904599553}
+  - component: {fileID: 1904599554}
   m_Layer: 0
   m_Name: '[Test] Player Spawn Index'
   m_TagString: Untagged
@@ -398773,6 +398790,20 @@ MonoBehaviour:
   spawnRot: {x: 0, y: 0, z: 0, w: 1}
   completedMainTasks: 
   lastCompletedMainTask: 0
+  Scene1: 0
+  Scene2: 0
+--- !u!114 &1904599554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904599551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704164a9d5e9311418b177f7b8b08609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1906061429
 PrefabInstance:
   m_ObjectHideFlags: 0
