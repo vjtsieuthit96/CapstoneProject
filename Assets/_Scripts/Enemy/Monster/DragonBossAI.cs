@@ -80,7 +80,11 @@ public class DragonBossAI : MonsterAI
         {
             StartOffsetLerp(8f, 1.5f);
             takeoff = false;
-        }        
+        }      
+        if (monsterStats.GetCurrentHealth() <= 0 && isDead)
+        {
+            monsterAnimator.SetBool(MonsterAnimatorHash.isDeadHash, true);
+        }
 
     }
 
