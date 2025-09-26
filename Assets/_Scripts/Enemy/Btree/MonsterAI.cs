@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public abstract class MonsterAI : MonoBehaviour
 {
     [Header("-----Target-----")]
-    [SerializeField] protected Transform target;
+    [SerializeField] public Transform target;
     [Header("-----Speed Multiplier-----")]
     [SerializeField] float speedMultiplier = 1.75f;
     [Header("-----FOV-----")]
