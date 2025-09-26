@@ -77,18 +77,12 @@ public class RespawnPlayer : MonoBehaviour
 
         if (pendingCutsceneIndex >= 0)
         {
-            // Load cutscene
             SceneManager.LoadScene(pendingCutsceneIndex);
-
-            // Chờ cutscene chạy
             yield return new WaitForSeconds(pendingCutsceneDuration);
-
-            // Load lại gameplay scene
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
         else
         {
-            // Nếu không có cutscene → quay lại gameplay luôn
             SceneManager.LoadScene(lastGameplaySceneIndex);
         }
     }
@@ -103,11 +97,9 @@ public class RespawnPlayer : MonoBehaviour
 
     private IEnumerator RespawnAfterSceneReady()
     {
-        // Chờ 1–2 frame để scene load xong hẳn
         yield return null;
         yield return new WaitForEndOfFrame();
 
-        // Dọn xác cũ
         if (oldPlayer != null)
         {
             if (destroyBodyAfterDead) Destroy(oldPlayer);
@@ -115,10 +107,8 @@ public class RespawnPlayer : MonoBehaviour
             oldPlayer = null;
         }
 
-        // Spawn player mới
         SpawnPlayer();
 
-        // Hiện nhiệm vụ lại
         if (QuestManager.Instance.currentMainTask != null)
             QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentMainTask);
         if (QuestManager.Instance.currentSubTask != null)
@@ -142,7 +132,6 @@ public class RespawnPlayer : MonoBehaviour
         if (spawnPos == Vector3.zero)
             spawnPos = new Vector3(0, 2f, 0);
 
-        // Đảm bảo player spawn trên NavMesh
         if (UnityEngine.AI.NavMesh.SamplePosition(spawnPos, out var hit, 5f, UnityEngine.AI.NavMesh.AllAreas))
         {
             spawnPos = hit.position;

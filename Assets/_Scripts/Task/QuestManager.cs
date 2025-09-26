@@ -27,9 +27,6 @@ public class QuestManager : MonoBehaviour
             Emotions = FindObjectOfType<EmotionSystem>();
         }
     }
-    private void Start()
-    {
-    }
 
     public void ReceiveQuest(QuestData questData)
     {
