@@ -89,8 +89,8 @@ public class RespawnPlayer : MonoBehaviour
             else DestroyPlayerComponents(oldPlayer);
             oldPlayer = null;
         }
-
-        SpawnPlayer();
+        if (currentPlayer == null)
+            SpawnPlayer();
 
         if (QuestManager.Instance.currentMainTask != null)
             QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentMainTask);
@@ -118,6 +118,7 @@ public class RespawnPlayer : MonoBehaviour
         {
             spawnPos = PlayerRealTimeData.Instance.defaultSpawnPos;
             spawnRot = Quaternion.Euler(PlayerRealTimeData.Instance.defaultSpawnEuler);
+            PlayerRealTimeData.Instance.SetCheckpoint(spawnPos, spawnRot);
         }
         else
         {
@@ -125,13 +126,11 @@ public class RespawnPlayer : MonoBehaviour
             spawnRot = PlayerRealTimeData.Instance.spawnRot;
         }
 
-        // Snap vào NavMesh nếu có
         if (UnityEngine.AI.NavMesh.SamplePosition(spawnPos, out var hit, 5f, UnityEngine.AI.NavMesh.AllAreas))
         {
             spawnPos = hit.position;
         }
 
-        // --- Spawn nhân vật ---
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();
 
