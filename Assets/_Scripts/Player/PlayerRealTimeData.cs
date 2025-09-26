@@ -56,8 +56,8 @@ public class PlayerRealTimeData : MonoBehaviour
     public bool isNewGame = true;
 
     [Header("Spawn Settings (Default nhập từ Inspector)")]
-    [SerializeField] private Vector3 defaultSpawnPos = Vector3.zero;
-    [SerializeField] private Vector3 defaultSpawnEuler = Vector3.zero;
+    [SerializeField] public Vector3 defaultSpawnPos = Vector3.zero;
+    [SerializeField] public Vector3 defaultSpawnEuler = Vector3.zero;
 
     [Header("Runtime Spawn (cập nhật khi checkpoint)")]
     public Vector3 spawnPos = Vector3.zero;
@@ -67,6 +67,56 @@ public class PlayerRealTimeData : MonoBehaviour
     public List<TaskID> completedMainTasks = new List<TaskID>();
 
     public TaskID lastCompletedMainTask;
+
+
+    public void ResetRuntimeData()
+    {
+        currentSkillTreeState = new SkillTreeState();
+        completedMainTasks = new List<TaskID>();
+        lastCompletedMainTask = TaskID.None;
+
+        walkSpeed = 0;
+        runSpeed = 0;
+        sprintSpeed = 0;
+        crouchSpeed = 0;
+
+        maxStamina = 0;
+        staminaRecovery = 0;
+        sprintStamina = 0;
+        jumpStamina = 0;
+        rollStamina = 0;
+
+        jumpHeight = 0;
+        jumpTimer = 0;
+        jumpStandingDelay = 0;
+        airSpeed = 0;
+        airSmooth = 0;
+
+        fallMinHeight = 0;
+        fallDamage = 0;
+
+
+        rollSpeed = 0;
+        rollRotationSpeed = 0;
+        timeToRollAgain = 0;
+
+        freeMovementAnimatorSpeed = 0;
+        ReloadSpeed = 0;
+
+        PlayerMaxHealth = 0;
+        PlayerMaxAmour = 0;
+        HealthRecovery = 0;
+        HealthRecoveryPerTime = 0;
+
+        PlayerDamageMultiplierLonggun = 0;
+        PlayerDamageMultiplierShortgun = 0;
+
+        spawnPos = Vector3.zero;
+        spawnRot = Quaternion.identity;
+        PlayerIndex = 0;
+
+        isNewGame = true;
+    }
 
     private void Awake()
     {
