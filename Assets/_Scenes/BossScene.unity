@@ -277,6 +277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DragonBoss
       objectReference: {fileID: 0}
+    - target: {fileID: 1402265501843095355, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6676215174818551906, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.3
@@ -322,6 +326,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+--- !u!114 &224687861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2402956823289643076, guid: 9b5d4a449f2561541933127b83e72790, type: 3}
+  m_PrefabInstance: {fileID: 224687860}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50ca495bb54c404a8058c0495713dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &355907466
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -497,6 +512,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4907770691131446776, guid: fae9fe4561327c14aa3b2d5ae6862144, type: 3}
   m_PrefabInstance: {fileID: 765428026}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1017524226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1017524227}
+  - component: {fileID: 1017524228}
+  m_Layer: 0
+  m_Name: CheckPlayerAfterSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1017524227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017524226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -148.76105, y: 27.70054, z: 86.260826}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1017524228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017524226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3df40b7aa5713428b16e31381e1c0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  bossAI: {fileID: 224687861}
 --- !u!114 &1064952487 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3053630603365274496, guid: 9d4a915bd12d0554f9a6b912e3787b63, type: 3}
@@ -562,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8077857541021412717, guid: 949133aa6c58b05419e4849e2d1a24f4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -842,3 +903,4 @@ SceneRoots:
   - {fileID: 765428026}
   - {fileID: 1076064512}
   - {fileID: 355907466}
+  - {fileID: 1017524227}
