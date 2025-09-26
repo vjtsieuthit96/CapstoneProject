@@ -141,6 +141,7 @@ public class RespawnPlayer : MonoBehaviour
         }
 
         PlayerRealTimeData.Instance.isNewGame = false;
+        PlayerRealTimeData.Instance.Scene1 = true;
     }
 
     private void DestroyPlayerComponents(GameObject target)

@@ -3,7 +3,6 @@ using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
 
 public class TransportGate : MonoBehaviour
 {
@@ -30,6 +29,7 @@ public class TransportGate : MonoBehaviour
         {
             PlayerRealTimeData.Instance.SetCheckpoint(SpawnPointNextScene, quaternion.identity);
             PlayerRealTimeData.Instance.SetDefaultPoint(SpawnPointNextScene, quaternion.identity);
+            PlayerRealTimeData.Instance.Scene2 = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
             PlayerRealTimeData.Instance.SetCheckpoint(SpawnPointNextScene, quaternion.identity);
             SceneManager.LoadScene(sceneIndex);
