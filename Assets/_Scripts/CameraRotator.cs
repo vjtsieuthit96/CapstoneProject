@@ -45,6 +45,7 @@ public class CameraRotator : MonoBehaviour
     {
         RotateTo(0f, 150f);
         SwitchType(Mode2d, Mode3d);
+        PlayerRealTimeData.Instance.ResetRuntimeData();
     }
     private void Start()
     {

@@ -405984,14 +405984,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOptions:
   - playerPrefab: {fileID: 2258064530982041924, guid: 18c02b67f08f7b74cbc237df5bc7f46e, type: 3}
-    cutsceneDeathSceneIndex: 8
-    cutsceneDuration: 47.8
+    respawnSceneIndex: 8
   - playerPrefab: {fileID: 4522511219689005321, guid: 7d2ace5e2244851438259fea95721e41, type: 3}
-    cutsceneDeathSceneIndex: 9
-    cutsceneDuration: 66.7
+    respawnSceneIndex: 9
   - playerPrefab: {fileID: 5122348817074797169, guid: 8c77c35d06bf4c24aa632d3c74a434cc, type: 3}
-    cutsceneDeathSceneIndex: 10
-    cutsceneDuration: 45.217
+    respawnSceneIndex: 10
   respawnDelay: 2
   destroyBodyAfterDead: 1
 --- !u!114 &1966885841
