@@ -5,7 +5,7 @@ public class ChangeScene : MonoBehaviour
 {
     [SerializeField] private int sceneIndex;    
     public bool isChangeMusic = false;
-    public void LoadScene()
+    public virtual void LoadScene()
    {
         SceneManager.LoadScene(sceneIndex);
         if(isChangeMusic)
