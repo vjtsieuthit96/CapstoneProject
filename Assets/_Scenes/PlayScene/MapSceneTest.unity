@@ -39129,6 +39129,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4516958991384660959, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1134380049}
+    - targetCorrespondingSourceObject: {fileID: 4516958991384660959, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1134380050}
   m_SourcePrefab: {fileID: 100100000, guid: 1fb2bb782c545d04f9b2f382bcfd427e, type: 3}
 --- !u!1001 &183220940
 PrefabInstance:
@@ -225730,6 +225733,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tpsCam: {fileID: 0}
+--- !u!114 &1134380050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134380045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d94ce6ee3797fe46a056582d8966025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetScale: {x: 0.5, y: 0.5, z: 0.5}
+  scaleDuration: 10
 --- !u!1001 &1134844038
 PrefabInstance:
   m_ObjectHideFlags: 0
