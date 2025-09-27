@@ -29,6 +29,7 @@ public class SkillUsageNode : Node
             if (distanceToPlayer <= skillRange && skillManager.CanUseSkill(skill))
             {
                 skillManager.UseSkill(skill);
+                monster.SetState(MonsterAI.EnemyState.Attack);
                 return NodeState.RUNNING;
             }
         }

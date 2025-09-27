@@ -78,6 +78,19 @@ public abstract class MonsterAI : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+    public enum EnemyState
+    {
+        Patrol,
+        Chase,
+        Attack
+    }
+
+    public EnemyState CurrentState;
+
+    public void SetState(EnemyState newState)
+    {
+        CurrentState = newState;
+    }
     protected virtual void Update()
     {
         GroundLocomotion();
@@ -114,7 +127,6 @@ public abstract class MonsterAI : MonoBehaviour
             enemyColliderManager.ColliderDeathStateChanged(false);
             itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
-            Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
             float totalDamage = 0f;
             foreach (var entry in damageLog)
             {
