@@ -33,7 +33,6 @@ public class SkillTreeSystem : MonoBehaviour
     }
     private void Start()
     {
-        // Khởi tạo reference lần đầu
         RefreshReferences();
         RefreshOnStart();
         ApplySkillTreeState();
@@ -60,8 +59,7 @@ public class SkillTreeSystem : MonoBehaviour
     // 🔹 Hàm tiện ích để tự động tìm lại reference khi null
     private void RefreshReferences()
     {
-        if (characterConfigurator == null)
-            characterConfigurator = FindObjectOfType<CharacterConfigurator>();
+        characterConfigurator = PlayerMock.Instance.PlayerPrefab.GetComponent<CharacterConfigurator>();
 
         if (offenceList == null)
             offenceList = FindListInfoByName("Offence");
@@ -107,7 +105,6 @@ public class SkillTreeSystem : MonoBehaviour
 
     private void Update()
     {
-        // 🔹 Check null mỗi frame -> nếu respawn mất reference thì gán lại
         RefreshReferences();
 
         if (skillTree != null && characterConfigurator != null)

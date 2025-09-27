@@ -28485,7 +28485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &137779185
 Transform:
   m_ObjectHideFlags: 0
@@ -161192,7 +161192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &728368872
 Transform:
   m_ObjectHideFlags: 0
@@ -206325,6 +206325,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3342578734497273998, guid: c524e59739102c84683a86e0904e9e9b, type: 3}
   m_PrefabInstance: {fileID: 994397043}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &995088560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 995088561}
+  - component: {fileID: 995088562}
+  m_Layer: 0
+  m_Name: PlayerMock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &995088561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995088560}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 52.379284, y: -53.170296, z: 398.6512}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &995088562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995088560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8cd00a2017b2a74a9ad0198b9e490d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _PlayerPrefab: {fileID: 0}
+  _PlayerTransform: {fileID: 0}
 --- !u!1001 &995537476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -455759,6 +455805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1981983945816476733, guid: 949133aa6c58b05419e4849e2d1a24f4, type: 3}
+      propertyPath: Mock
+      value: 
+      objectReference: {fileID: 995088562}
     - target: {fileID: 2475816738206032688, guid: 949133aa6c58b05419e4849e2d1a24f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.88
@@ -461042,3 +461092,4 @@ SceneRoots:
   - {fileID: 1392541329}
   - {fileID: 2054471298}
   - {fileID: 1654037817}
+  - {fileID: 995088561}

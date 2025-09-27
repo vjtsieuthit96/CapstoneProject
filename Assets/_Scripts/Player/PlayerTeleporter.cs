@@ -23,7 +23,7 @@ public class PlayerTeleporter : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(AfterStart());
+        player = PlayerMock.Instance.PlayerPrefab;
     }
 
     public void TeleportPlayer()
@@ -32,19 +32,6 @@ public class PlayerTeleporter : MonoBehaviour
         {
             player.transform.position = targetPosition.position;
             player.transform.rotation = targetPosition.rotation;
-        }
-    }
-    IEnumerator AfterStart()
-    {
-        yield return new WaitForSeconds(0.2f);
-
-        if (player == null)
-        {
-            GameObject foundPlayer = GameObject.FindGameObjectWithTag("Player");
-            if (foundPlayer != null)
-            {
-                player = foundPlayer;
-            }
         }
     }
 }
