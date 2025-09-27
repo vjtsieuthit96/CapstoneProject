@@ -199,7 +199,7 @@ public abstract class MonsterAI : MonoBehaviour
        
         SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);
     }
-    public void ApplyDamage(float amount)
+    public virtual void ApplyDamage(float amount)
     {
         monsterStats.TakeDamage(amount);
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();

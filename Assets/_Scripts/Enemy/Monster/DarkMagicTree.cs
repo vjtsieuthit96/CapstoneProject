@@ -16,10 +16,10 @@ public class DarkMagicTree : MonsterAI
     public BoxCollider defenseCollider;
     public bool isPlayerInDefenseZone = false;
     public bool isDefending = false;
+    [SerializeField] private MaterialSwitcher matterialSwitch;
 
     protected override void Start()
     {
-        //StartCoroutine(FindPlayerByTag("Player"));
         behaviorTree = CreateBehaviorTree();
         RepeatEvaluateBehaviorTree(0f, 1.5f);
 
@@ -53,6 +53,11 @@ public class DarkMagicTree : MonsterAI
         });
     }
 
+    public override void ApplyDamage(float amount)
+    {
+        base.ApplyDamage(amount);
+        matterialSwitch.HurtofTree();
+    }
 
     public void ActivateNearestCircleSkill()
     {
