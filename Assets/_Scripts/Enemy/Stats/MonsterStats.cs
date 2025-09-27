@@ -43,7 +43,10 @@ public class MonsterStats : MonoBehaviour
         _currentDefense = baseDefense;
         _currentDamage = baseDamage;
     }
-
+    public void SetCurrenthealth(float value)
+    {
+        _currentHealth = value;
+    }
 
     public void SetDefaultStats()
     {

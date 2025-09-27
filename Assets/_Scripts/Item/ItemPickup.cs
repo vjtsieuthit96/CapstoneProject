@@ -3,7 +3,7 @@
 public class ItemPickup : MonoBehaviour
 {
     public ItemEffect effectToApply;
-    private GameObject originPrefab;
+    public GameObject originPrefab;
 
     public void SetOrigin(GameObject prefab)
     {

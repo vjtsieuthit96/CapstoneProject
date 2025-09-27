@@ -246661,6 +246661,18 @@ PrefabInstance:
       propertyPath: ObjectParent
       value: 
       objectReference: {fileID: 2120789097}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[4].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[4].prefab
+      value: 
+      objectReference: {fileID: 188466, guid: a42f47c5b82df4f4d8fa88ad8a6f90b7, type: 3}
     - target: {fileID: 7608576018017118198, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_Name
       value: Navmesh & Pool
@@ -365582,7 +365594,7 @@ GameObject:
   - component: {fileID: 1732241899}
   - component: {fileID: 1732241900}
   m_Layer: 0
-  m_Name: SpanwBullet
+  m_Name: SpawnBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365640,7 +365652,7 @@ MonoBehaviour:
   player: {fileID: 0}
   spawnerEnabled: 1
   spawnInterval: 15
-  bulletPerSpawn: 2
+  bulletPerSpawn: 1
 --- !u!114 &1732241900
 MonoBehaviour:
   m_ObjectHideFlags: 0

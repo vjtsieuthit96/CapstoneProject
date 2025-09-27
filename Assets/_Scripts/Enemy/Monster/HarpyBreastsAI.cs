@@ -30,7 +30,6 @@ public class HarpyBreastsAI : MonsterAI
     private Rigidbody rb;
     private MonsterAudio Audio;
 
-
     protected override void Start()
     {
         base.Start();
@@ -60,6 +59,19 @@ public class HarpyBreastsAI : MonsterAI
             ReleasePrey();            
             isCatch = false;
             timerRunning = false;
+        }
+        if (CurrentState == EnemyState.Patrol)
+        {
+            patrolTimer += Time.deltaTime;
+
+            if (patrolTimer >= patrolDespawnTime)
+            {
+                base.Despawn();
+            }
+        }
+        else
+        {
+            patrolTimer = 0f;
         }
         //Debug.Log("Catch: "+catchTimer);
     }

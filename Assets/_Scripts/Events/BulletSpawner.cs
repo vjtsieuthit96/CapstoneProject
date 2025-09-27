@@ -64,10 +64,10 @@ public class BulletSpawner : MonoBehaviour
     private void SpawnBullet(Vector3 position)
     {
         if (bulletPrefab == null) return;
-
-        GameObject bullet = Instantiate(bulletPrefab, position, Quaternion.identity);
-        if (bulletParent != null)
-            bullet.transform.SetParent(bulletParent);
+        GameObject bullet = ItemPoolManager.Instance.GetFromPool(bulletPrefab);
+        if (bullet == null) return;
+        bullet.transform.position = position;
+        bullet.transform.rotation = Quaternion.identity;
     }
 
     private SpawnPoint GetNearestSpawnPoint()
@@ -86,7 +86,7 @@ public class BulletSpawner : MonoBehaviour
         if (player != null)
         {
             Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(player.position, 5f); // chỉ để debug
+            Gizmos.DrawWireSphere(player.position, 5f);
         }
     }
 #endif
