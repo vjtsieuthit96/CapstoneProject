@@ -39,6 +39,16 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(FindPlayerByTag("Player"));
         StartCoroutine(CheckSpawnRoutine(2f));
     }
+    private void OnEnable()
+    {
+        MonsterFactory.Instance.Init(enemyDataList);
+        foreach (var data in enemyDataList)
+        {
+            GameObjectPoolManager.Instance.CreatePool(data.id, data.prefab, data.initialPoolSize);
+        }
+        StartCoroutine(FindPlayerByTag("Player"));
+        StartCoroutine(CheckSpawnRoutine(2f));
+    }
 
     private void Update()
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
 
@@ -18,7 +19,7 @@ public class DarkMagicTree : MonsterAI
 
     protected override void Start()
     {
-        StartCoroutine(FindPlayerByTag("Player"));
+        //StartCoroutine(FindPlayerByTag("Player"));
         behaviorTree = CreateBehaviorTree();
         RepeatEvaluateBehaviorTree(0f, 1.5f);
 
@@ -28,6 +29,7 @@ public class DarkMagicTree : MonsterAI
             defenseCollider.isTrigger = true;
         }
     }
+   
 
     private IEnumerator FindPlayerByTag(string tag)
     {
@@ -55,6 +57,7 @@ public class DarkMagicTree : MonsterAI
         monsterStats.ResetStatsToInitial();
         ApplyRestart();
         isPlayerInDefenseZone = false;
+        StartCoroutine(FindPlayerByTag("Player"));
     }
 
     protected override Node CreateBehaviorTree()
