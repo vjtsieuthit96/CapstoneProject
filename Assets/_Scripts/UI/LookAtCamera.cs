@@ -4,34 +4,29 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    private Camera targetCam;
-    public vThirdPersonCamera tpsCam;
+    public Transform player;
 
-    IEnumerator AfterStart()
-    {
-        yield return new WaitForSeconds(0.2f);
-        if (tpsCam == null)
-        {
-            tpsCam = FindObjectOfType<vThirdPersonCamera>();
-        }
-
-    }
     private void OnEnable()
     {
-        tpsCam = FindObjectOfType<vThirdPersonCamera>();
-        if (tpsCam != null)
+        StartCoroutine(FindPlayerCoroutine());
+    }
+    private IEnumerator FindPlayerCoroutine()
+    {
+        while (player == null)
         {
-            targetCam = tpsCam.GetComponentInChildren<Camera>();
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                player = playerObj.transform;
+                yield break;
+            }
+
+            yield return new WaitForSeconds(0.2f);
         }
     }
-
     void LateUpdate()
     {
-        if (targetCam == null) return;
-
-        transform.LookAt(
-            transform.position + targetCam.transform.rotation * Vector3.forward,
-            targetCam.transform.rotation * Vector3.up
-        );
+        if (player == null) return;
+        transform.LookAt(player.position, Vector3.up);
     }
 }
