@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class OrcAI : MonsterAI
 {
+
     protected override void Start()
     {
         base.Start();
@@ -11,7 +12,20 @@ public class OrcAI : MonsterAI
     }
     protected override void Update()
     {
-        base.Update();       
+        base.Update();
+        if (CurrentState == EnemyState.Patrol)
+        {
+            patrolTimer += Time.deltaTime;
+
+            if (patrolTimer >= patrolDespawnTime)
+            {
+                base.Despawn();
+            }
+        }
+        else
+        {
+            patrolTimer = 0f;
+        }
     }
     protected override Node CreateBehaviorTree()
     {

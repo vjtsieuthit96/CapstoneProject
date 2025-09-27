@@ -62,7 +62,7 @@ public class PatrolNode : Node
         }
 
         lastPosition = monster.transform.position;
-
+        monster.SetState(MonsterAI.EnemyState.Patrol);
         return NodeState.RUNNING;
     }
 

@@ -700,8 +700,11 @@ MonoBehaviour:
   monsterAudio: {fileID: 680867627703430608}
   enemyType: Orc
   isDead: 0
-  returnToPoolDelay: 6
+  returnToPoolDelay: 3
   enemyData: {fileID: 11400000, guid: 07359254e37658749bc5b997654593ed, type: 2}
+  patrolDespawnTime: 15
+  patrolTimer: 0
+  CurrentState: 0
 --- !u!114 &5622012270302772746
 MonoBehaviour:
   m_ObjectHideFlags: 0

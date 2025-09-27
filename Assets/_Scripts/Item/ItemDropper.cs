@@ -32,7 +32,6 @@ public class ItemDropper : MonoBehaviour
                     item.transform.rotation = Quaternion.identity;
                     item.SetActive(true);
 
-                    // Gán prefab gốc để biết đường trả lại pool đúng
                     var pickup = item.GetComponent<ItemPickup>();
                     if (pickup != null)
                     {

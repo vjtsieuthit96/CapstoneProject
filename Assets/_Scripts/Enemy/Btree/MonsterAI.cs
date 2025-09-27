@@ -47,9 +47,11 @@ public abstract class MonsterAI : MonoBehaviour
 
     private EnemyColliderManager enemyColliderManager;
 
-    [SerializeField] private float returnToPoolDelay = 6f;
+    [SerializeField] private float returnToPoolDelay = 2f;
 
     public EnemyData enemyData;
+    [SerializeField] public float patrolDespawnTime = 10f;
+    public float patrolTimer = 0f;
     protected virtual void Start()
     {
         enemyType = monsterStats.enemyType;
@@ -78,11 +80,24 @@ public abstract class MonsterAI : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+    public enum EnemyState
+    {
+        Patrol,
+        Chase,
+        Attack
+    }
+
+    public EnemyState CurrentState;
+
+    public void SetState(EnemyState newState)
+    {
+        CurrentState = newState;
+    }
     protected virtual void Update()
     {
         GroundLocomotion();
         Die();
-        if(GetBoolAnimatorParameter(MonsterAnimatorHash.isDeadHash) == true)
+        if (GetBoolAnimatorParameter(MonsterAnimatorHash.isDeadHash) == true)
         {
             monsterAgent.isStopped = true;
         }    
@@ -90,6 +105,7 @@ public abstract class MonsterAI : MonoBehaviour
     protected virtual void OnEnable()
     {
         isDead = false;
+        patrolTimer = 0f;
         enemyColliderManager.ColliderDeathStateChanged(true);
         isHit = false;
         isFreeze = false;
@@ -114,7 +130,6 @@ public abstract class MonsterAI : MonoBehaviour
             enemyColliderManager.ColliderDeathStateChanged(false);
             itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
-            Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
             float totalDamage = 0f;
             foreach (var entry in damageLog)
             {
@@ -129,17 +144,16 @@ public abstract class MonsterAI : MonoBehaviour
 
             if (lastAttacker != null)
             {
-                Debug.Log($"<color=green>Final blow by: {lastAttacker.name}</color>");
                 PlayerPlayRecords playerPlayRecords = lastAttacker.GetComponent<PlayerPlayRecords>();
                 string enemyType = GetEnemyType();
                 playerPlayRecords.RegisterKill(enemyType);
             }
-            else
-            {
-                Debug.Log("Enemy died with unknown killer.");
-            }
             StartCoroutine(ReturnToPoolAfterDelay());
         }
+    }
+    public void Despawn()
+    {
+        monsterStats.SetCurrenthealth(0);
     }
 
     private IEnumerator ReturnToPoolAfterDelay()
