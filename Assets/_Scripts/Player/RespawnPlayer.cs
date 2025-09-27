@@ -29,7 +29,6 @@ public class RespawnPlayer : MonoBehaviour
     private GameObject oldPlayer;
 
     private bool isRespawning = false;
-
     private void Awake()
     {
         if (Instance == null)
@@ -132,6 +131,7 @@ public class RespawnPlayer : MonoBehaviour
         }
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
+        PlayerMock.Instance.SetPlayer(currentPlayer);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();
 
         if (currentController != null)

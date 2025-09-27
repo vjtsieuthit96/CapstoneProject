@@ -30,22 +30,6 @@ public class DarkMagicTree : MonsterAI
         }
     }
    
-
-    private IEnumerator FindPlayerByTag(string tag)
-    {
-        while (target == null)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag(tag);
-            if (playerObj != null)
-            {
-                target = playerObj.transform;
-                yield break;
-            }
-
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-
     protected override void Update()
     {
         Die();
@@ -53,11 +37,11 @@ public class DarkMagicTree : MonsterAI
 
     protected override void OnEnable()
     {
+        target = PlayerMock.Instance.PlayerTransform;
         isDead = false;
         monsterStats.ResetStatsToInitial();
         ApplyRestart();
         isPlayerInDefenseZone = false;
-        StartCoroutine(FindPlayerByTag("Player"));
     }
 
     protected override Node CreateBehaviorTree()

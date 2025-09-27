@@ -8,22 +8,9 @@ public class LookAtCamera : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(FindPlayerCoroutine());
+       player = PlayerMock.Instance.PlayerTransform;
     }
-    private IEnumerator FindPlayerCoroutine()
-    {
-        while (player == null)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                player = playerObj.transform;
-                yield break;
-            }
-
-            yield return new WaitForSeconds(0.2f);
-        }
-    }
+   
     void LateUpdate()
     {
         if (player == null) return;
