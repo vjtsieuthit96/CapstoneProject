@@ -153,14 +153,24 @@ public class EnemySpawner : MonoBehaviour
 
     private void UpdateSpawnPointsByDistance(float radius)
     {
-        Vector2 playerPos = new Vector2(player.position.x, player.position.z);
+        Vector2 playerPosXZ = new Vector2(player.position.x, player.position.z);
+        float playerY = player.position.y;
+
+        bool onGround = playerY >= -1f && playerY <= 1f;
+        bool onBridge = playerY >= 8.8f && playerY <= 9.5f;
 
         foreach (var point in spawnPoints)
         {
-            Vector2 pointPos = new Vector2(point.transform.position.x, point.transform.position.z);
-            float dist = Vector2.Distance(playerPos, pointPos);
+            Vector2 pointPosXZ = new Vector2(point.transform.position.x, point.transform.position.z);
+            float distXZ = Vector2.Distance(playerPosXZ, pointPosXZ);
 
-            point.gameObject.SetActive(dist <= radius);
+            bool inRange = distXZ <= radius;
+            bool sameLayer = false;
+            if (onGround && point.transform.position.y >= -1f && point.transform.position.y <= 1f)
+                sameLayer = true;
+            else if (onBridge && point.transform.position.y >= 8.8f && point.transform.position.y <= 9.5f)
+                sameLayer = true;
+            point.gameObject.SetActive(inRange && sameLayer);
         }
     }
 
