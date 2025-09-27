@@ -102,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
         var point = GetRandomActiveSpawnPoint();
         if (point == null) return false;
 
-        GameObject enemyGO = MonsterFactory.Instance.SpawnEnemy(data, point.transform.position, Quaternion.identity);
+        GameObject enemyGO = MonsterFactory.Instance.SpawnEnemy(data, point.transform.position, point.transform.rotation);
         if (enemyGO == null) return false;
 
         enemyGO.transform.SetParent(enemyParent);
