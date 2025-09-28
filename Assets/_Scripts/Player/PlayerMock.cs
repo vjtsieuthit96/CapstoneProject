@@ -19,7 +19,7 @@ public class PlayerMock : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        
     }
     private void Start()
     {
@@ -31,6 +31,14 @@ public class PlayerMock : MonoBehaviour
     {
         PlayerPrefab = player;
         PlayerTransform = player.transform;
+        if(Tree == null)
+        {
+            Tree = FindAnyObjectByType<DarkMagicTree>();
+        }
+        if(enemySpawner == null)
+        {
+            enemySpawner = FindAnyObjectByType<EnemySpawner>();
+        }
         ApplyPlayer();
     }
     public void ApplyPlayer()
