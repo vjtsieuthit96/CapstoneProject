@@ -30,9 +30,9 @@ public class DarkMagicTree : MonsterAI
             defenseCollider.isTrigger = true;
         }
     }
-   
-    protected override void Update()
+    private void Update()
     {
+        base.Update();
         Die();
     }
 
