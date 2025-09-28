@@ -174,20 +174,28 @@ public abstract class MonsterAI : MonoBehaviour
     }
 
     protected abstract Node CreateBehaviorTree();
-    private void GroundLocomotion()
+       private void GroundLocomotion()
     {
-        float Speed = monsterAgent.velocity.magnitude;
-        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);
-       
-        float normalizedSpeed = Speed / monsterAgent.speed; 
-        normalizedSpeed = Mathf.Clamp(normalizedSpeed, 0f, 1f);
-      
-        float locomotionValue = Vector3.Dot(monsterAgent.velocity.normalized, transform.forward) * normalizedSpeed;
+        Vector3 agentVelocity = monsterAgent != null ? monsterAgent.velocity : Vector3.zero;
+        float agentSpeed = monsterAgent != null ? monsterAgent.speed : 1f;
 
-        locomotionValue = Mathf.Lerp(-1f, 1f, Mathf.Clamp01((locomotionValue + 1) / 2));
-       
+        float speedMagnitude = agentVelocity.magnitude;
+        SetAnimatorParameter(MonsterAnimatorHash.speedHash, speedMagnitude);
+
+        float normalizedSpeed = speedMagnitude / agentSpeed;
+        normalizedSpeed = Mathf.Clamp(normalizedSpeed, 0f, 1f);
+
+        float locomotionValue = 0f;
+
+        if (agentVelocity.sqrMagnitude > 0.001f)
+        {
+            locomotionValue = Vector3.Dot(agentVelocity.normalized, transform.forward) * normalizedSpeed;
+            locomotionValue = Mathf.Lerp(-1f, 1f, Mathf.Clamp01((locomotionValue + 1f) / 2f));
+        }
+
         SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);
     }
+
     public virtual void ApplyDamage(float amount)
     {
         monsterStats.TakeDamage(amount);

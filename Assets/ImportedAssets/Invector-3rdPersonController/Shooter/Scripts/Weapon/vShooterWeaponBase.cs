@@ -375,6 +375,40 @@ namespace Invector.vShooter
             if (Physics.Raycast(ray, out hit, 300f, hitLayer))
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red, 2f);
+
+                // --- MỚI: Kiểm tra Range trước tiên ---
+                if (hit.collider.CompareTag("Range"))
+                {
+                    if (isExplosive && BulletType == BulletType.Explosion)
+                    {
+                        // Nổ ngay trên collider Range
+                        vExplosive explosive = PoolManager.Instance.GetObject<vExplosive>("Explosion", hit.point, Quaternion.identity);
+                        if (explosive != null)
+                        {
+                            explosive.Owner = Gunowner;
+                            int raycastDamage = (int)(maxDamage * damageMultiplier * PlayerDamageMultiplier);
+                            explosive.SetOverrideDamageSender(transform);
+                            explosive.SetOverDataSender(
+                                DetentionTime, ReductEnemySpeedPercent,
+                                ElectricDamagePercent, EletricDuration,
+                                PoisonDamagePercent, PoisonDuration,
+                                raycastDamage
+                            );
+                            explosive.Explode();
+                        }
+                    }
+                    else
+                    {
+                        // Đạn thường chỉ trúng collider Range, không xuyên
+                        TryCreateDecal(hit);
+                    }
+
+                    // Dừng raycast tại đây, không đi vào các xử lý khác
+                    return;
+                }
+                // --- END Kiểm tra Range ---
+
+                // Giữ nguyên logic hiện có
                 EnemyHitCounter.Instance?.ElementShot();
                 if (hit.collider.CompareTag("Enemy"))
                 {
@@ -417,6 +451,7 @@ namespace Invector.vShooter
                         }
                     }
                     #endregion
+
                     #region XỬ LÝ ĐÓNG BĂNG
                     else if (GunElement == Element.Frozen)
                     {
@@ -456,6 +491,7 @@ namespace Invector.vShooter
                         }
                     }
                     #endregion
+
                     #region XỬ LÝ ĐIỆN
                     else if (GunElement == Element.Electric)
                     {
@@ -484,6 +520,7 @@ namespace Invector.vShooter
                         }
                     }
                     #endregion
+
                     #region XỬ LÝ ĐỘC
                     else if (GunElement == Element.Poison)
                     {
@@ -556,6 +593,8 @@ namespace Invector.vShooter
                 Debug.DrawRay(ray.origin, ray.direction * 300f, Color.black, 2f);
             }
         }
+
+
 
 
         protected virtual vProjectileControl CreateProjectileData(Vector3 aimPosition, float velocityChanged, Vector3 dispersionDir, vProjectileControl pCtrl)
