@@ -40,6 +40,8 @@ public class RespawnPlayer : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //SpawnPlayer();
+
     }
 
     private void Start()

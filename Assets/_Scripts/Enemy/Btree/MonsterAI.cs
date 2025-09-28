@@ -63,22 +63,11 @@ public abstract class MonsterAI : MonoBehaviour
         itemDropper = GetComponent<ItemDropper>();
         //enemyData = GetComponent<EnemyData>();
         enemyColliderManager = GetComponent<EnemyColliderManager>();
-        StartCoroutine(AfterStart());
 
     }
-    IEnumerator AfterStart()
+    public void setplayer(Transform Target)
     {
-        while (target == null)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                target = playerObj.transform;
-                Debug.Log("Đã tìm thấy Player!");
-                yield break;
-            }
-            yield return new WaitForSeconds(0.2f);
-        }
+        target = Target;
     }
     public enum EnemyState
     {
