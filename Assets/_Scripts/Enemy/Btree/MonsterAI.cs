@@ -110,7 +110,7 @@ public abstract class MonsterAI : MonoBehaviour
         ApplyRestart();
     }
 
-    public void Die()
+    public virtual void Die()
     {
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {

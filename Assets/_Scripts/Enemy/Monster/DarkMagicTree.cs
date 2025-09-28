@@ -17,6 +17,7 @@ public class DarkMagicTree : MonsterAI
     public bool isPlayerInDefenseZone = false;
     public bool isDefending = false;
     [SerializeField] private MaterialSwitcher matterialSwitch;
+    public SequentialScaler sequentialScaler;
 
     protected override void Start()
     {
@@ -33,6 +34,16 @@ public class DarkMagicTree : MonsterAI
     protected override void Update()
     {
         Die();
+    }
+
+    public override void Die()
+    {
+        if (!isDead && monsterStats.GetCurrentHealth() <= 0)
+        {
+            isDead = true;
+            spawner.canSpawn = false;
+            sequentialScaler.TheEndOfTree();
+        }
     }
 
     protected override void OnEnable()

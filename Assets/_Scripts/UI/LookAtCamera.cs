@@ -18,11 +18,14 @@ public class LookAtCamera : MonoBehaviour
     {
         this.player = Player;
     }
-
-
-    void LateUpdate()
+    public virtual void Lookatplayer()
     {
         if (player == null) return;
         transform.LookAt(player.position, Vector3.up);
+    }
+
+    public void LateUpdate()
+    {
+        Lookatplayer();
     }
 }

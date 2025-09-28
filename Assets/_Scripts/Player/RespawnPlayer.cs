@@ -15,8 +15,6 @@ public class PlayerRespawnOption
 
 public class RespawnPlayer : MonoBehaviour
 {
-    public static RespawnPlayer Instance;
-
     [Header("Cấu hình Respawn cho từng nhân vật")]
     public PlayerRespawnOption[] playerOptions;
 
@@ -27,27 +25,23 @@ public class RespawnPlayer : MonoBehaviour
     private GameObject currentPlayer;
     private vThirdPersonController currentController;
     private GameObject oldPlayer;
-
     private bool isRespawning = false;
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        //SpawnPlayer();
-
-    }
 
     private void Start()
     {
         SpawnPlayer();
+        PlayerMock.Instance.SetPlayer(currentPlayer);
     }
+
+    //private void OnEnable()
+    //{
+    //    SceneManager.sceneLoaded += OnSceneLoaded;
+    //}
+
+    //private void OnDisable()
+    //{
+    //    SceneManager.sceneLoaded -= OnSceneLoaded;
+    //}
 
     private void OnCharacterDead(GameObject deadObj)
     {
@@ -56,12 +50,17 @@ public class RespawnPlayer : MonoBehaviour
 
         oldPlayer = deadObj;
 
+        // Remove listener cũ để tránh listener chồng lên nhau
+        if (currentController != null)
+            currentController.onDead.RemoveListener(OnCharacterDead);
+
         int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
         int targetSceneIndex = playerOptions[index].respawnSceneIndex;
 
         if (targetSceneIndex < 0)
         {
             Debug.LogError($"PlayerRespawnOption[{index}] chưa có respawnSceneIndex hợp lệ!");
+            isRespawning = false;
             return;
         }
 
@@ -74,25 +73,35 @@ public class RespawnPlayer : MonoBehaviour
         SceneManager.LoadScene(targetSceneIndex);
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(RespawnAfterSceneReady());
-    }
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    //StartCoroutine(RespawnAfterSceneReady());
+    //}
 
     private IEnumerator RespawnAfterSceneReady()
     {
         yield return null;
         yield return new WaitForEndOfFrame();
 
+        // Xóa hoặc destroy player cũ
         if (oldPlayer != null)
         {
-            if (destroyBodyAfterDead) Destroy(oldPlayer);
-            else DestroyPlayerComponents(oldPlayer);
+            if (destroyBodyAfterDead)
+                Destroy(oldPlayer);
+            else
+                DestroyPlayerComponents(oldPlayer);
+
             oldPlayer = null;
         }
-        if (currentPlayer == null)
-            SpawnPlayer();
 
+        // Reset các biến player
+        currentPlayer = null;
+        currentController = null;
+
+        // Spawn player mới
+        SpawnPlayer();
+
+        // Hiển thị task nếu có
         if (QuestManager.Instance.currentMainTask != null)
             QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentMainTask);
         if (QuestManager.Instance.currentSubTask != null)
@@ -128,9 +137,7 @@ public class RespawnPlayer : MonoBehaviour
         }
 
         if (UnityEngine.AI.NavMesh.SamplePosition(spawnPos, out var hit, 5f, UnityEngine.AI.NavMesh.AllAreas))
-        {
             spawnPos = hit.position;
-        }
 
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         PlayerMock.Instance.SetPlayer(currentPlayer);
@@ -138,7 +145,7 @@ public class RespawnPlayer : MonoBehaviour
 
         if (currentController != null)
         {
-            currentController.onDead.RemoveListener(OnCharacterDead);
+            currentController.onDead.RemoveAllListeners();
             currentController.onDead.AddListener(OnCharacterDead);
         }
 
