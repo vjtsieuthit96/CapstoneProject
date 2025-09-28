@@ -17,8 +17,11 @@ public class QuestManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
-        Emotions = FindObjectOfType<EmotionSystem>();
+    }
 
+    private void Start()
+    {
+        Emotions = PlayerMock.Instance.PlayerPrefab.GetComponent<EmotionSystem>();
     }
     private void Update()
     {

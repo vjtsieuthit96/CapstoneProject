@@ -8,6 +8,8 @@ public class PlayerMock : MonoBehaviour
     public GameObject PlayerPrefab { get; private set; }
     public GameObject _PlayerPrefab;
     public Transform _PlayerTransform;
+    public DarkMagicTree Tree;
+    public EnemySpawner enemySpawner;
 
     private void Awake()
     {
@@ -29,5 +31,11 @@ public class PlayerMock : MonoBehaviour
     {
         PlayerPrefab = player;
         PlayerTransform = player.transform;
+        ApplyPlayer();
+    }
+    public void ApplyPlayer()
+    {
+        enemySpawner.SetPlayer(PlayerTransform);
+        Tree.target = PlayerTransform;
     }
 }
