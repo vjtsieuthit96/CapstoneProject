@@ -566,6 +566,17 @@ MonoBehaviour:
   objectBDuration: 3.5
   objectADuration: 3.5
   TransportGate: {fileID: 1134380045}
+--- !u!114 &5193767 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3778206644261644116, guid: 0cbf4f6230354704e87a754d2a2ace67, type: 3}
+  m_PrefabInstance: {fileID: 1256366005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5193753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a901093ce2b414d857c6d6a85b36cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &5193770
 Animator:
   serializedVersion: 7
@@ -250699,6 +250710,10 @@ PrefabInstance:
       propertyPath: sequentialScaler
       value: 
       objectReference: {fileID: 5193765}
+    - target: {fileID: 3175757825934378376, guid: 0cbf4f6230354704e87a754d2a2ace67, type: 3}
+      propertyPath: enemyColliderManager
+      value: 
+      objectReference: {fileID: 5193767}
     - target: {fileID: 3242577932097321253, guid: 0cbf4f6230354704e87a754d2a2ace67, type: 3}
       propertyPath: m_LocalPosition.z
       value: -17.3
