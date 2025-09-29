@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -45,7 +44,7 @@ public abstract class MonsterAI : MonoBehaviour
     private bool isShocked = false;
     private bool isInCombat;
 
-    private EnemyColliderManager enemyColliderManager;
+    public EnemyColliderManager enemyColliderManager;
 
     [SerializeField] private float returnToPoolDelay = 2f;
 
@@ -93,6 +92,10 @@ public abstract class MonsterAI : MonoBehaviour
     }
     protected virtual void OnEnable()
     {
+        if(target == null)
+        {
+            target = PlayerMock.Instance.PlayerTransform;
+        }    
         isDead = false;
         patrolTimer = 0f;
         enemyColliderManager.ColliderDeathStateChanged(true);
@@ -108,6 +111,10 @@ public abstract class MonsterAI : MonoBehaviour
         hasRetreat = false;
         monsterStats.ResetStatsToInitial();
         ApplyRestart();
+    }
+    private void OnDisable()
+    {
+        StopEvaluateBehaviorTree();
     }
 
     public virtual void Die()
@@ -171,6 +178,10 @@ public abstract class MonsterAI : MonoBehaviour
     public void RepeatEvaluateBehaviorTree(float time, float repeatRate)
     {
         InvokeRepeating("EvaluateBehaviorTree", time, repeatRate);
+    }
+    public void StopEvaluateBehaviorTree()
+    {
+        CancelInvoke("EvaluateBehaviorTree");
     }
 
     protected abstract Node CreateBehaviorTree();

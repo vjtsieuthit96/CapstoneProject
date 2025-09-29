@@ -186,6 +186,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4139891889145650694}
     - target: {fileID: 2341791418109760738, guid: 74b93cdc9897a1b47b897dc1d3fd0509, type: 3}
+      propertyPath: enemyColliderManager
+      value: 
+      objectReference: {fileID: 3778206644261644116}
+    - target: {fileID: 2341791418109760738, guid: 74b93cdc9897a1b47b897dc1d3fd0509, type: 3}
       propertyPath: skillCircles.Array.size
       value: 7
       objectReference: {fileID: 0}
@@ -296,6 +300,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2347162083246712911, guid: 74b93cdc9897a1b47b897dc1d3fd0509, type: 3}
   m_PrefabInstance: {fileID: 895433514856599914}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3778206644261644116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4036310369382020670, guid: 74b93cdc9897a1b47b897dc1d3fd0509, type: 3}
+  m_PrefabInstance: {fileID: 895433514856599914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a901093ce2b414d857c6d6a85b36cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &948367883615088816
 PrefabInstance:
   m_ObjectHideFlags: 0

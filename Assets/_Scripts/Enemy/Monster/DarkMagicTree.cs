@@ -53,6 +53,7 @@ public class DarkMagicTree : MonsterAI
         monsterStats.ResetStatsToInitial();
         ApplyRestart();
         isPlayerInDefenseZone = false;
+        RepeatEvaluateBehaviorTree(0, 1.5f);
     }
 
     protected override Node CreateBehaviorTree()

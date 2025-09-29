@@ -77,7 +77,8 @@ public class HarpyBreastsAI : MonsterAI
     }
     protected override void OnEnable()
     {
-        base.OnEnable();     
+        base.OnEnable();
+        RepeatEvaluateBehaviorTree(0f, 1f);
         isCatch = false;    
         rb.isKinematic = false;        
         GetBehaviorNode<CatchPreyNode>().OnRestart();
