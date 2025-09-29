@@ -27,6 +27,15 @@ public class OrcAI : MonsterAI
             patrolTimer = 0f;
         }
     }
+    private void OnEnable()
+    {
+        base.OnEnable();
+        RepeatEvaluateBehaviorTree(0f, 1.5f);
+    }
+    private void OnDisable()
+    {
+        StopEvaluateBehaviorTree();
+    }
     protected override Node CreateBehaviorTree()
     {
         return new Selector(new List<Node>

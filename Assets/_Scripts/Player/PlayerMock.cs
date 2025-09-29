@@ -31,7 +31,7 @@ public class PlayerMock : MonoBehaviour
     {
         PlayerPrefab = player;
         PlayerTransform = player.transform;
-        if(Tree == null)
+        if (Tree == null)
         {
             Tree = FindAnyObjectByType<DarkMagicTree>();
         }

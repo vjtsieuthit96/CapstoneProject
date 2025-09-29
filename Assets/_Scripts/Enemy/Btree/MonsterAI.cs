@@ -112,6 +112,10 @@ public abstract class MonsterAI : MonoBehaviour
         monsterStats.ResetStatsToInitial();
         ApplyRestart();
     }
+    private void OnDisable()
+    {
+        StopEvaluateBehaviorTree();
+    }
 
     public virtual void Die()
     {
@@ -174,6 +178,10 @@ public abstract class MonsterAI : MonoBehaviour
     public void RepeatEvaluateBehaviorTree(float time, float repeatRate)
     {
         InvokeRepeating("EvaluateBehaviorTree", time, repeatRate);
+    }
+    public void StopEvaluateBehaviorTree()
+    {
+        CancelInvoke("EvaluateBehaviorTree");
     }
 
     protected abstract Node CreateBehaviorTree();
