@@ -34,7 +34,6 @@ public class CheatGame : MonoBehaviour
             if (characterConfigurator != null)
             {
                 isSearching = false;
-                Debug.Log("Đã tìm thấy CharacterConfigurator: " + characterConfigurator.name);
             }
         }
 
@@ -51,8 +50,8 @@ public class CheatGame : MonoBehaviour
         if (targetImage != null)
         {
             targetImage.sprite = isCheatMode ? cheatSprite : normalSprite;
+            targetImage.color = isCheatMode ? Color.red : Color.white;
         }
-
         if (isCheatMode && cheatOnSound != null)
         {
             audioSource.PlayOneShot(cheatOnSound);
@@ -61,7 +60,5 @@ public class CheatGame : MonoBehaviour
         {
             audioSource.PlayOneShot(cheatOffSound);
         }
-
-        Debug.Log("Cheat mode: " + (isCheatMode ? "ON" : "OFF"));
     }
 }
