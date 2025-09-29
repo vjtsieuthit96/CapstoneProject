@@ -15,6 +15,7 @@ public class CutsceneFunc : MonoBehaviour
 
     private void Awake()
     {
+        isPlayer = true;
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -32,7 +33,7 @@ public class CutsceneFunc : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K))
         {
             isPlayer = !isPlayer;
-            OnPlayerSpawned();
+            OnCutScene();
         }
     }
 
@@ -51,14 +52,30 @@ public class CutsceneFunc : MonoBehaviour
         }
     }
 
-    public void OnPlayerSpawned()
+    public void setCurrentCamera(Camera NewCamera)
     {
+        customCamera = NewCamera;
+    }    
+
+    public void OnCutScene()
+    {
+        isPlayer = false;
         if (thirdPersonCamera != null)
             thirdPersonCamera.gameObject.SetActive(isPlayer);
 
         if (customCamera != null)
             customCamera.gameObject.SetActive(!isPlayer);
     }
+
+    public void OffCutScene()
+    {
+        isPlayer = true;
+        if (thirdPersonCamera != null)
+            thirdPersonCamera.gameObject.SetActive(isPlayer);
+
+        if (customCamera != null)
+            customCamera.gameObject.SetActive(!isPlayer);
+    }    
 
     public void SwitchBackToThirdPerson()
     {

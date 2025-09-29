@@ -11,8 +11,7 @@ public class BossOrgeAI : MonsterAI
         base.Start();
         RepeatEvaluateBehaviorTree(0f, 1.5f);
         Brigde.SetActive(false);
-
-    }   
+    }
     protected override void Update()
     {
         base.Update();
