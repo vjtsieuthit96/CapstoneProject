@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using Invector.vCharacterController;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class CheckPlayerAfterSpawn : MonoBehaviour
 {
@@ -22,6 +25,8 @@ public class CheckPlayerAfterSpawn : MonoBehaviour
             if (playerObj != null)
             {
                 target = playerObj.transform;
+                vThirdPersonController third = target.GetComponent<vThirdPersonController>();
+                RespawnPlayer.Instance.SetThirdPersonController(third);
                 bossAI.gameObject.SetActive (true);
                 bossAI.target = target;
                 yield break;
