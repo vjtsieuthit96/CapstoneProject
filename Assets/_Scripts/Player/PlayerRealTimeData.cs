@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerRealTimeData : MonoBehaviour
 {
@@ -71,6 +72,8 @@ public class PlayerRealTimeData : MonoBehaviour
     [Header("ScenePLay")]
     public bool Scene1 = false;
     public bool Scene2 = false;
+    public Vector3 SpawnpointScene2 = new Vector3(181.8f,88, 67.47872f);
+    private bool checkpointSet = false;
 
 
     public void ResetRuntimeData()
@@ -118,7 +121,8 @@ public class PlayerRealTimeData : MonoBehaviour
         spawnPos = Vector3.zero;
         spawnRot = Quaternion.identity;
         PlayerIndex = 0;
-
+        Scene1 = false;
+        Scene2 = false;
         isNewGame = true;
     }
 
@@ -142,6 +146,15 @@ public class PlayerRealTimeData : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if(Scene1 && Scene2 && !checkpointSet)
+        {
+            SetCheckpoint(SpawnpointScene2, Quaternion.identity);
+            checkpointSet = true;
+        }    
+    }
+
 
     public void SetCheckpoint(Vector3 pos, Quaternion rot)
     {

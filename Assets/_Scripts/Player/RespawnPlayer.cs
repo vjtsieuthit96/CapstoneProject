@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Invector.vCharacterController;
+using Invector;
 
 [System.Serializable]
 public class PlayerRespawnOption
@@ -15,6 +16,7 @@ public class PlayerRespawnOption
 
 public class RespawnPlayer : MonoBehaviour
 {
+    public static RespawnPlayer Instance;
     [Header("Cấu hình Respawn cho từng nhân vật")]
     public PlayerRespawnOption[] playerOptions;
 
@@ -23,14 +25,31 @@ public class RespawnPlayer : MonoBehaviour
     public bool destroyBodyAfterDead = true;
 
     private GameObject currentPlayer;
-    private vThirdPersonController currentController;
+    [SerializeField] private vThirdPersonController currentController;
     private GameObject oldPlayer;
-    private bool isRespawning = false;
-
+    [SerializeField] private bool isRespawning = false;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         SpawnPlayer();
         PlayerMock.Instance.SetPlayer(currentPlayer);
+    }
+    private void Update()
+    {
+        if (currentPlayer.IsDead() && !isRespawning)
+        {
+            OnCharacterDead(currentPlayer.gameObject);
+        }
     }
 
     //private void OnEnable()
@@ -45,27 +64,32 @@ public class RespawnPlayer : MonoBehaviour
 
     private void OnCharacterDead(GameObject deadObj)
     {
+        Debug.LogWarning("Có gọi1!!");
+
         if (isRespawning) return;
         isRespawning = true;
 
         oldPlayer = deadObj;
-
-        // Remove listener cũ để tránh listener chồng lên nhau
-        if (currentController != null)
-            currentController.onDead.RemoveListener(OnCharacterDead);
+        //if (currentController != null)
+        //    currentController.onDead.RemoveListener(OnCharacterDead);
 
         int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
         int targetSceneIndex = playerOptions[index].respawnSceneIndex;
-
+        
         if (targetSceneIndex < 0)
         {
             Debug.LogError($"PlayerRespawnOption[{index}] chưa có respawnSceneIndex hợp lệ!");
             isRespawning = false;
             return;
         }
-
+        Debug.LogWarning("Có gọi!!");
         StartCoroutine(DeathSequence(targetSceneIndex));
     }
+    public void SetThirdPersonController(vThirdPersonController vThird)
+    {
+        if(currentController == null)
+        this.currentController = vThird;
+    }    
 
     private IEnumerator DeathSequence(int targetSceneIndex)
     {
@@ -143,11 +167,11 @@ public class RespawnPlayer : MonoBehaviour
         PlayerMock.Instance.SetPlayer(currentPlayer);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();
 
-        if (currentController != null)
-        {
-            currentController.onDead.RemoveAllListeners();
-            currentController.onDead.AddListener(OnCharacterDead);
-        }
+        //if (currentController != null)
+        //{
+        //    currentController.onDead.RemoveAllListeners();
+        //    currentController.onDead.AddListener(OnCharacterDead);
+        //}
 
         PlayerRealTimeData.Instance.isNewGame = false;
         PlayerRealTimeData.Instance.Scene1 = true;
