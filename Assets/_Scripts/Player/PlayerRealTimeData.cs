@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class PlayerRealTimeData : MonoBehaviour
 {
