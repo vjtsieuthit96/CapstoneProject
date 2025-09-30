@@ -75,6 +75,8 @@ public class PlayerRealTimeData : MonoBehaviour
     public Vector3 SpawnpointScene2 = new Vector3(181.8f,88, 67.47872f);
     private bool checkpointSet = false;
 
+    [Header("Cheat Mode")]
+    public bool isCheat = false;
 
     public void ResetRuntimeData()
     {
@@ -214,6 +216,7 @@ public class PlayerRealTimeData : MonoBehaviour
         public int PlayerIndex;
         public bool isNewGame;
         public bool Scene1, Scene2;
+        public bool isCheat;
     }
 
     public void SaveToJson()
@@ -264,7 +267,8 @@ public class PlayerRealTimeData : MonoBehaviour
             PlayerIndex = PlayerIndex,
             isNewGame = isNewGame,
             Scene1 = Scene1,
-            Scene2 = Scene2
+            Scene2 = Scene2,
+            isCheat = isCheat
             
         };
 
@@ -332,5 +336,6 @@ public class PlayerRealTimeData : MonoBehaviour
         isNewGame = wrapper.isNewGame;
         Scene1 = wrapper.Scene1;
         Scene2 = wrapper.Scene2;
+        isCheat = wrapper.isCheat;
     }
 }

@@ -403575,7 +403575,7 @@ MonoBehaviour:
   HealthRecoveryPerTime: 0
   PlayerDamageMultiplierLonggun: 0
   PlayerDamageMultiplierShortgun: 0
-  PlayerIndex: 1
+  PlayerIndex: 2
   isNewGame: 1
   defaultSpawnPos: {x: 7.88, y: -0.08000004, z: 64.53}
   defaultSpawnEuler: {x: 0, y: -180, z: 0}
@@ -403586,6 +403586,7 @@ MonoBehaviour:
   Scene1: 0
   Scene2: 0
   SpawnpointScene2: {x: -181.8, y: 88, z: 67.47872}
+  isCheat: 1
 --- !u!114 &1904599554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459296,6 +459297,14 @@ PrefabInstance:
       propertyPath: Mock
       value: 
       objectReference: {fileID: 995088562}
+    - target: {fileID: 1981983945816476733, guid: 949133aa6c58b05419e4849e2d1a24f4, type: 3}
+      propertyPath: respawnDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1981983945816476733, guid: 949133aa6c58b05419e4849e2d1a24f4, type: 3}
+      propertyPath: destroyBodyAfterDead
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2475816738206032688, guid: 949133aa6c58b05419e4849e2d1a24f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.88

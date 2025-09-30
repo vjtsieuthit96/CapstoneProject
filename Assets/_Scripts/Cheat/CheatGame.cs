@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 public class CheatGame : MonoBehaviour
-{
+{  
     [Header("UI Settings")]
     [SerializeField] private Image targetImage;
     [SerializeField] private Sprite normalSprite;
@@ -19,15 +19,22 @@ public class CheatGame : MonoBehaviour
 
     private void Awake()
     {
+    
         audioSource = gameObject.GetComponent<AudioSource>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
+    private void Start()
+    {
+        isCheatMode = PlayerRealTimeData.Instance.isCheat;
+        ToggleCheat();
+    }
 
     private void Update()
     {
+        PlayerRealTimeData.Instance.isCheat = isCheatMode;
         if (isSearching)
         {
             characterConfigurator = FindObjectOfType<CharacterConfigurator>();
@@ -39,6 +46,7 @@ public class CheatGame : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
+            
             ToggleCheat();
         }
     }
@@ -46,7 +54,6 @@ public class CheatGame : MonoBehaviour
     private void ToggleCheat()
     {
         isCheatMode = !isCheatMode;
-
         if (targetImage != null)
         {
             targetImage.sprite = isCheatMode ? cheatSprite : normalSprite;
