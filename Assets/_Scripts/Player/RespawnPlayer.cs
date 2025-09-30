@@ -46,25 +46,19 @@ public class RespawnPlayer : MonoBehaviour
     }
     private void Update()
     {
-        if (currentPlayer.IsDead() && !isRespawning)
+        if (isRespawning || currentPlayer == null) return;
+
+        var health = currentPlayer.GetComponent<vHealthController>();
+        if (health != null && health.currentHealth <= 0 && currentPlayer.IsDead())
         {
-            OnCharacterDead(currentPlayer.gameObject);
+            StartCoroutine(DeathSequence());
         }
     }
 
-    //private void OnEnable()
-    //{
-    //    SceneManager.sceneLoaded += OnSceneLoaded;
-    //}
 
-    //private void OnDisable()
-    //{
-    //    SceneManager.sceneLoaded -= OnSceneLoaded;
-    //}
 
     private void OnCharacterDead(GameObject deadObj)
     {
-        Debug.LogWarning("Có gọi1!!");
 
         if (isRespawning) return;
         isRespawning = true;
@@ -82,8 +76,7 @@ public class RespawnPlayer : MonoBehaviour
             isRespawning = false;
             return;
         }
-        Debug.LogWarning("Có gọi!!");
-        StartCoroutine(DeathSequence(targetSceneIndex));
+        SceneManager.LoadScene(targetSceneIndex);
     }
     public void SetThirdPersonController(vThirdPersonController vThird)
     {
@@ -91,10 +84,10 @@ public class RespawnPlayer : MonoBehaviour
         this.currentController = vThird;
     }    
 
-    private IEnumerator DeathSequence(int targetSceneIndex)
+    private IEnumerator DeathSequence()
     {
         yield return new WaitForSeconds(respawnDelay);
-        SceneManager.LoadScene(targetSceneIndex);
+        OnCharacterDead(currentPlayer.gameObject);
     }
 
     //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
