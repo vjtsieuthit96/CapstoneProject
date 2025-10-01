@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Invector.vCamera;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,6 +58,7 @@ public class DragonBossAI : MonsterAI
         {
             isLanding = false;
             isFlying = true;
+            monsterAgent.height = 10f;
             SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, true);
             SetAnimatorParameter(MonsterAnimatorHash.isLandingHash, false);
         }
@@ -78,7 +80,11 @@ public class DragonBossAI : MonsterAI
         {
             StartOffsetLerp(8f, 1.5f);
             takeoff = false;
-        }        
+        }      
+        if (monsterStats.GetCurrentHealth() <= 0 && isDead)
+        {
+            monsterAnimator.SetBool(MonsterAnimatorHash.isDeadHash, true);
+        }
 
     }
 

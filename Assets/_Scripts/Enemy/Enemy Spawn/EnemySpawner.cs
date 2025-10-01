@@ -29,15 +29,41 @@ public class EnemySpawner : MonoBehaviour
     private List<EnemyInstance> activeEnemies = new List<EnemyInstance>();
     public int currentPoints = 0;
 
+    public bool canSpawn = true;
+
     private void Start()
     {
+        canSpawn = true;
+        //MonsterFactory.Instance.Init(enemyDataList);
+        //foreach (var data in enemyDataList)
+        //{
+        //    GameObjectPoolManager.Instance.CreatePool(data.id, data.prefab, data.initialPoolSize);
+        //}
+        //StartCoroutine(FindPlayerByTag("Player"));
+        StartCoroutine(CheckSpawnRoutine(2f));
+    }
+    public void SetPlayer(Transform playerTransform)
+    {
+        player = playerTransform;
+        if (player == null) return;
+        
+        foreach(var point in spawnPoints)
+        {
+            LookAtCamera lookAtCamera = point.GetComponent<LookAtCamera>();
+            lookAtCamera.setplayer(player);
+        }
         MonsterFactory.Instance.Init(enemyDataList);
+
         foreach (var data in enemyDataList)
         {
             GameObjectPoolManager.Instance.CreatePool(data.id, data.prefab, data.initialPoolSize);
+
+            var ai = data.prefab.GetComponent<MonsterAI>();
+            if (ai != null)
+            {
+                ai.setplayer(player);
+            }
         }
-        StartCoroutine(FindPlayerByTag("Player"));
-        StartCoroutine(CheckSpawnRoutine(2f));
     }
 
     private void Update()
@@ -45,20 +71,20 @@ public class EnemySpawner : MonoBehaviour
         if (!spawnerEnabled || player == null) return;
         UpdateSpawnPointsByDistance(spawnRadius);
     }
-    private IEnumerator FindPlayerByTag(string tag)
-    {
-        while (player == null)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag(tag);
-            if (playerObj != null)
-            {
-                player = playerObj.transform;
-                yield break;
-            }
+    //private IEnumerator FindPlayerByTag(string tag)
+    //{
+    //    while (player == null)
+    //    {
+    //        GameObject playerObj = GameObject.FindGameObjectWithTag(tag);
+    //        if (playerObj != null)
+    //        {
+    //            player = playerObj.transform;
+    //            yield break;
+    //        }
 
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
+    //        yield return new WaitForSeconds(0.5f);
+    //    }
+    //}
 
     public Transform GetPlayerTransform()
     {
@@ -76,25 +102,29 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnCheck()
     {
-        var config = levelConfigs.FirstOrDefault(l => l.level == currentLevel);
-        if (config == null) return;
-
-        activeEnemies.RemoveAll(e => e == null || !e.gameObject.activeInHierarchy);
-
-        int currentCount = activeEnemies.Count;
-        int remainingCount = config.maxEnemyCount - currentCount;
-        int remainingPoints = config.totalPoints - currentPoints;
-
-        if (remainingCount <= 0 || remainingPoints <= 0) return;
-
-        var spawnPlan = EnemySpawnOption.GetOptimalCombination(enemyDataList, remainingCount, remainingPoints);
-        foreach (var plan in spawnPlan)
+        if(canSpawn)
         {
-            for (int i = 0; i < plan.count; i++)
+            var config = levelConfigs.FirstOrDefault(l => l.level == currentLevel);
+            if (config == null) return;
+
+            activeEnemies.RemoveAll(e => e == null || !e.gameObject.activeInHierarchy);
+
+            int currentCount = activeEnemies.Count;
+            int remainingCount = config.maxEnemyCount - currentCount;
+            int remainingPoints = config.totalPoints - currentPoints;
+
+            if (remainingCount <= 0 || remainingPoints <= 0) return;
+
+            var spawnPlan = EnemySpawnOption.GetOptimalCombination(enemyDataList, remainingCount, remainingPoints);
+            foreach (var plan in spawnPlan)
             {
-                SpawnEnemy(plan.data);
+                for (int i = 0; i < plan.count; i++)
+                {
+                    SpawnEnemy(plan.data);
+                }
             }
         }
+        
     }
 
     private bool SpawnEnemy(EnemyData data)
@@ -102,7 +132,7 @@ public class EnemySpawner : MonoBehaviour
         var point = GetRandomActiveSpawnPoint();
         if (point == null) return false;
 
-        GameObject enemyGO = MonsterFactory.Instance.SpawnEnemy(data, point.transform.position, Quaternion.identity);
+        GameObject enemyGO = MonsterFactory.Instance.SpawnEnemy(data, point.transform.position, point.transform.rotation);
         if (enemyGO == null) return false;
 
         enemyGO.transform.SetParent(enemyParent);
@@ -143,14 +173,24 @@ public class EnemySpawner : MonoBehaviour
 
     private void UpdateSpawnPointsByDistance(float radius)
     {
-        Vector2 playerPos = new Vector2(player.position.x, player.position.z);
+        Vector2 playerPosXZ = new Vector2(player.position.x, player.position.z);
+        float playerY = player.position.y;
+
+        bool onGround = playerY >= -1f && playerY <= 1f;
+        bool onBridge = playerY >= 8.8f && playerY <= 9.5f;
 
         foreach (var point in spawnPoints)
         {
-            Vector2 pointPos = new Vector2(point.transform.position.x, point.transform.position.z);
-            float dist = Vector2.Distance(playerPos, pointPos);
+            Vector2 pointPosXZ = new Vector2(point.transform.position.x, point.transform.position.z);
+            float distXZ = Vector2.Distance(playerPosXZ, pointPosXZ);
 
-            point.gameObject.SetActive(dist <= radius);
+            bool inRange = distXZ <= radius;
+            bool sameLayer = false;
+            if (onGround && point.transform.position.y >= -1f && point.transform.position.y <= 1f)
+                sameLayer = true;
+            else if (onBridge && point.transform.position.y >= 8.8f && point.transform.position.y <= 9.5f)
+                sameLayer = true;
+            point.gameObject.SetActive(inRange && sameLayer);
         }
     }
 

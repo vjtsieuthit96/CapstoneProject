@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public abstract class MonsterAI : MonoBehaviour
 {
     [Header("-----Target-----")]
-    [SerializeField] protected Transform target;
+    [SerializeField] public Transform target;
     [Header("-----Speed Multiplier-----")]
     [SerializeField] float speedMultiplier = 1.75f;
     [Header("-----FOV-----")]
@@ -36,18 +36,21 @@ public abstract class MonsterAI : MonoBehaviour
     protected Node behaviorTree;
     private Vector3 _patrolCenter;
     private ItemDropper itemDropper;
-
     private bool hasRetreat = false;
-    [SerializeField] public bool isDead = false;
+    public bool isDead = false;
     private bool isHit = false;
     private bool isFreeze = false;
     private bool isSlowDown = false;
     private bool isShocked = false;
     private bool isInCombat;
 
-    [SerializeField] private float returnToPoolDelay = 6f;
+    public EnemyColliderManager enemyColliderManager;
+
+    [SerializeField] private float returnToPoolDelay = 2f;
 
     public EnemyData enemyData;
+    [SerializeField] public float patrolDespawnTime = 10f;
+    public float patrolTimer = 0f;
     protected virtual void Start()
     {
         enemyType = monsterStats.enemyType;
@@ -58,20 +61,44 @@ public abstract class MonsterAI : MonoBehaviour
         behaviorTree = CreateBehaviorTree();
         itemDropper = GetComponent<ItemDropper>();
         //enemyData = GetComponent<EnemyData>();
+        enemyColliderManager = GetComponent<EnemyColliderManager>();
 
+    }
+    public void setplayer(Transform Target)
+    {
+        target = Target;
+    }
+    public enum EnemyState
+    {
+        Patrol,
+        Chase,
+        Attack
+    }
+
+    public EnemyState CurrentState;
+
+    public void SetState(EnemyState newState)
+    {
+        CurrentState = newState;
     }
     protected virtual void Update()
     {
         GroundLocomotion();
         Die();
-        if(GetBoolAnimatorParameter(MonsterAnimatorHash.isDeadHash) == true)
+        if (GetBoolAnimatorParameter(MonsterAnimatorHash.isDeadHash) == true)
         {
             monsterAgent.isStopped = true;
         }    
     }
     protected virtual void OnEnable()
     {
+        if(target == null)
+        {
+            target = PlayerMock.Instance.PlayerTransform;
+        }    
         isDead = false;
+        patrolTimer = 0f;
+        enemyColliderManager.ColliderDeathStateChanged(true);
         isHit = false;
         isFreeze = false;
         isSlowDown = false;
@@ -85,16 +112,20 @@ public abstract class MonsterAI : MonoBehaviour
         monsterStats.ResetStatsToInitial();
         ApplyRestart();
     }
+    private void OnDisable()
+    {
+        StopEvaluateBehaviorTree();
+    }
 
-    public void Die()
+    public virtual void Die()
     {
         if (!isDead && monsterStats.GetCurrentHealth() <= 0)
         {
-            isDead = true;
+            isDead = true;       
             monsterAgent.isStopped = true;
+            enemyColliderManager.ColliderDeathStateChanged(false);
             itemDropper.TryDropItem();
             SetAnimatorParameter(MonsterAnimatorHash.isDeadHash, true);
-            Debug.Log("<color=red>--- Enemy Damage Report ---</color>");
             float totalDamage = 0f;
             foreach (var entry in damageLog)
             {
@@ -109,17 +140,16 @@ public abstract class MonsterAI : MonoBehaviour
 
             if (lastAttacker != null)
             {
-                Debug.Log($"<color=green>Final blow by: {lastAttacker.name}</color>");
                 PlayerPlayRecords playerPlayRecords = lastAttacker.GetComponent<PlayerPlayRecords>();
                 string enemyType = GetEnemyType();
                 playerPlayRecords.RegisterKill(enemyType);
             }
-            else
-            {
-                Debug.Log("Enemy died with unknown killer.");
-            }
             StartCoroutine(ReturnToPoolAfterDelay());
         }
+    }
+    public void Despawn()
+    {
+        monsterStats.SetCurrenthealth(0);
     }
 
     private IEnumerator ReturnToPoolAfterDelay()
@@ -149,23 +179,35 @@ public abstract class MonsterAI : MonoBehaviour
     {
         InvokeRepeating("EvaluateBehaviorTree", time, repeatRate);
     }
+    public void StopEvaluateBehaviorTree()
+    {
+        CancelInvoke("EvaluateBehaviorTree");
+    }
 
     protected abstract Node CreateBehaviorTree();
-    private void GroundLocomotion()
+       private void GroundLocomotion()
     {
-        float Speed = monsterAgent.velocity.magnitude;
-        SetAnimatorParameter(MonsterAnimatorHash.speedHash, Speed);
-       
-        float normalizedSpeed = Speed / monsterAgent.speed; 
-        normalizedSpeed = Mathf.Clamp(normalizedSpeed, 0f, 1f);
-      
-        float locomotionValue = Vector3.Dot(monsterAgent.velocity.normalized, transform.forward) * normalizedSpeed;
+        Vector3 agentVelocity = monsterAgent != null ? monsterAgent.velocity : Vector3.zero;
+        float agentSpeed = monsterAgent != null ? monsterAgent.speed : 1f;
 
-        locomotionValue = Mathf.Lerp(-1f, 1f, Mathf.Clamp01((locomotionValue + 1) / 2));
-       
+        float speedMagnitude = agentVelocity.magnitude;
+        SetAnimatorParameter(MonsterAnimatorHash.speedHash, speedMagnitude);
+
+        float normalizedSpeed = speedMagnitude / agentSpeed;
+        normalizedSpeed = Mathf.Clamp(normalizedSpeed, 0f, 1f);
+
+        float locomotionValue = 0f;
+
+        if (agentVelocity.sqrMagnitude > 0.001f)
+        {
+            locomotionValue = Vector3.Dot(agentVelocity.normalized, transform.forward) * normalizedSpeed;
+            locomotionValue = Mathf.Lerp(-1f, 1f, Mathf.Clamp01((locomotionValue + 1f) / 2f));
+        }
+
         SetAnimatorParameter(MonsterAnimatorHash.locomotionHash, locomotionValue);
     }
-    public void ApplyDamage(float amount)
+
+    public virtual void ApplyDamage(float amount)
     {
         monsterStats.TakeDamage(amount);
         GetBehaviorNode<CheckPlayerInFOVNode>()?.OnAttacked();
@@ -260,7 +302,7 @@ public abstract class MonsterAI : MonoBehaviour
     public float GetStoppingDistance() => monsterAgent.stoppingDistance;
     public Vector3 GetRandomPatrolPoint()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * patrolRadius; // Random vị trí trong bán kính tuần tra
         randomDirection += _patrolCenter; // Giữ AI di chuyển quanh khu vực trung tâm
 
         NavMeshHit hit;

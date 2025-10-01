@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8077857541021412717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2475816738206032688}
+  - component: {fileID: 1981983945816476733}
+  - component: {fileID: 3187917875809899006}
+  - component: {fileID: 6920574951473324184}
+  m_Layer: 0
+  m_Name: Spawn Main Character
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2475816738206032688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077857541021412717}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.0000027865171}
+  m_LocalPosition: {x: 7.88, y: -0.08000004, z: 64.53}
+  m_LocalScale: {x: 1, y: 1, z: 0.8287688}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1981983945816476733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077857541021412717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d7e82cec3846c4f944885335278df0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOptions:
+  - playerPrefab: {fileID: 2258064530982041924, guid: 18c02b67f08f7b74cbc237df5bc7f46e, type: 3}
+    respawnSceneIndex: 8
+  - playerPrefab: {fileID: 4522511219689005321, guid: 7d2ace5e2244851438259fea95721e41, type: 3}
+    respawnSceneIndex: 9
+  - playerPrefab: {fileID: 5122348817074797169, guid: 8c77c35d06bf4c24aa632d3c74a434cc, type: 3}
+    respawnSceneIndex: 10
+  respawnDelay: 2
+  destroyBodyAfterDead: 1
+--- !u!114 &3187917875809899006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077857541021412717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf91c0e1d8088fb4a8b01a64bd0dd74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTasks: []
+  subTasks: []
+  currentMainTask: {fileID: 0}
+  currentSubTask: {fileID: 0}
+  Emotions: {fileID: 0}
+--- !u!114 &6920574951473324184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8077857541021412717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7153ba7042ed42747a1a3bcaf99ca1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Invector;
+using UnityEngine;
 
 public class EnemyColliderManager : MonoBehaviour
 {
@@ -23,6 +24,40 @@ public class EnemyColliderManager : MonoBehaviour
         {
             EnemyHitHandler headColliderHandler = headCollider.gameObject.AddComponent<EnemyHitHandler>();
             headColliderHandler.Initialize(monsterAi, headshotMultiplier);            
+        }
+        else
+        {
+            Debug.LogWarning("HeadCollider chưa được gán hoặc bị thiếu trong Inspector!");
+        }
+    }   
+
+    public void ColliderDeathStateChanged(bool value)
+    {
+        foreach (Collider col in colliders)
+        {
+            col.enabled = value;
+        }
+
+        if (headCollider != null)
+        {
+            headCollider.enabled = value;
+        }
+        else
+        {
+            Debug.LogWarning("HeadCollider chưa được gán hoặc bị thiếu trong Inspector!");
+        }
+    }
+
+    public void TurnOnCollider()
+    {
+        foreach (Collider col in colliders)
+        {
+            col.enabled = true;
+        }
+
+        if (headCollider != null)
+        {
+            headCollider.enabled = true;
         }
         else
         {

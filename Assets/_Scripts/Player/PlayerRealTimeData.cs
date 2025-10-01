@@ -56,8 +56,8 @@ public class PlayerRealTimeData : MonoBehaviour
     public bool isNewGame = true;
 
     [Header("Spawn Settings (Default nhập từ Inspector)")]
-    [SerializeField] private Vector3 defaultSpawnPos = Vector3.zero;
-    [SerializeField] private Vector3 defaultSpawnEuler = Vector3.zero;
+    [SerializeField] public Vector3 defaultSpawnPos = Vector3.zero;
+    [SerializeField] public Vector3 defaultSpawnEuler = Vector3.zero;
 
     [Header("Runtime Spawn (cập nhật khi checkpoint)")]
     public Vector3 spawnPos = Vector3.zero;
@@ -67,6 +67,65 @@ public class PlayerRealTimeData : MonoBehaviour
     public List<TaskID> completedMainTasks = new List<TaskID>();
 
     public TaskID lastCompletedMainTask;
+
+    [Header("ScenePLay")]
+    public bool Scene1 = false;
+    public bool Scene2 = false;
+    public Vector3 SpawnpointScene2 = new Vector3(181.8f,88, 67.47872f);
+    private bool checkpointSet = false;
+
+    [Header("Cheat Mode")]
+    public bool isCheat = false;
+
+    public void ResetRuntimeData()
+    {
+        currentSkillTreeState = new SkillTreeState();
+        completedMainTasks = new List<TaskID>();
+        lastCompletedMainTask = TaskID.None;
+
+        walkSpeed = 0;
+        runSpeed = 0;
+        sprintSpeed = 0;
+        crouchSpeed = 0;
+
+        maxStamina = 0;
+        staminaRecovery = 0;
+        sprintStamina = 0;
+        jumpStamina = 0;
+        rollStamina = 0;
+
+        jumpHeight = 0;
+        jumpTimer = 0;
+        jumpStandingDelay = 0;
+        airSpeed = 0;
+        airSmooth = 0;
+
+        fallMinHeight = 0;
+        fallDamage = 0;
+
+
+        rollSpeed = 0;
+        rollRotationSpeed = 0;
+        timeToRollAgain = 0;
+
+        freeMovementAnimatorSpeed = 0;
+        ReloadSpeed = 0;
+
+        PlayerMaxHealth = 0;
+        PlayerMaxAmour = 0;
+        HealthRecovery = 0;
+        HealthRecoveryPerTime = 0;
+
+        PlayerDamageMultiplierLonggun = 0;
+        PlayerDamageMultiplierShortgun = 0;
+
+        spawnPos = Vector3.zero;
+        spawnRot = Quaternion.identity;
+        PlayerIndex = 0;
+        Scene1 = false;
+        Scene2 = false;
+        isNewGame = true;
+    }
 
     private void Awake()
     {
@@ -88,11 +147,25 @@ public class PlayerRealTimeData : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if(Scene1 && Scene2 && !checkpointSet)
+        {
+            SetCheckpoint(SpawnpointScene2, Quaternion.identity);
+            checkpointSet = true;
+        }    
+    }
+
 
     public void SetCheckpoint(Vector3 pos, Quaternion rot)
     {
         spawnPos = pos;
         spawnRot = rot;
+    }
+    public void SetDefaultPoint(Vector3 pos, Quaternion rot)
+    {
+        defaultSpawnPos = pos;
+        defaultSpawnEuler = rot.eulerAngles;
     }
 
     public void AddCompletedMainTask(TaskID task)
@@ -141,6 +214,8 @@ public class PlayerRealTimeData : MonoBehaviour
         public Quaternion spawnRot;
         public int PlayerIndex;
         public bool isNewGame;
+        public bool Scene1, Scene2;
+        public bool isCheat;
     }
 
     public void SaveToJson()
@@ -189,7 +264,11 @@ public class PlayerRealTimeData : MonoBehaviour
             spawnPos = spawnPos,
             spawnRot = spawnRot,
             PlayerIndex = PlayerIndex,
-            isNewGame = isNewGame
+            isNewGame = isNewGame,
+            Scene1 = Scene1,
+            Scene2 = Scene2,
+            isCheat = isCheat
+            
         };
 
         string json = JsonUtility.ToJson(wrapper, true);
@@ -254,5 +333,8 @@ public class PlayerRealTimeData : MonoBehaviour
         spawnRot = wrapper.spawnRot;
         PlayerIndex = wrapper.PlayerIndex;
         isNewGame = wrapper.isNewGame;
+        Scene1 = wrapper.Scene1;
+        Scene2 = wrapper.Scene2;
+        isCheat = wrapper.isCheat;
     }
 }

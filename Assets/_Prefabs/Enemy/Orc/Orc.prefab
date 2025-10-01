@@ -684,9 +684,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speedMultiplier: 1.75
-  viewRadius: 20
+  viewRadius: 40
   viewAngle: 120
-  alertRadius: 20
+  alertRadius: 40
   attackRange: 3
   patrolRadius: 5
   baseSpeed: 0
@@ -700,8 +700,12 @@ MonoBehaviour:
   monsterAudio: {fileID: 680867627703430608}
   enemyType: Orc
   isDead: 0
-  returnToPoolDelay: 6
+  enemyColliderManager: {fileID: 8959749289575215032}
+  returnToPoolDelay: 3
   enemyData: {fileID: 11400000, guid: 07359254e37658749bc5b997654593ed, type: 2}
+  patrolDespawnTime: 15
+  patrolTimer: 0
+  CurrentState: 0
 --- !u!114 &5622012270302772746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,7 +860,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 5
+  MinDistance: 2
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

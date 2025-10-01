@@ -93,8 +93,17 @@ public class CharacterConfigurator : MonoBehaviour
     private bool hasTriggeredHealthRecovery = false;
     private bool hasTriggeredLowStamina = false;
     private bool hasTriggeredStaminaRecovery = false;
-
+    [Header("Cheat")]
     public bool isDead;
+    [SerializeField] private float BaserunSpeed;
+    [SerializeField] private float BasesprintSpeed;
+    [SerializeField] private float BasemaxStamina;
+    [SerializeField] private float BasestaminaRecovery;
+    [SerializeField] private float BasejumpHeight;
+    [SerializeField] private float BasefallMinHeight;
+    [SerializeField] private float BasePlayerDamageMultiplierLonggun;
+    [SerializeField] private float BasePlayerDamageMultiplierShortgun;
+    [SerializeField] private bool isCheatActivate;
 
     private float CurrentHealth => controller != null ? controller.currentHealth : 0;
     public float _currentAmour;
@@ -135,23 +144,19 @@ public class CharacterConfigurator : MonoBehaviour
     #region Test Amour
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             isEffectMode = !isEffectMode;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             isExplosive = !isExplosive;
+            if (isExplosive)
+                ChangeToExplosion();
+            else
+                ChangeToNone();
         }
-        if(isExplosive)
-        {
-            ChangeToExplosion();
-        }
-        else if(!isExplosive)
-        {
-            ChangeToNone();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             if (PlayerElementClass <= 5)
             {
@@ -169,18 +174,47 @@ public class CharacterConfigurator : MonoBehaviour
         CheckLowStamina();
         CheckStaminaRecovery();
         SaveToRealTimeData();
-        //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //{
-        //    TakeDamage(100f);
-        //}
-
-        //bật tắt canvas, xây dựng tạm thời
-        //if (Input.GetKeyDown(KeyCode.I))
-        //{
-        //    isOn = !isOn;
-        //    SkillTreePanel.SetActive(isOn);
-        //}
+        if(PlayerRealTimeData.Instance.isCheat && !isCheatActivate)
+        {
+            CheatModeOn();
+        }  
+        else if (!PlayerRealTimeData.Instance.isCheat && isCheatActivate)
+        {
+            CheatModeOff();
+        }    
     }
+    private void CheatModeOn()
+    {
+        isCheatActivate = true;
+        BaserunSpeed = runSpeed;
+        runSpeed = 5f;
+        BasesprintSpeed = sprintSpeed;
+        sprintSpeed = 8f;
+        BasemaxStamina = maxStamina;
+        maxStamina = 300f;
+        BasestaminaRecovery = staminaRecovery;
+        staminaRecovery = 2f;
+        BasejumpHeight = jumpHeight;
+        jumpHeight = 6f;
+        BasefallMinHeight = fallMinHeight;
+        fallMinHeight = 8f;
+        BasePlayerDamageMultiplierLonggun = PlayerDamageMultiplierLonggun;
+        PlayerDamageMultiplierLonggun = 45f;
+        BasePlayerDamageMultiplierShortgun = PlayerDamageMultiplierShortgun;
+        PlayerDamageMultiplierShortgun = 25f;
+    }
+    private void CheatModeOff()
+    {
+        isCheatActivate = false;
+        runSpeed = BaserunSpeed;
+        sprintSpeed = BasesprintSpeed;
+        maxStamina = BasemaxStamina;
+        staminaRecovery = BasestaminaRecovery;
+        jumpHeight = BasejumpHeight;
+        fallMinHeight = BasefallMinHeight;
+        PlayerDamageMultiplierLonggun = BasePlayerDamageMultiplierLonggun;
+        PlayerDamageMultiplierShortgun = BasePlayerDamageMultiplierShortgun;
+    }    
     public void CheckLowHealth()
     {
         if (PlayerCurrentHealth < PlayerMaxHealth * 0.15f)
@@ -247,7 +281,7 @@ public class CharacterConfigurator : MonoBehaviour
     public void ChangeToExplosion()
     {
         Shottype = BulletType.Explosion;
-        isExplosive = true;
+        //isExplosive = true;
     }
     public void TurnOnElement()
     {
@@ -339,6 +373,16 @@ public class CharacterConfigurator : MonoBehaviour
         PlayerFireRate = other.PlayerFireRate;
         LongGunClipSize = other.LongGunClipSize;
         GunRecoil = other.GunRecoil;
+
+        //Clone dữ liệu gốc
+        BaserunSpeed = runSpeed;
+        BasesprintSpeed = sprintSpeed;
+        BasemaxStamina = maxStamina;
+        BasestaminaRecovery = staminaRecovery;
+        BasejumpHeight = jumpHeight;
+        BasefallMinHeight = fallMinHeight;
+        BasePlayerDamageMultiplierLonggun = PlayerDamageMultiplierLonggun;
+        BasePlayerDamageMultiplierShortgun = PlayerDamageMultiplierShortgun;
     }
     #endregion
 

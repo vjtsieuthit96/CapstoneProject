@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
 
@@ -15,10 +16,11 @@ public class DarkMagicTree : MonsterAI
     public BoxCollider defenseCollider;
     public bool isPlayerInDefenseZone = false;
     public bool isDefending = false;
+    [SerializeField] private MaterialSwitcher matterialSwitch;
+    public SequentialScaler sequentialScaler;
 
     protected override void Start()
     {
-        StartCoroutine(FindPlayerByTag("Player"));
         behaviorTree = CreateBehaviorTree();
         RepeatEvaluateBehaviorTree(0f, 1.5f);
 
@@ -28,33 +30,30 @@ public class DarkMagicTree : MonsterAI
             defenseCollider.isTrigger = true;
         }
     }
-
-    private IEnumerator FindPlayerByTag(string tag)
+    private void Update()
     {
-        while (target == null)
-        {
-            GameObject playerObj = GameObject.FindGameObjectWithTag(tag);
-            if (playerObj != null)
-            {
-                target = playerObj.transform;
-                yield break;
-            }
-
-            yield return new WaitForSeconds(0.5f);
-        }
+        base.Update();
+        Die();
     }
 
-    protected override void Update()
+    public override void Die()
     {
-        Die();
+        if (!isDead && monsterStats.GetCurrentHealth() <= 0)
+        {
+            isDead = true;
+            spawner.canSpawn = false;
+            sequentialScaler.TheEndOfTree();
+        }
     }
 
     protected override void OnEnable()
     {
+        target = PlayerMock.Instance.PlayerTransform;
         isDead = false;
         monsterStats.ResetStatsToInitial();
         ApplyRestart();
         isPlayerInDefenseZone = false;
+        RepeatEvaluateBehaviorTree(0, 1.5f);
     }
 
     protected override Node CreateBehaviorTree()
@@ -66,6 +65,11 @@ public class DarkMagicTree : MonsterAI
         });
     }
 
+    public override void ApplyDamage(float amount)
+    {
+        base.ApplyDamage(amount);
+        matterialSwitch.HurtofTree();
+    }
 
     public void ActivateNearestCircleSkill()
     {

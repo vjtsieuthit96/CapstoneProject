@@ -5,16 +5,22 @@ public class BossOrgeAI : MonsterAI
 {
     private float smoothTime = 0.1f;
     private float turnVelocity = 0f;
+    public GameObject Brigde;
     protected override void Start()
     {
         base.Start();
         RepeatEvaluateBehaviorTree(0f, 1.5f);
-
-    }   
+        Brigde.SetActive(false);
+    }
     protected override void Update()
     {
         base.Update();
         TurnAmount();
+    }
+    public override void Die()
+    {
+        base.Die();
+        Brigde.SetActive(true);
     }
     protected override Node CreateBehaviorTree()
     {

@@ -459,9 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   speedMultiplier: 1.5
-  viewRadius: 30
+  viewRadius: 40
   viewAngle: 140
-  alertRadius: 15
+  alertRadius: 40
   attackRange: 3
   patrolRadius: 5
   baseSpeed: 0
@@ -475,8 +475,12 @@ MonoBehaviour:
   monsterAudio: {fileID: 7973936021140199648}
   enemyType: Harpy
   isDead: 0
+  enemyColliderManager: {fileID: 6325268892199237102}
   returnToPoolDelay: 6
   enemyData: {fileID: 11400000, guid: 6d912300e3bbf814d92612813ca61fcb, type: 2}
+  patrolDespawnTime: 30
+  patrolTimer: 0
+  CurrentState: 0
   player: {fileID: 0}
   catchPoint: {fileID: 7068927139581022095}
   catchRadius: 3.5

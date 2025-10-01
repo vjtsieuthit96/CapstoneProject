@@ -44,19 +44,12 @@ public class SaveManager : MonoBehaviour
         if (!Directory.Exists(saveFolder))
             return new List<string>();
 
-        string[] files = Directory.GetFiles(saveFolder, "*.json");
-        List<string> fileNames = new List<string>();
-        foreach (var f in files)
-            fileNames.Add(Path.GetFileNameWithoutExtension(f));
+        List<string> files = new List<string>();
+        string path = Path.Combine(saveFolder, "save.json");
+        if (File.Exists(path))
+            files.Add("save");
 
-        fileNames.Sort((a, b) =>
-        {
-            int aNum = ParseLoadNumber(a);
-            int bNum = ParseLoadNumber(b);
-            return aNum.CompareTo(bNum);
-        });
-
-        return fileNames;
+        return files;
     }
 
     private int ParseLoadNumber(string name)
@@ -76,21 +69,16 @@ public class SaveManager : MonoBehaviour
     }
 
     public void SaveGame()
-    {
-        if (string.IsNullOrEmpty(currentSlotId))
-        {
-            int next = GetAllSaveFiles().Count + 1;
-            currentSlotId = "load" + next;
-        }
+{
+    PlayerRealTimeData.Instance.SaveToJson();
 
-        PlayerRealTimeData.Instance.SaveToJson();
+    string src = Path.Combine(Application.persistentDataPath, "PlayerRealTimeData.json");
+    string dest = Path.Combine(saveFolder, "save.json");
+    File.Copy(src, dest, true);
 
-        string src = Path.Combine(Application.persistentDataPath, "PlayerRealTimeData.json");
-        string dest = GetSavePath(currentSlotId);
-        File.Copy(src, dest, true);
-
-        Debug.Log("Game saved: " + currentSlotId);
-    }
+    currentSlotId = "save";
+    Debug.Log("Game saved (single slot)");
+}
 
     private void OnSceneChanged(Scene prev, Scene next)
     {

@@ -39,6 +39,7 @@ public class DragonChaseNode : Node
                 monster.SetLanding(true);
                 monster.SetAnimatorParameter(MonsterAnimatorHash.isLandingHash, true);
                 monster.SetAnimatorParameter(MonsterAnimatorHash.isFlyingHash, false);
+                agent.height = 3.5f;
                 agent.enabled = true;
                 agent.speed = monster.GetBaseSpeed();
                 monster.hasHoverTarget = false;

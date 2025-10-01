@@ -1004,6 +1004,7 @@ GameObject:
   - component: {fileID: 13671398}
   - component: {fileID: 11495422}
   - component: {fileID: 11415614}
+  - component: {fileID: 5476302998945660583}
   m_Layer: 11
   m_Name: Ammo
   m_TagString: Action
@@ -1302,6 +1303,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0, y: 50, z: 0}
+--- !u!114 &5476302998945660583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09f0a3bd0cf99d409bff580f343894c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabKey: {fileID: 188466}
+  lifetime: 6
 --- !u!1 &191828
 GameObject:
   m_ObjectHideFlags: 0

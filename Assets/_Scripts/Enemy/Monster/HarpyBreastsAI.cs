@@ -25,10 +25,10 @@ public class HarpyBreastsAI : MonsterAI
     private float fallVelocity = 0f;
     private float maxCatchDuration;
     private float catchTimer;
+    private bool timerRunning = false;  
     public float CatchTimer => catchTimer;
     private Rigidbody rb;
     private MonsterAudio Audio;
-
 
     protected override void Start()
     {
@@ -54,14 +54,38 @@ public class HarpyBreastsAI : MonsterAI
         Landing();
         AdjustFlyHeight();
         StartCatchTimer();
+        if (isCatch && catchTimer <=0)
+        {
+            ReleasePrey();            
+            isCatch = false;
+            timerRunning = false;
+        }
+        if (CurrentState == EnemyState.Patrol)
+        {
+            patrolTimer += Time.deltaTime;
+
+            if (patrolTimer >= patrolDespawnTime)
+            {
+                base.Despawn();
+            }
+        }
+        else
+        {
+            patrolTimer = 0f;
+        }
+        //Debug.Log("Catch: "+catchTimer);
     }
     protected override void OnEnable()
     {
-        base.OnEnable();     
+        base.OnEnable();
+        RepeatEvaluateBehaviorTree(0f, 1f);
         isCatch = false;    
-        rb.isKinematic = false;
-        
+        rb.isKinematic = false;        
         GetBehaviorNode<CatchPreyNode>().OnRestart();
+    }
+    private void OnDisable()
+    {
+        ReleasePrey();
     }
 
     protected override Node CreateBehaviorTree()
@@ -81,10 +105,15 @@ public class HarpyBreastsAI : MonsterAI
 
     private void StartCatchTimer()
     {
-        if (isCatch)
+        if (!timerRunning)
         {
+            catchTimer = maxCatchDuration;
+        }
+        if (isCatch)
+        {   
+            timerRunning = true;            
             catchTimer -= Time.deltaTime;        
-        }        
+        }      
     }
 
     private void AdjustFlyHeight()
@@ -170,6 +199,7 @@ public class HarpyBreastsAI : MonsterAI
             Destroy(joint);            
             isCatch = false;
             catchTimer = 0f;
+            timerRunning = false;
             SetAnimatorParameter(MonsterAnimatorHash.CatchedHash,false);
         }    
     }   

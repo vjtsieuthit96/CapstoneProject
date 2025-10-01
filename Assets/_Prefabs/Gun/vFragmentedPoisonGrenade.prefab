@@ -135,21 +135,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
   onHit:
     m_PersistentCalls:
       m_Calls: []
+  DetentionTime: 0
+  ReductEnemySpeedPercent: 0
+  ElectricDamagePercent: 0
+  EletricDuration: 0
+  PoisonDamagePercent: 0
+  PoisonDuration: 0
+  Owner: {fileID: 0}
 --- !u!54 &5446364
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24182,7 +24177,6 @@ MonoBehaviour:
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
-  Damage: 0
 --- !u!82 &1645694906081355812
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33930,7 +33924,6 @@ MonoBehaviour:
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
-  Damage: 0
 --- !u!114 &5715070547519680141
 MonoBehaviour:
   m_ObjectHideFlags: 0

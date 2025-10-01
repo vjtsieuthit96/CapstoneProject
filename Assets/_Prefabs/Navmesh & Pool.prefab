@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 4018816193991025613}
   - component: {fileID: 3744358244378580621}
   - component: {fileID: 72633771622213025}
-  - component: {fileID: 789345568328588756}
   - component: {fileID: 4761909509448271679}
-  - component: {fileID: 6228868017541610231}
+  - component: {fileID: 8958665344432717127}
   m_Layer: 0
   m_Name: Navmesh & Pool
   m_TagString: Untagged
@@ -68,7 +67,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.25
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: a67ca10cc32fffe44b6eac5e78e6b736, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 82641c67617c15b41a0f94cf279fcfe8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &4018816193991025613
 MonoBehaviour:
@@ -101,7 +100,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7608576018017118198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46510a724d89a894483618de76e5f38e, type: 3}
   m_Name: 
@@ -114,20 +113,6 @@ MonoBehaviour:
   IceCube: {fileID: 1167377218157777050, guid: f8199782d45746e48aeede386a3ecc52, type: 3}
   explosionPoolSize: 5
   isPause: 0
-  PlayerObject: {fileID: 0}
-  anim: {fileID: 0}
---- !u!114 &789345568328588756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7608576018017118198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02fe76cce257bad438b33a05607ef3f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4761909509448271679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fdb69dc7e7799419a331340a492a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObjectParent: {fileID: 0}
   pools:
   - prefab: {fileID: 2012104641230161445, guid: 5f250d60b35ee9443804aba586613ac0, type: 3}
     size: 5
@@ -149,7 +135,7 @@ MonoBehaviour:
     size: 5
   - prefab: {fileID: 2012104641230161445, guid: b8e2211e71101ad4b89125c8c0e45367, type: 3}
     size: 5
---- !u!114 &6228868017541610231
+--- !u!114 &8958665344432717127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,6 +144,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7608576018017118198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf91c0e1d8088fb4a8b01a64bd0dd74d, type: 3}
+  m_Script: {fileID: 11500000, guid: ff78612260c15d44da3651d8493a008d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterContainer: {fileID: 0}
+  ES: {fileID: 0}

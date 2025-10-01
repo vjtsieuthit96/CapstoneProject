@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 1905035271086441499}
   - component: {fileID: -7732369597241107416}
   - component: {fileID: 2688151680687057424}
+  - component: {fileID: 8364251861678424615}
   m_Layer: 0
   m_Name: SurvivalMode
   m_TagString: Untagged
@@ -204,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectToApply: {fileID: 11400000, guid: 00d0283511409df45bfd70ce5d0f0cce, type: 2}
+  originPrefab: {fileID: 2012104641230161445}
 --- !u!64 &2688151680687057424
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -226,6 +228,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8364251861678424615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012104641230161445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09f0a3bd0cf99d409bff580f343894c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabKey: {fileID: 2012104641230161445}
+  lifetime: 6
 --- !u!1 &2012137603783298639
 GameObject:
   m_ObjectHideFlags: 0
