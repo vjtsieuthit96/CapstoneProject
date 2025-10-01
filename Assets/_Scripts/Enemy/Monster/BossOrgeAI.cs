@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossOrgeAI : MonsterAI
@@ -6,22 +7,35 @@ public class BossOrgeAI : MonsterAI
     private float smoothTime = 0.1f;
     private float turnVelocity = 0f;
     public GameObject Brigde;
+    public MonsterStats OrgeStats;
+    public GameObject Wall;
+    public GameObject bosscanvas;
     protected override void Start()
     {
+        OrgeStats = GetComponent<MonsterStats>();
+        Brigde.SetActive(false);
         base.Start();
         RepeatEvaluateBehaviorTree(0f, 1.5f);
-        Brigde.SetActive(false);
     }
     protected override void Update()
     {
         base.Update();
-        TurnAmount();
+        TurnAmount(); 
+        CheckNextScene();
     }
     public override void Die()
     {
         base.Die();
-        Brigde.SetActive(true);
     }
+    public void CheckNextScene()
+    {
+        if(monsterStats.GetCurrentHealth() <= 0)
+        {
+            Wall.SetActive(false);
+            Brigde.SetActive(true);
+            bosscanvas.SetActive(false);
+        }
+    }    
     protected override Node CreateBehaviorTree()
     {
         return new Selector(new List<Node>
