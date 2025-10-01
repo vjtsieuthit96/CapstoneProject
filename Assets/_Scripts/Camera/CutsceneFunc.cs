@@ -23,18 +23,10 @@ public class CutsceneFunc : MonoBehaviour
         }
         Instance = this;
 
-        if (customCamera != null)
-            customCamera.gameObject.SetActive(false);
+        //if (customCamera != null)
+        //    customCamera.gameObject.SetActive(false);
 
         StartCoroutine(FindThirdPersonCamera());
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            isPlayer = !isPlayer;
-            OnCutScene();
-        }
     }
 
     private IEnumerator FindThirdPersonCamera()
@@ -45,7 +37,6 @@ public class CutsceneFunc : MonoBehaviour
             if (cam != null && cam.gameObject.layer == LayerMask.NameToLayer("Camera"))
             {
                 thirdPersonCamera = cam;
-                //OnPlayerSpawned();
                 yield break;
             }
             yield return null;

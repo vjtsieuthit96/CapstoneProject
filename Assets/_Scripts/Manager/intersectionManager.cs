@@ -6,11 +6,13 @@ public class intersectionManager : MonoBehaviour
     public GameObject Map2;
     public EnemySpawner Spawner;
     public GameObject DarkTree;
+    public BoxCollider BoxCollider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
         Map1.SetActive(false);
         Map2.SetActive(true);
+        BoxCollider.enabled = false;
     }
 
     private void Awake()

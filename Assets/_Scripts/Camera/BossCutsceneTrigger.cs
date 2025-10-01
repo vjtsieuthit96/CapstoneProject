@@ -26,6 +26,7 @@ public class BossCutsceneTrigger : MonoBehaviour
                 Time.timeScale = 0f;
                 isCutsceneActive = true;
                 currentRotation = 0f;
+                Collider.enabled = false;
             }
             else
             {
