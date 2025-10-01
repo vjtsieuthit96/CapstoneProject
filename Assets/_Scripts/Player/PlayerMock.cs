@@ -45,6 +45,7 @@ public class PlayerMock : MonoBehaviour
     public void ApplyPlayer()
     {
         enemySpawner.SetPlayer(PlayerTransform);
+        PathDrawer.Instance.setplayer(PlayerTransform);
         Tree.target = PlayerTransform;
         AI.SetPlayer(PlayerTransform);
     }

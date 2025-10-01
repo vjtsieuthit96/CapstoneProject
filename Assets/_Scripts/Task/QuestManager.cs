@@ -11,6 +11,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] public QuestData currentMainTask;
     [SerializeField] public QuestData currentSubTask;
 
+
     public EmotionSystem Emotions;
 
     private void Awake()
