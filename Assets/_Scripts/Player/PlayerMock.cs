@@ -10,6 +10,7 @@ public class PlayerMock : MonoBehaviour
     public Transform _PlayerTransform;
     public DarkMagicTree Tree;
     public EnemySpawner enemySpawner;
+    public AIDirector AI;
 
     private void Awake()
     {
@@ -45,5 +46,6 @@ public class PlayerMock : MonoBehaviour
     {
         enemySpawner.SetPlayer(PlayerTransform);
         Tree.target = PlayerTransform;
+        AI.SetPlayer(PlayerTransform);
     }
 }
