@@ -14,6 +14,7 @@ public class BossCutsceneTrigger : MonoBehaviour
     private void Awake()
     {
         Collider = GetComponent<Collider>();
+        cutsceneCamera.gameObject.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {

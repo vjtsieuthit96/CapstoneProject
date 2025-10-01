@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class intersectionManager : MonoBehaviour
@@ -7,12 +8,15 @@ public class intersectionManager : MonoBehaviour
     public EnemySpawner Spawner;
     public GameObject DarkTree;
     public BoxCollider BoxCollider;
+    public Vector3 NewCheckPoint = new Vector3(103.56f, 9f, 147.01f);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
+
         Map1.SetActive(false);
         Map2.SetActive(true);
         BoxCollider.enabled = false;
+        PlayerRealTimeData.Instance.SetCheckpoint(NewCheckPoint, quaternion.identity);
     }
 
     private void Awake()
