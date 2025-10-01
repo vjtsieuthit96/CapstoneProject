@@ -12,7 +12,6 @@ public class QuestTrigger : MonoBehaviour
     [SerializeField] public CameraTargetSwitcher cameraSwitcher;
 
     public QuestData Taskcomplete;
-    public GameObject NextMainTask;
     private void Awake()
     {
         if(!PlayerRealTimeData.Instance.isNewGame)
@@ -32,9 +31,9 @@ public class QuestTrigger : MonoBehaviour
 
         }
         else questData.isCompleted = false;
-        if(NextMainTask != null)
+        if(QuestTransform != null)
         {
-            NextMainTask.SetActive(false);
+            QuestTransform.gameObject.SetActive(false);
         }
     }
     
@@ -43,9 +42,10 @@ public class QuestTrigger : MonoBehaviour
     {
         if (triggered || questData == null) return;
         if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-        if(NextMainTask != null)
+        if (QuestTransform != null)
         {
-            NextMainTask.SetActive(true);
+            QuestTransform.gameObject.SetActive(true);
+            PathDrawer.Instance.SetTarget(QuestTransform);
         }
         var input = other.GetComponentInParent<vThirdPersonInput>();
         var control = other.GetComponentInParent<vThirdPersonController>();
@@ -70,13 +70,9 @@ public class QuestTrigger : MonoBehaviour
                 {
                     cameraSwitcher.targets.RemoveAt(1);
                 }
+                gameObject.SetActive(false);
             }
 
-            input.SetLockAllInput(true);
-            control.StopCharacter();
-
-            StartCoroutine(WaitAndRestore(5f, input));
-            StartCoroutine(SwitchToTarget(5f));
         }
         else
         {
@@ -98,29 +94,5 @@ public class QuestTrigger : MonoBehaviour
             LastTask.isCompleted = true;
             PlayerRealTimeData.Instance.AddCompletedMainTask(LastTask.taskID);
         }
-    }
-
-    private IEnumerator SwitchToTarget(float delay)
-    {
-        if (cameraSwitcher == null || QuestTransform == null) yield break;
-        if (cameraSwitcher.currentIndex < 0 || cameraSwitcher.currentIndex >= cameraSwitcher.targets.Count) yield break;
-
-        Transform previousTarget = cameraSwitcher.targets[cameraSwitcher.currentIndex];
-        cameraSwitcher.SwitchTargetToTransform(QuestTransform);
-
-        yield return new WaitForSeconds(delay);
-
-        if (previousTarget != null)
-            cameraSwitcher.SwitchTargetToTransform(previousTarget);
-    }
-
-    private IEnumerator WaitAndRestore(float delay, vThirdPersonInput input)
-    {
-        yield return new WaitForSeconds(delay);
-
-        if (input != null)
-            input.SetLockAllInput(false);
-
-        gameObject.SetActive(false);
     }
 }
