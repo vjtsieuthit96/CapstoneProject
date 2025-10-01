@@ -12,6 +12,7 @@ public class QuestTrigger : MonoBehaviour
     [SerializeField] public CameraTargetSwitcher cameraSwitcher;
 
     public QuestData Taskcomplete;
+    public GameObject NextMainTask;
     private void Awake()
     {
         if(!PlayerRealTimeData.Instance.isNewGame)
@@ -31,7 +32,10 @@ public class QuestTrigger : MonoBehaviour
 
         }
         else questData.isCompleted = false;
-
+        if(NextMainTask != null)
+        {
+            NextMainTask.SetActive(false);
+        }
     }
     
 
@@ -39,7 +43,10 @@ public class QuestTrigger : MonoBehaviour
     {
         if (triggered || questData == null) return;
         if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-
+        if(NextMainTask != null)
+        {
+            NextMainTask.SetActive(true);
+        }
         var input = other.GetComponentInParent<vThirdPersonInput>();
         var control = other.GetComponentInParent<vThirdPersonController>();
         if (input == null) return;
@@ -50,6 +57,7 @@ public class QuestTrigger : MonoBehaviour
 
         if (questData.taskType == TaskType.MainTask && QuestTransform != null)
         {
+
             PlayerRealTimeData.Instance.SetCheckpoint(transform.position, transform.rotation);
             CompleteLastTask(Taskcomplete);
             if (cameraSwitcher != null)

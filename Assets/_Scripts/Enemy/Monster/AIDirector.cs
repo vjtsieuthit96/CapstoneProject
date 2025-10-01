@@ -55,10 +55,6 @@ public class AIDirector : MonoBehaviour
     public void DisableDirector()
     {
         directorEnabled = false;
-        if (spawner != null)
-        {
-            spawner.canSpawn = false;
-        }
     }
 
     public void EnableDirector()

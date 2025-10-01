@@ -9,6 +9,7 @@ public class intersectionManager : MonoBehaviour
     public GameObject DarkTree;
     public BoxCollider BoxCollider;
     public Vector3 NewCheckPoint = new Vector3(103.56f, 9f, 147.01f);
+    public AIDirector AI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +18,7 @@ public class intersectionManager : MonoBehaviour
         Map2.SetActive(true);
         BoxCollider.enabled = false;
         PlayerRealTimeData.Instance.SetCheckpoint(NewCheckPoint, quaternion.identity);
+        AI.EnableDirector();
     }
 
     private void Awake()
