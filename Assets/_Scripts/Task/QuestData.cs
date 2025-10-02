@@ -10,7 +10,7 @@ public class QuestData : ScriptableObject
     public AudioClip questAudio;
     public TaskType taskType;
     public TaskID taskID;
-
+    public TaskID NextTask;
     [Header("Subtask: Kill Requirements")]
     public List<KillRequirement> killRequirements = new List<KillRequirement>();
 

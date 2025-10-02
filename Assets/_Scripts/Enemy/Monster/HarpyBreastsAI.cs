@@ -78,14 +78,50 @@ public class HarpyBreastsAI : MonsterAI
     protected override void OnEnable()
     {
         base.OnEnable();
+
+        isCatch = false;
+        isFlying = true;
+        isLanding = false;
+        isTakeOff = false;
+        isFalling = false;
+        isFlyToPlayer = false;
+        isHovering = false;
+        isRoar = false;
+
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+
+        if (monsterAgent != null && monsterAgent.enabled)
+        {
+            monsterAgent.ResetPath();
+            monsterAgent.isStopped = false;
+            monsterAgent.baseOffset = 5f;
+        }
+
+        if (monsterAnimator != null)
+        {
+            monsterAnimator.Rebind();
+            monsterAnimator.Update(0f);
+            monsterAnimator.SetBool(MonsterAnimatorHash.isFlyingHash, true);
+        }
+
+        CancelInvoke();
         RepeatEvaluateBehaviorTree(0f, 1f);
-        isCatch = false;    
-        rb.isKinematic = false;        
-        GetBehaviorNode<CatchPreyNode>().OnRestart();
+        GetBehaviorNode<CatchPreyNode>()?.OnRestart();
     }
+
     private void OnDisable()
     {
         ReleasePrey();
+
+        if (monsterAgent != null && monsterAgent.enabled)
+        {
+            monsterAgent.ResetPath();
+            monsterAgent.isStopped = true;
+            monsterAgent.baseOffset = 0f;
+        }
+
+        CancelInvoke();
     }
 
     protected override Node CreateBehaviorTree()
