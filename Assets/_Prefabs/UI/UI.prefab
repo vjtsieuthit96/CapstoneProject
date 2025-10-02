@@ -15508,6 +15508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionBoard
       objectReference: {fileID: 0}
+    - target: {fileID: 4120079393951673037, guid: 3dacc3e37d8784e4786d8d5a453c117c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4234330344233805049, guid: 3dacc3e37d8784e4786d8d5a453c117c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -16344,7 +16348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 0}
   node: {fileID: 11400000, guid: 12a26aaa70ff5124dbad56767cb48cc0, type: 2}
@@ -16362,7 +16366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 1
+  unlockedState: 0
   manager: {fileID: 0}
   cc: {fileID: 0}
   node: {fileID: 11400000, guid: 12a26aaa70ff5124dbad56767cb48cc0, type: 2}
