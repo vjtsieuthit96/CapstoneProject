@@ -98,10 +98,10 @@ GameObject:
   - component: {fileID: 1990498520977000195}
   - component: {fileID: 1998484672665950655}
   - component: {fileID: 1905035271086441499}
-  - component: {fileID: 6101015520919859638}
   - component: {fileID: 2688151680687057424}
   - component: {fileID: 9154318205147206712}
   - component: {fileID: 5740921008728454843}
+  - component: {fileID: -6391579165702830445}
   m_Layer: 0
   m_Name: SubTask 9
   m_TagString: Untagged
@@ -193,24 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: {x: 0, y: 50, z: 0}
---- !u!114 &6101015520919859638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012104641230161445}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98240d45f953fbb49826afbb698a5d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questData: {fileID: 11400000, guid: 9ffb16f66dc098245926143c202b0b3c, type: 2}
-  QuestTransform: {fileID: 0}
-  audioSource: {fileID: 9154318205147206712}
-  triggered: 0
-  cameraSwitcher: {fileID: 0}
-  Taskcomplete: {fileID: 0}
 --- !u!64 &2688151680687057424
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -342,12 +324,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef195e72da046b4c84f623989528db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questData: {fileID: 11400000, guid: 9ffb16f66dc098245926143c202b0b3c, type: 2}
+  questData: {fileID: 11400000, guid: baea325d51cfcac4ba7bfd4c90a8726a, type: 2}
   QuestTransform: {fileID: 0}
   audioSource: {fileID: 0}
   triggered: 0
   cameraSwitcher: {fileID: 0}
   Taskcomplete: {fileID: 0}
+--- !u!114 &-6391579165702830445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012104641230161445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09f0a3bd0cf99d409bff580f343894c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabKey: {fileID: 0}
+  lifetime: 10
 --- !u!1 &2012137603783298639
 GameObject:
   m_ObjectHideFlags: 0

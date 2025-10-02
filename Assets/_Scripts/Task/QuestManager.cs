@@ -10,6 +10,7 @@ public class QuestManager : MonoBehaviour
 
     [SerializeField] public QuestData currentMainTask;
     [SerializeField] public QuestData currentSubTask;
+    public List<EnemyKillEntry> enemyKillList = new List<EnemyKillEntry>();
 
 
     public EmotionSystem Emotions;
@@ -45,6 +46,7 @@ public class QuestManager : MonoBehaviour
         }
         else
         {
+            ResetRecords();
             subTasks.Add(questData);
             currentSubTask = questData;
             var playerRecords = FindObjectOfType<PlayerPlayRecords>();
@@ -100,28 +102,51 @@ public class QuestManager : MonoBehaviour
         }
         return null;
     }
-    public void OnEnemyKilled(string enemyType)
+    public void RegisterKill(string enemyType)
     {
-        if (currentSubTask != null && !currentSubTask.isCompleted)
+        var entry = enemyKillList.Find(e => e.enemyType == enemyType);
+        if (entry != null)
         {
-            bool allDone = true;
-
-            foreach (var req in currentSubTask.killRequirements)
+            entry.killCount++;
+        }
+        else
+        {
+            enemyKillList.Add(new EnemyKillEntry
             {
-                if (req.enemyType == enemyType && req.currentAmount < req.requiredAmount)
-                {
-                    req.currentAmount++;
-                }
+                enemyType = enemyType,
+                killCount = 1
+            });
+        }
+        CheckSubTaskCompletion();
+    }
+    public void CheckSubTaskCompletion()
+    {
+        if (currentSubTask == null || currentSubTask.isCompleted)
+            return;
 
-                if (req.currentAmount < req.requiredAmount)
-                    allDone = false;
-            }
+        bool allDone = true;
 
-            if (allDone)
+        foreach (var req in currentSubTask.killRequirements)
+        {
+            var entry = enemyKillList.Find(e => e.enemyType == req.enemyType);
+
+            if (entry == null || entry.killCount < req.requiredAmount)
             {
-                CompleteTask(currentSubTask.taskID);
-                currentSubTask = null;
+                allDone = false;
+                break;
             }
         }
+
+        if (allDone)
+        {
+            CompleteTask(currentSubTask.taskID);
+            currentSubTask = null;
+            ResetRecords();
+        }
+    }
+
+    public void ResetRecords()
+    {
+        enemyKillList.Clear();
     }
 }

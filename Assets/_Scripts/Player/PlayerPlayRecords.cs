@@ -24,7 +24,7 @@ public class PlayerPlayRecords : MonoBehaviour
     {
         totalKills++;
         Emotion.OnKillEnemy(1f);
-        QuestManager.Instance.OnEnemyKilled(enemyType);
+        QuestManager.Instance.RegisterKill(enemyType);
         var entry = enemyKillList.Find(e => e.enemyType == enemyType);
         if (entry != null)
         {

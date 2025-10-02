@@ -24,7 +24,7 @@ public class BulletSpawner : MonoBehaviour
 
     [Header("Spawner Control")]
     public bool TaskspawnerEnabled = true;
-    public float TaskspawnInterval = 2f;
+    public float TaskspawnInterval = 1f;
 
     private void Start()
     {
@@ -56,7 +56,7 @@ public class BulletSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(TaskspawnInterval);
+            yield return new WaitForSeconds(spawnInterval);
 
             if (!spawnerEnabled || player == null) continue;
 
@@ -84,17 +84,20 @@ public class BulletSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(TaskspawnInterval);
 
             if (!TaskspawnerEnabled || player == null) continue;
 
             if (QuestManager.Instance.currentSubTask != null) continue;
-
-            var point = GetNearestSpawnPoint();
-            if (point != null)
+            if (QuestManager.Instance.currentSubTask == null)
             {
-                SpawnTask(point.transform.position);
+                var point = GetNearestSpawnPoint();
+                if (point != null)
+                {
+                    SpawnTask(point.transform.position);
+                }
             }
+
         }
     }
 
@@ -119,10 +122,6 @@ public class BulletSpawner : MonoBehaviour
         SubQuestTrigger trigger = task.GetComponent<SubQuestTrigger>();
         QuestData data = trigger.questData;
         data.isCompleted = false;
-        if (trigger != null && trigger.questData != null)
-        {
-            QuestManager.Instance.currentSubTask = trigger.questData;
-        }
     }
 
 

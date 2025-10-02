@@ -25,6 +25,17 @@ public class PanelManager : MonoBehaviour
             OnButtonChoose(Vietnergy, Offense, Defense);
         });
     }
+    private void OnEnable()
+    {
+        SetallActive();
+    }
+
+    public void SetallActive()
+    {
+        Offense.SetActive(true);
+        Defense.SetActive(true);
+        Vietnergy.SetActive(true);
+    }
 
     public void OnButtonChoose(GameObject g1, GameObject g2, GameObject g3)
     {
