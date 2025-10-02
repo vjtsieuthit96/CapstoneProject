@@ -29111,6 +29111,7 @@ MonoBehaviour:
   questData: {fileID: 11400000, guid: 0f4038c68ac280a47b6172eecb47b2ea, type: 2}
   QuestTransform: {fileID: 1793890164}
   audioSource: {fileID: 0}
+  triggered: 0
   cameraSwitcher: {fileID: 218884812}
   Taskcomplete: {fileID: 0}
 --- !u!1001 &140163137
@@ -128062,54 +128063,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8217519777378876770, guid: c0769a6f375035b4f927a5d0186ef0fe, type: 3}
   m_PrefabInstance: {fileID: 529221599}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &531044399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2012104641230161445, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
-  m_PrefabInstance: {fileID: 1895578158}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &531044405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2015514763881087943, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
   m_PrefabInstance: {fileID: 1895578158}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &531044406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531044399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98240d45f953fbb49826afbb698a5d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questData: {fileID: 11400000, guid: 9ffb16f66dc098245926143c202b0b3c, type: 2}
-  QuestTransform: {fileID: 0}
-  audioSource: {fileID: 531044407}
-  cameraSwitcher: {fileID: 0}
-  Taskcomplete: {fileID: 0}
---- !u!82 &531044407 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 9154318205147206712, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
-  m_PrefabInstance: {fileID: 1895578158}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &531044412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531044399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d9d83ad2a71f4468e450e0de28c996, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  LLQPrefab: {fileID: 0}
 --- !u!4 &531537686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1317555153730731150, guid: 88fbebb539fd1cf4481fd3b805ae448f, type: 3}
@@ -130344,6 +130302,7 @@ MonoBehaviour:
   questData: {fileID: 11400000, guid: dbc0472aed8ec954385a86ec454101ee, type: 2}
   QuestTransform: {fileID: 1962169235}
   audioSource: {fileID: 0}
+  triggered: 0
   cameraSwitcher: {fileID: 218884812}
   Taskcomplete: {fileID: 11400000, guid: 396da511237a733469d9b6f24b4c55c9, type: 2}
 --- !u!1001 &550584343
@@ -244588,6 +244547,7 @@ MonoBehaviour:
   questData: {fileID: 11400000, guid: 396da511237a733469d9b6f24b4c55c9, type: 2}
   QuestTransform: {fileID: 550574183}
   audioSource: {fileID: 0}
+  triggered: 0
   cameraSwitcher: {fileID: 218884812}
   Taskcomplete: {fileID: 11400000, guid: fd28118f57ec16a429b19ec2ae183d37, type: 2}
 --- !u!1001 &1232274521
@@ -250562,19 +250522,71 @@ PrefabInstance:
       objectReference: {fileID: 2120789097}
     - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: pools.Array.size
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: pools.Array.data[4].size
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[5].size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[6].size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[7].size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[8].size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[9].size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[10].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: pools.Array.data[4].prefab
+      value: 
+      objectReference: {fileID: 188466, guid: a42f47c5b82df4f4d8fa88ad8a6f90b7, type: 3}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[5].prefab
+      value: 
+      objectReference: {fileID: 2012104641230161445, guid: 2556d2a68f0295b4db067a79c1975899, type: 3}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[6].prefab
+      value: 
+      objectReference: {fileID: 2012104641230161445, guid: e88ba025c3374ce49b4f4317fd9ef20c, type: 3}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[7].prefab
+      value: 
+      objectReference: {fileID: 2012104641230161445, guid: 62c71c529c9b015488aaa2589bcb96ff, type: 3}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 2012104641230161445, guid: 8444fd7b4f92f5a4c80cb37e2bb9eca6, type: 3}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[9].prefab
+      value: 
+      objectReference: {fileID: 2012104641230161445, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
+    - target: {fileID: 4761909509448271679, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: pools.Array.data[10].prefab
       value: 
       objectReference: {fileID: 188466, guid: a42f47c5b82df4f4d8fa88ad8a6f90b7, type: 3}
     - target: {fileID: 7608576018017118198, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: m_Name
       value: Navmesh & Pool
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608576018017118198, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8958665344432717127, guid: 5eae4912bc8f9804492da8d6585c8b12, type: 3}
       propertyPath: ES
@@ -371034,8 +371046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031093c26dc94ca43854d0b927c77911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 188466, guid: a42f47c5b82df4f4d8fa88ad8a6f90b7, type: 3}
-  bulletParent: {fileID: 1732241898}
   spawnPoints:
   - {fileID: 1732241900}
   - {fileID: 1448069145}
@@ -371082,10 +371092,21 @@ MonoBehaviour:
   - {fileID: 948443024}
   - {fileID: 1392617727}
   - {fileID: 1302023498}
+  bulletPrefab: {fileID: 188466, guid: a42f47c5b82df4f4d8fa88ad8a6f90b7, type: 3}
+  bulletParent: {fileID: 1732241898}
   player: {fileID: 0}
   spawnerEnabled: 1
   spawnInterval: 15
   bulletPerSpawn: 1
+  taskPrefabs:
+  - {fileID: 2012104641230161445, guid: 2556d2a68f0295b4db067a79c1975899, type: 3}
+  - {fileID: 2012104641230161445, guid: e88ba025c3374ce49b4f4317fd9ef20c, type: 3}
+  - {fileID: 2012104641230161445, guid: 62c71c529c9b015488aaa2589bcb96ff, type: 3}
+  - {fileID: 2012104641230161445, guid: 62c71c529c9b015488aaa2589bcb96ff, type: 3}
+  - {fileID: 2012104641230161445, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
+  taskParent: {fileID: 802622957}
+  TaskspawnerEnabled: 0
+  TaskspawnInterval: 1
 --- !u!114 &1732241900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387320,6 +387341,7 @@ MonoBehaviour:
   questData: {fileID: 11400000, guid: 0f4038c68ac280a47b6172eecb47b2ea, type: 2}
   QuestTransform: {fileID: 1231919854}
   audioSource: {fileID: 0}
+  triggered: 0
   cameraSwitcher: {fileID: 218884812}
   Taskcomplete: {fileID: 11400000, guid: 0f4038c68ac280a47b6172eecb47b2ea, type: 2}
 --- !u!1001 &1794124732
@@ -403300,13 +403322,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2012104641230161445, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 531044406}
-    - targetCorrespondingSourceObject: {fileID: 2012104641230161445, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 531044412}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
 --- !u!1001 &1895731027
 PrefabInstance:
@@ -411273,6 +411289,7 @@ MonoBehaviour:
   questData: {fileID: 11400000, guid: cd896b26b92ace14c8cf9d4123afb702, type: 2}
   QuestTransform: {fileID: 0}
   audioSource: {fileID: 0}
+  triggered: 0
   cameraSwitcher: {fileID: 218884812}
   Taskcomplete: {fileID: 11400000, guid: dbc0472aed8ec954385a86ec454101ee, type: 2}
 --- !u!114 &1962169243

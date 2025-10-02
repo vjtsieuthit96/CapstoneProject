@@ -8,7 +8,7 @@ public class QuestTrigger : MonoBehaviour
     public Transform QuestTransform;
     public AudioSource audioSource;
 
-    private bool triggered = false;
+    public bool triggered = false;
     [SerializeField] public CameraTargetSwitcher cameraSwitcher;
 
     public QuestData Taskcomplete;
@@ -36,7 +36,15 @@ public class QuestTrigger : MonoBehaviour
             QuestTransform.gameObject.SetActive(false);
         }
     }
-    
+
+    public virtual void OnEnable()
+    {
+        if(questData.taskType == TaskType.SubTask)
+        {
+            questData.isCompleted = false;
+            gameObject.SetActive(true);
+        }    
+    }
 
     private void OnTriggerEnter(Collider other)
     {
