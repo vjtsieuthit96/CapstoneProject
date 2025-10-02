@@ -371096,7 +371096,7 @@ MonoBehaviour:
   bulletParent: {fileID: 1732241898}
   player: {fileID: 0}
   spawnerEnabled: 1
-  spawnInterval: 15
+  spawnInterval: 50
   bulletPerSpawn: 1
   taskPrefabs:
   - {fileID: 2012104641230161445, guid: 2556d2a68f0295b4db067a79c1975899, type: 3}
@@ -371105,7 +371105,7 @@ MonoBehaviour:
   - {fileID: 2012104641230161445, guid: 62c71c529c9b015488aaa2589bcb96ff, type: 3}
   - {fileID: 2012104641230161445, guid: 9bd0e84ece2c4b940995197f6f692bea, type: 3}
   taskParent: {fileID: 802622957}
-  TaskspawnerEnabled: 0
+  TaskspawnerEnabled: 1
   TaskspawnInterval: 1
 --- !u!114 &1732241900
 MonoBehaviour:

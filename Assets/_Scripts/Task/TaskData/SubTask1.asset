@@ -18,6 +18,7 @@ MonoBehaviour:
   questAudio: {fileID: 8300000, guid: 032f8483359f311428659bef3245b110, type: 3}
   taskType: 1
   taskID: 11
+  NextTask: 0
   killRequirements:
   - enemyType: Orc
     requiredAmount: 1

@@ -116,7 +116,9 @@ public class BulletSpawner : MonoBehaviour
         task.transform.position = position;
         task.transform.rotation = Quaternion.identity;
 
-        QuestTrigger trigger = task.GetComponent<QuestTrigger>();
+        SubQuestTrigger trigger = task.GetComponent<SubQuestTrigger>();
+        QuestData data = trigger.questData;
+        data.isCompleted = false;
         if (trigger != null && trigger.questData != null)
         {
             QuestManager.Instance.currentSubTask = trigger.questData;
