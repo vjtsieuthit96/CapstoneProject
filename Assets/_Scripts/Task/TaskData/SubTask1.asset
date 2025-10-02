@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: SubTask1
   m_EditorClassIdentifier: 
   questName: Purge the Alpha
-  description: Eliminate 5 Alpha beasts at the lab ruins to uncover how mutation
-    spreads.
+  description: Eliminate 2 Orc & 1 Harpy
   questAudio: {fileID: 8300000, guid: 032f8483359f311428659bef3245b110, type: 3}
   taskType: 1
   taskID: 11
+  NextTask: 0
   killRequirements:
-  - enemyType: Orc
+  - enemyType: Harpy
     requiredAmount: 1
+    currentAmount: 2
+  - enemyType: Orc
+    requiredAmount: 2
     currentAmount: 2
   isCompleted: 0

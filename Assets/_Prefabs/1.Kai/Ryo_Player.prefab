@@ -69942,6 +69942,10 @@ PrefabInstance:
       propertyPath: onFinishFadeOut.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1165326487183997111, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
+      propertyPath: unlockedState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1179026398231778726, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -70208,7 +70212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3615353377481628144, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: unlockedState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3763427353008284038, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_AnchorMax.x
@@ -70304,7 +70308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4827982022854390493, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: unlockedState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5077356161033442926, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: unlockedState
@@ -70740,7 +70744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8466299340811776239, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: unlockedState
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8538504934852365181, guid: 287661f93247bff4b9d16f0cbef61584, type: 3}
       propertyPath: m_AnchorMax.x
@@ -70937,7 +70941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 2668425209753857488}
   node: {fileID: 11400000, guid: 95dd891a9e7be6d47a056711c5cbadb6, type: 2}
@@ -71015,7 +71019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 0}
   unlockedImg: {fileID: 0}
-  unlockedState: 0
+  unlockedState: 1
   manager: {fileID: 0}
   cc: {fileID: 2668425209753857488}
   node: {fileID: 11400000, guid: 382aae0daa5b4a34cae8508e7d3ec03b, type: 2}

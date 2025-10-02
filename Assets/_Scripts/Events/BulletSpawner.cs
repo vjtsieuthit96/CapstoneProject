@@ -5,18 +5,26 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    [Header("Bullet Settings")]
-    public GameObject bulletPrefab; // prefab đạn
-    public Transform bulletParent;  // nơi chứa các đạn spawn ra
-
     [Header("Spawn Points")]
-    public List<SpawnPoint> spawnPoints; // dùng chung kiểu spawnpoint như EnemySpawner
+    public List<SpawnPoint> spawnPoints;
+
+    [Header("Bullet Settings")]
+    public GameObject bulletPrefab;
+    public Transform bulletParent;
 
     [Header("Spawner Control")]
     public Transform player;
     public bool spawnerEnabled = true;
-    public float spawnInterval = 20f; // 20 giây/lần
-    public int bulletPerSpawn = 2;    // số lượng đạn mỗi lần
+    public float spawnInterval = 20f;
+    public int bulletPerSpawn = 1;
+
+    [Header("Task Prefabs")]
+    public List<GameObject> taskPrefabs;
+    public Transform taskParent;
+
+    [Header("Spawner Control")]
+    public bool TaskspawnerEnabled = true;
+    public float TaskspawnInterval = 1f;
 
     private void Start()
     {
@@ -26,6 +34,8 @@ public class BulletSpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnRoutine());
+        StartCoroutine(TaskSpawnRoutine());
+
     }
 
     private IEnumerator FindPlayerByTag(string tag)
@@ -70,6 +80,52 @@ public class BulletSpawner : MonoBehaviour
         bullet.transform.rotation = Quaternion.identity;
     }
 
+    private IEnumerator TaskSpawnRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(TaskspawnInterval);
+
+            if (!TaskspawnerEnabled || player == null) continue;
+
+            if (QuestManager.Instance.currentSubTask != null) continue;
+            if (QuestManager.Instance.currentSubTask == null)
+            {
+                var point = GetNearestSpawnPoint();
+                if (point != null)
+                {
+                    SpawnTask(point.transform.position);
+                }
+            }
+
+        }
+    }
+
+    private void SpawnTask(Vector3 position)
+    {
+        if (taskPrefabs == null || taskPrefabs.Count == 0) return;
+
+        GameObject prefab = taskPrefabs[Random.Range(0, taskPrefabs.Count)];
+        if (prefab == null) return;
+
+        GameObject task = ItemPoolManager.Instance.GetFromPool(prefab);
+        if (task == null) return;
+
+        if (taskParent != null)
+            task.transform.SetParent(taskParent);
+        else
+            task.transform.SetParent(null); 
+
+        task.transform.position = position;
+        task.transform.rotation = Quaternion.identity;
+
+        SubQuestTrigger trigger = task.GetComponent<SubQuestTrigger>();
+        QuestData data = trigger.questData;
+        data.isCompleted = false;
+    }
+
+
+
     private SpawnPoint GetNearestSpawnPoint()
     {
         if (spawnPoints == null || spawnPoints.Count == 0) return null;
@@ -79,15 +135,4 @@ public class BulletSpawner : MonoBehaviour
             .OrderBy(p => Vector3.Distance(player.position, p.transform.position))
             .FirstOrDefault();
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        if (player != null)
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(player.position, 5f);
-        }
-    }
-#endif
 }

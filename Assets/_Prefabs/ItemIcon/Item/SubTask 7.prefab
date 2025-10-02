@@ -100,8 +100,10 @@ GameObject:
   - component: {fileID: 1905035271086441499}
   - component: {fileID: 2688151680687057424}
   - component: {fileID: 9154318205147206712}
+  - component: {fileID: -8435295042910575794}
+  - component: {fileID: -544251356247854557}
   m_Layer: 0
-  m_Name: SubTask
+  m_Name: SubTask 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,6 +312,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8435295042910575794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012104641230161445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef195e72da046b4c84f623989528db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questData: {fileID: 11400000, guid: 44335985c88133443a85afc461a6b5f4, type: 2}
+  QuestTransform: {fileID: 0}
+  audioSource: {fileID: 0}
+  triggered: 0
+  cameraSwitcher: {fileID: 0}
+  Taskcomplete: {fileID: 0}
+--- !u!114 &-544251356247854557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012104641230161445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09f0a3bd0cf99d409bff580f343894c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabKey: {fileID: 0}
+  lifetime: 10
 --- !u!1 &2012137603783298639
 GameObject:
   m_ObjectHideFlags: 0

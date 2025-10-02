@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb3bb972b8233274aaa1588a275a24a3, type: 3}
-  m_Name: Main5
+  m_Name: SubTask5
   m_EditorClassIdentifier: 
-  questName: FIGHT FINAL
-  description: "Mission complete \u2014 now face the final boss!"
-  questAudio: {fileID: 0}
-  taskType: 0
-  taskID: 5
+  questName: The Cleansing Hunt
+  description: Eliminate 10 Orc & 4 Harpy
+  questAudio: {fileID: 8300000, guid: 032f8483359f311428659bef3245b110, type: 3}
+  taskType: 1
+  taskID: 15
   NextTask: 0
-  killRequirements: []
+  killRequirements:
+  - enemyType: Harpy
+    requiredAmount: 3
+    currentAmount: 2
   isCompleted: 0
