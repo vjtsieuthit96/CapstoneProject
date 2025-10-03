@@ -7,6 +7,7 @@ public class CutsceneFunc : MonoBehaviour
 {
     public static CutsceneFunc Instance { get; private set; }
     public GameObject Boss;
+    public GameObject Spawnpointlist;
     [Header("Custom Camera")]
     [SerializeField] private Camera customCamera;
 
@@ -30,10 +31,14 @@ public class CutsceneFunc : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            setaShortCut();
-        }
+        //if(Input.GetKeyDown(KeyCode.C))
+        //{
+        //    setaShortCut(Boss, true);
+        //}
+        //if(Input.GetKeyDown(KeyCode.V))
+        //{
+        //    setaShortCut(Spawnpointlist, false);
+        //}
     }
 
     private IEnumerator FindThirdPersonCamera()
@@ -84,10 +89,14 @@ public class CutsceneFunc : MonoBehaviour
             customCamera.enabled = false;
     }
 
-    public void setaShortCut()
+    public void setaShortCut(GameObject forcetoo, bool onoroff)
     {
-        Boss.SetActive(true);
-        PathDrawer.Instance.SetTarget(Boss.transform);
+        forcetoo.SetActive(onoroff);
+        if(onoroff)
+        {
+            PathDrawer.Instance.SetTarget(Boss.transform);
+        }
+        
     }
 
 }

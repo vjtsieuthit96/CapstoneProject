@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Invector.vCharacterController;
 using Invector;
+using UnityEngine.SceneManagement;
+
 
 [System.Serializable]
 public class PlayerRespawnOption
@@ -41,6 +43,7 @@ public class RespawnPlayer : MonoBehaviour
     }
     private void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
         SpawnPlayer();
         PlayerMock.Instance.SetPlayer(currentPlayer);
        
@@ -65,8 +68,6 @@ public class RespawnPlayer : MonoBehaviour
         isRespawning = true;
 
         oldPlayer = deadObj;
-        //if (currentController != null)
-        //    currentController.onDead.RemoveListener(OnCharacterDead);
 
         int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
         int targetSceneIndex = playerOptions[index].respawnSceneIndex;
@@ -83,51 +84,33 @@ public class RespawnPlayer : MonoBehaviour
     {
         if(currentController == null)
         this.currentController = vThird;
-    }    
+    }
+
+    private void OnEnable()
+    {
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(SpawnPlayerDelayed());
+    }
+
+    private IEnumerator SpawnPlayerDelayed()
+    {
+        yield return new WaitForSeconds(1f);
+        SpawnPlayer();
+    }
 
     private IEnumerator DeathSequence()
     {
         yield return new WaitForSeconds(respawnDelay);
         OnCharacterDead(currentPlayer.gameObject);
     }
-
-    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    //StartCoroutine(RespawnAfterSceneReady());
-    //}
-
-    private IEnumerator RespawnAfterSceneReady()
-    {
-        yield return null;
-        yield return new WaitForEndOfFrame();
-
-        // Xóa hoặc destroy player cũ
-        if (oldPlayer != null)
-        {
-            if (destroyBodyAfterDead)
-                Destroy(oldPlayer);
-            else
-                DestroyPlayerComponents(oldPlayer);
-
-            oldPlayer = null;
-        }
-
-        // Reset các biến player
-        currentPlayer = null;
-        currentController = null;
-
-        // Spawn player mới
-        SpawnPlayer();
-
-        // Hiển thị task nếu có
-        if (QuestManager.Instance.currentMainTask != null)
-            QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentMainTask);
-        if (QuestManager.Instance.currentSubTask != null)
-            QuestUIManager.Instance.ShowTask(QuestManager.Instance.currentSubTask);
-
-        isRespawning = false;
-    }
-
     private void SpawnPlayer()
     {
         int index = Mathf.Clamp(PlayerRealTimeData.Instance.PlayerIndex, 0, playerOptions.Length - 1);
@@ -160,29 +143,11 @@ public class RespawnPlayer : MonoBehaviour
         currentPlayer = Instantiate(option.playerPrefab, spawnPos, spawnRot);
         PlayerMock.Instance.SetPlayer(currentPlayer);
         currentController = currentPlayer.GetComponent<vThirdPersonController>();
-
-        //if (currentController != null)
-        //{
-        //    currentController.onDead.RemoveAllListeners();
-        //    currentController.onDead.AddListener(OnCharacterDead);
-        //}
         if (PathDrawer.Instance != null)
         {
             PathDrawer.Instance.CheckGame();
         }
         PlayerRealTimeData.Instance.isNewGame = false;
         PlayerRealTimeData.Instance.Scene1 = true;
-    }
-
-    private void DestroyPlayerComponents(GameObject target)
-    {
-        if (!target) return;
-
-        foreach (var comp in target.GetComponentsInChildren<MonoBehaviour>())
-            Destroy(comp);
-
-        if (target.TryGetComponent(out Collider coll)) Destroy(coll);
-        if (target.TryGetComponent(out Rigidbody rb)) Destroy(rb);
-        if (target.TryGetComponent(out Animator anim)) Destroy(anim);
     }
 }
