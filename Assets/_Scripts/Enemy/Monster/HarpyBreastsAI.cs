@@ -211,7 +211,7 @@ public class HarpyBreastsAI : MonsterAI
             if (hit.CompareTag("Player"))
             {
                 isCatch = true;       
-                maxCatchDuration = Random.Range(15f, 20f);
+                maxCatchDuration = Random.Range(8f, 10f);
                 catchTimer = maxCatchDuration;
                 // Di chuyển player đến điểm bắt
                 hit.transform.position = catchPoint.position;
