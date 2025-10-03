@@ -13,12 +13,14 @@ public class intersectionManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
-
-        Map1.SetActive(false);
-        Map2.SetActive(true);
-        BoxCollider.enabled = false;
-        PlayerRealTimeData.Instance.SetCheckpoint(NewCheckPoint, quaternion.identity);
-        AI.EnableDirector();
+        if(other.CompareTag("Player"))
+        {
+            Map1.SetActive(false);
+            Map2.SetActive(true);
+            BoxCollider.enabled = false;
+            PlayerRealTimeData.Instance.SetCheckpoint(NewCheckPoint, quaternion.identity);
+            AI.EnableDirector();
+        }
     }
 
     private void Awake()
