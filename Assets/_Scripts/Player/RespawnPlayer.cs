@@ -43,6 +43,7 @@ public class RespawnPlayer : MonoBehaviour
     {
         SpawnPlayer();
         PlayerMock.Instance.SetPlayer(currentPlayer);
+       
     }
     private void Update()
     {
@@ -165,7 +166,10 @@ public class RespawnPlayer : MonoBehaviour
         //    currentController.onDead.RemoveAllListeners();
         //    currentController.onDead.AddListener(OnCharacterDead);
         //}
-
+        if (PathDrawer.Instance != null)
+        {
+            PathDrawer.Instance.CheckGame();
+        }
         PlayerRealTimeData.Instance.isNewGame = false;
         PlayerRealTimeData.Instance.Scene1 = true;
     }

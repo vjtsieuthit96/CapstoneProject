@@ -77,6 +77,18 @@ public class PlayerRealTimeData : MonoBehaviour
     [Header("Cheat Mode")]
     public bool isCheat = false;
 
+    [Header("Task")]
+    public bool isTask1;
+    public QuestData task1;
+    public bool isTask2;
+    public QuestData task2;
+    public bool isTask3;
+    public QuestData task3;
+    public bool isTask4;
+    public QuestData task4;
+    public bool isTask5;
+    public QuestData task5;
+
     public void ResetRuntimeData()
     {
         currentSkillTreeState = new SkillTreeState();
@@ -125,6 +137,14 @@ public class PlayerRealTimeData : MonoBehaviour
         Scene1 = false;
         Scene2 = false;
         isNewGame = true;
+
+        isTask1 = task1.isCompleted = false;
+        isTask2 = task2.isCompleted = false;
+        isTask3 = task3.isCompleted = false;
+        isTask4 = task4.isCompleted = false;
+        isTask5 = task5.isCompleted = false;
+
+        isCheat = false;
     }
 
     private void Awake()
@@ -153,7 +173,24 @@ public class PlayerRealTimeData : MonoBehaviour
         {
             SetCheckpoint(SpawnpointScene2, Quaternion.identity);
             checkpointSet = true;
-        }    
+        }
+        isTask1 = task1.isCompleted;
+        isTask2 = task2.isCompleted;
+        isTask3 = task3.isCompleted;
+        isTask4 = task4.isCompleted;
+        isTask5 = task5.isCompleted;
+    }
+
+    public void ResetMainTask()
+    {
+        if(isNewGame)
+        {
+            isTask1 = task1.isCompleted = false;
+            isTask2 = task2.isCompleted = false;
+            isTask3 = task3.isCompleted = false;
+            isTask4 = task4.isCompleted = false;
+            isTask5 = task5.isCompleted = false;
+        }
     }
 
 
@@ -216,6 +253,12 @@ public class PlayerRealTimeData : MonoBehaviour
         public bool isNewGame;
         public bool Scene1, Scene2;
         public bool isCheat;
+
+        public bool isTask1;
+        public bool isTask2;
+        public bool isTask3;
+        public bool isTask4;
+        public bool isTask5;
     }
 
     public void SaveToJson()
@@ -267,8 +310,14 @@ public class PlayerRealTimeData : MonoBehaviour
             isNewGame = isNewGame,
             Scene1 = Scene1,
             Scene2 = Scene2,
-            isCheat = isCheat
-            
+            isCheat = isCheat,
+            isTask1 = isTask1,
+            isTask2 = isTask2,
+            isTask3 = isTask3,
+            isTask4 = isTask4,
+            isTask5 = isTask5
+
+
         };
 
         string json = JsonUtility.ToJson(wrapper, true);
@@ -336,5 +385,10 @@ public class PlayerRealTimeData : MonoBehaviour
         Scene1 = wrapper.Scene1;
         Scene2 = wrapper.Scene2;
         isCheat = wrapper.isCheat;
+        task1.isCompleted = isTask1 = wrapper.isTask1;
+        task2.isCompleted = isTask2 = wrapper.isTask2;
+        task3.isCompleted = isTask3 = wrapper.isTask3;
+        task4.isCompleted = isTask4 = wrapper.isTask4;
+        task5.isCompleted = isTask5 = wrapper.isTask5;
     }
 }

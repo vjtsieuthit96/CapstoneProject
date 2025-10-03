@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3bb972b8233274aaa1588a275a24a3, type: 3}
   m_Name: Main4
   m_EditorClassIdentifier: 
-  questName: FIGHT FINAL
-  description: "Mission complete \u2014 now face the final boss!"
+  questName: Collect the final key fragment
+  description: Find last Piece of Broken Key
   questAudio: {fileID: 0}
   taskType: 0
   taskID: 4
   NextTask: 5
   killRequirements: []
-  isCompleted: 1
+  isCompleted: 0

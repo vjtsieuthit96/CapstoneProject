@@ -12,8 +12,6 @@ public class PlayerMock : MonoBehaviour
     public DarkMagicTree Tree;
     public EnemySpawner enemySpawner;
     public AIDirector AI;
-
-    public List<QuestData> datas;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -22,10 +20,6 @@ public class PlayerMock : MonoBehaviour
             return;
         }
         Instance = this;
-        foreach (QuestData data in datas)
-        {
-            data.isCompleted = false;
-        }
     }
     private void Start()
     {

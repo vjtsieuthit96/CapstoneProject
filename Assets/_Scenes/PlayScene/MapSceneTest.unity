@@ -29035,6 +29035,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Task 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2012104641230161445, guid: c70b909a232b07e4390e155ba47c9449, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2015514763881087943, guid: c70b909a232b07e4390e155ba47c9449, type: 3}
       propertyPath: m_LocalPosition.x
       value: 58.7
@@ -172490,6 +172494,12 @@ MonoBehaviour:
   visibleDuration: 2
   pathColor: {r: 0.007843138, g: 0.101960786, b: 0.3137255, a: 0.4}
   lineWidth: 0.15
+  task1: {fileID: 139567236}
+  task2: {fileID: 1793890164}
+  task3: {fileID: 1231919854}
+  task4: {fileID: 550574183}
+  task5: {fileID: 1962169235}
+  Enemy: {fileID: 231251529}
 --- !u!120 &802191351
 LineRenderer:
   serializedVersion: 2
@@ -208465,17 +208475,6 @@ MonoBehaviour:
   Tree: {fileID: 5193764}
   enemySpawner: {fileID: 1850126578}
   AI: {fileID: 995088564}
-  datas:
-  - {fileID: 11400000, guid: 0f4038c68ac280a47b6172eecb47b2ea, type: 2}
-  - {fileID: 11400000, guid: fd28118f57ec16a429b19ec2ae183d37, type: 2}
-  - {fileID: 11400000, guid: 396da511237a733469d9b6f24b4c55c9, type: 2}
-  - {fileID: 11400000, guid: dbc0472aed8ec954385a86ec454101ee, type: 2}
-  - {fileID: 11400000, guid: cd896b26b92ace14c8cf9d4123afb702, type: 2}
-  - {fileID: 11400000, guid: 9ffb16f66dc098245926143c202b0b3c, type: 2}
-  - {fileID: 11400000, guid: 59feabbf574d5af4da8e6f93a46f9111, type: 2}
-  - {fileID: 11400000, guid: 44335985c88133443a85afc461a6b5f4, type: 2}
-  - {fileID: 11400000, guid: 47aa756b9dfc04c47b112b231b06369f, type: 2}
-  - {fileID: 11400000, guid: baea325d51cfcac4ba7bfd4c90a8726a, type: 2}
 --- !u!114 &995088563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398284,24 +398283,24 @@ MonoBehaviour:
     maxEnemyCount: 10
     levelType: 1
   - level: 2
-    totalPoints: 19
-    maxEnemyCount: 11
+    totalPoints: 17
+    maxEnemyCount: 13
     levelType: 2
   - level: 3
-    totalPoints: 29
-    maxEnemyCount: 13
+    totalPoints: 20
+    maxEnemyCount: 16
     levelType: 1
   - level: 4
-    totalPoints: 30
-    maxEnemyCount: 10
+    totalPoints: 22
+    maxEnemyCount: 14
     levelType: 1
   - level: 5
-    totalPoints: 35
-    maxEnemyCount: 11
+    totalPoints: 25
+    maxEnemyCount: 17
     levelType: 3
   - level: 6
-    totalPoints: 42
-    maxEnemyCount: 14
+    totalPoints: 27
+    maxEnemyCount: 15
     levelType: 3
   currentLevel: 1
   enemyParent: {fileID: 1850126577}
@@ -404781,14 +404780,24 @@ MonoBehaviour:
   isNewGame: 1
   defaultSpawnPos: {x: 7.88, y: -0.08000004, z: 64.53}
   defaultSpawnEuler: {x: 0, y: -180, z: 0}
-  spawnPos: {x: 0, y: 0, z: 0}
-  spawnRot: {x: 0, y: 0, z: 0, w: 1}
+  spawnPos: {x: 7.88, y: -0.08000004, z: 64.53}
+  spawnRot: {x: 0, y: -1, z: 0, w: -0.00000004371139}
   completedMainTasks: 
   lastCompletedMainTask: 0
   Scene1: 0
   Scene2: 0
   SpawnpointScene2: {x: -181.8, y: 88, z: 67.47872}
   isCheat: 0
+  isTask1: 0
+  task1: {fileID: 11400000, guid: 0f4038c68ac280a47b6172eecb47b2ea, type: 2}
+  isTask2: 0
+  task2: {fileID: 11400000, guid: fd28118f57ec16a429b19ec2ae183d37, type: 2}
+  isTask3: 0
+  task3: {fileID: 11400000, guid: 396da511237a733469d9b6f24b4c55c9, type: 2}
+  isTask4: 0
+  task4: {fileID: 11400000, guid: dbc0472aed8ec954385a86ec454101ee, type: 2}
+  isTask5: 0
+  task5: {fileID: 11400000, guid: cd896b26b92ace14c8cf9d4123afb702, type: 2}
 --- !u!114 &1904599554
 MonoBehaviour:
   m_ObjectHideFlags: 0
