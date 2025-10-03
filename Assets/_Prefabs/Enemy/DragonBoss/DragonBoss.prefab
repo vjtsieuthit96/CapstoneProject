@@ -554,7 +554,7 @@ MonoBehaviour:
   viewAngle: 0
   alertRadius: 0
   attackRange: 200
-  patrolRadius: 10
+  patrolRadius: 15
   baseSpeed: 0
   frozenEffect: {fileID: 5897136368836999528}
   ElectricEffect: {fileID: 4815552957583200223}
@@ -566,12 +566,16 @@ MonoBehaviour:
   monsterAudio: {fileID: 8660097992776228119}
   enemyType: DragonBoss
   isDead: 0
+  enemyColliderManager: {fileID: 0}
   returnToPoolDelay: 6
   enemyData: {fileID: 11400000, guid: c883f299fe03f504e9e2542eeb763b68, type: 2}
+  patrolDespawnTime: 10
+  patrolTimer: 0
+  CurrentState: 0
   flyTimer: 0
-  maxFlyTime: 360
+  maxFlyTime: 60
   walkTimer: 0
-  maxWalkTimer: 30
+  maxWalkTimer: 60
   flyHoverRadius: 45
   hoverTimer: 0
   maxHoverTime: 15
@@ -628,9 +632,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 2402956823289643076}
-  skill1Cooldown: 30
-  skill2Cooldown: 45
-  skill3Cooldown: 20
+  skill1Cooldown: 15
+  skill2Cooldown: 20
+  skill3Cooldown: 10
   skill1Range: 22.5
   skill2Range: 45
   skill3Range: 45
