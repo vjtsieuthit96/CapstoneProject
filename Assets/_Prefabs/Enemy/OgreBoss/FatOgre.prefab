@@ -1572,8 +1572,16 @@ MonoBehaviour:
   monsterAudio: {fileID: 866160836189269294}
   enemyType: FatOgre
   isDead: 0
+  enemyColliderManager: {fileID: 0}
   returnToPoolDelay: 6
   enemyData: {fileID: 11400000, guid: 91fe585a942b3a94a80404a185dad65d, type: 2}
+  patrolDespawnTime: 10
+  patrolTimer: 0
+  CurrentState: 0
+  Brigde: {fileID: 0}
+  OrgeStats: {fileID: 0}
+  Wall: {fileID: 0}
+  bosscanvas: {fileID: 0}
 --- !u!114 &6380886350549213172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1623,9 +1631,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster: {fileID: 3501852433735634973}
-  skill1Cooldown: 5
-  skill2Cooldown: 60
-  skill3Cooldown: 30
+  skill1Cooldown: 2
+  skill2Cooldown: 2
+  skill3Cooldown: 2
   skill1Range: 25
   skill2Range: 30
   skill3Range: 4
