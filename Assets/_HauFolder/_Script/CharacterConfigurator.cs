@@ -188,9 +188,9 @@ public class CharacterConfigurator : MonoBehaviour
     {
         isCheatActivate = true;
         BaserunSpeed = runSpeed;
-        runSpeed = 5f;
+        runSpeed = 7f;
         BasesprintSpeed = sprintSpeed;
-        sprintSpeed = 8f;
+        sprintSpeed = 12f;
         BasemaxStamina = maxStamina;
         maxStamina = 300f;
         BasestaminaRecovery = staminaRecovery;

@@ -6,7 +6,7 @@ using Unity.Properties;
 public class CutsceneFunc : MonoBehaviour
 {
     public static CutsceneFunc Instance { get; private set; }
-
+    public GameObject Boss;
     [Header("Custom Camera")]
     [SerializeField] private Camera customCamera;
 
@@ -27,6 +27,13 @@ public class CutsceneFunc : MonoBehaviour
         //    customCamera.gameObject.SetActive(false);
 
         StartCoroutine(FindThirdPersonCamera());
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            setaShortCut();
+        }
     }
 
     private IEnumerator FindThirdPersonCamera()
@@ -76,4 +83,11 @@ public class CutsceneFunc : MonoBehaviour
         if (customCamera != null)
             customCamera.enabled = false;
     }
+
+    public void setaShortCut()
+    {
+        Boss.SetActive(true);
+        PathDrawer.Instance.SetTarget(Boss.transform);
+    }
+
 }

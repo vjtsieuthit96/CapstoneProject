@@ -208115,6 +208115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01bd93931c54344a8f07acbbdd84295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Boss: {fileID: 0}
   customCamera: {fileID: 2080653023}
   thirdPersonCamera: {fileID: 0}
   isPlayer: 1
@@ -228839,7 +228840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 12
-  SpawnPointNextScene: {x: -181.8, y: 90, z: 67.47872}
+  SpawnPointNextScene: {x: -169, y: 63, z: -117}
   tpsCamera: {fileID: 0}
 --- !u!114 &1134380050
 MonoBehaviour:
