@@ -20,6 +20,7 @@ public class intersectionManager : MonoBehaviour
             BoxCollider.enabled = false;
             PlayerRealTimeData.Instance.SetCheckpoint(NewCheckPoint, quaternion.identity);
             AI.EnableDirector();
+            AI.enabled = false;
         }
     }
 

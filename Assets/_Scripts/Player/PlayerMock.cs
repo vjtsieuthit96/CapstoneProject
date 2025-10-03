@@ -26,6 +26,14 @@ public class PlayerMock : MonoBehaviour
         _PlayerPrefab = PlayerPrefab;
         _PlayerTransform = PlayerTransform;
     }
+    //private void Update()
+    //{
+    //    if(PlayerTransform == null || PlayerPrefab == null)
+    //    {
+    //        PlayerTransform = AI.;
+    //        PlayerPrefab = PlayerTransform.gameObject;
+    //    }
+    //}
 
     public void SetPlayer(GameObject player)
     {
