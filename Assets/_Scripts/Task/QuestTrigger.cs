@@ -46,6 +46,11 @@ public class QuestTrigger : MonoBehaviour
         }    
     }
 
+    public void SetPlayerTarger()
+    {
+        PathDrawer.Instance.SetTarget(QuestTransform);
+    }    
+
     private void OnTriggerEnter(Collider other)
     {
         if (triggered || questData == null) return;
@@ -53,7 +58,7 @@ public class QuestTrigger : MonoBehaviour
         if (QuestTransform != null)
         {
             QuestTransform.gameObject.SetActive(true);
-            PathDrawer.Instance.SetTarget(QuestTransform);
+            SetPlayerTarger();
         }
         var input = other.GetComponentInParent<vThirdPersonInput>();
         var control = other.GetComponentInParent<vThirdPersonController>();

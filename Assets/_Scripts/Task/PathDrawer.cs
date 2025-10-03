@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(LineRenderer))]
@@ -25,6 +26,14 @@ public class PathDrawer : MonoBehaviour
     private float visibleTimer;
     private bool isVisible;
 
+    public Transform task1;
+    public Transform task2;
+    public Transform task3;
+    public Transform task4;
+    public Transform task5;
+    public Transform Enemy;
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,6 +48,7 @@ public class PathDrawer : MonoBehaviour
 
         SetupLineRenderer();
         lineRenderer.enabled = false;
+          
     }
     public void setplayer(Transform PlayerSet)
     {
@@ -64,6 +74,58 @@ public class PathDrawer : MonoBehaviour
             return;
         }
         
+    }
+
+    public void CheckGame()
+    {
+        var Game = PlayerRealTimeData.Instance;
+        if(!Game.isNewGame)
+        {
+            if (!Game.isTask1 && !Game.isTask2 && !Game.isTask3 && !Game.isTask4)
+            {
+                task1.gameObject.SetActive(true);
+                SetTarget(task1);
+            }
+            else if (Game.isTask1 && !Game.isTask2 && !Game.isTask3 && !Game.isTask4)
+            {
+                task1.gameObject.SetActive(false);
+                task2.gameObject.SetActive(false);
+                task3.gameObject.SetActive(true);
+                SetTarget(task3);
+            }
+            else if (Game.isTask1 && Game.isTask2 && !Game.isTask3 && !Game.isTask4)
+            {
+                task1.gameObject.SetActive(false);
+                task2.gameObject.SetActive(false);
+                task3.gameObject.SetActive(false);
+                task4.gameObject.SetActive(true);
+                SetTarget(task4);
+            }
+            else if (Game.isTask1 && Game.isTask2 && Game.isTask3 && !Game.isTask4)
+            {
+                task1.gameObject.SetActive(false);
+                task2.gameObject.SetActive(false);
+                task3.gameObject.SetActive(false);
+                task4.gameObject.SetActive(false);
+                task5.gameObject.SetActive(true);
+                SetTarget(task5);
+            }
+            else if (Game.isTask1 && Game.isTask2 && !Game.isTask3 && !Game.isTask4)
+            {
+                task1.gameObject.SetActive(false);
+                task2.gameObject.SetActive(false);
+                task3.gameObject.SetActive(false);
+                task4.gameObject.SetActive(false);
+                task5.gameObject.SetActive(false);
+                Enemy.gameObject.SetActive(true);
+                SetTarget(Enemy);
+            }
+        }
+        else
+        {
+            task1.gameObject.SetActive(true);
+            SetTarget(task1);
+        }    
     }
 
     private void UpdatePath()
