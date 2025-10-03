@@ -99,6 +99,7 @@ public class CharacterConfigurator : MonoBehaviour
     [SerializeField] private float BasesprintSpeed;
     [SerializeField] private float BasemaxStamina;
     [SerializeField] private float BasestaminaRecovery;
+    [SerializeField] private float BasehealthRecovery;
     [SerializeField] private float BasejumpHeight;
     [SerializeField] private float BasefallMinHeight;
     [SerializeField] private float BasePlayerDamageMultiplierLonggun;
@@ -193,7 +194,9 @@ public class CharacterConfigurator : MonoBehaviour
         BasemaxStamina = maxStamina;
         maxStamina = 300f;
         BasestaminaRecovery = staminaRecovery;
-        staminaRecovery = 2f;
+        staminaRecovery = 8f;
+        BasehealthRecovery = HealthRecovery;
+        HealthRecovery = 8f;
         BasejumpHeight = jumpHeight;
         jumpHeight = 6f;
         BasefallMinHeight = fallMinHeight;
@@ -210,6 +213,7 @@ public class CharacterConfigurator : MonoBehaviour
         sprintSpeed = BasesprintSpeed;
         maxStamina = BasemaxStamina;
         staminaRecovery = BasestaminaRecovery;
+        HealthRecovery = BasehealthRecovery;
         jumpHeight = BasejumpHeight;
         fallMinHeight = BasefallMinHeight;
         PlayerDamageMultiplierLonggun = BasePlayerDamageMultiplierLonggun;
@@ -379,6 +383,7 @@ public class CharacterConfigurator : MonoBehaviour
         BasesprintSpeed = sprintSpeed;
         BasemaxStamina = maxStamina;
         BasestaminaRecovery = staminaRecovery;
+        BasehealthRecovery = HealthRecovery;
         BasejumpHeight = jumpHeight;
         BasefallMinHeight = fallMinHeight;
         BasePlayerDamageMultiplierLonggun = PlayerDamageMultiplierLonggun;

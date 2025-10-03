@@ -28,9 +28,12 @@ public class AIDirector : MonoBehaviour
         float minDist = float.MaxValue;
         foreach (var point in hotSpots)
         {
-            float dist = Vector3.Distance(player.position, point.position);
-            if (dist < minDist)
-                minDist = dist;
+            if(point != null)
+            {
+                float dist = Vector3.Distance(player.position, point.position);
+                if (dist < minDist)
+                    minDist = dist;
+            }    
         }
         if (minDist <= stopDistance)
         {

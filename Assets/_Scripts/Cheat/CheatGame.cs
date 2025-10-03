@@ -45,7 +45,7 @@ public class CheatGame : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.BackQuote))
         {
             ToggleCheat();
         }
